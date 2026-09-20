@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#17265f">
+<title>चुपाकाबरा खाता</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Firebase Compat SDKs -->
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+<style>
+:root{
+ --brand:#29479d;--brand2:#17265f;--soft:#eef2ff;--bg:#f5f7fb;--card:#fff;
+ --text:#111827;--muted:#6b7280;--line:#e5e9f1;--green:#139447;--greenbg:#eaf8f0;
+ --red:#d92d3f;--redbg:#fff0f2;--orange:#f59e0b;--shadow:0 10px 30px rgba(26,38,80,.08)
+}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:82px;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}button{cursor:pointer}
+.top{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff;padding:18px 16px 30px;border-radius:0 0 30px 30px}
+.toprow{max-width:580px;margin:auto;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;font-size:25px}
+.brand h1{font-size:18px;font-weight:800}.brand p{font-size:11px;opacity:.75;margin-top:3px}
+.top-actions{display:flex;gap:8px;align-items:center}
+.syncbtn{padding:8px 12px;border:0;border-radius:12px;background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px}
+.topbtn{width:43px;height:43px;border:0;border-radius:14px;background:rgba(255,255,255,.13);color:#fff;font-size:20px}
+.wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-8px}
+.summary{background:#fff;border-radius:23px;padding:19px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.9)}
+.label{font-size:12px;color:var(--muted);font-weight:700}.net{font-size:32px;font-weight:800;margin-top:3px}.smallnote{font-size:10px;color:var(--muted);margin-top:3px}
+.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.money{padding:13px;border-radius:16px}.money.get{background:var(--greenbg)}.money.give{background:var(--redbg)}
+.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:19px;margin-top:5px}.money.get strong{color:var(--green)}.money.give strong{color:var(--red)}
+.main,.detail,.mandi,.reports,.services{max-width:580px;margin:auto;padding:18px 15px}
+.head{display:flex;align-items:center;justify-content:space-between;margin:5px 2px 11px}.head h2{font-size:17px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
+.search{height:49px;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;padding:0 15px;outline:0;font-size:13px;margin-bottom:13px;box-shadow:0 3px 12px rgba(0,0,0,.025)}.search:focus{border-color:#a8b7e8}
+.list{display:flex;flex-direction:column;gap:9px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 12px rgba(0,0,0,.025)}.customer:active{transform:scale(.985)}
+.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:44px;height:44px;flex:0 0 44px;border-radius:15px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:14px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:3px}.right{text-align:right}.amt{font-size:16px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:3px}.receive{color:var(--red)}.pay{color:var(--green)}
+.empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:35px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;font-size:32px;margin-bottom:8px}
+.fab{position:fixed;right:18px;bottom:75px;height:54px;padding:0 20px;border:0;border-radius:18px;background:var(--brand);color:#fff;font-size:13px;font-weight:800;box-shadow:0 12px 27px rgba(41,71,157,.32);z-index:40}
+.bottom{position:fixed;bottom:0;left:0;right:0;height:65px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;z-index:35}.bottom button{flex:1;border:0;background:none;color:#8a92a3;font-size:10px;font-weight:700}.bottom button div{font-size:20px;margin-bottom:2px}.bottom button.active{color:var(--brand)}
+.back{border:0;background:none;color:var(--brand);font-size:13px;font-weight:800;margin-bottom:12px}
+.profile{background:#fff;border-radius:23px;padding:22px;text-align:center;box-shadow:var(--shadow)}.bigavatar{width:62px;height:62px;border-radius:20px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin:auto;font-size:23px;font-weight:800}.profile h2{font-size:20px;margin-top:10px}.profile .phone{font-size:11px}.detailamt{font-size:32px;font-weight:800;margin-top:15px}.detailstatus{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.action{border:0;border-radius:14px;padding:13px 7px;font-size:12px;font-weight:800}.action.give{background:var(--redbg);color:var(--red)}.action.get{background:var(--greenbg);color:var(--green)}.whatsapp{width:100%;border:0;border-radius:14px;background:#e9f9ef;color:#138a43;padding:12px;margin-top:9px;font-size:12px;font-weight:800}
+.tools{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:9px}.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 4px;font-size:10px;font-weight:700;color:#4b5563}
+.txhead{font-size:14px;font-weight:800;margin:20px 2px 10px}.tx{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}.txnote{font-size:12px;font-weight:700}.txdate{font-size:9px;color:var(--muted);margin-top:3px}.txamt{font-size:14px;font-weight:800}.txbuttons{display:flex;gap:5px;margin-left:10px}.tiny{border:0;background:#f1f3f7;border-radius:8px;padding:6px;font-size:10px}
+.mandigrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.mandicard{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:0 3px 12px rgba(0,0,0,.025)}.mandicard .emoji{font-size:22px}.mandicard h3{font-size:12px;margin-top:8px}.mprice{font-size:18px;font-weight:800;margin-top:5px}.mrange{font-size:9px;color:var(--muted);margin-top:4px}
+.reportgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.reportbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.reportbox p{font-size:10px;color:var(--muted)}.reportbox strong{display:block;font-size:22px;margin-top:5px}.reportbox.get strong{color:var(--green)}.reportbox.give strong{color:var(--red)}
+
+/* Services Styles */
+.service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
+.service-head{display:flex;align-items:center;gap:12px}
+.service-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px}
+.service-info h3{font-size:15px;font-weight:800;color:var(--text)}
+.service-info p{font-size:11px;color:var(--muted);margin-top:2px}
+.service-desc{font-size:11px;color:#4b5563;margin:12px 0;line-height:1.6;background:#f8fafc;padding:10px 12px;border-radius:12px}
+.service-btn{width:100%;height:44px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}
+
+.modal{display:none;position:fixed;inset:0;background:rgba(10,16,35,.58);backdrop-filter:blur(5px);align-items:flex-end;justify-content:center;z-index:100}.box{width:100%;max-width:580px;background:#fff;border-radius:26px 26px 0 0;padding:22px 18px 28px;animation:up .2s ease}@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}.box h2{font-size:18px;margin-bottom:15px}.input{width:100%;height:48px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px}.input:focus{border-color:#a8b7e8}.modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}.modalrow button{height:47px;border:0;border-radius:13px;font-weight:800}.cancel{background:#f1f3f7;color:#6b7280}.save{background:var(--brand);color:#fff}.danger{background:var(--redbg);color:var(--red)}
+.setting{background:#f7f8fb;border-radius:15px;padding:12px;margin-bottom:10px}.setting small{font-size:10px;color:var(--muted)}.setting .input{margin-top:6px;margin-bottom:0;background:#fff}
+.pin{text-align:center}.pin .input{text-align:center;letter-spacing:7px;font-size:20px}
+.qrbox{text-align:center;background:#f7f8fb;border-radius:17px;padding:15px;margin-bottom:10px}.qrbox img{width:190px;height:190px;max-width:100%;background:#fff;padding:8px;border-radius:12px}.qrtext{font-size:11px;color:var(--muted);margin-top:7px}.upiid{font-weight:800;color:var(--brand);font-size:13px;margin-top:3px}
+.toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#111827;color:#fff;padding:11px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--brand2),var(--brand));z-index:500;display:none;align-items:center;justify-content:center;padding:25px}.lockbox{width:100%;max-width:360px;background:#fff;border-radius:25px;padding:25px;text-align:center}.lockicon{font-size:42px}.lockbox h2{margin-top:8px}.lockbox p{font-size:11px;color:var(--muted);margin:5px 0 16px}.lockbox input{text-align:center;letter-spacing:8px}.unlock{width:100%;height:47px;border:0;border-radius:13px;background:var(--brand);color:#fff;font-weight:800}
+@media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}}
+@media print{
+ body{background:#fff;padding:0}.top,.bottom,.fab,.actions,.whatsapp,.tools,.back{display:none!important}.detail{padding:20px}.profile{box-shadow:none;border:1px solid #ddd}.tx{break-inside:avoid}.modal{display:none!important}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+ <div class="toprow">
+  <div class="brand"><div class="logo">🧾</div><div><h1 id="shopTitle">चुपाकाबरा खाता</h1><p id="upiPreview">UPI • 9369913187@upi</p></div></div>
+  <div class="top-actions">
+    <button class="syncbtn" id="authBtn" onclick="toggleAuth()">☁️ लॉगिन</button>
+    <button class="topbtn" onclick="openSettings()">⚙</button>
+  </div>
+ </div>
+</header>
+
+<section class="wrap dash" id="dashboard">
+ <div class="summary">
+  <div class="label">कुल बकाया</div>
+  <div class="net" id="net">₹0</div>
+  <div class="smallnote" id="syncStatusText">ऑफ़लाइन मोड (डेटा डिवाइस में सुरक्षित है)</div>
+  <div class="moneygrid">
+   <div class="money get"><span>आपको लेना है</span><strong id="totalGet">₹0</strong></div>
+   <div class="money give"><span>आपको देना है</span><strong id="totalGive">₹0</strong></div>
+  </div>
+ </div>
+</section>
+
+<main class="main" id="ledger">
+ <div class="head"><h2>ग्राहकों का हिसाब</h2><span id="count">0 ग्राहक</span></div>
+ <input id="search" class="search" placeholder="🔎  ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
+ <div class="list" id="customers"></div>
+</main>
+
+<section class="detail" id="detail" style="display:none">
+ <button class="back" onclick="back()">← वापस बहीखाते में</button>
+ <div class="profile">
+  <div class="bigavatar" id="dAvatar">?</div>
+  <h2 id="dName">-</h2><div class="phone" id="dPhone">-</div>
+  <div class="detailamt" id="dAmount">₹0</div><div class="detailstatus" id="dStatus">-</div>
+  <button class="whatsapp" onclick="whatsapp()">💬 WhatsApp भुगतान रिमाइंडर</button>
+  <div class="actions"><button class="action give" onclick="openTx('give')">＋ उधार दिया</button><button class="action get" onclick="openTx('get')">✓ भुगतान मिला</button></div>
+  <div class="tools"><button class="tool" onclick="openQR()">▣ UPI QR</button><button class="tool" onclick="printLedger()">🖨 रसीद</button><button class="tool" onclick="editCustomer()">✏️ संपादित</button></div>
+ </div>
+ <div class="txhead">लेन-देन का इतिहास</div>
+ <div id="transactions"></div>
+</section>
+
+<section class="mandi" id="mandi" style="display:none">
+ <div class="head"><h2>मंडी भाव</h2><span>📍 बहराइच एवं अलीगढ़ मंडी</span></div>
+ <div class="mandigrid" id="mandiList"></div>
+</section>
+
+<section class="reports" id="reports" style="display:none">
+ <div class="head"><h2>रिपोर्ट</h2><span>आपका कुल हिसाब</span></div>
+ <div class="reportgrid">
+  <div class="reportbox get"><p>कुल लेना है</p><strong id="rGet">₹0</strong></div>
+  <div class="reportbox give"><p>कुल देना है</p><strong id="rGive">₹0</strong></div>
+ </div>
+ <div style="margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px">
+  <p style="font-size:11px;color:var(--muted);line-height:1.7">डेटा क्लाउड बैकअप के साथ आपके Google खाते से सुरक्षित रहेगा।</p>
+ </div>
+</section>
+
+<!-- Financial Services Section -->
+<section class="services" id="services" style="display:none">
+ <div class="head"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
+ 
+ <!-- Insurance Card -->
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon" style="background:#eaf8f0;color:var(--green)">🛡️</div>
+    <div class="service-info">
+      <h3>दुकान व स्वास्थ्य बीमा</h3>
+      <p>आग, चोरी व चिकित्सा सुरक्षा</p>
+    </div>
+  </div>
+  <div class="service-desc">
+    अपनी दुकान का सुरक्षा बीमा, स्वास्थ्य बीमा एवं बाइक/कार बीमा के ताज़ा प्लान देखें और तुरंत पॉलिसी पाएँ।
+  </div>
+  <button class="service-btn" style="background:var(--green)" onclick="openInsurance()">
+    🔗 Turtlemint पोर्टल पर बीमा देखें →
+  </button>
+ </div>
+
+ <!-- Loan Card -->
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon" style="background:#eef2ff;color:var(--brand)">💰</div>
+    <div class="service-info">
+      <h3>व्यापार लोन (Business Loan)</h3>
+      <p>₹50,000 से ₹10 लाख तक</p>
+    </div>
+  </div>
+  <div class="service-desc">
+    दुकान के विस्तार, माल भरने या नए व्यापार के लिए कम ब्याज़ दर और आसान EMI पर पूंजी प्राप्त करें।
+  </div>
+  <button class="service-btn" onclick="applyLoan()">
+    💬 लोन के लिए WhatsApp पर पूछताछ करें →
+  </button>
+ </div>
+
+ <!-- Mutual Fund Card -->
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon" style="background:#fff7ed;color:var(--orange)">📈</div>
+    <div class="service-info">
+      <h3>म्यूचुअल फंड व बचत (SIP)</h3>
+      <p>दैनिक/मासिक गुल्लक बचत</p>
+    </div>
+  </div>
+  <div class="service-desc">
+    अपने व्यापार के मुनाफ़े को सुरक्षित निवेश करें। ₹500 से भी शुरू कर सकते हैं सुरक्षित SIP।
+  </div>
+  <button class="service-btn" style="background:var(--orange)" onclick="applyMF()">
+    💬 बचत व निवेश सलाह प्राप्त करें →
+  </button>
+ </div>
+</section>
+
+<button class="fab" id="fab" onclick="openCustomer()">＋ नया ग्राहक</button>
+
+<nav class="bottom">
+ <button id="bLedger" class="active" onclick="showLedger()"><div>📒</div>बहीखाता</button>
+ <button id="bMandi" onclick="showMandi()"><div>🌾</div>मंडी भाव</button>
+ <button id="bReport" onclick="showReports()"><div>📊</div>रिपोर्ट</button>
+ <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
+</nav>
+
+<!-- Customer Modal -->
+<div class="modal" id="customerModal"><div class="box">
+ <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
+ <input id="cName" class="input" placeholder="ग्राहक का नाम">
+ <input id="cPhone" class="input" type="tel" inputmode="numeric" maxlength="10" placeholder="मोबाइल नंबर (10 अंक)">
+ <div class="modalrow"><button class="cancel" onclick="closeModal('customerModal')">रद्द करें</button><button class="save" onclick="saveCustomer()">सेव करें</button></div>
+</div></div>
+
+<!-- Transaction Modal -->
+<div class="modal" id="txModal"><div class="box">
+ <h2 id="txTitle">उधार दर्ज करें</h2>
+ <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder="राशि ₹">
+ <input id="txNote" class="input" placeholder="विवरण — जैसे किराना, राशन">
+ <div class="modalrow"><button class="cancel" onclick="closeModal('txModal')">रद्द करें</button><button class="save" onclick="saveTx()">हिसाब सेव करें</button></div>
+</div></div>
+
+<!-- Settings Modal -->
+<div class="modal" id="settingsModal"><div class="box">
+ <h2>दुकान की जानकारी</h2>
+ <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input"></div>
+ <div class="setting"><small>UPI ID</small><input id="shopUpi" class="input"></div>
+ <div class="setting"><small>ऐप सुरक्षा</small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:5px"><b style="font-size:12px">PIN लॉक</b><button class="tool" style="margin:0" onclick="setPin()">🔐 PIN बदलें</button></div></div>
+ <div class="setting"><small>डेटा बैकअप</small><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px"><button class="tool" onclick="exportData()">⬇️ Backup</button><button class="tool" onclick="importData()">⬆️ Restore</button></div></div>
+ <div class="modalrow"><button class="cancel" onclick="closeModal('settingsModal')">बंद करें</button><button class="save" onclick="saveSettings()">सेव करें</button></div>
+ <button class="danger" style="width:100%;height:42px;border:0;border-radius:12px;margin-top:9px;font-weight:800" onclick="confirmReset()">⚠️ पूरा डेटा मिटाएँ</button>
+</div></div>
+
+<!-- QR Modal -->
+<div class="modal" id="qrModal"><div class="box">
+ <h2>UPI भुगतान</h2>
+ <div class="qrbox"><img id="qrImg" alt="UPI QR"><div class="qrtext">स्कैन करके भुगतान करें</div><div class="upiid" id="qrUpi"></div></div>
+ <div class="modalrow"><button class="cancel" onclick="closeModal('qrModal')">बंद करें</button><button class="save" onclick="openUPI()">📲 UPI खोलें</button></div>
+</div></div>
+
+<!-- PIN Modal -->
+<div class="modal" id="pinModal"><div class="box pin">
+ <h2>PIN लॉक सेट करें</h2><p style="font-size:11px;color:var(--muted);margin-bottom:12px">4 अंकों का PIN रखें</p>
+ <input id="newPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
+ <div class="modalrow"><button class="cancel" onclick="closeModal('pinModal')">रद्द करें</button><button class="save" onclick="savePin()">PIN सेव करें</button></div>
+</div></div>
+
+<!-- Lock Screen -->
+<div class="lock" id="lockScreen"><div class="lockbox">
+ <div class="lockicon">🔐</div><h2>चुपाकाबरा खाता</h2><p>ऐप खोलने के लिए PIN दर्ज करें</p>
+ <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
+ <button class="unlock" onclick="unlock()">खाता खोलें</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// --- FIREBASE CONFIGURATION ---
+const firebaseConfig = {
+  apiKey: "AIzaSyB-nWyD4RtphSv7WazRgM7o3Eaj2NwgPek",
+  authDomain: "chupakabra-khata.firebaseapp.com",
+  projectId: "chupakabra-khata",
+  storageBucket: "chupakabra-khata.firebasestorage.app",
+  messagingSenderId: "872712106347",
+  appId: "1:872712106347:web:48fc0bfcd7b9e182d89c2e",
+  measurementId: "G-0FBFX9979S"
+};
+
+try {
+  firebase.initializeApp(firebaseConfig);
+} catch(e) { console.log("Firebase init error:", e); }
+
+const auth = typeof firebase !== "undefined" && firebase.auth ? firebase.auth() : null;
+const db = typeof firebase !== "undefined" && firebase.firestore ? firebase.firestore() : null;
+let currentUser = null;
+
+// Persistent keys
+const PK="chupaProfile_final",CK="chupaCustomers_final",PINKEY="chupaPin_final";
+let profile=JSON.parse(localStorage.getItem(PK))||{shopName:"चुपाकाबरा खाता",upi:"meet2ravindra@okaxis"};
+let customers=JSON.parse(localStorage.getItem(CK))||[];
+let active=null,txType="give",editing=false;
+
+// Partner configuration
+const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV4412722/ravindra_pratap_singh";
+const PARTNER_WHATSAPP = "9369913187";
+
+const localMandiList = [
+  { emoji: "🌾", crop: "गेहूँ (Wheat)", price: "₹2,440", range: "₹2,380 – ₹2,500 / क्विंटल", mandi: "गल्ला मंडी, बहराइच", dist: "बहराइच" },
+  { emoji: "🌿", crop: "सरसों (Mustard)", price: "₹5,820", range: "₹5,700 – ₹5,950 / क्विंटल", mandi: "धनीपुर मंडी, अलीगढ़", dist: "अलीगढ़" },
+  { emoji: "🍚", crop: "धान / चावल (Paddy)", price: "₹2,260", range: "₹2,180 – ₹2,340 / क्विंटल", mandi: "रिसिया मंडी, बहराइच", dist: "बहराइच" },
+  { emoji: "🥔", crop: "आलू (Potato)", price: "₹1,150", range: "₹1,050 – ₹1,250 / क्विंटल", mandi: "धनीपुर मंडी, अलीगढ़", dist: "अलीगढ़" },
+  { emoji: "🫘", crop: "चना (Gram)", price: "₹6,800", range: "₹6,650 – ₹6,950 / क्विंटल", mandi: "नानपारा मंडी, बहराइच", dist: "बहराइच" },
+  { emoji: "🧅", crop: "प्याज (Onion)", price: "₹2,100", range: "₹1,950 – ₹2,250 / क्विंटल", mandi: "गल्ला मंडी, बहराइच", dist: "बहराइच" },
+  { emoji: "🧄", crop: "लहसुन (Garlic)", price: "₹11,400", range: "₹10,500 – ₹12,500 / क्विंटल", mandi: "धनीपुर मंडी, अलीगढ़", dist: "अलीगढ़" },
+  { emoji: "🍅", crop: "टमाटर (Tomato)", price: "₹1,500", range: "₹1,350 – ₹1,650 / क्रेट", mandi: "अतरौली मंडी, अलीगढ़", dist: "अलीगढ़" }
+];
+
+function esc(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
+function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
+function bal(c){return (c.tx||[]).reduce((s,t)=>s+(t.type==="give"?+t.amount:-t.amount),0)}
+function init(n){return (n||"?").trim().charAt(0)||"?"}
+function toast(s){let e=document.getElementById("toast");e.textContent=s;e.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.remove("show"),2200)}
+function closeModal(id){document.getElementById(id).style.display="none"}
+
+function syncData(){
+  localStorage.setItem(CK,JSON.stringify(customers));
+  localStorage.setItem(PK,JSON.stringify(profile));
+  if(currentUser && db){
+    db.collection("merchants").doc(currentUser.uid).set({
+      profile: profile,
+      customers: customers,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(e=>console.log("Cloud sync error:", e));
+  }
+}
+
+if(auth){
+  auth.onAuthStateChanged((user)=>{
+    currentUser = user;
+    const btn = document.getElementById("authBtn");
+    const note = document.getElementById("syncStatusText");
+    if(user){
+      btn.innerHTML = "☁️ लॉगआउट";
+      note.textContent = "🟢 क्लाउड सिंक सक्रिय (" + (user.displayName||"दुकानदार") + ")";
+      if(db){
+        db.collection("merchants").doc(user.uid).onSnapshot((doc)=>{
+          if(doc.exists){
+            const d = doc.data();
+            if(d.profile) profile = d.profile;
+            if(d.customers) customers = d.customers;
+            localStorage.setItem(PK,JSON.stringify(profile));
+            localStorage.setItem(CK,JSON.stringify(customers));
+            profileUI();
+            renderCustomers();
+          } else {
+            syncData();
+          }
+        });
+      }
+    } else {
+      btn.innerHTML = "☁️ लॉगिन";
+      note.textContent = "ऑफ़लाइन मोड (डेटा डिवाइस में सुरक्षित है)";
+    }
+  });
+}
+
+function toggleAuth(){
+  if(!auth){ toast("नेटवर्क से जुड़ें"); return; }
+  if(currentUser){
+    if(confirm("लॉगआउट करना चाहते हैं?")){
+      auth.signOut().then(()=>toast("लॉगआउट सफल ✓"));
+    }
+  } else {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(()=>toast("Google लॉगिन सफल ✓"))
+      .catch((e)=>toast("लॉगिन एरर: " + e.message));
+  }
+}
+
+function profileUI(){document.getElementById("shopTitle").textContent=profile.shopName;document.getElementById("upiPreview").textContent="UPI • "+profile.upi}
+function dashboard(){
+ let get=0,give=0;customers.forEach(c=>{let b=bal(c);if(b>=0)get+=b;else give+=Math.abs(b)});
+ document.getElementById("totalGet").textContent=money(get);document.getElementById("totalGive").textContent=money(give);
+ document.getElementById("net").textContent=money(Math.abs(get-give));
+ document.getElementById("rGet").textContent=money(get);document.getElementById("rGive").textContent=money(give);
+}
+
+function renderCustomers(){
+ const q=document.getElementById("search").value.toLowerCase().trim(), list=document.getElementById("customers");
+ const arr=customers.filter(c=>c.name.toLowerCase().includes(q)||c.phone.includes(q));list.innerHTML="";
+ document.getElementById("count").textContent=customers.length+" ग्राहक";
+ if(!arr.length){list.innerHTML='<div class="empty"><b>🔎</b>कोई ग्राहक नहीं मिला</div>';dashboard();return}
+ arr.forEach(c=>{let b=bal(c),get=b>=0;list.innerHTML+=`
+ <div class="customer" onclick="openDetail(${c.id})"><div class="left"><div class="avatar">${esc(init(c.name))}</div><div><div class="cname">${esc(c.name)}</div><div class="phone">📞 ${esc(c.phone)}</div></div></div>
+ <div class="right"><div class="amt ${get?"receive":"pay"}">${money(Math.abs(b))}</div><div class="status ${get?"receive":"pay"}">${get?"लेना है":"देना है"}</div></div></div>`});
+ dashboard();
+}
+
+function openDetail(id){
+ active=id;let c=customers.find(x=>x.id===id);if(!c)return;
+ document.getElementById("dashboard").style.display="none";document.getElementById("ledger").style.display="none";document.getElementById("mandi").style.display="none";document.getElementById("reports").style.display="none";document.getElementById("services").style.display="none";document.getElementById("detail").style.display="block";document.getElementById("fab").style.display="none";
+ document.getElementById("dAvatar").textContent=init(c.name);document.getElementById("dName").textContent=c.name;document.getElementById("dPhone").textContent=c.phone;
+ let b=bal(c);document.getElementById("dAmount").textContent=money(Math.abs(b));document.getElementById("dAmount").style.color=b>=0?"var(--red)":"var(--green)";document.getElementById("dStatus").textContent=b>=0?"आपको लेना है":"आपको देना है";
+ renderTx(c);
+}
+function renderTx(c){
+ let box=document.getElementById("transactions");box.innerHTML="";
+ if(!c.tx || !c.tx.length){box.innerHTML='<div class="empty">अभी कोई लेन-देन नहीं है</div>';return}
+ c.tx.slice().reverse().forEach((t,i)=>{let realIndex=c.tx.length-1-i;box.innerHTML+=`
+ <div class="tx"><div><div class="txnote">${esc(t.note||(t.type==="give"?"उधार दिया":"भुगतान मिला"))}</div><div class="txdate">${esc(t.date)}</div></div>
+ <div style="display:flex;align-items:center"><div class="txamt ${t.type==="give"?"receive":"pay"}">${t.type==="give"?"+":"−"} ${money(t.amount)}</div><div class="txbuttons"><button class="tiny" onclick="editTx(${realIndex})">✏️</button><button class="tiny" onclick="deleteTx(${realIndex})">×</button></div></div></div>`});
+}
+function back(){document.getElementById("detail").style.display="none";showLedger()}
+
+function openCustomer(){
+ editing=false;document.getElementById("customerModalTitle").textContent="नया ग्राहक जोड़ें";document.getElementById("cName").value="";document.getElementById("cPhone").value="";document.getElementById("customerModal").style.display="flex";setTimeout(()=>document.getElementById("cName").focus(),80)
+}
+function editCustomer(){
+ let c=customers.find(x=>x.id===active);if(!c)return;editing=true;document.getElementById("customerModalTitle").textContent="ग्राहक की जानकारी बदलें";document.getElementById("cName").value=c.name;document.getElementById("cPhone").value=c.phone;document.getElementById("customerModal").style.display="flex"
+}
+function saveCustomer(){
+ let n=document.getElementById("cName").value.trim(),p=document.getElementById("cPhone").value.trim();
+ if(!n){toast("ग्राहक का नाम डालें");return}if(!/^\d{10}$/.test(p)){toast("10 अंकों का मोबाइल नंबर डालें");return}
+ if(editing){let c=customers.find(x=>x.id===active);c.name=n;c.phone=p;toast("ग्राहक अपडेट हो गया ✓")}else{customers.push({id:Date.now(),name:n,phone:p,tx:[]});toast("नया ग्राहक जोड़ दिया ✓")}
+ syncData();closeModal("customerModal");renderCustomers();if(editing)openDetail(active)
+}
+
+function openTx(type){txType=type;document.getElementById("txTitle").textContent=type==="give"?"उधार दर्ज करें":"भुगतान दर्ज करें";document.getElementById("txAmount").value="";document.getElementById("txNote").value="";document.getElementById("txModal").style.display="flex";setTimeout(()=>document.getElementById("txAmount").focus(),80)}
+function saveTx(){
+ let a=Number(document.getElementById("txAmount").value),note=document.getElementById("txNote").value.trim();if(!a||a<=0){toast("सही राशि दर्ज करें");return}
+ let c=customers.find(x=>x.id===active);if(!c.tx)c.tx=[];
+ let date=new Intl.DateTimeFormat("hi-IN",{day:"numeric",month:"short",year:"numeric"}).format(new Date());c.tx.push({amount:a,type:txType,note,date});syncData();closeModal("txModal");openDetail(active);toast("हिसाब सेव हो गया ✓")
+}
+function editTx(i){
+ let c=customers.find(x=>x.id===active),t=c.tx[i];let a=prompt("राशि बदलें",t.amount);if(a===null)return;a=Number(a);if(!a||a<=0){toast("गलत राशि");return}let n=prompt("विवरण बदलें",t.note||"");if(n===null)return;t.amount=a;t.note=n;syncData();openDetail(active);toast("एंट्री अपडेट हो गई ✓")
+}
+function deleteTx(i){if(!confirm("यह लेन-देन हटाना है?"))return;let c=customers.find(x=>x.id===active);c.tx.splice(i,1);syncData();openDetail(active);toast("एंट्री हटा दी गई")}
+
+function whatsapp(){
+ let c=customers.find(x=>x.id===active),b=bal(c);if(b<=0){toast("इस ग्राहक से कोई बकाया लेना नहीं है");return}
+ let msg=`नमस्ते ${c.name} जी 🙏\n\n${profile.shopName} पर आपका ${money(b)} का बकाया है।\n\nUPI ID: ${profile.upi}\n\nधन्यवाद 🙏`;window.open("https://wa.me/91"+c.phone+"?text="+encodeURIComponent(msg),"_blank")
+}
+
+function openQR(){
+ let c=customers.find(x=>x.id===active),b=bal(c);let amount=b>0?b:"";let uri="upi://pay?pa="+encodeURIComponent(profile.upi)+"&pn="+encodeURIComponent(profile.shopName)+(amount?"&am="+amount+"&cu=INR":"");
+ document.getElementById("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&data="+encodeURIComponent(uri);document.getElementById("qrUpi").textContent=profile.upi;document.getElementById("qrModal").style.display="flex"
+}
+function openUPI(){
+ let c=customers.find(x=>x.id===active),b=bal(c);let uri="upi://pay?pa="+encodeURIComponent(profile.upi)+"&pn="+encodeURIComponent(profile.shopName)+(b>0?"&am="+b+"&cu=INR":"");window.location.href=uri
+}
+function printLedger(){window.print()}
+
+// Services Functions
+function openInsurance(){
+  window.open(TURTLEMINT_URL, "_blank");
+}
+function applyLoan(){
+  let msg = `नमस्ते रवींद्र जी 🙏\n\nमुझे 'चुपाकाबरा खाता' ऐप से व्यापार लोन (Business Loan) की जानकारी चाहिए।\n\nकृपया पात्रता और प्रक्रिया समझाएँ।`;
+  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
+}
+function applyMF(){
+  let msg = `नमस्ते रवींद्र जी 🙏\n\nमुझे 'चुपाकाबरा खाता' ऐप से म्यूचुअल फंड / SIP बचत योजना के बारे में जानकारी चाहिए।`;
+  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
+}
+
+function showLedger(){
+ ["mandi","reports","detail","services"].forEach(id=>document.getElementById(id).style.display="none");document.getElementById("dashboard").style.display="block";document.getElementById("ledger").style.display="block";document.getElementById("fab").style.display="block";
+ nav("bLedger");renderCustomers()
+}
+function showMandi(){
+ ["dashboard","ledger","detail","reports","services"].forEach(id=>document.getElementById(id).style.display="none");document.getElementById("mandi").style.display="block";document.getElementById("fab").style.display="none";nav("bMandi");renderMandi()
+}
+function showReports(){
+ ["dashboard","ledger","detail","mandi","services"].forEach(id=>document.getElementById(id).style.display="none");document.getElementById("reports").style.display="block";document.getElementById("fab").style.display="none";nav("bReport");dashboard()
+}
+function showServices(){
+ ["dashboard","ledger","detail","mandi","reports"].forEach(id=>document.getElementById(id).style.display="none");document.getElementById("services").style.display="block";document.getElementById("fab").style.display="none";nav("bServices");
+}
+function nav(id){document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));document.getElementById(id).classList.add("active")}
+
+function renderMandi(){
+  const list = document.getElementById("mandiList");
+  list.innerHTML = localMandiList.map(item => `
+    <div class="mandicard">
+      <div class="emoji">${item.emoji}</div>
+      <h3>${item.crop}</h3>
+      <div class="mprice">${item.price}</div>
+      <div class="mrange">${item.range}</div>
+      <div style="font-size:10px;font-weight:700;color:var(--brand);margin-top:6px">📍 ${item.mandi}</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px">${item.dist}, उत्तर प्रदेश</div>
+    </div>
+  `).join("");
+}
+
+function openSettings(){
+ document.getElementById("shopName").value=profile.shopName;document.getElementById("shopUpi").value=profile.upi;document.getElementById("settingsModal").style.display="flex"
+}
+function saveSettings(){
+ let n=document.getElementById("shopName").value.trim(),u=document.getElementById("shopUpi").value.trim();
+ if(!n||!u){toast("सभी जानकारी भरें");return}profile.shopName=n;profile.upi=u;syncData();profileUI();closeModal("settingsModal");toast("जानकारी सेव हो गई ✓")
+}
+function setPin(){closeModal("settingsModal");document.getElementById("newPin").value="";document.getElementById("pinModal").style.display="flex"}
+function savePin(){let p=document.getElementById("newPin").value.trim();if(!/^\d{4}$/.test(p)){toast("4 अंकों का PIN डालें");return}localStorage.setItem(PINKEY,p);closeModal("pinModal");toast("PIN लॉक सक्रिय हो गया 🔐")}
+function unlock(){let saved=localStorage.getItem(PINKEY),p=document.getElementById("unlockPin").value;if(p===saved){document.getElementById("lockScreen").style.display="none";sessionStorage.setItem("chupaUnlocked","1")}else toast("गलत PIN")}
+function confirmReset(){if(!confirm("सभी ग्राहक और लेन-देन हमेशा के लिए मिट जाएंगे। जारी रखें?"))return;localStorage.removeItem(CK);localStorage.removeItem(PK);localStorage.removeItem(PINKEY);location.reload()}
+
+function exportData(){
+ let data={profile,customers,exportedAt:new Date().toISOString()};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chupakabra-khata-backup.json";a.click();URL.revokeObjectURL(a.href)
+}
+function importData(){
+ let input=document.createElement("input");input.type="file";input.accept=".json,application/json";input.onchange=()=>{let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.customers)throw 0;customers=d.customers;profile=d.profile||profile;syncData();profileUI();renderCustomers();toast("Backup वापस आ गया ✓")}catch(e){toast("Backup फाइल सही नहीं है")}};r.readAsText(f)};input.click()
+}
+
+document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.style.display="none"}));
+profileUI();renderCustomers();renderMandi();
+
+if(localStorage.getItem(PINKEY)&&sessionStorage.getItem("chupaUnlocked")!=="1")document.getElementById("lockScreen").style.display="flex";
+</script>
+</body>
+</html>
