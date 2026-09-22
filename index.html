@@ -20,7 +20,7 @@
 :root{
  --brand:#29479d;--brand2:#17265f;--soft:#eef2ff;--bg:#f5f7fb;--card:#fff;
  --text:#111827;--muted:#6b7280;--line:#e5e9f1;--green:#139447;--greenbg:#eaf8f0;
- --red:#d92d3f;--redbg:#fff0f2;--orange:#f59e0b;--shadow:0 10px 30px rgba(26,38,80,.08)
+ --red:#d92d3f;--redbg:#fff0f2;--orange:#f59e0b;--gold:#d97706;--shadow:0 10px 30px rgba(26,38,80,.08)
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif}
 html{background:var(--bg)}
@@ -71,14 +71,16 @@ button,input,select{font:inherit}button{cursor:pointer}
 .service-desc{font-size:11px;color:#4b5563;margin:12px 0;line-height:1.6;background:#f8fafc;padding:10px 12px;border-radius:12px}
 .service-btn{width:100%;height:44px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
 
-.citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
-.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 10px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
 .gov-emoji{font-size:26px;margin-bottom:4px}
 .gov-tag{font-size:9px;font-weight:800;background:#eaf8f0;color:var(--green);padding:2px 6px;border-radius:6px;margin-bottom:6px}
 .gov-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px}
-.gov-sub{font-size:10px;color:var(--muted);margin-bottom:10px;line-height:1.2}
+.gov-sub{font-size:10px;color:var(--muted);margin-bottom:8px;line-height:1.2}
 .gov-btn{width:100%;padding:8px 0;border-radius:10px;background:#f0f4ff;color:var(--brand);font-size:11px;font-weight:800;text-decoration:none;display:block;border:1px solid #dbe4ff}
 .gov-btn:active{background:var(--brand);color:#fff}
+
+.disclaimer-box{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:12px;font-size:10px;color:var(--muted);line-height:1.5;margin-top:18px;text-align:center}
 
 /* --- ANIMATED CHUPAKABRA MUNSHI --- */
 .mascot-wrap{position:fixed;left:16px;bottom:75px;z-index:90;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
@@ -109,10 +111,34 @@ button,input,select{font:inherit}button{cursor:pointer}
 }
 .mascot-mute{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#111827;color:#fff;font-size:11px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
 
+/* --- THE IKKA ROYAL QR CARD --- */
+.royal-qr-card{
+  background:linear-gradient(145deg,#0d1538,#17265f);
+  border-radius:24px;
+  padding:20px 16px;
+  text-align:center;
+  color:#fff;
+  box-shadow:0 15px 35px rgba(13,21,56,.28);
+  border:1.5px solid rgba(255,215,0,.35);
+  margin-bottom:12px;
+  position:relative;
+  overflow:hidden;
+}
+.royal-qr-card::before{
+  content:'';position:absolute;top:-40px;right:-40px;width:120px;height:120px;
+  background:radial-gradient(circle,rgba(217,119,6,.25),transparent 70%);border-radius:50%;
+}
+.royal-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#fde047;letter-spacing:.5px}
+.royal-shop{font-size:17px;font-weight:800;margin-top:8px}
+.canvas-wrap{background:#fff;border-radius:18px;padding:10px;display:inline-block;margin:12px auto 8px;box-shadow:0 8px 25px rgba(0,0,0,.25);border:2px solid #e2e8f0}
+#qrCanvas{display:block;border-radius:10px}
+.royal-upi{font-size:13px;font-weight:800;color:#93c5fd;letter-spacing:.3px}
+.app-badges{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;font-size:10px;font-weight:700;color:rgba(255,255,255,.8)}
+.app-pill{background:rgba(255,255,255,.1);padding:3px 8px;border-radius:6px;border:1px solid rgba(255,255,255,.15)}
+
 .modal{display:none;position:fixed;inset:0;background:rgba(10,16,35,.58);backdrop-filter:blur(5px);align-items:flex-end;justify-content:center;z-index:100}.box{width:100%;max-width:580px;background:#fff;border-radius:26px 26px 0 0;padding:22px 18px 28px;max-height:90vh;overflow-y:auto;animation:up .2s ease}@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}.box h2{font-size:18px;margin-bottom:15px}.input{width:100%;height:48px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px}.input:focus{border-color:#a8b7e8}.modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}.modalrow button{height:47px;border:0;border-radius:13px;font-weight:800}.cancel{background:#f1f3f7;color:#6b7280}.save{background:var(--brand);color:#fff}.danger{background:var(--redbg);color:var(--red)}
 .setting{background:#f7f8fb;border-radius:15px;padding:12px;margin-bottom:10px}.setting small{font-size:10px;color:var(--muted)}.setting .input{margin-top:6px;margin-bottom:0;background:#fff}
 .pin{text-align:center}.pin .input{text-align:center;letter-spacing:7px;font-size:20px}
-.qrbox{text-align:center;background:#f7f8fb;border-radius:17px;padding:15px;margin-bottom:10px}.qrbox img{width:190px;height:190px;max-width:100%;background:#fff;padding:8px;border-radius:12px}.qrtext{font-size:11px;color:var(--muted);margin-top:7px}.upiid{font-weight:800;color:var(--brand);font-size:13px;margin-top:3px}
 .toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#111827;color:#fff;padding:11px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
 .lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--brand2),var(--brand));z-index:500;display:none;align-items:center;justify-content:center;padding:25px}.lockbox{width:100%;max-width:360px;background:#fff;border-radius:25px;padding:25px;text-align:center}.lockicon{font-size:42px}.lockbox h2{margin-top:8px}.lockbox p{font-size:11px;color:var(--muted);margin:5px 0 16px}.lockbox input{text-align:center;letter-spacing:8px}.unlock{width:100%;height:47px;border:0;border-radius:13px;background:var(--brand);color:#fff;font-weight:800}
 
@@ -164,7 +190,7 @@ button,input,select{font:inherit}button{cursor:pointer}
   <button class="whatsapp" onclick="whatsapp()">💬 WhatsApp भुगतान रिमाइंडर</button>
   <div class="actions"><button class="action give" onclick="openTx('give')">＋ उधार दिया</button><button class="action get" onclick="openTx('get')">✓ भुगतान मिला</button></div>
   <div class="tools">
-    <button class="tool" onclick="openQR()">▣ UPI QR</button>
+    <button class="tool" onclick="openQR()">▣ रॉयल UPI QR</button>
     <button class="tool" onclick="openInvoiceModal()">🧾 नया बिल</button>
     <button class="tool" onclick="printLedger()">🖨 रसीद</button>
     <button class="tool" onclick="editCustomer()">✏️ एडिट</button>
@@ -199,11 +225,11 @@ button,input,select{font:inherit}button{cursor:pointer}
 <!-- Services Section (Citizen Desk + Turtlemint & Finance) -->
 <section class="services" id="services" style="display:none">
  
- <!-- NEW: KISAN & CITIZEN DIRECT SERVICES DESK -->
- <div class="head"><h2>🌾 किसान व नागरिक सेवा केंद्र</h2><span>सीधे सरकारी पोर्टल (.gov.in)</span></div>
+ <!-- KISAN & CITIZEN DIRECT SERVICES DESK -->
+ <div class="head"><h2>🌾 किसान व नागरिक सेवा केंद्र</h2><span>सीधे आधिकारिक पोर्टल (.gov.in)</span></div>
  <div style="background:#eaf8f0;border-left:4px solid var(--green);padding:10px 12px;border-radius:10px;margin-bottom:14px">
    <b style="font-size:12px;color:var(--green)">100% असली व सुरक्षित सरकारी लिंक</b>
-   <p style="font-size:10px;color:#4b5563;margin-top:2px">बिना किसी फ़र्ज़ी विज्ञापन के, सीधे उत्तर प्रदेश सरकार व केंद्र सरकार की आधिकारिक वेबसाइटों पर जाएँ।</p>
+   <p style="font-size:10px;color:#4b5563;margin-top:2px">बिना किसी दलाल या फ़र्ज़ी विज्ञापन के, सीधे केंद्र व उत्तर प्रदेश सरकार के पोर्टल्स पर जाएँ।</p>
  </div>
 
  <div class="citizen-grid">
@@ -213,7 +239,7 @@ button,input,select{font:inherit}button{cursor:pointer}
        <div class="gov-emoji">📜</div>
        <div class="gov-tag">UP Bhulekh</div>
        <div class="gov-title">खसरा / खतौनी</div>
-       <div class="gov-sub">ज़मीन का ब्योरा व नकल देखें</div>
+       <div class="gov-sub">ज़मीन नकल व खाता ब्योरा</div>
      </div>
      <a href="https://upbhulekh.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('खतौनी के लिए ज़िला, तहसील और गाटा संख्या तैयार रखें!')">पोर्टल खोलें ↗</a>
    </div>
@@ -224,9 +250,9 @@ button,input,select{font:inherit}button{cursor:pointer}
        <div class="gov-emoji">🗺️</div>
        <div class="gov-tag">Bhu-Naksha</div>
        <div class="gov-title">खेत का नक्शा</div>
-       <div class="gov-sub">मेड़ व रकबे का सरकारी नक्शा</div>
+       <div class="gov-sub">मेड़ व रकबे का भू-नक्शा</div>
      </div>
-     <a href="https://upbhunaksha.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('अपना गाँव चुनकर खेत का नक्शा डाउनलोड करें!')">पोर्टल खोलें ↗</a>
+     <a href="https://upbhunaksha.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('गाँव चुनकर अपने खेत का नक्शा देखें!')">पोर्टल खोलें ↗</a>
    </div>
 
    <!-- 3. PM किसान सम्मान निधि -->
@@ -237,7 +263,7 @@ button,input,select{font:inherit}button{cursor:pointer}
        <div class="gov-title">PM-किसान क़िस्त</div>
        <div class="gov-sub">₹2000 क़िस्त स्थिति व e-KYC</div>
      </div>
-     <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('रजिस्ट्रेशन नंबर या मोबाइल डालकर क़िस्त जाँचें!')">पोर्टल खोलें ↗</a>
+     <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('मोबाइल नंबर डालकर क़िस्त की स्थिति जाँचें!')">पोर्टल खोलें ↗</a>
    </div>
 
    <!-- 4. राशन कार्ड पर्ची -->
@@ -248,43 +274,131 @@ button,input,select{font:inherit}button{cursor:pointer}
        <div class="gov-title">राशन कार्ड पर्ची</div>
        <div class="gov-sub">कोटेदार सूची में नाम देखें</div>
      </div>
-     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ज़िला और ब्लॉक चुनकर राशन सूची में नाम खोजें!')">पोर्टल खोलें ↗</a>
+     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ज़िला और ब्लॉक चुनकर राशन कार्ड खोजें!')">पोर्टल खोलें ↗</a>
    </div>
 
-   <!-- 5. ई-साथी (आय/जाति/निवास) -->
+   <!-- 5. गन्ना पर्ची व कैलेंडर -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🎋</div>
+       <div class="gov-tag">e-Ganna</div>
+       <div class="gov-title">गन्ना सट्टा पर्ची</div>
+       <div class="gov-sub">गन्ना तौल कैलेंडर व पर्ची</div>
+     </div>
+     <a href="https://caneup.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('किसान कोड डालकर गन्ना पर्ची कैलेंडर देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 6. बीज व कृषि यंत्र अनुदान -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🌱</div>
+       <div class="gov-tag">कृषि विभाग UP</div>
+       <div class="gov-title">बीज व यंत्र सब्सिडी</div>
+       <div class="gov-sub">सोलर पंप व बीज अनुदान</div>
+     </div>
+     <a href="http://upagriculture.com/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('पारदर्शी किसान पोर्टल पर सब्सिडी टोकन देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 7. MSP गल्ला खरीद टोकन -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">⚖️</div>
+       <div class="gov-tag">ई-उपार्जन UP</div>
+       <div class="gov-title">धान/गेहूँ खरीद</div>
+       <div class="gov-sub">सरकारी कांटा रजिस्ट्रेशन</div>
+     </div>
+     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('सरकारी कांटे पर गल्ला बेचने हेतु टोकन बनाएँ!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 8. PM फसल बीमा क्लेम -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🛡️</div>
+       <div class="gov-tag">PMFBY</div>
+       <div class="gov-title">फसल नुक़सान क्लेम</div>
+       <div class="gov-sub">बाढ़/सूखा क्षतिपूर्ति क्लेम</div>
+     </div>
+     <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('फसल नुक़सान की सूचना 72 घंटे में दर्ज करें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 9. आय / जाति / निवास -->
    <div class="gov-box">
      <div>
        <div class="gov-emoji">📋</div>
        <div class="gov-tag">e-Sathi UP</div>
        <div class="gov-title">आय / जाति / निवास</div>
-       <div class="gov-sub">मात्र ₹15 में ऑनलाइन आवेदन</div>
+       <div class="gov-sub">नागरिक ऑनलाइन आवेदन</div>
      </div>
-     <a href="https://esathi.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('प्रमाण पत्र हेतु ई-साथी पोर्टल पर नागरिक लॉगिन करें!')">पोर्टल खोलें ↗</a>
+     <a href="https://esathi.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ई-साथी पोर्टल पर नागरिक लॉगिन करें!')">पोर्टल खोलें ↗</a>
    </div>
 
-   <!-- 6. प्रमाण पत्र सत्यापन -->
+   <!-- 10. प्रमाण पत्र सत्यापन -->
    <div class="gov-box">
      <div>
        <div class="gov-emoji">🔍</div>
        <div class="gov-tag">e-District</div>
        <div class="gov-title">पर्चा सत्यापन</div>
-       <div class="gov-sub">प्रमाण पत्र असली या नकली जाँचें</div>
+       <div class="gov-sub">प्रमाण पत्र असली/नकली जाँच</div>
      </div>
-     <a href="https://edistrict.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('आवेदन व प्रमाण पत्र क्रमांक डालकर सत्यता जाँचें!')">पोर्टल खोलें ↗</a>
+     <a href="https://edistrict.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('क्रमांक डालकर प्रमाण पत्र की सत्यता जाँचें!')">पोर्टल खोलें ↗</a>
    </div>
 
-   <!-- 7. पेंशन योजना -->
+   <!-- 11. ई-कोर्ट्स केस स्टेटस (वकील साथी) -->
    <div class="gov-box">
      <div>
-       <div class="gov-emoji">👴</div>
-       <div class="gov-tag">SSPY Portal</div>
-       <div class="gov-title">पेंशन योजना</div>
-       <div class="gov-sub">वृद्धा, विधवा व दिव्यांग पेंशन</div>
+       <div class="gov-emoji">⚖️</div>
+       <div class="gov-tag">e-Courts Gov</div>
+       <div class="gov-title">कोर्ट केस स्टेटस</div>
+       <div class="gov-sub">ज़िला/तहसील कोर्ट तारीख</div>
      </div>
-     <a href="https://sspy-up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('पेंशन का स्टेटस और नया आवेदन यहाँ देखें!')">पोर्टल खोलें ↗</a>
+     <a href="https://services.ecourts.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('केस नंबर या वकील नाम से अगली तारीख देखें!')">पोर्टल खोलें ↗</a>
    </div>
 
-   <!-- 8. ग्रामीण बिजली बिल -->
+   <!-- 12. बैनामा व रजिस्ट्री नकल (वकील साथी) -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🏛️</div>
+       <div class="gov-tag">IGRSUP</div>
+       <div class="gov-title">बैनामा व रजिस्ट्री</div>
+       <div class="gov-sub">जायदाद भार व नकल खोज</div>
+     </div>
+     <a href="https://igrsup.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('संपत्ति का विवरण डालकर बैनामा नकल देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 13. मानव संपदा (शिक्षक साथी) -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🏫</div>
+       <div class="gov-tag">e-HRMS UP</div>
+       <div class="gov-title">मानव संपदा पोर्टल</div>
+       <div class="gov-sub">छुट्टी आवेदन व सर्विस बुक</div>
+     </div>
+     <a href="https://ehrms.upsdc.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('मानव संपदा कोड से ऑनलाइन छुट्टी आवेदन करें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 14. रेलवे PNR स्टेटस -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🎟️</div>
+       <div class="gov-tag">Indian Railways</div>
+       <div class="gov-title">रेलवे PNR स्टेटस</div>
+       <div class="gov-sub">सीट कन्फ़र्म या वेटिंग देखें</div>
+     </div>
+     <a href="https://www.indianrail.gov.in/enquiry/PNR/PnrEnquiry.html" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का PNR डालकर कन्फ़र्म सीट देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 15. लाइव ट्रेन कहाँ पहुँची -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🚆</div>
+       <div class="gov-tag">NTES Portal</div>
+       <div class="gov-title">ट्रेन कहाँ पहुँची?</div>
+       <div class="gov-sub">लाइव लोकेशन व देरी स्थिति</div>
+     </div>
+     <a href="https://enquiry.indianrail.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('गाड़ी नंबर डालकर लाइव लोकेशन देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 16. ग्रामीण बिजली बिल -->
    <div class="gov-box">
      <div>
        <div class="gov-emoji">⚡</div>
@@ -292,7 +406,7 @@ button,input,select{font:inherit}button{cursor:pointer}
        <div class="gov-title">बिजली बिल</div>
        <div class="gov-sub">ग्रामीण बिल देखें व भरें</div>
      </div>
-     <a href="https://upenergy.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का ग्रामीण बिजली खाता नंबर दर्ज करें!')">पोर्टल खोलें ↗</a>
+     <a href="https://upenergy.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का बिजली खाता नंबर दर्ज करें!')">पोर्टल खोलें ↗</a>
    </div>
  </div>
 
@@ -344,6 +458,12 @@ button,input,select{font:inherit}button{cursor:pointer}
   <button class="service-btn" style="background:var(--orange)" onclick="applyMF()">
     💬 बचत व निवेश सलाह प्राप्त करें →
   </button>
+ </div>
+
+ <!-- LEGAL SHIELD / DISCLAIMER -->
+ <div class="disclaimer-box">
+   <b>🛡️ विधिक सूचना एवं अस्वीकरण (Disclaimer):</b><br>
+   'चुपाकाबरा खाता' एक स्वतंत्र डिजिटल बहीखाता व उपयोगिता प्लेटफ़ॉर्म है। यह किसी भी सरकारी विभाग की आधिकारिक सेवा नहीं है। सभी सरकारी लिंक उपयोगकर्ताओं की सहायता हेतु सीधे आधिकारिक सरकारी वेबसाइटों (.gov.in) पर ले जाते हैं।
  </div>
 </section>
 
@@ -420,14 +540,35 @@ button,input,select{font:inherit}button{cursor:pointer}
  <button class="danger" style="width:100%;height:42px;border:0;border-radius:12px;margin-top:9px;font-weight:800" onclick="confirmReset()">⚠️ पूरा डेटा मिटाएँ</button>
 </div></div>
 
+<!-- THE IKKA ROYAL QR MODAL -->
 <div class="modal" id="qrModal"><div class="box">
- <h2>All-in-One UPI भुगतान</h2>
- <div class="qrbox"><img id="qrImg" alt="UPI QR" crossorigin="anonymous"><div class="qrtext">किसी भी ऐप से स्कैन करें</div><div class="upiid" id="qrUpi"></div></div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-   <button type="button" class="tool" style="background:#eef2ff;color:var(--brand);font-weight:800;padding:12px 6px" onclick="downloadQR()">⬇️ QR डाउनलोड</button>
-   <button type="button" class="tool" style="background:#eaf8f0;color:var(--green);font-weight:800;padding:12px 6px" onclick="shareQR()">📲 QR शेयर करें</button>
+ <div class="royal-qr-card" id="royalQrPoster">
+   <div class="royal-badge">👑 सुपरफ़ास्ट ऑल-इन-वन UPI</div>
+   <div class="royal-shop" id="qrShopTitle">चुपाकाबरा खाता</div>
+   <div style="font-size:10px;opacity:.8;margin-top:2px">सुरक्षित डिजिटल भुगतान</div>
+   
+   <div class="canvas-wrap">
+     <canvas id="qrCanvas" width="280" height="280"></canvas>
+   </div>
+
+   <div class="royal-upi" id="qrUpiText">meet2ravindra@okaxis</div>
+   
+   <div class="app-badges">
+     <span class="app-pill">GPay</span>
+     <span class="app-pill">PhonePe</span>
+     <span class="app-pill">Paytm</span>
+     <span class="app-pill">BHIM</span>
+   </div>
  </div>
- <div class="modalrow"><button class="cancel" onclick="closeModal('qrModal')">बंद करें</button><button class="save" onclick="openUPI()">📲 UPI खोलें</button></div>
+
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+   <button type="button" class="tool" style="background:#eef2ff;color:var(--brand);font-weight:800;padding:12px 6px" onclick="downloadRoyalPoster()">⬇️ पोस्टर डाउनलोड</button>
+   <button type="button" class="tool" style="background:#eaf8f0;color:var(--green);font-weight:800;padding:12px 6px" onclick="shareRoyalQR()">📲 QR शेयर करें</button>
+ </div>
+ <div class="modalrow">
+   <button class="cancel" onclick="closeModal('qrModal')">बंद करें</button>
+   <button class="save" onclick="openUPI()">📲 UPI ऐप खोलें</button>
+ </div>
 </div></div>
 
 <div class="modal" id="pinModal"><div class="box pin">
@@ -766,36 +907,144 @@ function whatsapp(){
  window.open("https://wa.me/91"+c.phone+"?text="+encodeURIComponent(msg),"_blank");
 }
 
+// --- THE IKKA ROYAL BRANDED QR GENERATOR ---
 function openQR(){
  let c=customers.find(x=>x.id===active),b=bal(c);let amount=b>0?b:"";
  let uri="upi://pay?pa="+encodeURIComponent(profile.upi)+"&pn="+encodeURIComponent(profile.shopName)+(amount?"&am="+amount+"&cu=INR":"");
- document.getElementById("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=420x420&data="+encodeURIComponent(uri);
- document.getElementById("qrUpi").textContent=profile.upi;
+
+ document.getElementById("qrShopTitle").textContent = profile.shopName;
+ document.getElementById("qrUpiText").textContent = profile.upi + (amount ? ` • ${money(amount)}` : "");
  document.getElementById("qrModal").style.display="flex";
+
+ const canvas = document.getElementById("qrCanvas");
+ const ctx = canvas.getContext("2d");
+ ctx.clearRect(0,0,280,280);
+
+ // 1. ECC Level H (High 30% error correction)
+ const qrImg = new Image();
+ qrImg.crossOrigin = "anonymous";
+ qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=H&data=" + encodeURIComponent(uri);
+
+ qrImg.onload = function() {
+   ctx.drawImage(qrImg, 0, 0, 280, 280);
+
+   // 2. Center Munshi Mascot Avatar
+   const mascot = new Image();
+   mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
+   
+   mascot.onload = function() {
+     const size = 58;
+     const x = (280 - size) / 2;
+     const y = (280 - size) / 2;
+
+     // White protective circle background
+     ctx.beginPath();
+     ctx.arc(140, 140, (size / 2) + 4, 0, Math.PI * 2);
+     ctx.fillStyle = "#ffffff";
+     ctx.fill();
+     ctx.lineWidth = 2.5;
+     ctx.strokeStyle = "#139447";
+     ctx.stroke();
+
+     // Round masked Munshi image
+     ctx.save();
+     ctx.beginPath();
+     ctx.arc(140, 140, size / 2, 0, Math.PI * 2);
+     ctx.clip();
+     ctx.drawImage(mascot, x, y, size, size);
+     ctx.restore();
+   };
+ };
 }
 
-async function downloadQR(){
-  const img=document.getElementById("qrImg");if(!img.src){toast("QR उपलब्ध नहीं है");return}
-  try{
-    toast("डाउनलोड हो रहा है...");
-    const res=await fetch(img.src);const blob=await res.blob();const url=URL.createObjectURL(blob);
-    const a=document.createElement("a");a.href=url;a.download=`${profile.shopName}_UPI_QR.png`;
-    document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);
-    toast("QR डाउनलोड सफल ✓");
-  }catch(err){window.open(img.src,"_blank");}
+// PRINT-READY STANDEE POSTER EXPORT
+function downloadRoyalPoster(){
+  const canvas = document.getElementById("qrCanvas");
+  if(!canvas) return;
+
+  // Create high-res poster canvas (600x850)
+  const p = document.createElement("canvas");
+  p.width = 600; p.height = 850;
+  const ctx = p.getContext("2d");
+
+  // Premium Royal Blue Gradient
+  const grad = ctx.createLinearGradient(0, 0, 0, 850);
+  grad.addColorStop(0, "#0d1538");
+  grad.addColorStop(1, "#17265f");
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, 600, 850);
+
+  // Gold Inner Border
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = "#eab308";
+  ctx.strokeRect(20, 20, 560, 810);
+
+  // Top Badge
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
+  ctx.fillRect(170, 45, 260, 36);
+  ctx.fillStyle = "#fef08a";
+  ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText("👑 सुपरफ़ास्ट डिजिटल भुगतान", 300, 68);
+
+  // Shop Name
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "800 32px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText(profile.shopName, 300, 125);
+
+  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.font = "500 15px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 155);
+
+  // Center QR Box
+  ctx.fillStyle = "#ffffff";
+  ctx.beginPath();
+  ctx.roundRect(90, 195, 420, 420, [24]);
+  ctx.fill();
+
+  // Draw QR scaled up
+  ctx.drawImage(canvas, 120, 225, 360, 360);
+
+  // UPI ID Text Box
+  ctx.fillStyle = "rgba(255,255,255,0.15)";
+  ctx.beginPath();
+  ctx.roundRect(80, 645, 440, 56, [14]);
+  ctx.fill();
+  ctx.fillStyle = "#93c5fd";
+  ctx.font = "bold 21px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("UPI: " + profile.upi, 300, 680);
+
+  // Accepted Apps Footer
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "bold 17px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("GPay  •  PhonePe  •  Paytm  •  BHIM UPI", 300, 745);
+
+  ctx.fillStyle = "#e2e8f0";
+  ctx.font = "13px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("चुपाकाबरा खाता • भारत के व्यापारी और किसान का सच्चा साथी", 300, 785);
+
+  // Download Trigger
+  const a = document.createElement("a");
+  a.href = p.toDataURL("image/png");
+  a.download = `${profile.shopName}_Royal_QR_Standee.png`;
+  a.click();
+  toast("रॉयल QR पोस्टर डाउनलोड सफल ✓");
 }
 
-async function shareQR(){
-  const img=document.getElementById("qrImg");const c=customers.find(x=>x.id===active);const b=c?bal(c):0;
-  const shareText=`नमस्ते 🙏\n${profile.shopName} का UPI भुगतान QR कोड।\nUPI: ${profile.upi}`+(b>0?`\nकुल बकाया: ${money(b)}`:"");
+async function shareRoyalQR(){
+  const canvas = document.getElementById("qrCanvas");
+  const c = customers.find(x=>x.id===active);const b=c?bal(c):0;
+  const shareText=`नमस्ते 🙏\n${profile.shopName} का आधिकारिक UPI भुगतान QR कोड।\nUPI ID: ${profile.upi}`+(b>0?`\nकुल बकाया: ${money(b)}`:"");
+
   try{
-    const res=await fetch(img.src);const blob=await res.blob();
-    const file=new File([blob],"upi_qr.png",{type:"image/png"});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({title:profile.shopName+" QR",text:shareText,files:[file]});
-    }else{
-      window.open("https://wa.me/?text="+encodeURIComponent(shareText+"\n\nQR: "+img.src),"_blank");
-    }
+    canvas.toBlob(async (blob)=>{
+      const file = new File([blob], "Chupakabra_QR.png", {type: "image/png"});
+      if(navigator.canShare && navigator.canShare({files:[file]})){
+        await navigator.share({title: profile.shopName + " QR", text: shareText, files:[file]});
+      } else {
+        window.open("https://wa.me/?text="+encodeURIComponent(shareText),"_blank");
+      }
+    });
   }catch(e){
     window.open("https://wa.me/?text="+encodeURIComponent(shareText),"_blank");
   }
