@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#17265f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -60,14 +62,23 @@ button,input,select{font:inherit}button{cursor:pointer}
 .mselect{width:100%;height:46px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 12px;font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;outline:0}
 .reportgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.reportbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.reportbox p{font-size:10px;color:var(--muted)}.reportbox strong{display:block;font-size:22px;margin-top:5px}.reportbox.get strong{color:var(--green)}.reportbox.give strong{color:var(--red)}
 
-/* Services Styles */
+/* Services & Citizen Desk Styles */
 .service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
 .service-head{display:flex;align-items:center;gap:12px}
 .service-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px}
 .service-info h3{font-size:15px;font-weight:800;color:var(--text)}
 .service-info p{font-size:11px;color:var(--muted);margin-top:2px}
 .service-desc{font-size:11px;color:#4b5563;margin:12px 0;line-height:1.6;background:#f8fafc;padding:10px 12px;border-radius:12px}
-.service-btn{width:100%;height:44px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}
+.service-btn{width:100%;height:44px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+
+.citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 10px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.gov-emoji{font-size:26px;margin-bottom:4px}
+.gov-tag{font-size:9px;font-weight:800;background:#eaf8f0;color:var(--green);padding:2px 6px;border-radius:6px;margin-bottom:6px}
+.gov-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px}
+.gov-sub{font-size:10px;color:var(--muted);margin-bottom:10px;line-height:1.2}
+.gov-btn{width:100%;padding:8px 0;border-radius:10px;background:#f0f4ff;color:var(--brand);font-size:11px;font-weight:800;text-decoration:none;display:block;border:1px solid #dbe4ff}
+.gov-btn:active{background:var(--brand);color:#fff}
 
 /* --- ANIMATED CHUPAKABRA MUNSHI --- */
 .mascot-wrap{position:fixed;left:16px;bottom:75px;z-index:90;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
@@ -185,9 +196,108 @@ button,input,select{font:inherit}button{cursor:pointer}
  </div>
 </section>
 
-<!-- Financial Services Section -->
+<!-- Services Section (Citizen Desk + Turtlemint & Finance) -->
 <section class="services" id="services" style="display:none">
- <div class="head"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
+ 
+ <!-- NEW: KISAN & CITIZEN DIRECT SERVICES DESK -->
+ <div class="head"><h2>🌾 किसान व नागरिक सेवा केंद्र</h2><span>सीधे सरकारी पोर्टल (.gov.in)</span></div>
+ <div style="background:#eaf8f0;border-left:4px solid var(--green);padding:10px 12px;border-radius:10px;margin-bottom:14px">
+   <b style="font-size:12px;color:var(--green)">100% असली व सुरक्षित सरकारी लिंक</b>
+   <p style="font-size:10px;color:#4b5563;margin-top:2px">बिना किसी फ़र्ज़ी विज्ञापन के, सीधे उत्तर प्रदेश सरकार व केंद्र सरकार की आधिकारिक वेबसाइटों पर जाएँ।</p>
+ </div>
+
+ <div class="citizen-grid">
+   <!-- 1. खसरा / खतौनी -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">📜</div>
+       <div class="gov-tag">UP Bhulekh</div>
+       <div class="gov-title">खसरा / खतौनी</div>
+       <div class="gov-sub">ज़मीन का ब्योरा व नकल देखें</div>
+     </div>
+     <a href="https://upbhulekh.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('खतौनी के लिए ज़िला, तहसील और गाटा संख्या तैयार रखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 2. खेत का नक्शा -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🗺️</div>
+       <div class="gov-tag">Bhu-Naksha</div>
+       <div class="gov-title">खेत का नक्शा</div>
+       <div class="gov-sub">मेड़ व रकबे का सरकारी नक्शा</div>
+     </div>
+     <a href="https://upbhunaksha.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('अपना गाँव चुनकर खेत का नक्शा डाउनलोड करें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 3. PM किसान सम्मान निधि -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🚜</div>
+       <div class="gov-tag">PM-Kisan</div>
+       <div class="gov-title">PM-किसान क़िस्त</div>
+       <div class="gov-sub">₹2000 क़िस्त स्थिति व e-KYC</div>
+     </div>
+     <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('रजिस्ट्रेशन नंबर या मोबाइल डालकर क़िस्त जाँचें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 4. राशन कार्ड पर्ची -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🌾</div>
+       <div class="gov-tag">FCS UP</div>
+       <div class="gov-title">राशन कार्ड पर्ची</div>
+       <div class="gov-sub">कोटेदार सूची में नाम देखें</div>
+     </div>
+     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ज़िला और ब्लॉक चुनकर राशन सूची में नाम खोजें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 5. ई-साथी (आय/जाति/निवास) -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">📋</div>
+       <div class="gov-tag">e-Sathi UP</div>
+       <div class="gov-title">आय / जाति / निवास</div>
+       <div class="gov-sub">मात्र ₹15 में ऑनलाइन आवेदन</div>
+     </div>
+     <a href="https://esathi.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('प्रमाण पत्र हेतु ई-साथी पोर्टल पर नागरिक लॉगिन करें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 6. प्रमाण पत्र सत्यापन -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">🔍</div>
+       <div class="gov-tag">e-District</div>
+       <div class="gov-title">पर्चा सत्यापन</div>
+       <div class="gov-sub">प्रमाण पत्र असली या नकली जाँचें</div>
+     </div>
+     <a href="https://edistrict.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('आवेदन व प्रमाण पत्र क्रमांक डालकर सत्यता जाँचें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 7. पेंशन योजना -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">👴</div>
+       <div class="gov-tag">SSPY Portal</div>
+       <div class="gov-title">पेंशन योजना</div>
+       <div class="gov-sub">वृद्धा, विधवा व दिव्यांग पेंशन</div>
+     </div>
+     <a href="https://sspy-up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('पेंशन का स्टेटस और नया आवेदन यहाँ देखें!')">पोर्टल खोलें ↗</a>
+   </div>
+
+   <!-- 8. ग्रामीण बिजली बिल -->
+   <div class="gov-box">
+     <div>
+       <div class="gov-emoji">⚡</div>
+       <div class="gov-tag">UPPCL Rural</div>
+       <div class="gov-title">बिजली बिल</div>
+       <div class="gov-sub">ग्रामीण बिल देखें व भरें</div>
+     </div>
+     <a href="https://upenergy.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का ग्रामीण बिजली खाता नंबर दर्ज करें!')">पोर्टल खोलें ↗</a>
+   </div>
+ </div>
+
+ <!-- FINANCIAL SERVICES & INSURANCE -->
+ <div class="head" style="margin-top:15px"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
  <div class="service-card">
   <div class="service-head">
     <div class="service-icon" style="background:#eaf8f0;color:var(--green)">🛡️</div>
@@ -362,7 +472,7 @@ const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV44127
 const PARTNER_WHATSAPP = "9369913187";
 const GOV_API_KEY = "579b464db66ec23bdd000001a36f11e8747548be776874344c488a08";
 
-// MASCOT DIALOGUES (10 Smart Non-Repeating Dialogues)
+// MASCOT DIALOGUES
 const munshiDialogues = [
   "राम-राम लाला जी! डायरी-कलम तैयार है, बहीखाता दुरुस्त रखिए!",
   "उधार उतना ही दीजिए, जितना मिलने पर रिश्ते में मिठास बनी रहे!",
@@ -377,7 +487,6 @@ const munshiDialogues = [
 ];
 let lastDialogueIndex = -1;
 
-// Preload Voices to eliminate delay
 let synthVoices = [];
 function loadVoices() {
   if ('speechSynthesis' in window) {
@@ -389,7 +498,6 @@ if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== un
   window.speechSynthesis.onvoiceschanged = loadVoices;
 }
 
-// INSTANT MASCOT SPEECH (Male / Deep Tone)
 function speakMunshi(text) {
   const bubble = document.getElementById("mascotBubble");
   const img = document.getElementById("chupaImg");
@@ -409,8 +517,6 @@ function speakMunshi(text) {
     window.speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'hi-IN';
-    
-    // Male Heavy Pitch
     u.pitch = 0.65; 
     u.rate = 0.92;
 
@@ -422,6 +528,10 @@ function speakMunshi(text) {
     u.onerror = () => { if(img) img.classList.remove("talking"); };
     window.speechSynthesis.speak(u);
   }
+}
+
+function guideGov(msg) {
+  speakMunshi(msg);
 }
 
 function mascotTap() {
