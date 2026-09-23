@@ -8,10 +8,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 
-<!-- 100% PWA ICON FIX WITH CLEAN LOGO.PNG -->
+<!-- 100% PWA ICON FIX: PURE ENCODED DATA MANIFEST -->
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
-<link rel="manifest" href='data:application/manifest+json,{"name":"चुपाकाबरा खाता","short_name":"चुपाकाबरा","start_url":".","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","icons":[{"src":"logo.png","sizes":"192x192 512x512","type":"image/png"}]}'>
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%20%E0%A4%96%E0%A4%BE%E0%A4%A4%E0%A4%BE%22%2C%22short_name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22logo.png%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fpng%22%7D%5D%7D">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,12 @@
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:86px;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
 button,input,select{font:inherit}button{cursor:pointer}
+
+/* BRANDED SPLASH SCREEN PULSE ANIMATION */
+@keyframes splashPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
 
 /* HEADER */
 .top{background:linear-gradient(135deg,#0f172a,#1e1b4b);color:#fff;padding:16px 16px 26px;border-radius:0 0 28px 28px;box-shadow:0 8px 20px rgba(15,23,42,0.18)}
@@ -165,7 +171,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 #invoicePrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
 
-/* 100% CLEAN PRINT CSS FIX */
+/* 100% CLEAN PRINT CSS */
 @media print{
   body > * {
     display: none !important;
@@ -201,11 +207,19 @@ button,input,select{font:inherit}button{cursor:pointer}
 </head>
 <body oncontextmenu="return false;">
 
+<!-- 1. FULLSCREEN BRANDED SPLASH SCREEN -->
+<div id="splashScreen" style="position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.6s ease, visibility 0.6s ease;">
+  <div style="text-align:center;">
+    <img src="logo.png" style="width:110px;height:110px;border-radius:28px;border:3px solid #38bdf8;box-shadow:0 12px 35px rgba(0,0,0,0.45);animation:splashPulse 1.8s ease-in-out infinite;" alt="चुपाकाबरा लोगो">
+    <h1 style="color:#fff;font-size:22px;font-weight:800;margin-top:16px;letter-spacing:-0.5px;">चुपाकाबरा खाता</h1>
+    <p style="color:#94a3b8;font-size:12px;margin-top:4px;font-weight:600;">सुरक्षित डिजिटल गद्दी • भारत का बहीखाता</p>
+  </div>
+</div>
+
 <!-- TOP HEADER -->
 <header class="top">
  <div class="toprow">
   <div class="brand" onclick="speakMunshiHonorific()">
-    <!-- REAL CHUPAKABRA MASCOT LOGO -->
     <img src="logo.png" class="logo-img" alt="चुपाकाबरा लोगो">
     <div>
       <h1 id="shopTitle">मेरी दुकान</h1>
@@ -213,7 +227,6 @@ button,input,select{font:inherit}button{cursor:pointer}
     </div>
   </div>
   <div class="top-actions">
-    <!-- WORKING FIREBASE GOOGLE AUTH BUTTON -->
     <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
     <button class="topbtn" type="button" onclick="openSettings()">⚙</button>
   </div>
@@ -1051,7 +1064,6 @@ function printCartInvoice() {
   let rows = "";
   let itemIndex = 1;
 
-  // केवल वही सामान छपेगा जिसमें नाम या भाव दर्ज है (खाली पंक्तियाँ हटाई गईं)
   cart.forEach((i) => {
     const rVal = Number(i.rate) || 0;
     const nVal = (i.name || "").trim();
@@ -1073,7 +1085,6 @@ function printCartInvoice() {
   const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
   const grand = Math.max(0, (sub + gst) - disc);
 
-  // कुल रकम के साथ डायनामिक UPI QR
   const qrUri = profile.upi ? `upi://pay?pa=${encodeURIComponent(profile.upi)}&pn=${encodeURIComponent(profile.shopName)}&am=${grand.toFixed(2)}&cu=INR` : "";
   const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrUri)}` : "";
 
@@ -1214,7 +1225,7 @@ function openQR(){
   }, 100);
 }
 
-/* 100% CRISP DOWNLOAD STANDEE POSTER FIX (NO EXTERNAL THIRD-PARTY BRAND NAMES) */
+/* 100% CRISP DOWNLOAD STANDEE POSTER FIX */
 function downloadRoyalPoster(){
   let qrSource = document.querySelector("#qrCanvasContainer canvas");
   if(!qrSource) {
@@ -1260,7 +1271,6 @@ function downloadRoyalPoster(){
   ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
   ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
 
-  // सुरक्षित ऑल-इन-वन डिजिटल UPI भुगतान
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
   ctx.fillText("सुरक्षित ऑल-इन-वन डिजिटल UPI भुगतान", 300, 725);
@@ -1385,14 +1395,27 @@ function saveSettings(){
   speakMunshiHonorific();
 }
 
-// INITIALIZATION
+// INITIALIZATION WITH SPLASH TIMER & SERVICE WORKER
 window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const splash = document.getElementById("splashScreen");
+    if (splash) {
+      splash.style.opacity = "0";
+      splash.style.visibility = "hidden";
+      setTimeout(() => splash.remove(), 600);
+    }
+  }, 1400);
+
   checkPinLock();
   updateLivePanchang();
   profileUI();
   renderCustomers();
   renderCart();
 });
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js');
+}
 </script>
 </body>
 </html>
