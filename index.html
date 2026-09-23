@@ -8,14 +8,17 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 
-<!-- APP ICON FOR MOBILE HOME SCREEN & BROWSER TAB (REAL CHUPAKABRA DRAGON) -->
+<!-- 100% PWA ICON FIX: EMBEDDED WEB MANIFEST SO CHROME NEVER SHOWS "G" -->
 <link rel="icon" type="image/jpeg" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
 <link rel="apple-touch-icon" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
-<link rel="shortcut icon" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%20%E0%A4%96%E0%A4%BE%E0%A4%A4%E0%A4%BE%22%2C%22short_name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%5D%7D">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- High Definition Client-Side QR Generator -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <!-- Firebase Compat SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -40,8 +43,9 @@ button,input,select{font:inherit}button{cursor:pointer}
 .logo-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
 .brand h1{font-size:17px;font-weight:800;letter-spacing:-0.2px}.brand p{font-size:10.5px;color:#94a3b8;margin-top:2px}
 .top-actions{display:flex;gap:8px;align-items:center}
-.syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px}
-.topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:18px}
+.syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;cursor:pointer}
+.syncbtn:active{transform:scale(0.96)}
+.topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px}
 
 .wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-10px}
 .summary{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
@@ -88,7 +92,15 @@ button,input,select{font:inherit}button{cursor:pointer}
 .cart-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px}
 .cart-summary-row{display:flex;justify-content:space-between;margin-bottom:5px}
 
-/* SERVICES GRID */
+/* SERVICES STYLES */
+.service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.service-head{display:flex;align-items:center;gap:12px}
+.service-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px}
+.service-info h3{font-size:14px;font-weight:800;color:var(--text)}
+.service-info p{font-size:10.5px;color:var(--muted);margin-top:2px}
+.service-desc{font-size:11px;color:#4b5563;margin:10px 0;line-height:1.5;background:#f8fafc;padding:10px 12px;border-radius:12px}
+.service-btn{width:100%;height:42px;border:0;border-radius:12px;background:#059669;color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+
 .citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
 .gov-emoji{font-size:24px;margin-bottom:3px}
@@ -128,8 +140,9 @@ button,input,select{font:inherit}button{cursor:pointer}
 /* ROYAL QR CARD */
 .royal-qr-card{background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px 16px;text-align:center;color:#fff;box-shadow:0 15px 35px rgba(15,23,42,.35);border:1.5px solid rgba(251,191,36,.35);margin-bottom:12px}
 .royal-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#fde047}
-.canvas-wrap{background:#fff;border-radius:18px;padding:10px;display:inline-block;margin:12px auto 8px;border:2px solid #e2e8f0}
-#qrCanvas{display:block;border-radius:10px}
+.canvas-wrap{background:#fff;border-radius:18px;padding:12px;display:inline-block;margin:12px auto 8px;border:2px solid #e2e8f0;position:relative}
+#qrCanvasContainer{display:flex;justify-content:center;align-items:center}
+#qrCanvasContainer img,#qrCanvasContainer canvas{border-radius:10px;display:block}
 
 /* MODALS */
 .modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;z-index:100}
@@ -141,10 +154,13 @@ button,input,select{font:inherit}button{cursor:pointer}
 .cancel{background:#f1f5f9;color:#64748b}.save{background:#059669;color:#fff}.danger{background:var(--redbg);color:var(--red)}
 .setting{background:#f8fafc;border-radius:15px;padding:12px;margin-bottom:10px;border:1px solid var(--line)}.setting small{font-size:10.5px;color:var(--muted);font-weight:600}.setting .input{margin-top:5px;margin-bottom:0;background:#fff}
 
+/* SECURITY PIN LOCK SCREEN */
+.lock{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:9999;display:none;align-items:center;justify-content:center;padding:25px}
+.lockbox{width:100%;max-width:340px;background:#fff;border-radius:24px;padding:24px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
+.lockicon{font-size:42px}
+.unlock{width:100%;height:48px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800;font-size:14px}
+
 .toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-.lock{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:500;display:none;align-items:center;justify-content:center;padding:25px}
-.lockbox{width:100%;max-width:340px;background:#fff;border-radius:24px;padding:24px;text-align:center}
-.lockicon{font-size:38px}.unlock{width:100%;height:46px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800}
 
 #invoicePrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
@@ -168,8 +184,9 @@ button,input,select{font:inherit}button{cursor:pointer}
     </div>
   </div>
   <div class="top-actions">
-    <button class="syncbtn" id="authBtn" onclick="toggleAuth()">👤 मर्चेंट</button>
-    <button class="topbtn" onclick="openSettings()">⚙</button>
+    <!-- WORKING FIREBASE GOOGLE AUTH BUTTON -->
+    <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
+    <button class="topbtn" type="button" onclick="openSettings()">⚙</button>
   </div>
  </div>
 </header>
@@ -302,66 +319,89 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="mandiList"></div>
 </section>
 
-<!-- 12 VERIFIED CITIZEN & GOVT SERVICES -->
+<!-- SERVICES: TURTLEMINT + 12 VERIFIED CITIZEN SERVICES -->
 <section class="services" id="services" style="display:none">
- <div class="head"><h2>🌾 12 अधिकृत सरकारी व नागरिक सेवाएँ</h2><span>सीधे आधिकारिक पोर्टल्स (.gov.in)</span></div>
+ <!-- 1. TURTLEMINT INSURANCE & FINANCIAL PARTNER CARD (RESTORED) -->
+ <div class="head"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon" style="background:#ecfdf5;color:#059669">🛡️</div>
+    <div class="service-info">
+      <h3>दुकान, वाहन व स्वास्थ्य बीमा</h3>
+      <p>आग, चोरी व चिकित्सा सुरक्षा तुरंत</p>
+    </div>
+  </div>
+  <div class="service-desc">
+    दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं मोटर बीमा ऑनलाइन सबसे कम प्रीमियम पर प्राप्त करें।
+  </div>
+  <button class="service-btn" type="button" onclick="openInsurance()">
+    🔗 Turtlemint पोर्टल पर बीमा देखें →
+  </button>
+ </div>
+
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon" style="background:#f1f5f9;color:#0284c7">💰</div>
+    <div class="service-info">
+      <h3>व्यापार लोन (Business Loan)</h3>
+      <p>दुकान विस्तार हेतु पूंजी सहायता</p>
+    </div>
+  </div>
+  <div class="service-desc">
+    दुकान के विस्तार या नए स्टॉक के लिए आसान कागज़ी प्रक्रिया पर पूंजी प्राप्त करें।
+  </div>
+  <button class="service-btn" type="button" style="background:#0f172a" onclick="applyLoan()">
+    💬 लोन सहायता के लिए WhatsApp करें →
+  </button>
+ </div>
+
+ <!-- 2. 12 VERIFIED CITIZEN PORTALS -->
+ <div class="head" style="margin-top:16px"><h2>🌾 12 अधिकृत सरकारी व नागरिक सेवाएँ</h2><span>सीधे आधिकारिक पोर्टल्स (.gov.in)</span></div>
  <div class="citizen-grid">
-   <!-- 1. Shikshak Cashless Card -->
    <div class="gov-box">
      <div><div class="gov-emoji">💳</div><div class="gov-tag">UP Health</div><div class="gov-title">शिक्षक कैशलेस कार्ड</div><div class="gov-sub">मुख्यमंत्री कैशलेस चिकित्सा</div></div>
      <a href="https://cmtcts.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 2. Ayushman Card -->
    <div class="gov-box">
      <div><div class="gov-emoji">🏥</div><div class="gov-tag">PM-JAY</div><div class="gov-title">आयुष्मान कार्ड</div><div class="gov-sub">परिवार पात्रता व डाउनलोड</div></div>
      <a href="https://beneficiary.nha.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 3. Ration Card -->
    <div class="gov-box">
      <div><div class="gov-emoji">🌾</div><div class="gov-tag">FCS UP</div><div class="gov-title">राशन कार्ड पर्ची</div><div class="gov-sub">कोटेदार सूची व यूनिट खोज</div></div>
      <a href="https://fcs.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 4. Ganna Parcha -->
    <div class="gov-box">
      <div><div class="gov-emoji">🎋</div><div class="gov-tag">e-Ganna</div><div class="gov-title">गन्ना पर्ची कैलेंडर</div><div class="gov-sub">किसान सट्टा व पर्ची कैलेंडर</div></div>
      <a href="https://enquiry.caneup.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 5. Manav Sampada -->
    <div class="gov-box">
      <div><div class="gov-emoji">🏫</div><div class="gov-tag">eHRMS UP</div><div class="gov-title">मानव संपदा पोर्टल</div><div class="gov-sub">सर्विस बुक व ऑनलाइन लीव</div></div>
      <a href="https://ehrms.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 6. eCourts -->
    <div class="gov-box">
      <div><div class="gov-emoji">⚖️</div><div class="gov-tag">eCourts</div><div class="gov-title">कोर्ट केस स्टेटस</div><div class="gov-sub">तहसील व ज़िला कोर्ट तारीख</div></div>
      <a href="https://services.ecourts.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 7. e-District Verification -->
    <div class="gov-box">
      <div><div class="gov-emoji">🔍</div><div class="gov-tag">eDistrict</div><div class="gov-title">प्रमाणपत्र सत्यापन</div><div class="gov-sub">आय/जाति/निवास असली-नकली</div></div>
      <a href="https://edistrict.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 8. UP Bhulekh -->
    <div class="gov-box">
      <div><div class="gov-emoji">📜</div><div class="gov-tag">Bhulekh</div><div class="gov-title">भूलेख खतौनी</div><div class="gov-sub">गाटा व ज़मीन नकल ब्योरा</div></div>
      <a href="https://upbhulekh.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 9. PM-Kisan -->
    <div class="gov-box">
      <div><div class="gov-emoji">🚜</div><div class="gov-tag">PM-Kisan</div><div class="gov-title">PM-किसान क़िस्त</div><div class="gov-sub">सम्मान निधि स्थिति व eKYC</div></div>
      <a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 10. Railway PNR -->
    <div class="gov-box">
      <div><div class="gov-emoji">🚆</div><div class="gov-tag">Indian Rail</div><div class="gov-title">रेलवे PNR व ट्रेन</div><div class="gov-sub">लाइव स्थिति व सीट खोज</div></div>
      <a href="https://www.indianrail.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 11. IGRSUP Registry -->
    <div class="gov-box">
      <div><div class="gov-emoji">🏛️</div><div class="gov-tag">IGRSUP</div><div class="gov-title">बैनामा व रजिस्ट्री</div><div class="gov-sub">जायदाद भार व प्रतिलिपि</div></div>
      <a href="https://igrsup.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-   <!-- 12. PMFBY Crop Insurance -->
    <div class="gov-box">
      <div><div class="gov-emoji">🛡️</div><div class="gov-tag">PMFBY</div><div class="gov-title">फसल नुक़सान क्लेम</div><div class="gov-sub">क्षतिपूर्ति दावा व स्थिति</div></div>
      <a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
@@ -437,7 +477,9 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div class="royal-qr-card">
    <div class="royal-badge">👑 सुपरफ़ास्ट ऑल-इन-वन UPI</div>
    <div style="font-size:17px;font-weight:800;margin-top:8px" id="qrShopTitle">मेरी दुकान</div>
-   <div class="canvas-wrap"><canvas id="qrCanvas" width="280" height="280"></canvas></div>
+   <div class="canvas-wrap">
+     <div id="qrCanvasContainer"></div>
+   </div>
    <div style="font-size:12px;font-weight:800;color:#93c5fd" id="qrUpiText">UPI सेट करें ⚙</div>
  </div>
  <div class="modalrow">
@@ -448,7 +490,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 <!-- BANKING COMING SOON MODAL -->
 <div class="modal" id="bankingModal"><div class="box" style="text-align:center">
- <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto;box-shadow:inset 0 2px 6px rgba(0,0,0,0.06)">
+ <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto">
    🏛️
  </div>
  <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px;text-transform:uppercase">
@@ -461,6 +503,17 @@ button,input,select{font:inherit}button{cursor:pointer}
  <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया / ठीक है ✓</button>
 </div></div>
 
+<!-- SECURITY PIN LOCK SCREEN (FULLSCREEN BARRIER) -->
+<div class="lock" id="lockScreen">
+  <div class="lockbox">
+    <div class="lockicon">🔐</div>
+    <h2 style="font-size:18px;font-weight:800;margin-top:6px;color:#0f172a">चुपाकाबरा खाता</h2>
+    <p style="font-size:11px;color:var(--muted);margin:4px 0 16px">सुरक्षित गद्दी • 4 अंकों का पिन दर्ज करें</p>
+    <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="text-align:center;letter-spacing:10px;font-size:22px;height:50px;background:#f8fafc">
+    <button class="unlock" onclick="unlockApp()" style="margin-top:8px">खाता खोलें 🔓</button>
+  </div>
+</div>
+
 <div id="invoicePrintArea"></div>
 <div class="toast" id="toast"></div>
 
@@ -472,6 +525,23 @@ document.onkeydown = function(e) {
   if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(String.fromCharCode(e.keyCode))) return false;
   if (e.ctrlKey && ['U','S'].includes(String.fromCharCode(e.keyCode))) return false;
 };
+
+/* FIREBASE INITIALIZATION & AUTHENTICATION */
+const firebaseConfig = {
+  apiKey: "AIzaSyB-nWyD4RtphSv7WazRgM7o3Eaj2NwgPek",
+  authDomain: "chupakabra-khata.firebaseapp.com",
+  projectId: "chupakabra-khata",
+  storageBucket: "chupakabra-khata.firebasestorage.app",
+  messagingSenderId: "872712106347",
+  appId: "1:872712106347:web:48fc0bfcd7b9e182d89c2e"
+};
+try { firebase.initializeApp(firebaseConfig); } catch(e){}
+const auth = typeof firebase !== "undefined" && firebase.auth ? firebase.auth() : null;
+const db = typeof firebase !== "undefined" && firebase.firestore ? firebase.firestore() : null;
+let currentUser = null;
+
+const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV4412722/ravindra_pratap_singh";
+const PARTNER_WHATSAPP = "9369913187";
 
 const PK="chupaProfile_final", CK="chupaCustomers_final", PINKEY="chupaPin_final";
 let profile = JSON.parse(localStorage.getItem(PK)) || {
@@ -492,18 +562,15 @@ let cart = [
   { name: "गेहूँ आटा", qty: 5, unit: "किलो", rate: 35 }
 ];
 
-/* HARDWARE BARCODE LISTENER */
+/* HARDWARE BARCODE AUTO SCANNER */
 let barcodeBuffer = '';
 let lastKeyTime = performance.now();
-
 window.addEventListener('keydown', (e) => {
   const tag = (document.activeElement.tagName || '').toLowerCase();
   if (['input', 'textarea', 'select'].includes(tag)) return;
-
   const now = performance.now();
   if (now - lastKeyTime > 90) barcodeBuffer = '';
   lastKeyTime = now;
-
   if (e.key === 'Enter') {
     if (barcodeBuffer.length >= 4) {
       handleBarcodeScan(barcodeBuffer.trim());
@@ -517,16 +584,12 @@ window.addEventListener('keydown', (e) => {
 function handleBarcodeScan(code) {
   const item = { name: "आइटम (" + code.slice(-4) + ")", qty: 1, unit: "पीस", rate: 100 };
   const exist = cart.find(x => x.name === item.name);
-  if (exist) {
-    exist.qty += 1;
-  } else {
-    cart.push(item);
-  }
+  if (exist) { exist.qty += 1; } else { cart.push(item); }
   renderCart();
   speakMunshi("बारकोड स्कैन हुआ: " + item.name);
 }
 
-/* ZERO-LATENCY MUNSHI AUDIO & HONORIFIC PERSONA */
+/* ROBUST MALE SPEECH ENGINE (NO FEMALE AUDIO GLITCH) */
 let synthVoices = [];
 function loadVoices() {
   if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices();
@@ -562,16 +625,17 @@ function speakMunshi(text) {
   }, 4500);
 
   if (isMuted || !('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel(); // 0ms lag cancel
+  window.speechSynthesis.cancel();
 
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'hi-IN';
-  u.pitch = 0.95;
-  u.rate = 1.0;
+  u.pitch = 0.68; // DEEP MALE NATURAL PITCH
+  u.rate = 0.95;
 
   if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
-  const v = synthVoices.find(x => x.lang.includes('hi'));
-  if (v) u.voice = v;
+  // Filter for authentic Male Hindi Voice
+  const maleVoice = synthVoices.find(v => v.lang.includes('hi') && (v.name.toLowerCase().includes('male') || !v.name.toLowerCase().includes('female')));
+  if (maleVoice) u.voice = maleVoice;
 
   u.onend = () => { if (img) img.classList.remove("talking"); };
   u.onerror = () => { if (img) img.classList.remove("talking"); };
@@ -601,12 +665,105 @@ function toggleMascotMute(e) {
   toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
 }
 
+/* FIREBASE AUTHENTICATION FIX */
+if (auth) {
+  auth.onAuthStateChanged((user) => {
+    currentUser = user;
+    const btn = document.getElementById("authBtn");
+    const note = document.getElementById("syncStatusText");
+    if (user) {
+      btn.innerHTML = "👤 लॉगआउट";
+      note.textContent = "🟢 क्लाउड बैकअप सक्रिय (" + (user.displayName || "दुकानदार") + ")";
+      if (db) {
+        db.collection("merchants").doc(user.uid).onSnapshot((doc) => {
+          if (doc.exists) {
+            const d = doc.data();
+            if (d.profile) profile = d.profile;
+            if (d.customers) customers = d.customers;
+            localStorage.setItem(PK, JSON.stringify(profile));
+            localStorage.setItem(CK, JSON.stringify(customers));
+            profileUI();
+            renderCustomers();
+          } else {
+            syncData();
+          }
+        });
+      }
+    } else {
+      btn.innerHTML = "👤 मर्चेंट खाता";
+      note.textContent = "🛡️ 256-Bit सुरक्षित लोकल मोड";
+    }
+  });
+}
+
+function toggleAuth() {
+  if (!auth) { toast("नेटवर्क से जुड़ें"); return; }
+  if (currentUser) {
+    if (confirm("लॉगआउट करना चाहते हैं?")) {
+      auth.signOut().then(() => toast("लॉगआउट सफल ✓"));
+    }
+  } else {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider)
+      .then(() => toast("मर्चेंट लॉगिन सफल ✓"))
+      .catch((e) => toast("त्रुटि: " + e.message));
+  }
+}
+
 /* PANCHANG DATE */
 function updateLivePanchang() {
   const now = new Date();
   const days = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
   const months = ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'];
   document.getElementById("livePanchangText").textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+}
+
+/* PIN LOCK SYSTEM LOGIC */
+function checkPinLock() {
+  const savedPin = localStorage.getItem(PINKEY);
+  const isUnlocked = sessionStorage.getItem("chupaUnlocked");
+  if (savedPin && isUnlocked !== "1") {
+    document.getElementById("lockScreen").style.display = "flex";
+  } else {
+    document.getElementById("lockScreen").style.display = "none";
+  }
+}
+
+function unlockApp() {
+  const savedPin = localStorage.getItem(PINKEY);
+  const enteredPin = document.getElementById("unlockPin").value.trim();
+
+  if (enteredPin === savedPin) {
+    document.getElementById("lockScreen").style.display = "none";
+    document.getElementById("unlockPin").value = "";
+    sessionStorage.setItem("chupaUnlocked", "1");
+    toast("गद्दी खुल गई ✓");
+    speakMunshiHonorific();
+  } else {
+    toast("गलत PIN! दोबारा प्रयास करें ❌");
+    document.getElementById("unlockPin").value = "";
+  }
+}
+
+function setPin() {
+  const currentPin = localStorage.getItem(PINKEY);
+  const p = prompt(currentPin ? "नया 4 अंकों का सुरक्षा PIN दर्ज करें (हटाने के लिए खाली छोड़ें):" : "4 अंकों का सुरक्षा PIN बनाएँ:");
+  if (p === null) return;
+  
+  if (p.trim() === "") {
+    localStorage.removeItem(PINKEY);
+    sessionStorage.removeItem("chupaUnlocked");
+    toast("सुरक्षा PIN हटा दिया गया 🔓");
+    return;
+  }
+  
+  if (/^\d{4}$/.test(p.trim())) {
+    localStorage.setItem(PINKEY, p.trim());
+    sessionStorage.setItem("chupaUnlocked", "1");
+    toast("4 अंकों का PIN लॉक सक्रिय हो गया 🔐");
+  } else {
+    alert("कृपया केवल 4 अंकों का संख्यात्मक PIN दर्ज करें!");
+  }
 }
 
 /* HELPER FUNCTIONS */
@@ -620,6 +777,13 @@ function closeModal(id){document.getElementById(id).style.display="none"}
 function syncData(){
   localStorage.setItem(CK, JSON.stringify(customers));
   localStorage.setItem(PK, JSON.stringify(profile));
+  if (currentUser && db) {
+    db.collection("merchants").doc(currentUser.uid).set({
+      profile: profile,
+      customers: customers,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }).catch(e => console.log(e));
+  }
 }
 
 function profileUI(){
@@ -917,7 +1081,7 @@ function sendCartWhatsApp() {
   window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(text), "_blank");
 }
 
-/* ROYAL QR CODE WITH REAL MASCOT EMBED */
+/* 100% ULTRA-HD IN-BROWSER VECTOR QR GENERATOR */
 function openQR(){
   if(!profile.upi){ toast("पहले सेटिंग्स में अपनी UPI ID जोड़ें"); openSettings(); return; }
   const c = customers.find(x => x.id === active);
@@ -929,41 +1093,55 @@ function openQR(){
   document.getElementById("qrUpiText").textContent = profile.upi + (amt ? ` • ${money(amt)}` : "");
   document.getElementById("qrModal").style.display = "flex";
 
-  const canvas = document.getElementById("qrCanvas");
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, 280, 280);
+  const container = document.getElementById("qrCanvasContainer");
+  container.innerHTML = "";
 
-  const qrImg = new Image();
-  qrImg.crossOrigin = "anonymous";
-  qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=H&data=" + encodeURIComponent(uri);
+  new QRCode(container, {
+    text: uri,
+    width: 256,
+    height: 256,
+    colorDark : "#0f172a",
+    colorLight : "#ffffff",
+    correctLevel : QRCode.CorrectLevel.H
+  });
 
-  qrImg.onload = function() {
-    ctx.drawImage(qrImg, 0, 0, 280, 280);
-    const mascot = new Image();
-    mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
-    mascot.onload = function() {
-      const size = 58;
-      ctx.beginPath();
-      ctx.arc(140, 140, (size / 2) + 3, 0, Math.PI * 2);
-      ctx.fillStyle = "#ffffff";
-      ctx.fill();
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = "#059669";
-      ctx.stroke();
+  setTimeout(() => {
+    const qrCanvas = container.querySelector("canvas");
+    if(qrCanvas) {
+      const ctx = qrCanvas.getContext("2d");
+      const mascot = new Image();
+      mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
+      mascot.onload = function() {
+        const size = 56;
+        const center = qrCanvas.width / 2;
+        ctx.beginPath();
+        ctx.arc(center, center, (size / 2) + 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#ffffff";
+        ctx.fill();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = "#059669";
+        ctx.stroke();
 
-      ctx.save();
-      ctx.beginPath();
-      ctx.arc(140, 140, size / 2, 0, Math.PI * 2);
-      ctx.clip();
-      ctx.drawImage(mascot, 140 - (size/2), 140 - (size/2), size, size);
-      ctx.restore();
-    };
-  };
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(center, center, size / 2, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(mascot, center - (size/2), center - (size/2), size, size);
+        ctx.restore();
+      };
+    }
+  }, 100);
 }
 
+/* 100% CRISP DOWNLOAD STANDEE POSTER FIX */
 function downloadRoyalPoster(){
-  const canvas = document.getElementById("qrCanvas");
-  if(!canvas) return;
+  let qrSource = document.querySelector("#qrCanvasContainer canvas");
+  if(!qrSource) {
+    openQR();
+    setTimeout(downloadRoyalPoster, 250);
+    return;
+  }
+
   const p = document.createElement("canvas");
   p.width = 600; p.height = 850;
   const ctx = p.getContext("2d");
@@ -973,38 +1151,54 @@ function downloadRoyalPoster(){
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 600, 850);
 
-  ctx.lineWidth = 6; ctx.strokeStyle = "#f59e0b";
-  ctx.strokeRect(20, 20, 560, 810);
+  ctx.lineWidth = 5; ctx.strokeStyle = "#f59e0b";
+  ctx.strokeRect(18, 18, 564, 814);
 
   ctx.fillStyle = "#ffffff";
   ctx.font = "800 30px 'Plus Jakarta Sans', sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText(profile.shopName, 300, 110);
+  ctx.fillText(profile.shopName, 300, 105);
 
   ctx.fillStyle = "#94a3b8";
-  ctx.font = "500 15px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 145);
+  ctx.font = "500 14px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 138);
 
   ctx.fillStyle = "#ffffff";
   ctx.beginPath();
-  ctx.roundRect(100, 185, 400, 400, [20]);
+  ctx.roundRect(100, 180, 400, 400, [24]);
   ctx.fill();
 
-  ctx.drawImage(canvas, 130, 215, 340, 340);
+  ctx.drawImage(qrSource, 125, 205, 350, 350);
+
+  ctx.fillStyle = "rgba(255,255,255,0.12)";
+  ctx.beginPath();
+  ctx.roundRect(80, 630, 440, 52, [14]);
+  ctx.fill();
 
   ctx.fillStyle = "#93c5fd";
   ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 650);
+  ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
 
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("GPay • PhonePe • Paytm • BHIM", 300, 710);
+  ctx.fillText("GPay • PhonePe • Paytm • BHIM", 300, 725);
+
+  ctx.fillStyle = "#cbd5e1";
+  ctx.font = "12px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("चुपाकाबरा खाता • भारत के व्यापारी और किसान का सच्चा साथी", 300, 770);
 
   const a = document.createElement("a");
   a.href = p.toDataURL("image/png");
-  a.download = `${profile.shopName}_QR.png`;
+  a.download = `${profile.shopName}_QR_Poster.png`;
   a.click();
-  toast("पोस्टर डाउनलोड सफल ✓");
+  toast("रॉयल पोस्टर डाउनलोड सफल ✓");
+}
+
+/* FINANCIAL SERVICES ROUTERS */
+function openInsurance(){ window.open(TURTLEMINT_URL, "_blank"); }
+function applyLoan(){
+  let msg = `नमस्ते रवींद्र जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन (Business Loan) की जानकारी चाहिए।`;
+  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
 /* NAVIGATION ROUTER */
@@ -1109,18 +1303,9 @@ function saveSettings(){
   speakMunshiHonorific();
 }
 
-function setPin(){
-  const p = prompt("4 अंकों का नया सुरक्षा PIN दर्ज करें:");
-  if(p && /^\d{4}$/.test(p)){
-    localStorage.setItem(PINKEY, p);
-    toast("PIN लॉक सक्रिय हो गया 🔐");
-  } else if(p !== null) {
-    alert("कृपया केवल 4 अंक दर्ज करें!");
-  }
-}
-
 // INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
+  checkPinLock(); // सबसे पहले ऐप का ताला जाँचेगा
   updateLivePanchang();
   profileUI();
   renderCustomers();
