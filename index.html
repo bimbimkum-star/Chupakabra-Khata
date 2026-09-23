@@ -52,10 +52,10 @@ button,input,select{font:inherit}button{cursor:pointer}
 .wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-10px}
 .summary{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
 .label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}.net{font-size:32px;font-weight:800;margin-top:2px}.smallnote{font-size:10px;color:var(--muted);margin-top:4px}
-.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.money{padding:12px;border-radius:16px;border:1px solid transparent}.money.get{background:var(--greenbg);border-color:#d1fae5}.money.give{background:var(--redbg);border-color:#ffe4e6}
-.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:18px;margin-top:4px}.money.get strong{color:var(--green)}.money.give strong{color:var(--red)}
+.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.money{padding:12px;border-radius:16px;border:1px solid transparent}.money.get{background:var(--redbg);border-color:#ffe4e6}.money.give{background:var(--greenbg);border-color:#d1fae5}
+.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:18px;margin-top:4px}.money.get strong{color:var(--red)}.money.give strong{color:var(--green)}
 
-.main,.detail,.mandi,.reports,.services,.billing{max-width:580px;margin:auto;padding:16px 15px}
+.main,.detail,.mandi,.reports,.services,.billing,.clinic-desk{max-width:580px;margin:auto;padding:16px 15px}
 .head{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}.head h2{font-size:16px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
 .search{height:46px;width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 14px;outline:0;font-size:13px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)}.search:focus{border-color:#0284c7}
 .list{display:flex;flex-direction:column;gap:8px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:transform .08s ease}.customer:active{transform:scale(.985)}
@@ -65,9 +65,9 @@ button,input,select{font:inherit}button{cursor:pointer}
 /* FLOATING BAR BOTTOM CONTROLS */
 .fab{position:fixed;right:18px;bottom:80px;height:52px;padding:0 20px;border:0;border-radius:16px;background:#059669;color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(5,150,105,.35);z-index:80}
 .bottom{position:fixed;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:85}
-.bottom button{flex:1;border:0;background:none;color:#64748b;font-size:10px;font-weight:700}.bottom button div{font-size:19px;margin-bottom:2px}.bottom button.active{color:#059669}
+.bottom button{flex:1;border:0;background:none;color:#64748b;font-size:9.5px;font-weight:700}.bottom button div{font-size:18px;margin-bottom:2px}.bottom button.active{color:#059669}
 
-/* CUSTOMER LIST FOLDABLE CARD */
+/* FOLDABLE CARDS */
 .ledger-trigger-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-top:14px}
 .ledger-trigger-card:active{transform:scale(0.985)}
 .ledger-drawer{display:none;margin-top:12px}
@@ -99,6 +99,16 @@ button,input,select{font:inherit}button{cursor:pointer}
 .cart-table input,.cart-table select{width:100%;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11px;background:#f8fafc}
 .cart-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px}
 .cart-summary-row{display:flex;justify-content:space-between;margin-bottom:5px}
+
+/* CLINICAL RX DESK SPECIFIC STYLES */
+.rx-card-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.rx-grid-3{display:grid;grid-template-columns:1.4fr 0.8fr 1fr;gap:8px;margin-bottom:12px}
+.rx-tag-cloud{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.rx-chip{background:#f8fafc;border:1px solid var(--line);padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:600;color:#334155;cursor:pointer;user-select:none}
+.rx-chip.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.rx-mode-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px}
+.rx-mode-tab{background:#fff;border:1px solid var(--line);padding:9px 4px;border-radius:10px;font-size:11px;font-weight:700;color:#475569;text-align:center;cursor:pointer}
+.rx-mode-tab.active{background:#0f172a;color:#fff;border-color:#0f172a}
 
 /* SERVICES STYLES */
 .service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
@@ -155,15 +165,23 @@ button,input,select{font:inherit}button{cursor:pointer}
 .unlock{width:100%;height:48px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800;font-size:14px}
 .toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
 
-#invoicePrintArea{display:none}
+#invoicePrintArea,#clinicPrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
 
-/* PRINT CSS */
+/* PRINT CSS FOR BILLING & 50 CLINICAL TEMPLATES */
 @media print{
   body > * { display: none !important; }
   #invoicePrintArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff; }
+  #clinicPrintArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff; color: #000; }
   .paper-roll { width: 76mm !important; max-width: 76mm !important; font-size: 11px !important; padding: 4px !important; break-inside: avoid; }
   .paper-a4 { width: 100% !important; max-width: 680px !important; font-size: 13px !important; padding: 20px !important; break-inside: avoid; }
+  
+  /* 50 TEMPLATES ADAPTIVE CSS ENGINES */
+  .tpl-classic { border: 2px solid #0f172a; padding: 22px; font-family: serif; }
+  .tpl-rehab { border: 1px solid #cbd5e1; border-top: 8px solid #0284c7; padding: 22px; border-radius: 12px; font-family: sans-serif; }
+  .tpl-ayush { border: 4px double #854d0e; padding: 20px; background: #fffdf5; font-family: 'Noto Sans Devanagari', serif; }
+  .tpl-thermal { width: 76mm !important; max-width: 76mm !important; font-family: monospace; font-size: 11px; padding: 4px; }
+  .tpl-minimal { padding: 24px; font-family: sans-serif; border: none; }
 }
 </style>
 </head>
@@ -206,16 +224,30 @@ button,input,select{font:inherit}button{cursor:pointer}
   <div class="net" id="net">₹0</div>
   <div class="smallnote" id="syncStatusText">🛡️ 256-Bit सुरक्षित लोकल मोड</div>
   <div class="moneygrid">
-   <div class="money get"><span>लेना है (आवक)</span><strong id="totalGet">₹0</strong></div>
-   <div class="money give"><span>देना है (जावक)</span><strong id="totalGive">₹0</strong></div>
+   <div class="money get"><span>लेना है (बाज़ार में उधार)</span><strong id="totalGet">₹0</strong></div>
+   <div class="money give"><span>देना है (जमा / आवक)</span><strong id="totalGive">₹0</strong></div>
   </div>
  </div>
 </section>
 
-<!-- MAIN LEDGER VIEW (CLEAN FOLDABLE BUTTON INTERFACE) -->
+<!-- MAIN LEDGER VIEW (WITH FOLDABLE CUSTOMERS & NEW CLINIC CARD) -->
 <main class="main" id="ledger">
 
- <!-- FOLDABLE LEDGER MASTER TRIGGER CARD -->
+ <!-- 1. CLINICAL & PRESCRIPTION DESK CARD (नया क्लिनिकल कार्ड) -->
+ <div class="ledger-trigger-card" onclick="showClinicDesk()" style="margin-top:4px;border-color:#cbd5e1;background:linear-gradient(to right,#ffffff,#f0fdf4)">
+   <div style="display:flex;align-items:center;gap:12px">
+     <div style="width:44px;height:44px;border-radius:14px;background:#ecfdf5;color:#059669;display:grid;place-items:center;font-size:22px">🩺</div>
+     <div>
+       <h3 style="font-size:14px;font-weight:800;color:var(--text)">क्लिनिकल व पर्चा डेस्क</h3>
+       <p style="font-size:10.5px;color:var(--muted);margin-top:2px">50 टेम्पलेट्स • ℞ प्रिंट व WhatsApp पर्चा</p>
+     </div>
+   </div>
+   <button type="button" style="border:0;background:#059669;color:#fff;padding:8px 14px;border-radius:12px;font-size:11px;font-weight:800">
+     पर्चा बनाएँ 📄
+   </button>
+ </div>
+
+ <!-- 2. FOLDABLE LEDGER MASTER TRIGGER CARD -->
  <div class="ledger-trigger-card" onclick="toggleLedgerDrawer()">
    <div style="display:flex;align-items:center;gap:12px">
      <div style="width:44px;height:44px;border-radius:14px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:20px">📒</div>
@@ -229,14 +261,130 @@ button,input,select{font:inherit}button{cursor:pointer}
    </button>
  </div>
 
- <!-- FOLDABLE CUSTOMER DRAWER (HIDDEN BY DEFAULT) -->
+ <!-- FOLDABLE CUSTOMER DRAWER -->
  <div class="ledger-drawer" id="ledgerDrawer">
    <input id="search" class="search" placeholder="🔎 ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
    <div class="list" id="customers"></div>
  </div>
 </main>
 
-<!-- DEDICATED INDEPENDENT BILLING DESK -->
+<!-- 3. CLINIC PRESCRIPTION DESK VIEW (50 टेम्पलेट्स युक्त कार्यक्षेत्र) -->
+<section class="clinic-desk" id="clinicDesk" style="display:none">
+ <button class="back" onclick="showLedger()">← वापस मुख्य गद्दी पर</button>
+ 
+ <div class="rx-card-box">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+     <div>
+       <h2 style="font-size:16px;font-weight:800;color:var(--text)" id="dispClinicName">आरोग्य रिहैब व थेरेपी क्लिनिक</h2>
+       <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispClinicSub">डॉ. आर. पी. सिंह | Reg: UP-RMP-2026/A</p>
+     </div>
+     <button type="button" class="tool" style="padding:6px 12px;background:#f1f5f9;font-weight:800" onclick="editClinicSetup()">⚙️ क्लिनिक सेटअप</button>
+   </div>
+
+   <!-- 50 TEMPLATE SELECTOR -->
+   <div style="background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:14px">
+     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+       <span style="font-size:11px;font-weight:800;color:var(--text)">📄 पर्चा टेम्पलेट (50 शैलियाँ)</span>
+       <span style="font-size:9.5px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:2px 7px;border-radius:6px" id="rxCategoryBadge">1. क्लासिक क्लिनिकल</span>
+     </div>
+     <select id="rxTemplatePicker" class="input" style="height:40px;margin-bottom:0;font-size:11.5px;font-weight:700" onchange="updateRxCategoryBadge()">
+       <optgroup label="🏥 1. क्लासिक क्लिनिकल (1-10)">
+         <option value="1" selected>टेम्पलेट 01: क्लासिक ℞ एम्स फॉर्मल स्टाइल</option>
+         <option value="2">टेम्पलेट 02: क्लासिक हेडर + डबल लाइन बॉर्डर</option>
+         <option value="3">टेम्पलेट 03: गवर्नमेंट हॉस्पिटल पर्चा लेआउट</option>
+         <option value="4">टेम्पलेट 04: नर्सिंग होम क्लीन लेटरहेड</option>
+         <option value="5">टेम्पलेट 05: क्लासिक रॉयल ℞ वॉटरमार्क</option>
+         <option value="6">टेम्पलेट 06: चैरिटेबल ट्रस्ट फॉर्मल स्लिप</option>
+         <option value="7">टेम्पलेट 07: सीनियर कंसल्टेंट प्रेस्क्रिप्शन</option>
+         <option value="8">टेम्पलेट 08: टू-कॉलम क्लासिक डायग्नोसिस</option>
+         <option value="9">टेम्पलेट 09: क्लासिक ब्लू बॉर्डर पैड</option>
+         <option value="10">टेम्पलेट 10: विंटेज एपोथेकरी स्टाइल</option>
+       </optgroup>
+       <optgroup label="🧘 2. मॉडर्न फिजियो व न्यूरो रिहैब (11-20)">
+         <option value="11">टेम्पलेट 11: स्पाइन व डिस्क असेसमेंट शीट</option>
+         <option value="12">टेम्पलेट 12: कपिंग व हिजामा सिटिंग ट्रैकर</option>
+         <option value="13">टेम्पलेट 13: न्यूरोथेरेपी नवल स्टिम्युलेशन प्रोटोकॉल</option>
+         <option value="14">टेम्पलेट 14: जॉइंट मोबिलिटी व पेन स्केल (VAS)</option>
+         <option value="15">टेम्पलेट 15: फिजियो एक्सरसाइज चेकलिस्ट फॉर्मेट</option>
+         <option value="16">टेम्पलेट 16: पैरालिसिस रिकवरी चार्ट</option>
+         <option value="17">टेम्पलेट 17: स्पोर्ट्स इंजरी व रिहैब कार्ड</option>
+         <option value="18">टेम्पलेट 18: ऑर्थोपेडिक रिहैबिलिटेशन लेआउट</option>
+         <option value="19">टेम्पलेट 19: मॉडर्न टील हेडर रिहैब पैड</option>
+         <option value="20">टेम्पलेट 20: प्रिवेंटिव वेलनेस व पोस्चर गाइड</option>
+       </optgroup>
+       <optgroup label="🌿 3. आयुष, देसी व नाड़ी वैदिकी (21-30)">
+         <option value="21">टेम्पलेट 21: पारंपरिक नाड़ी व पंचकर्म पर्चा</option>
+         <option value="22">टेम्पलेट 22: वात-पित्त-कफ त्रिदोष डायरी</option>
+         <option value="23">टेम्पलेट 23: हर्बल काढ़ा व अनुपान चार्ट</option>
+         <option value="24">टेम्पलेट 24: प्राकृतिक चिकित्सा व स्वेदन स्लिप</option>
+         <option value="25">टेम्पलेट 25: मर्म चिकित्सा उपचार पत्रक</option>
+         <option value="26">टेम्पलेट 26: आयुष ग्राम आरोग्य पत्र</option>
+         <option value="27">टेम्पलेट 27: स्वर्ण प्राशन व बाल संस्कार कार्ड</option>
+         <option value="28">टेम्पलेट 28: योग व दिनचर्या परामर्श पर्चा</option>
+         <option value="29">टेम्पलेट 29: प्राचीन बॉर्डर देसी दवा पत्र</option>
+         <option value="30">टेम्पलेट 30: शोधन व शमन थेरेपी शीट</option>
+       </optgroup>
+       <optgroup label="🧾 4. थर्मल रोल पर्चा (काउंटर प्रिंटर) (31-40)">
+         <option value="31">टेम्पलेट 31: 58mm मिनी पॉकेट पर्ची</option>
+         <option value="32">टेम्पलेट 32: 80mm रोल बारकोड क्लिनिक स्लिप</option>
+         <option value="33">टेम्पलेट 33: थर्मल सिटिंग टोकन व परामर्श</option>
+         <option value="34">टेम्पलेट 34: थर्मल बिल + प्रिस्क्रिप्शन कंबाइंड</option>
+         <option value="35">टेम्पलेट 35: कॉम्पैक्ट फॉलो-अप स्लिप</option>
+         <option value="36">टेम्पलेट 36: इमरजेंसी ओपीडी रोल टिकट</option>
+         <option value="37">टेम्पलेट 37: 80mm बॉक्स ग्रिड पर्चा</option>
+         <option value="38">टेम्पलेट 38: थर्मल मेडिसिन डोज टेबल</option>
+         <option value="39">टेम्पलेट 39: सुपरफास्ट 10-सेकंड रोल स्लिप</option>
+         <option value="40">टेम्पलेट 40: थर्मल बारकोड डिस्चार्ज समरी</option>
+       </optgroup>
+       <optgroup label="✒️ 5. एग्जीक्यूटिव मिनिमल व आधुनिक (41-50)">
+         <option value="41">टेम्पलेट 41: स्लीक मॉडर्न ग्रे हेडर</option>
+         <option value="42">टेम्पलेट 42: नो-बॉर्डर अल्ट्रा मिनिमल A4</option>
+         <option value="43">टेम्पलेट 43: टू-टोन कॉर्पोरेट हेल्थ कार्ड</option>
+         <option value="44">टेम्पलेट 44: डिजिटल ई-प्रिस्क्रिप्शन फॉर्मेट</option>
+         <option value="45">टेम्पलेट 45: टेली-कंसल्टेशन ऑफिशियल पैड</option>
+         <option value="46">टेम्पलेट 46: बुलेटेड क्लीन क्लिनिकल समरी</option>
+         <option value="47">टेम्पलेट 47: मॉडर्न ज्योमेट्रिक कॉर्नर लेटरहेड</option>
+         <option value="48">टेम्पलेट 48: डार्क-एलिगेंट हेडर मेडिकल शीट</option>
+         <option value="49">टेम्पलेट 49: पोर्ट्रेट कार्ड स्टाइल प्रिस्क्रिप्शन</option>
+         <option value="50">टेम्पलेट 50: प्रीमियम गोल्डन स्टैम्प स्टाइल</option>
+       </optgroup>
+     </select>
+   </div>
+
+   <!-- PRACTICE SPECIALTY TABS -->
+   <div class="rx-mode-tabs">
+     <div class="rx-mode-tab active" data-rxm="therapy" onclick="setRxCategory('therapy')">फिजियो व न्यूरो</div>
+     <div class="rx-mode-tab" data-rxm="medical" onclick="setRxCategory('medical')">एलोपैथ / मेडिकल</div>
+     <div class="rx-mode-tab" data-rxm="rural" onclick="setRxCategory('rural')">प्राथमिक सेवा</div>
+   </div>
+
+   <!-- PATIENT ENTRY -->
+   <div class="rx-grid-3">
+     <input id="rxPtName" class="input" style="margin-bottom:0;height:42px" placeholder="मरीज़ का नाम *">
+     <input id="rxPtAgeGender" class="input" style="margin-bottom:0;height:42px" placeholder="42 / M">
+     <input id="rxPtPhone" type="tel" maxlength="10" class="input" style="margin-bottom:0;height:42px" placeholder="WhatsApp नंबर">
+   </div>
+
+   <!-- TAG CLOUDS -->
+   <div style="font-size:11.5px;font-weight:800;color:var(--text);margin:12px 0 6px">लक्षण व तकलीफ़ (Complaints):</div>
+   <div class="rx-tag-cloud" id="rxComplaintsCloud"></div>
+
+   <div style="font-size:11.5px;font-weight:800;color:var(--text);margin:12px 0 6px" id="rxTreatLbl">थेरेपी व दवा प्रोटोकॉल (Treatment):</div>
+   <div class="rx-tag-cloud" id="rxTreatmentCloud"></div>
+
+   <div style="font-size:11.5px;font-weight:800;color:var(--text);margin:12px 0 6px">घरेलू कसरत व परहेज (Advice):</div>
+   <div class="rx-tag-cloud" id="rxAdviceCloud"></div>
+
+   <input id="rxPtNext" class="input" style="height:42px;margin-top:8px" placeholder="अगला परामर्श / सिटिंग (उदा. 3 दिन बाद सुबह 10 बजे)">
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+     <button class="save" style="height:46px;font-size:12.5px" onclick="printClinicPrescription()">🖨️ पर्चा प्रिंट निकालें</button>
+     <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendClinicWhatsAppRx()">📲 WhatsApp पर्चा</button>
+   </div>
+ </div>
+</section>
+
+<!-- BILLING DESK -->
 <section class="billing" id="billingDesk" style="display:none">
  <div class="billing-card">
    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
@@ -255,7 +403,6 @@ button,input,select{font:inherit}button{cursor:pointer}
      <input id="cartCustPhone" class="input" style="height:40px;font-size:11px" type="tel" maxlength="10" placeholder="मोबाइल नंबर (वैकल्पिक)">
    </div>
 
-   <!-- SCANNER & BLUETOOTH STATUS BAR -->
    <div style="background:#0f172a;color:#fff;border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:10px">
      <div>
        <b>🔫 बारकोड स्कैनर सक्रिय है</b>
@@ -266,7 +413,6 @@ button,input,select{font:inherit}button{cursor:pointer}
      </button>
    </div>
 
-   <!-- CART TABLE -->
    <table class="cart-table">
      <thead>
        <tr>
@@ -405,7 +551,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  </div>
 </section>
 
-<!-- DRAGON MASCOT (TAP OPENS SECRET TRAY) -->
+<!-- DRAGON MASCOT -->
 <div class="mascot-wrap">
   <div class="mascot-bubble" id="mascotBubble">नमस्ते लाला जी! 🙏</div>
   <div class="mascot-container" onclick="openGameModal()">
@@ -419,13 +565,13 @@ button,input,select{font:inherit}button{cursor:pointer}
 <!-- BOTTOM NAVIGATION DOCK -->
 <nav class="bottom">
  <button id="bLedger" class="active" onclick="showLedger()"><div>📒</div>बहीखाता</button>
+ <button id="bClinic" onclick="showClinicDesk()"><div>🩺</div>क्लिनिक</button>
  <button id="bBilling" onclick="showBilling()"><div>🛒</div>बिल काउंटर</button>
  <button id="bMandi" onclick="showMandi()"><div>🌾</div>मंडी भाव</button>
  <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
- <button onclick="openBankingHub()"><div>🏛️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
 </nav>
 
-<!-- DEDICATED GAME MODAL (SECRET TRAY - DOES NOT CLUTTER HOME) -->
+<!-- DEDICATED GAME MODAL -->
 <div class="modal" id="gameModal"><div class="box">
  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
    <div style="display:flex;align-items:center;gap:10px">
@@ -456,7 +602,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  </div>
 </div></div>
 
-<!-- MODALS -->
+<!-- CUSTOMER MODAL -->
 <div class="modal" id="customerModal"><div class="box">
  <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
  <input id="cName" class="input" placeholder="ग्राहक का नाम">
@@ -464,6 +610,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div class="modalrow"><button class="cancel" onclick="closeModal('customerModal')">रद्द करें</button><button class="save" onclick="saveCustomer()">सेव करें</button></div>
 </div></div>
 
+<!-- TX MODAL -->
 <div class="modal" id="txModal"><div class="box">
  <h2 id="txTitle">उधार दर्ज करें</h2>
  <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder="राशि ₹">
@@ -471,6 +618,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div class="modalrow"><button class="cancel" onclick="closeModal('txModal')">रद्द करें</button><button class="save" onclick="saveTx()">हिसाब सेव करें</button></div>
 </div></div>
 
+<!-- SETTINGS MODAL -->
 <div class="modal" id="settingsModal"><div class="box">
  <h2>दुकान व मुंशी जी सेटिंग्स</h2>
  <div class="setting"><small>दुकानदार का नाम</small><input id="merchantName" class="input" placeholder="उदा. सत्यप्रकाश सिंह"></div>
@@ -486,7 +634,7 @@ button,input,select{font:inherit}button{cursor:pointer}
    <button type="button" class="tool" style="background:#f1f5f9;font-weight:800;padding:10px 4px" onclick="setPin()">🔐 PIN बदलें</button>
  </div>
 
- <!-- SECRET ADMIN ENTRY -->
+ <!-- SECRET ADMIN ENTRY (MASTER PIN: 2569) -->
  <div style="margin-top:12px;padding:12px;background:#f1f5f9;border-radius:14px;border:1px dashed #cbd5e1">
    <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">🔐 मुंशी जी गुप्त मालिक मीटर (पिन दर्ज करें):</div>
    <div style="display:flex;gap:6px">
@@ -508,6 +656,20 @@ button,input,select{font:inherit}button{cursor:pointer}
  </div>
 </div></div>
 
+<!-- CLINIC SETUP MODAL -->
+<div class="modal" id="clinicSetupModal"><div class="box">
+ <h2>क्लिनिक व डॉक्टर सेटअप</h2>
+ <div class="setting"><small>क्लिनिक / अस्पताल का नाम</small><input id="setClinicName" class="input" placeholder="उदा. आरोग्य रिहैब व थेरेपी क्लिनिक"></div>
+ <div class="setting"><small>डॉक्टर / थेरेपिस्ट का नाम व डिग्री</small><input id="setDocName" class="input" placeholder="उदा. डॉ. आर. पी. सिंह (B.P.T, न्यूरोथेरेपिस्ट)"></div>
+ <div class="setting"><small>पंजीकरण संख्या (Reg. No / RMP - वैकल्पिक)</small><input id="setDocReg" class="input" placeholder="उदा. UP-RMP-2026/A या खाली छोड़ें"></div>
+ <div class="setting"><small>क्लिनिक का पता व लैंडमार्क</small><input id="setClinicAddress" class="input" placeholder="उदा. मेन चौराहा, उत्तर प्रदेश"></div>
+ <div class="setting"><small>क्लिनिक संपर्क फ़ोन / WhatsApp</small><input id="setClinicPhone" class="input" type="tel" placeholder="मोबाइल नंबर"></div>
+ <div class="modalrow" style="margin-top:14px">
+   <button class="cancel" onclick="closeModal('clinicSetupModal')">बंद करें</button>
+   <button class="save" onclick="saveClinicSetup()">सेव करें</button>
+ </div>
+</div></div>
+
 <!-- ROYAL QR MODAL -->
 <div class="modal" id="qrModal"><div class="box">
  <div class="royal-qr-card" style="background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px;text-align:center;color:#fff">
@@ -523,15 +685,6 @@ button,input,select{font:inherit}button{cursor:pointer}
  </div>
 </div></div>
 
-<!-- BANKING COMING SOON MODAL -->
-<div class="modal" id="bankingModal"><div class="box" style="text-align:center">
- <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto">🏛️</div>
- <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px">🔐 Coming Soon</span>
- <h2 style="margin-top:8px;font-size:16px">व्यापारी बैंकिंग व चालू खाता</h2>
- <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">दुकानदारों के लिए जीरो-बैलेंस डिजिटल चालू खाता सीधे आपकी गद्दी से जोड़े जा रहे हैं।</p>
- <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया ✓</button>
-</div></div>
-
 <!-- PIN LOCK SCREEN -->
 <div class="lock" id="lockScreen">
   <div class="lockbox">
@@ -544,6 +697,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 </div>
 
 <div id="invoicePrintArea"></div>
+<div id="clinicPrintArea"></div>
 <div class="toast" id="toast"></div>
 
 <script>
@@ -567,6 +721,7 @@ const PARTNER_WHATSAPP = "9369913187";
 
 const PK="chupaProfile_final", CK="chupaCustomers_final", PINKEY="chupaPin_final";
 const VK="chupaVault_final", BK="chupaBillCount_final", RK="chupaReactions_final";
+const CLINIKEY="chupaClinicProfile_final";
 
 let profile = JSON.parse(localStorage.getItem(PK)) || {
   shopName: "मेरी दुकान का खाता",
@@ -577,6 +732,15 @@ let profile = JSON.parse(localStorage.getItem(PK)) || {
   upi: "",
   gstin: ""
 };
+
+let clinicProfile = JSON.parse(localStorage.getItem(CLINIKEY)) || {
+  name: "आरोग्य रिहैब व थेरेपी क्लिनिक",
+  doc: "डॉ. आर. पी. सिंह (B.P.T, न्यूरोथेरेपिस्ट)",
+  reg: "UP-RMP-2026/A",
+  address: "मेन चौराहा, उत्तर प्रदेश",
+  phone: "9369913187"
+};
+
 let customers = JSON.parse(localStorage.getItem(CK)) || [];
 let vault = Number(localStorage.getItem(VK) || "0.00");
 let billCount = Number(localStorage.getItem(BK) || "101");
@@ -587,6 +751,30 @@ let isMuted = localStorage.getItem("chupaMute") === "1";
 let activeBillMode = 'kaccha';
 let isLedgerOpen = false;
 
+/* CLINIC LIBRARY & STATE */
+let rxMode = "therapy";
+const rxDataLibrary = {
+  therapy: {
+    complaints: ["सर्वाइकल स्पॉन्डिलाइटिस", "साइटिका (L4-L5 डिस्क)", "फ्रोजन शोल्डर (कंधा जाम)", "घुटने का दर्द (Osteoarthritis)", "माइग्रेन / आधासीसी", "कमर दर्द (Lumbago)", "लकवा / पैरालिसिस रिहैब", "टेनिस एल्बो", "हील पेन (Plantar Fasciitis)", "अपच व नाभि डिगना"],
+    treatment: ["ड्राई कपिंग थेरेपी (5 Cups)", "वेट कपिंग / हिजामा (डिटॉक्स)", "न्यूरोथेरेपी नवल स्टिम्युलेशन", "Tens + IFT फिजियो थेरेपी", "अल्ट्रासाउंड पेन रिलीफ", "मैनुअल जॉइंट मोबिलाइज़ेशन", "स्पाइन ट्रैक्शन (मैनुअल)", "हर्बल पोटली स्वेदन"],
+    advice: ["तकिया लगाना पूरी तरह बंद रखें", "गरम पानी की सिकाई (दिन में 2 बार)", "कमर सीधी रखकर बैठें", "भारी वज़न बिल्कुल न उठाएं", "स्ट्रेचिंग कसरत 15 मिनट सुबह", "ठंडी व बादी चीज़ों से परहेज"]
+  },
+  medical: {
+    complaints: ["वायरल फीवर / बुखार", "गले में खराश व सूखी खांसी", "एसिडिटी व पेट दर्द (GERD)", "डायरिया / लूज मोशन", "हाई बीपी (हाइपरटेंशन)", "दाद, खाज, खुजली (फंगल)", "कमजोरी व चक्कर", "जोड़ों का दर्द (यूरिक एसिड)"],
+    treatment: ["Paracetamol 650mg SOS", "Pantoprazole 40mg (खाली पेट)", "Amoxicillin + Clav 625mg BD", "ORS + Zinc घोल दिन में 3 बार", "Levocetirizine 5mg रात को", "B-Complex + Multivitamin OD", "Diclofenac Gel स्थानीय लेप"],
+    advice: ["उबला पानी पिएं", "हल्का व सुपाच्य भोजन (खिचड़ी/दलिया)", "3 दिन बाद फॉलो-अप दिखाएं", "दवा का पूरा कोर्स लें", "धूल व ठंडी हवा से बचें"]
+  },
+  rural: {
+    complaints: ["सामान्य हरारत व बदन दर्द", "मौसमी सर्दी-जुकाम", "पेट में मरोड़ व गैस", "साधारण घाव व खरोंच", "उल्टी व दस्त का आरंभ", "आंखों में लाली व जलन", "सिरदर्द व थकान"],
+    treatment: ["बुखार प्राथमिक गोली (OTC)", "गैस नाशक एंटासिड सिरप", "ओआरएस इलेक्ट्रोलाइट पैकेट", "एंटीसेप्टिक डेटॉल ड्रेसिंग", "दर्द निवारक बाम लेप", "सलाइन नेज़ल ड्रॉप्स", "उच्च केंद्र / ज़िला अस्पताल रेफरल"],
+    advice: ["तत्काल आराम करें व पर्याप्त तरल लें", "लक्षण 24 घंटे में न सुधरें तो तुरंत CHC जाएं", "कोई भारी एंटीबायोटिक बिना जांच न लें", "ब्लड प्रेशर की नियमित जांच कराएं"]
+  }
+};
+
+let selRxComplaints = new Set();
+let selRxTreatments = new Set();
+let selRxAdvices = new Set();
+
 reactions.visits = (reactions.visits || 0) + 1;
 localStorage.setItem(RK, JSON.stringify(reactions));
 
@@ -595,7 +783,7 @@ let cart = [
   { name: "गेहूँ आटा", qty: 5, unit: "किलो", rate: 35 }
 ];
 
-/* FOLDABLE DRAWER CONTROLLER */
+/* FOLDABLE DRAWER */
 function toggleLedgerDrawer() {
   isLedgerOpen = !isLedgerOpen;
   const drawer = document.getElementById("ledgerDrawer");
@@ -744,10 +932,13 @@ if (auth) {
           if (doc.exists) {
             const d = doc.data();
             if (d.profile) profile = d.profile;
+            if (d.clinicProfile) clinicProfile = d.clinicProfile;
             if (d.customers) customers = d.customers;
             localStorage.setItem(PK, JSON.stringify(profile));
+            localStorage.setItem(CLINIKEY, JSON.stringify(clinicProfile));
             localStorage.setItem(CK, JSON.stringify(customers));
             profileUI();
+            updateClinicUI();
             renderCustomers();
           } else {
             syncData();
@@ -836,12 +1027,14 @@ function closeModal(id){document.getElementById(id).style.display="none"}
 function syncData(){
   localStorage.setItem(CK, JSON.stringify(customers));
   localStorage.setItem(PK, JSON.stringify(profile));
+  localStorage.setItem(CLINIKEY, JSON.stringify(clinicProfile));
   localStorage.setItem(VK, vault.toFixed(2));
   localStorage.setItem(BK, String(billCount));
   localStorage.setItem(RK, JSON.stringify(reactions));
   if (currentUser && db) {
     db.collection("merchants").doc(currentUser.uid).set({
       profile: profile,
+      clinicProfile: clinicProfile,
       customers: customers,
       updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     }).catch(e => console.log(e));
@@ -944,7 +1137,7 @@ function dashboard(){
   const net = get - give;
   const netEl = document.getElementById("net");
   netEl.textContent = (net >= 0 ? "+" : "-") + money(Math.abs(net));
-  netEl.style.color = net >= 0 ? "var(--green)" : "var(--red)";
+  netEl.style.color = "#0f172a";
   premiumBusinessSummary();
 }
 
@@ -981,7 +1174,9 @@ function openDetail(id){
   active = id;
   const c = customers.find(x => x.id === id);
   if(!c) return;
-  ["dashboard","ledger","mandi","services","billingDesk"].forEach(i => document.getElementById(i).style.display="none");
+  ["dashboard","ledger","mandi","services","billingDesk","clinicDesk"].forEach(i => {
+    const el = document.getElementById(i); if(el) el.style.display="none";
+  });
   document.getElementById("detail").style.display="block";
   document.getElementById("fab").style.display="none";
   document.getElementById("dAvatar").textContent = init(c.name);
@@ -1075,7 +1270,223 @@ function whatsapp(){
   window.open("https://wa.me/91" + c.phone + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
-/* BILLING */
+/* =========================================================
+   CLINICAL & PRESCRIPTION DESK CONTROLLERS (50 TEMPLATES)
+   ========================================================= */
+function showClinicDesk(){
+  ["dashboard","ledger","detail","mandi","services","billingDesk"].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display="none";
+  });
+  document.getElementById("clinicDesk").style.display="block";
+  document.getElementById("fab").style.display="none";
+  setNav("bClinic");
+  updateClinicUI();
+  initRxClouds();
+}
+
+function updateClinicUI(){
+  document.getElementById("dispClinicName").textContent = clinicProfile.name || "आरोग्य रिहैब व थेरेपी क्लिनिक";
+  let sub = clinicProfile.doc || "डॉ. आर. पी. सिंह";
+  if(clinicProfile.reg && clinicProfile.reg.trim()){
+    sub += ` | Reg: ${clinicProfile.reg}`;
+  }
+  document.getElementById("dispClinicSub").textContent = sub;
+}
+
+function setRxCategory(cat){
+  rxMode = cat;
+  document.querySelectorAll(".rx-mode-tab").forEach(t => t.classList.remove("active"));
+  const tab = document.querySelector(`[data-rxm="${cat}"]`);
+  if(tab) tab.classList.add("active");
+
+  const lbl = document.getElementById("rxTreatLbl");
+  if(cat === "rural") lbl.textContent = "प्राथमिक सुरक्षित उपचार (Safe OTC):";
+  else if(cat === "medical") lbl.textContent = "दवाइयाँ व प्रिस्क्रिप्शन (Rx):";
+  else lbl.textContent = "थेरेपी व उपचार प्रोटोकॉल (Treatment):";
+
+  selRxComplaints.clear();
+  selRxTreatments.clear();
+  selRxAdvices.clear();
+  initRxClouds();
+}
+
+function initRxClouds(){
+  const d = rxDataLibrary[rxMode];
+  document.getElementById("rxComplaintsCloud").innerHTML = d.complaints.map(item => `
+    <span class="rx-chip ${selRxComplaints.has(item)?'active':''}" onclick="toggleRxTag('c', '${item}')">${item}</span>
+  `).join("");
+
+  document.getElementById("rxTreatmentCloud").innerHTML = d.treatment.map(item => `
+    <span class="rx-chip ${selRxTreatments.has(item)?'active':''}" onclick="toggleRxTag('t', '${item}')">${item}</span>
+  `).join("");
+
+  document.getElementById("rxAdviceCloud").innerHTML = d.advice.map(item => `
+    <span class="rx-chip ${selRxAdvices.has(item)?'active':''}" onclick="toggleRxTag('a', '${item}')">${item}</span>
+  `).join("");
+}
+
+function toggleRxTag(type, val){
+  let s = type === 'c' ? selRxComplaints : type === 't' ? selRxTreatments : selRxAdvices;
+  if(s.has(val)) s.delete(val); else s.add(val);
+  initRxClouds();
+}
+
+function updateRxCategoryBadge(){
+  const val = parseInt(document.getElementById("rxTemplatePicker").value);
+  const badge = document.getElementById("rxCategoryBadge");
+  if(val <= 10) badge.textContent = "1. क्लासिक क्लिनिकल";
+  else if(val <= 20) badge.textContent = "2. मॉडर्न फिजियो व न्यूरो";
+  else if(val <= 30) badge.textContent = "3. आयुष व नाड़ी वैदिकी";
+  else if(val <= 40) badge.textContent = "4. थर्मल पॉकेट रोल";
+  else badge.textContent = "5. एग्जीक्यूटिव मिनिमल";
+}
+
+function editClinicSetup(){
+  document.getElementById("setClinicName").value = clinicProfile.name || "";
+  document.getElementById("setDocName").value = clinicProfile.doc || "";
+  document.getElementById("setDocReg").value = clinicProfile.reg || "";
+  document.getElementById("setClinicAddress").value = clinicProfile.address || "";
+  document.getElementById("setClinicPhone").value = clinicProfile.phone || "";
+  document.getElementById("clinicSetupModal").style.display = "flex";
+}
+
+function saveClinicSetup(){
+  const n = document.getElementById("setClinicName").value.trim();
+  if(!n){ toast("क्लिनिक का नाम दर्ज करें"); return; }
+  clinicProfile.name = n;
+  clinicProfile.doc = document.getElementById("setDocName").value.trim();
+  clinicProfile.reg = document.getElementById("setDocReg").value.trim();
+  clinicProfile.address = document.getElementById("setClinicAddress").value.trim();
+  clinicProfile.phone = document.getElementById("setClinicPhone").value.trim();
+
+  syncData();
+  updateClinicUI();
+  closeModal("clinicSetupModal");
+  toast("क्लिनिक सेटअप सुरक्षित हुआ ✓");
+}
+
+function printClinicPrescription(){
+  const name = document.getElementById("rxPtName").value.trim();
+  if(!name){ alert("कृपया मरीज़ का नाम लिखें!"); return; }
+
+  const ageGen = document.getElementById("rxPtAgeGender").value.trim() || "-";
+  const phone = document.getElementById("rxPtPhone").value.trim() || "-";
+  const next = document.getElementById("rxPtNext").value.trim() || "आवश्यकतानुसार";
+  const tplId = parseInt(document.getElementById("rxTemplatePicker").value);
+  const today = new Date().toLocaleDateString('hi-IN');
+  const rxNo = "#RX-" + (1000 + tplId * 10 + Math.floor(Math.random() * 9));
+
+  const complaints = Array.from(selRxComplaints).join(", ") || "सामान्य क्लिनिकल परीक्षण";
+  const treatments = Array.from(selRxTreatments).map((t, i) => `<div><b>${i+1}.</b> ${t}</div>`).join("") || "परामर्श पूर्ण";
+  const advices = Array.from(selRxAdvices).map(a => `<div>• ${a}</div>`).join("") || "सावधानी रखें";
+
+  let tplClass = "tpl-classic";
+  if(tplId >= 11 && tplId <= 20) tplClass = "tpl-rehab";
+  else if(tplId >= 21 && tplId <= 30) tplClass = "tpl-ayush";
+  else if(tplId >= 31 && tplId <= 40) tplClass = "tpl-thermal";
+  else if(tplId >= 41 && tplId <= 50) tplClass = "tpl-minimal";
+
+  const pArea = document.getElementById("clinicPrintArea");
+  pArea.innerHTML = `
+    <div class="${tplClass}">
+      <!-- DOCTOR & CLINIC OWN HEADER -->
+      <div style="border-bottom:2px solid #0f172a;padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;">
+        <div>
+          <h2 style="font-size:20px;font-weight:800;margin:0;color:#0f172a;">${esc(clinicProfile.name)}</h2>
+          <p style="font-size:12.5px;font-weight:700;margin:2px 0;">${esc(clinicProfile.doc)}</p>
+          ${clinicProfile.reg && clinicProfile.reg.trim() ? `<p style="font-size:11px;color:#334155;margin:1px 0;">पंजीकरण सं. (Reg. No): <b>${esc(clinicProfile.reg)}</b></p>` : ''}
+          <p style="font-size:10px;color:#64748b;margin:0;">${esc(clinicProfile.address)} | संपर्क: ${esc(clinicProfile.phone)}</p>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:26px;font-weight:800;color:#0284c7;line-height:1;">℞</div>
+          <div style="font-size:11px;font-weight:700;margin-top:4px;">दिनांक: ${today}</div>
+          <div style="font-size:10px;color:#64748b;">पर्चा सं.: ${rxNo}</div>
+        </div>
+      </div>
+
+      <!-- PATIENT RECORD STRIP -->
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #cbd5e1;font-size:12px;margin-top:6px;">
+        <div>मरीज़: <b>${esc(name)}</b> (${esc(ageGen)})</div>
+        <div>मो.: <b>${esc(phone)}</b></div>
+        <div>टेम्पलेट: #${tplId}</div>
+      </div>
+
+      <!-- CLINICAL CONTENTS -->
+      <div style="margin-top:14px;">
+        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">मुख्य तकलीफ़ / निदान (Complaints):</div>
+        <div style="font-size:13px;font-weight:700;color:#0f172a;margin:3px 0 12px;">${complaints}</div>
+
+        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">उपचार व थेरेपी प्रोटोकॉल (Treatment / Rx):</div>
+        <div style="font-size:13px;line-height:1.6;color:#0f172a;margin:4px 0 12px;">${treatments}</div>
+
+        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">घरेलू कसरत व परहेज (Advice & Precautions):</div>
+        <div style="font-size:12px;line-height:1.5;color:#334155;margin:4px 0 12px;">${advices}</div>
+
+        <div style="margin-top:14px;padding:6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:11px;display:inline-block;">
+          <b>अगला परामर्श / सिटिंग:</b> ${esc(next)}
+        </div>
+      </div>
+
+      <!-- DOCTOR SIGNATURE & CLEAN COMPACT BRANDED FOOTER -->
+      <div style="margin-top:55px;display:flex;justify-content:space-between;align-items:flex-end;">
+        <div style="max-width:390px;">
+          <!-- DISCLAIMER (बारीक, साफ़ पढ़ने योग्य) -->
+          <div style="font-size:8.5px;color:#64748b;line-height:1.35;border-top:1px solid #e2e8f0;padding-top:4px;">
+            * कानूनी सुरक्षा (Disclaimer): यह पर्चा केवल क्लिनिकल परामर्श व रिकॉर्ड हेतु है। सभी चिकित्सा निर्णय व पंजीकरण की प्रामाणिकता हेतु परामर्शदाता स्वयं उत्तरदायी है।
+          </div>
+          <!-- BRANDING (तय अधिकृत नारा) -->
+          <div style="font-size:9.5px;font-weight:800;color:#0f172a;margin-top:3px;">
+            Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉
+          </div>
+        </div>
+        <div style="text-align:center;font-size:11px;font-weight:700;">
+          <div style="border-top:1px solid #000;width:140px;margin-bottom:4px;"></div>
+          अधिकृत हस्ताक्षर
+        </div>
+      </div>
+    </div>
+  `;
+
+  addVaultReward(0.05);
+  syncData();
+  setTimeout(() => { window.print(); }, 250);
+}
+
+function sendClinicWhatsAppRx(){
+  const name = document.getElementById("rxPtName").value.trim();
+  const phone = document.getElementById("rxPtPhone").value.trim();
+  if(!name){ alert("कृपया मरीज़ का नाम लिखें!"); return; }
+  if(!phone || phone.length < 10){ alert("10 अंकों का WhatsApp नंबर लिखें!"); return; }
+
+  const complaints = Array.from(selRxComplaints).join(", ") || "क्लिनिकल परामर्श";
+  const treatments = Array.from(selRxTreatments).map((t, idx) => `${idx+1}. ${t}`).join("\n");
+  const advices = Array.from(selRxAdvices).map(a => `• ${a}`).join("\n");
+  const next = document.getElementById("rxPtNext").value.trim() || "आवश्यकतानुसार";
+  const tplId = document.getElementById("rxTemplatePicker").value;
+
+  // WHATSAPP MESSAGE: DOCTOR DETAILS ON TOP, COMPACT BRANDING AT BOTTOM
+  let msg = `*${clinicProfile.name}*\n` +
+            `${clinicProfile.doc}\n`;
+  if(clinicProfile.reg && clinicProfile.reg.trim()){
+    msg += `पंजीकरण संख्या (Reg. No): ${clinicProfile.reg}\n`;
+  }
+  msg += `मो.: ${clinicProfile.phone} | ${clinicProfile.address}\n` +
+         `------------------------\n` +
+         `नमस्ते *${name}* जी, आपका डिजिटल क्लिनिकल पर्चा (Tpl #${tplId}):\n\n` +
+         `*तकलीफ़/लक्षण:* ${complaints}\n\n` +
+         `*दवा व थेरेपी प्रोटोकॉल:*\n${treatments || 'परामर्श पूर्ण'}\n\n` +
+         `*परहेज व निर्देश:*\\n${advices || 'सावधानी रखें'}\n\n` +
+         `*अगला परामर्श:* ${next}\n\n` +
+         `धन्यवाद! शीघ्र स्वास्थ्य लाभ की शुभकामनाएँ 🙏\n\n` +
+         `_कानूनी सूचना: यह पर्चा क्लिनिकल परामर्श व रिकॉर्ड हेतु है। परामर्शदाता स्वयं उत्तरदायी है।_\n` +
+         `*Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉*`;
+
+  addVaultReward(0.05);
+  syncData();
+  window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(msg), "_blank");
+}
+
+/* BILLING DESK FUNCTIONS */
 function switchBillMode(mode) {
   if (mode === 'gst' && (!profile.gstin || !profile.gstin.trim())) {
     alert("कृपया पहले सेटिंग्स में GSTIN नंबर दर्ज करें!");
@@ -1276,33 +1687,40 @@ function applyLoan(){
 }
 
 function showLedger(){
-  ["mandi","services","detail","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  ["mandi","services","detail","billingDesk","clinicDesk"].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display="none";
+  });
   document.getElementById("dashboard").style.display="block";
   document.getElementById("ledger").style.display="block";
   document.getElementById("fab").style.display="block";
   setNav("bLedger");
 }
 function showBilling(){
-  ["dashboard","ledger","detail","mandi","services"].forEach(id => document.getElementById(id).style.display="none");
+  ["dashboard","ledger","detail","mandi","services","clinicDesk"].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display="none";
+  });
   document.getElementById("billingDesk").style.display="block";
   document.getElementById("fab").style.display="none";
   setNav("bBilling");
   renderCart();
 }
 function showMandi(){
-  ["dashboard","ledger","detail","services","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  ["dashboard","ledger","detail","services","billingDesk","clinicDesk"].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display="none";
+  });
   document.getElementById("mandi").style.display="block";
   document.getElementById("fab").style.display="none";
   setNav("bMandi");
   loadDistrictMandi();
 }
 function showServices(){
-  ["dashboard","ledger","detail","mandi","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  ["dashboard","ledger","detail","mandi","billingDesk","clinicDesk"].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display="none";
+  });
   document.getElementById("services").style.display="block";
   document.getElementById("fab").style.display="none";
   setNav("bServices");
 }
-function openBankingHub(){ document.getElementById("bankingModal").style.display = "flex"; }
 function setNav(id){
   document.querySelectorAll(".bottom button").forEach(b => b.classList.remove("active"));
   const btn = document.getElementById(id);
@@ -1354,9 +1772,10 @@ function openSettings(){
   document.getElementById("settingsModal").style.display = "flex";
 }
 
+/* MASTER PIN: 2569 */
 function verifyAdminView(){
   const pin = document.getElementById("adminPinInput").value.trim();
-  if(pin === "1984" || pin === "1234"){
+  if(pin === "2569"){
     document.getElementById("admVisits").textContent = reactions.visits || 1;
     document.getElementById("admBills").textContent = billCount - 100;
     document.getElementById("admChai").textContent = reactions.chai;
@@ -1410,6 +1829,7 @@ window.addEventListener('DOMContentLoaded', () => {
   dashboard();
   renderCart();
   injectPremiumDashboard();
+  initRxClouds();
 });
 
 if ('serviceWorker' in navigator) {
