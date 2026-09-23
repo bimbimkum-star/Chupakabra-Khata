@@ -8,10 +8,10 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 
-<!-- 100% PWA ICON FIX: EMBEDDED WEB MANIFEST SO CHROME NEVER SHOWS "G" -->
-<link rel="icon" type="image/jpeg" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
-<link rel="apple-touch-icon" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
-<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%20%E0%A4%96%E0%A4%BE%E0%A4%A4%E0%A4%BE%22%2C%22short_name%22%3A%22%E0%A4%9A%E0%A5%81%E0%A4%AA%E0%A4%BE%E0%A4%95%E0%A4%BE%E0%A4%AC%E0%A4%B0%E0%A4%BE%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%230f172a%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg%22%2C%22sizes%22%3A%22192x192%20512x512%22%2C%22type%22%3A%22image%2Fjpeg%22%7D%5D%7D">
+<!-- 100% PWA ICON FIX WITH CLEAN LOGO.PNG -->
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="manifest" href='data:application/manifest+json,{"name":"चुपाकाबरा खाता","short_name":"चुपाकाबरा","start_url":".","display":"standalone","background_color":"#0f172a","theme_color":"#0f172a","icons":[{"src":"logo.png","sizes":"192x192 512x512","type":"image/png"}]}'>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -164,9 +164,38 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 #invoicePrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
+
+/* 100% CLEAN PRINT CSS FIX */
 @media print{
- body{background:#fff;padding:0}.top,.bottom,.fab,.actions,.whatsapp,.tools,.back,.mascot-wrap,.action-banner,.bill-type-toggle{display:none!important}
- #invoicePrintArea{display:block!important;padding:10px;font-size:12px}
+  body > * {
+    display: none !important;
+  }
+  #invoicePrintArea {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+  .paper-roll {
+    width: 76mm !important;
+    max-width: 76mm !important;
+    font-size: 11px !important;
+    padding: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .paper-a4 {
+    width: 100% !important;
+    max-width: 680px !important;
+    font-size: 13px !important;
+    padding: 20px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
 }
 </style>
 </head>
@@ -177,7 +206,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div class="toprow">
   <div class="brand" onclick="speakMunshiHonorific()">
     <!-- REAL CHUPAKABRA MASCOT LOGO -->
-    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" class="logo-img" alt="चुपाकाबरा लोगो">
+    <img src="logo.png" class="logo-img" alt="चुपाकाबरा लोगो">
     <div>
       <h1 id="shopTitle">मेरी दुकान</h1>
       <p id="livePanchangText">लोड हो रहा है...</p>
@@ -280,7 +309,16 @@ button,input,select{font:inherit}button{cursor:pointer}
      </div>
    </div>
 
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+   <!-- PRINT PAPER SIZE PICKER -->
+   <div style="display:flex;gap:8px;align-items:center;margin-top:10px;background:#f8fafc;padding:6px 10px;border-radius:10px;border:1px solid var(--line)">
+     <label style="font-size:11px;font-weight:700;color:var(--text)">प्रिंट साइज़:</label>
+     <select id="printPaperSize" style="height:32px;font-size:11px;padding:2px 8px;border-radius:8px;border:1px solid var(--line);background:#fff">
+       <option value="roll">पतला रोल पर्चा (58mm / 80mm)</option>
+       <option value="a4">पूरा पन्ना (A4 साइज़)</option>
+     </select>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
      <button class="save" style="height:44px;font-size:12px" onclick="printCartInvoice()">🖨️ पर्चा प्रिंट निकालें</button>
      <button class="whatsapp" style="height:44px;font-size:12px;margin:0" onclick="sendCartWhatsApp()">📲 WhatsApp बिल</button>
    </div>
@@ -299,7 +337,6 @@ button,input,select{font:inherit}button{cursor:pointer}
   <div class="actions"><button class="action give" onclick="openTx('give')">＋ उधार दिया</button><button class="action get" onclick="openTx('get')">✓ भुगतान मिला</button></div>
   <div class="tools">
     <button class="tool" onclick="openQR()">▣ रॉयल UPI QR</button>
-    <button class="tool" onclick="openInvoiceModal()">🧾 नया बिल</button>
     <button class="tool" onclick="printLedger()">🖨 रसीद</button>
     <button class="tool" onclick="editCustomer()">✏️ एडिट</button>
   </div>
@@ -321,7 +358,6 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 <!-- SERVICES: TURTLEMINT + 12 VERIFIED CITIZEN SERVICES -->
 <section class="services" id="services" style="display:none">
- <!-- 1. TURTLEMINT INSURANCE & FINANCIAL PARTNER CARD (RESTORED) -->
  <div class="head"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
  <div class="service-card">
   <div class="service-head">
@@ -355,7 +391,6 @@ button,input,select{font:inherit}button{cursor:pointer}
   </button>
  </div>
 
- <!-- 2. 12 VERIFIED CITIZEN PORTALS -->
  <div class="head" style="margin-top:16px"><h2>🌾 12 अधिकृत सरकारी व नागरिक सेवाएँ</h2><span>सीधे आधिकारिक पोर्टल्स (.gov.in)</span></div>
  <div class="citizen-grid">
    <div class="gov-box">
@@ -413,7 +448,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 <div class="mascot-wrap">
   <div class="mascot-bubble" id="mascotBubble">नमस्ते लाला जी! 🙏</div>
   <div class="mascot-container" onclick="mascotTap()">
-    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन मुंशी">
+    <img src="logo.png" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन मुंशी">
     <div class="mascot-mute" id="mascotMuteBtn" onclick="toggleMascotMute(event)">🔊</div>
   </div>
 </div>
@@ -503,7 +538,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया / ठीक है ✓</button>
 </div></div>
 
-<!-- SECURITY PIN LOCK SCREEN (FULLSCREEN BARRIER) -->
+<!-- SECURITY PIN LOCK SCREEN -->
 <div class="lock" id="lockScreen">
   <div class="lockbox">
     <div class="lockicon">🔐</div>
@@ -589,7 +624,7 @@ function handleBarcodeScan(code) {
   speakMunshi("बारकोड स्कैन हुआ: " + item.name);
 }
 
-/* ROBUST MALE SPEECH ENGINE (NO FEMALE AUDIO GLITCH) */
+/* ROBUST MALE SPEECH ENGINE */
 let synthVoices = [];
 function loadVoices() {
   if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices();
@@ -629,11 +664,10 @@ function speakMunshi(text) {
 
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'hi-IN';
-  u.pitch = 0.68; // DEEP MALE NATURAL PITCH
+  u.pitch = 0.68;
   u.rate = 0.95;
 
   if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
-  // Filter for authentic Male Hindi Voice
   const maleVoice = synthVoices.find(v => v.lang.includes('hi') && (v.name.toLowerCase().includes('male') || !v.name.toLowerCase().includes('female')));
   if (maleVoice) u.voice = maleVoice;
 
@@ -665,7 +699,7 @@ function toggleMascotMute(e) {
   toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
 }
 
-/* FIREBASE AUTHENTICATION FIX */
+/* FIREBASE AUTHENTICATION */
 if (auth) {
   auth.onAuthStateChanged((user) => {
     currentUser = user;
@@ -980,7 +1014,7 @@ function addCartRow() {
 
 function recalcCart() {
   let sub = 0;
-  cart.forEach(i => sub += (i.qty * i.rate));
+  cart.forEach(i => sub += (Number(i.qty||0) * Number(i.rate||0)));
   const disc = Number(document.getElementById("cDiscount").value) || 0;
   const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
   const grand = Math.max(0, (sub + gst) - disc);
@@ -1006,58 +1040,101 @@ async function connectBluetoothThermal() {
   }
 }
 
+/* 100% CLEAN INVOICE PRINT FUNCTION (NO EMPTY ROWS, DYNAMIC QR, ECO MESSAGE) */
 function printCartInvoice() {
   const cName = document.getElementById("cartCustName").value.trim() || "नकद ग्राहक";
   const pArea = document.getElementById("invoicePrintArea");
+  const paperSize = document.getElementById("printPaperSize") ? document.getElementById("printPaperSize").value : "roll";
   const now = new Date();
   const dStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
   let sub = 0;
   let rows = "";
+  let itemIndex = 1;
 
-  cart.forEach((i, idx) => {
-    sub += (i.qty * i.rate);
-    rows += `<tr>
-      <td style="padding:4px">${idx+1}</td>
-      <td style="padding:4px">${esc(i.name)}</td>
-      <td style="padding:4px;text-align:center">${i.qty} ${i.unit}</td>
-      <td style="padding:4px;text-align:right">₹${i.rate}</td>
-      <td style="padding:4px;text-align:right">₹${i.qty * i.rate}</td>
-    </tr>`;
+  // केवल वही सामान छपेगा जिसमें नाम या भाव दर्ज है (खाली पंक्तियाँ हटाई गईं)
+  cart.forEach((i) => {
+    const rVal = Number(i.rate) || 0;
+    const nVal = (i.name || "").trim();
+    if (nVal !== "" || rVal > 0) {
+      const qVal = Number(i.qty) || 1;
+      const rowTotal = qVal * rVal;
+      sub += rowTotal;
+      rows += `<tr>
+        <td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${itemIndex++}</td>
+        <td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${esc(nVal || 'सामान')}</td>
+        <td style="padding:4px 2px;text-align:center;border-bottom:1px dashed #ccc;">${qVal} ${i.unit}</td>
+        <td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rVal.toFixed(2)}</td>
+        <td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rowTotal.toFixed(2)}</td>
+      </tr>`;
+    }
   });
 
   const disc = Number(document.getElementById("cDiscount").value) || 0;
   const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
   const grand = Math.max(0, (sub + gst) - disc);
 
+  // कुल रकम के साथ डायनामिक UPI QR
+  const qrUri = profile.upi ? `upi://pay?pa=${encodeURIComponent(profile.upi)}&pn=${encodeURIComponent(profile.shopName)}&am=${grand.toFixed(2)}&cu=INR` : "";
+  const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrUri)}` : "";
+
+  const isRoll = paperSize === "roll";
+
   pArea.innerHTML = `
-    <div style="border:2px solid #000;padding:15px;max-width:480px;margin:auto;font-family:monospace">
-      <div style="text-align:center;border-bottom:1px double #000;padding-bottom:8px">
-        <h2 style="font-size:18px;margin:0">${esc(profile.shopName)}</h2>
-        <p style="font-size:11px;margin:3px 0">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
-        ${profile.gstin ? `<p style="font-size:10px;margin:0">GSTIN: ${profile.gstin}</p>` : ''}
+    <div class="${isRoll ? 'paper-roll' : 'paper-a4'}" style="margin:auto;font-family:monospace;background:#fff;color:#000;border:1px solid #111;">
+      <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:6px;">
+        <h2 style="font-size:${isRoll ? '15px' : '22px'};margin:0;font-weight:800;">${esc(profile.shopName)}</h2>
+        <p style="font-size:${isRoll ? '10px' : '12px'};margin:2px 0;">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
+        ${profile.gstin ? `<p style="font-size:9px;margin:0;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
       </div>
-      <div style="display:flex;justify-content:space-between;font-size:11px;margin:8px 0">
+
+      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '10px' : '11px'};margin:6px 0;">
         <div>ग्राहक: ${esc(cName)}</div>
         <div>दिनांक: ${dStr}</div>
       </div>
-      <table style="width:100%;border-collapse:collapse;font-size:11px">
+
+      <table style="width:100%;border-collapse:collapse;font-size:${isRoll ? '10px' : '12px'};">
         <thead>
-          <tr style="border-top:1px solid #000;border-bottom:1px solid #000">
-            <th style="padding:4px">#</th><th style="text-align:left;padding:4px">सामान</th><th style="padding:4px">मात्रा</th><th style="text-align:right;padding:4px">भाव</th><th style="text-align:right;padding:4px">कुल</th>
+          <tr style="border-top:1px solid #000;border-bottom:1px solid #000;">
+            <th style="padding:3px 2px;text-align:left;">#</th>
+            <th style="padding:3px 2px;text-align:left;">सामान</th>
+            <th style="padding:3px 2px;text-align:center;">मात्रा</th>
+            <th style="padding:3px 2px;text-align:right;">भाव</th>
+            <th style="padding:3px 2px;text-align:right;">कुल</th>
           </tr>
         </thead>
-        <tbody>${rows}</tbody>
+        <tbody>
+          ${rows || '<tr><td colspan="5" style="text-align:center;padding:6px;">कोई सामान दर्ज नहीं</td></tr>'}
+        </tbody>
       </table>
-      <div style="border-top:1px solid #000;padding-top:6px;margin-top:8px;text-align:right;font-size:13px;font-weight:bold">
+
+      <div style="border-top:1px solid #000;padding-top:4px;margin-top:6px;text-align:right;font-size:${isRoll ? '12px' : '15px'};font-weight:bold;">
+        ${disc > 0 ? `<div style="font-size:10px;font-weight:normal;">छूट: -₹${disc.toFixed(2)}</div>` : ''}
+        ${gst > 0 ? `<div style="font-size:10px;font-weight:normal;">GST (5%): +₹${gst.toFixed(2)}</div>` : ''}
         कुल देय राशि: ₹${grand.toFixed(2)}
       </div>
-      <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:flex-end;font-size:10px">
-        <div>UPI: ${esc(profile.upi || 'उपलब्ध नहीं')}</div>
-        <div style="border-top:1px dashed #000;padding-top:2px">हस्ताक्षर</div>
+
+      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #000;display:flex;justify-content:space-between;align-items:center;">
+        <div style="text-align:center;">
+          ${qrImgUrl ? `
+            <img src="${qrImgUrl}" style="width:${isRoll ? '80px' : '100px'};height:${isRoll ? '80px' : '100px'};border:1px solid #000;display:block;margin:auto;" alt="भुगतान QR">
+            <span style="font-size:8.5px;font-weight:bold;display:block;margin-top:2px;">स्कैन करें (₹${grand.toFixed(2)})</span>
+          ` : '<span style="font-size:9px;">UPI उपलब्ध नहीं</span>'}
+        </div>
+        <div style="text-align:right;font-size:10px;">
+          <div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:35px;">अधिकृत हस्ताक्षर</div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;padding-top:6px;border-top:1px dotted #555;text-align:center;font-size:9px;line-height:1.3;">
+        🌿 <strong>प्रकृति की सुरक्षा हेतु WhatsApp बिल स्वीकार करें।</strong><br>
+        कागज़ बचाएँ, प्रकृति बचाएँ 🙏
       </div>
     </div>
   `;
-  window.print();
+
+  setTimeout(() => {
+    window.print();
+  }, 200);
 }
 
 function sendCartWhatsApp() {
@@ -1070,8 +1147,12 @@ function sendCartWhatsApp() {
   let sub = 0;
   let text = `*${profile.shopName}*\nनमस्ते ${cName} जी,\nआपका बिल पर्चा:\n\n`;
   cart.forEach((i, idx) => {
-    sub += (i.qty * i.rate);
-    text += `${idx+1}. ${i.name} - ${i.qty} ${i.unit} x ₹${i.rate} = ₹${i.qty * i.rate}\n`;
+    if ((i.name && i.name.trim() !== "") || (i.rate && Number(i.rate) > 0)) {
+      const qVal = Number(i.qty) || 1;
+      const rVal = Number(i.rate) || 0;
+      sub += (qVal * rVal);
+      text += `${idx+1}. ${i.name} - ${qVal} ${i.unit} x ₹${rVal} = ₹${qVal * rVal}\n`;
+    }
   });
   const disc = Number(document.getElementById("cDiscount").value) || 0;
   const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
@@ -1110,7 +1191,7 @@ function openQR(){
     if(qrCanvas) {
       const ctx = qrCanvas.getContext("2d");
       const mascot = new Image();
-      mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
+      mascot.src = "logo.png";
       mascot.onload = function() {
         const size = 56;
         const center = qrCanvas.width / 2;
@@ -1133,7 +1214,7 @@ function openQR(){
   }, 100);
 }
 
-/* 100% CRISP DOWNLOAD STANDEE POSTER FIX */
+/* 100% CRISP DOWNLOAD STANDEE POSTER FIX (NO EXTERNAL THIRD-PARTY BRAND NAMES) */
 function downloadRoyalPoster(){
   let qrSource = document.querySelector("#qrCanvasContainer canvas");
   if(!qrSource) {
@@ -1179,9 +1260,10 @@ function downloadRoyalPoster(){
   ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
   ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
 
+  // सुरक्षित ऑल-इन-वन डिजिटल UPI भुगतान
   ctx.fillStyle = "#ffffff";
   ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("GPay • PhonePe • Paytm • BHIM", 300, 725);
+  ctx.fillText("सुरक्षित ऑल-इन-वन डिजिटल UPI भुगतान", 300, 725);
 
   ctx.fillStyle = "#cbd5e1";
   ctx.font = "12px 'Plus Jakarta Sans', sans-serif";
@@ -1305,7 +1387,7 @@ function saveSettings(){
 
 // INITIALIZATION
 window.addEventListener('DOMContentLoaded', () => {
-  checkPinLock(); // सबसे पहले ऐप का ताला जाँचेगा
+  checkPinLock();
   updateLivePanchang();
   profileUI();
   renderCustomers();
