@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#17265f">
+<meta name="theme-color" content="#0f172a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 
-<!-- APP ICON FOR MOBILE HOME SCREEN & BROWSER TAB -->
+<!-- APP ICON FOR MOBILE HOME SCREEN & BROWSER TAB (REAL CHUPAKABRA DRAGON) -->
 <link rel="icon" type="image/jpeg" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
 <link rel="apple-touch-icon" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
 <link rel="shortcut icon" href="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg">
@@ -24,181 +24,253 @@
 
 <style>
 :root{
- --brand:#29479d;--brand2:#17265f;--soft:#eef2ff;--bg:#f5f7fb;--card:#fff;
- --text:#111827;--muted:#6b7280;--line:#e5e9f1;--green:#139447;--greenbg:#eaf8f0;
- --red:#d92d3f;--redbg:#fff0f2;--orange:#f59e0b;--gold:#d97706;--shadow:0 10px 30px rgba(26,38,80,.08)
+ --brand:#1e293b;--brand2:#0f172a;--soft:#f1f5f9;--bg:#f8fafc;--card:#fff;
+ --text:#0f172a;--muted:#64748b;--line:#e2e8f0;--green:#059669;--greenbg:#ecfdf5;
+ --red:#e11d48;--redbg:#fff1f2;--orange:#f59e0b;--shadow:0 12px 30px -8px rgba(15,23,42,.08),0 4px 12px -4px rgba(15,23,42,.04)
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif}
 html{background:var(--bg)}
 body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:86px;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
 button,input,select{font:inherit}button{cursor:pointer}
-.top{background:linear-gradient(135deg,var(--brand2),var(--brand));color:#fff;padding:18px 16px 30px;border-radius:0 0 30px 30px}
+
+/* HEADER */
+.top{background:linear-gradient(135deg,#0f172a,#1e1b4b);color:#fff;padding:16px 16px 26px;border-radius:0 0 28px 28px;box-shadow:0 8px 20px rgba(15,23,42,0.18)}
 .toprow{max-width:580px;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px}
-.logo-img{width:46px;height:46px;border-radius:15px;border:2px solid #fff;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.15)}
-.brand h1{font-size:18px;font-weight:800}.brand p{font-size:11px;opacity:.75;margin-top:3px}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
+.brand h1{font-size:17px;font-weight:800;letter-spacing:-0.2px}.brand p{font-size:10.5px;color:#94a3b8;margin-top:2px}
 .top-actions{display:flex;gap:8px;align-items:center}
-.syncbtn{padding:8px 12px;border:0;border-radius:12px;background:rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px}
-.topbtn{width:43px;height:43px;border:0;border-radius:14px;background:rgba(255,255,255,.13);color:#fff;font-size:20px}
+.syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px}
+.topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:18px}
 
-/* TOP APP DOWNLOAD & TUTORIAL BAR */
-.action-banner{max-width:580px;margin:12px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.banner-btn{border:0;border-radius:12px;padding:9px 10px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-.banner-apk{background:#10b981;color:#fff}
-.banner-video{background:#ef4444;color:#fff}
+.wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-10px}
+.summary{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
+.label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}.net{font-size:32px;font-weight:800;margin-top:2px}.smallnote{font-size:10px;color:var(--muted);margin-top:4px}
+.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.money{padding:12px;border-radius:16px;border:1px solid transparent}.money.get{background:var(--greenbg);border-color:#d1fae5}.money.give{background:var(--redbg);border-color:#ffe4e6}
+.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:18px;margin-top:4px}.money.get strong{color:var(--green)}.money.give strong{color:var(--red)}
 
-.wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-8px}
-.summary{background:#fff;border-radius:23px;padding:19px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.9)}
-.label{font-size:12px;color:var(--muted);font-weight:700}.net{font-size:32px;font-weight:800;margin-top:3px}.smallnote{font-size:10px;color:var(--muted);margin-top:3px}
-.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.money{padding:13px;border-radius:16px}.money.get{background:var(--greenbg)}.money.give{background:var(--redbg)}
-.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:19px;margin-top:5px}.money.get strong{color:var(--green)}.money.give strong{color:var(--red)}
-.main,.detail,.mandi,.reports,.services{max-width:580px;margin:auto;padding:18px 15px}
-.head{display:flex;align-items:center;justify-content:space-between;margin:5px 2px 11px}.head h2{font-size:17px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
-.search{height:49px;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;padding:0 15px;outline:0;font-size:13px;margin-bottom:13px;box-shadow:0 3px 12px rgba(0,0,0,.025)}.search:focus{border-color:#a8b7e8}
-.list{display:flex;flex-direction:column;gap:9px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 3px 12px rgba(0,0,0,.025)}.customer:active{transform:scale(.985)}
-.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:44px;height:44px;flex:0 0 44px;border-radius:15px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:14px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:3px}.right{text-align:right}.amt{font-size:16px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:3px}.receive{color:var(--red)}.pay{color:var(--green)}
-.empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:35px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;font-size:32px;margin-bottom:8px}
-.fab{position:fixed;right:18px;bottom:75px;height:54px;padding:0 20px;border:0;border-radius:18px;background:var(--brand);color:#fff;font-size:13px;font-weight:800;box-shadow:0 12px 27px rgba(41,71,157,.32);z-index:40}
-.bottom{position:fixed;bottom:0;left:0;right:0;height:65px;background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;z-index:35}.bottom button{flex:1;border:0;background:none;color:#8a92a3;font-size:10px;font-weight:700}.bottom button div{font-size:20px;margin-bottom:2px}.bottom button.active{color:var(--brand)}
-.back{border:0;background:none;color:var(--brand);font-size:13px;font-weight:800;margin-bottom:12px}
-.profile{background:#fff;border-radius:23px;padding:22px;text-align:center;box-shadow:var(--shadow)}.bigavatar{width:62px;height:62px;border-radius:20px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin:auto;font-size:23px;font-weight:800}.profile h2{font-size:20px;margin-top:10px}.profile .phone{font-size:11px}.detailamt{font-size:32px;font-weight:800;margin-top:15px}.detailstatus{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
-.points-tag{display:inline-flex;align-items:center;gap:4px;background:#fff7ed;color:var(--orange);padding:4px 10px;border-radius:10px;font-size:11px;font-weight:800;margin-top:8px;border:1px solid #fed7aa}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.action{border:0;border-radius:14px;padding:13px 7px;font-size:12px;font-weight:800}.action.give{background:var(--redbg);color:var(--red)}.action.get{background:var(--greenbg);color:var(--green)}.whatsapp{width:100%;border:0;border-radius:14px;background:#e9f9ef;color:#138a43;padding:12px;margin-top:9px;font-size:12px;font-weight:800}
-.tools{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-top:9px}.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 4px;font-size:10px;font-weight:700;color:#4b5563}
-.txhead{font-size:14px;font-weight:800;margin:20px 2px 10px}.tx{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}.txnote{font-size:12px;font-weight:700}.txdate{font-size:9px;color:var(--muted);margin-top:3px}.txamt{font-size:14px;font-weight:800}.txbuttons{display:flex;gap:5px;margin-left:10px}.tiny{border:0;background:#f1f3f7;border-radius:8px;padding:6px;font-size:10px}
+.main,.detail,.mandi,.reports,.services,.billing{max-width:580px;margin:auto;padding:16px 15px}
+.head{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}.head h2{font-size:16px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
+.search{height:46px;width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 14px;outline:0;font-size:13px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)}.search:focus{border-color:#0284c7}
+.list{display:flex;flex-direction:column;gap:8px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:transform .08s ease}.customer:active{transform:scale(.985)}
+.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:13.5px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:2px}.right{text-align:right}.amt{font-size:15px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:2px}.receive{color:var(--red)}.pay{color:var(--green)}
+.empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;font-size:30px;margin-bottom:6px}
+.fab{position:fixed;right:18px;bottom:75px;height:52px;padding:0 20px;border:0;border-radius:16px;background:#059669;color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(5,150,105,.35);z-index:40}
 
-/* Mandi Styles */
-.mandicard{background:#fff;border:1px solid var(--line);border-radius:17px;padding:15px;box-shadow:0 3px 12px rgba(0,0,0,.025)}
-.mandicard .emoji{font-size:22px}
-.mandicard h3{font-size:13px;margin-top:8px;font-weight:800;color:var(--text)}
-.mprice{font-size:19px;font-weight:800;margin-top:5px;color:var(--brand)}
-.mrange{font-size:10px;color:var(--muted);margin-top:4px}
-.mselect{width:100%;height:46px;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 12px;font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;outline:0}
-.reportgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.reportbox{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px}.reportbox p{font-size:10px;color:var(--muted)}.reportbox strong{display:block;font-size:22px;margin-top:5px}.reportbox.get strong{color:var(--green)}.reportbox.give strong{color:var(--red)}
+/* FROSTED BOTTOM BAR */
+.bottom{position:fixed;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:35}
+.bottom button{flex:1;border:0;background:none;color:#64748b;font-size:10px;font-weight:700}.bottom button div{font-size:19px;margin-bottom:2px}.bottom button.active{color:#059669}
 
-/* Services & Citizen Desk Styles */
-.service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:12px;box-shadow:var(--shadow)}
-.service-head{display:flex;align-items:center;gap:12px}
-.service-icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:22px}
-.service-info h3{font-size:15px;font-weight:800;color:var(--text)}
-.service-info p{font-size:11px;color:var(--muted);margin-top:2px}
-.service-desc{font-size:11px;color:#4b5563;margin:12px 0;line-height:1.6;background:#f8fafc;padding:10px 12px;border-radius:12px}
-.service-btn{width:100%;height:44px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
+.back{border:0;background:none;color:#0284c7;font-size:13px;font-weight:800;margin-bottom:12px}
+.profile{background:#fff;border-radius:24px;padding:20px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
+.bigavatar{width:58px;height:58px;border-radius:18px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin:auto;font-size:22px;font-weight:800}
+.profile h2{font-size:19px;margin-top:8px}.profile .phone{font-size:11px}
+.detailamt{font-size:30px;font-weight:800;margin-top:12px}.detailstatus{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
+.points-tag{display:inline-flex;align-items:center;gap:4px;background:#fff7ed;color:var(--orange);padding:3px 9px;border-radius:10px;font-size:10.5px;font-weight:800;margin-top:6px;border:1px solid #fed7aa}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
+.action{border:0;border-radius:13px;padding:12px 7px;font-size:12px;font-weight:800}.action.give{background:var(--redbg);color:var(--red)}.action.get{background:var(--greenbg);color:var(--green)}
+.whatsapp{width:100%;border:0;border-radius:13px;background:#ecfdf5;color:#059669;padding:11px;margin-top:8px;font-size:12px;font-weight:800}
+.tools{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-top:9px}
+.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 4px;font-size:10px;font-weight:700;color:#475569}
+.txhead{font-size:13.5px;font-weight:800;margin:18px 2px 9px}
+.tx{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.txnote{font-size:12px;font-weight:700}.txdate{font-size:9.5px;color:var(--muted);margin-top:2px}.txamt{font-size:14px;font-weight:800}.txbuttons{display:flex;gap:5px;margin-left:10px}.tiny{border:0;background:#f1f5f9;border-radius:8px;padding:5px 7px;font-size:10px}
 
+/* DEDICATED BILLING DESK */
+.billing-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
+.bill-type-toggle{display:inline-flex;padding:3px;background:#f1f5f9;border-radius:12px;margin-bottom:12px}
+.bill-type-btn{border:0;background:none;padding:6px 12px;border-radius:9px;font-size:11px;font-weight:700;color:#64748b}
+.bill-type-btn.active{background:#0f172a;color:#fff}
+.cart-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px}
+.cart-table th{text-align:left;padding:6px 4px;color:#64748b;border-bottom:1px solid var(--line)}
+.cart-table td{padding:6px 4px;border-bottom:1px dashed #f1f5f9}
+.cart-table input,.cart-table select{width:100%;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11px;background:#f8fafc}
+.cart-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px}
+.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:5px}
+
+/* SERVICES GRID */
 .citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 3px 10px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
-.gov-emoji{font-size:26px;margin-bottom:4px}
-.gov-tag{font-size:9px;font-weight:800;background:#eaf8f0;color:var(--green);padding:2px 6px;border-radius:6px;margin-bottom:6px}
-.gov-title{font-size:12px;font-weight:800;color:var(--text);margin-bottom:2px}
-.gov-sub{font-size:10px;color:var(--muted);margin-bottom:8px;line-height:1.2}
-.gov-btn{width:100%;padding:8px 0;border-radius:10px;background:#f0f4ff;color:var(--brand);font-size:11px;font-weight:800;text-decoration:none;display:block;border:1px solid #dbe4ff}
-.gov-btn:active{background:var(--brand);color:#fff}
+.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
+.gov-emoji{font-size:24px;margin-bottom:3px}
+.gov-tag{font-size:8.5px;font-weight:800;background:#ecfdf5;color:#059669;padding:2px 6px;border-radius:6px;margin-bottom:4px}
+.gov-title{font-size:11.5px;font-weight:800;color:var(--text);margin-bottom:2px}
+.gov-sub{font-size:9.5px;color:var(--muted);margin-bottom:8px;line-height:1.2}
+.gov-btn{width:100%;padding:6px 0;border-radius:10px;background:#f1f5f9;color:#0284c7;font-size:10.5px;font-weight:800;text-decoration:none;display:block;border:1px solid #e2e8f0}
 
-.disclaimer-box{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:14px;padding:12px;font-size:10px;color:var(--muted);line-height:1.5;margin-top:18px;text-align:center}
-
-/* ANIMATED CHUPAKABRA MASCOT */
+/* ANIMATED REAL CHUPAKABRA MASCOT */
 .mascot-wrap{position:fixed;left:16px;bottom:75px;z-index:90;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
-.mascot-bubble{background:#fff;border:2.5px solid #139447;padding:9px 13px;border-radius:16px 16px 16px 2px;font-size:11.5px;font-weight:800;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.16);margin-bottom:8px;max-width:210px;display:none;animation:pop .2s ease;pointer-events:auto;line-height:1.4}
-@keyframes pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+.mascot-bubble{background:#fff;border:2px solid #059669;padding:8px 12px;border-radius:16px 16px 16px 2px;font-size:11px;font-weight:800;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.15);margin-bottom:8px;max-width:220px;display:none;pointer-events:auto;line-height:1.35}
 
 @keyframes chupaBreathing {
   0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-7px) scale(1.03); }
+  50% { transform: translateY(-6px) scale(1.03); }
 }
 @keyframes chupaSpeaking {
   0% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.12) rotate(-5deg); }
-  75% { transform: scale(1.12) rotate(5deg); }
+  25% { transform: scale(1.1) rotate(-4deg); }
+  75% { transform: scale(1.1) rotate(4deg); }
   100% { transform: scale(1) rotate(0deg); }
 }
 
 .mascot-container{position:relative;pointer-events:auto;cursor:pointer}
 .chupa-avatar{
-  width:64px;height:64px;border-radius:50%;object-fit:cover;
-  border:3px solid #139447;background:#fff;
-  box-shadow:0 8px 25px rgba(19,148,71,.35);
+  width:62px;height:62px;border-radius:50%;object-fit:cover;
+  border:3px solid #059669;background:#e0f2fe;
+  box-shadow:0 8px 25px rgba(5,150,105,.35);
   animation:chupaBreathing 2.6s ease-in-out infinite;
   display:block;
 }
 .chupa-avatar.talking{
   animation:chupaSpeaking 0.35s ease-in-out infinite !important;
 }
-.mascot-mute{position:absolute;top:-4px;right:-4px;width:22px;height:22px;border-radius:50%;background:#111827;color:#fff;font-size:11px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
+.mascot-mute{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#0f172a;color:#fff;font-size:10px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
 
-/* THE IKKA ROYAL QR CARD */
-.royal-qr-card{
-  background:linear-gradient(145deg,#0d1538,#17265f);
-  border-radius:24px;
-  padding:20px 16px;
-  text-align:center;
-  color:#fff;
-  box-shadow:0 15px 35px rgba(13,21,56,.28);
-  border:1.5px solid rgba(255,215,0,.35);
-  margin-bottom:12px;
-  position:relative;
-  overflow:hidden;
-}
-.royal-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#fde047;letter-spacing:.5px}
-.royal-shop{font-size:17px;font-weight:800;margin-top:8px}
-.canvas-wrap{background:#fff;border-radius:18px;padding:10px;display:inline-block;margin:12px auto 8px;box-shadow:0 8px 25px rgba(0,0,0,.25);border:2px solid #e2e8f0}
+/* ROYAL QR CARD */
+.royal-qr-card{background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px 16px;text-align:center;color:#fff;box-shadow:0 15px 35px rgba(15,23,42,.35);border:1.5px solid rgba(251,191,36,.35);margin-bottom:12px}
+.royal-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#fde047}
+.canvas-wrap{background:#fff;border-radius:18px;padding:10px;display:inline-block;margin:12px auto 8px;border:2px solid #e2e8f0}
 #qrCanvas{display:block;border-radius:10px}
-.royal-upi{font-size:13px;font-weight:800;color:#93c5fd;letter-spacing:.3px}
-.app-badges{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:10px;font-size:10px;font-weight:700;color:rgba(255,255,255,.8)}
-.app-pill{background:rgba(255,255,255,.1);padding:3px 8px;border-radius:6px;border:1px solid rgba(255,255,255,.15)}
 
-.modal{display:none;position:fixed;inset:0;background:rgba(10,16,35,.58);backdrop-filter:blur(5px);align-items:flex-end;justify-content:center;z-index:100}.box{width:100%;max-width:580px;background:#fff;border-radius:26px 26px 0 0;padding:22px 18px 28px;max-height:90vh;overflow-y:auto;animation:up .2s ease}@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}.box h2{font-size:18px;margin-bottom:15px}.input{width:100%;height:48px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px}.input:focus{border-color:#a8b7e8}.modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}.modalrow button{height:47px;border:0;border-radius:13px;font-weight:800}.cancel{background:#f1f3f7;color:#6b7280}.save{background:var(--brand);color:#fff}.danger{background:var(--redbg);color:var(--red)}
-.setting{background:#f7f8fb;border-radius:15px;padding:12px;margin-bottom:10px}.setting small{font-size:10px;color:var(--muted)}.setting .input{margin-top:6px;margin-bottom:0;background:#fff}
-.pin{text-align:center}.pin .input{text-align:center;letter-spacing:7px;font-size:20px}
-.toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#111827;color:#fff;padding:11px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-.lock{position:fixed;inset:0;background:linear-gradient(135deg,var(--brand2),var(--brand));z-index:500;display:none;align-items:center;justify-content:center;padding:25px}.lockbox{width:100%;max-width:360px;background:#fff;border-radius:25px;padding:25px;text-align:center}.lockicon{font-size:42px}.lockbox h2{margin-top:8px}.lockbox p{font-size:11px;color:var(--muted);margin:5px 0 16px}.lockbox input{text-align:center;letter-spacing:8px}.unlock{width:100%;height:47px;border:0;border-radius:13px;background:var(--brand);color:#fff;font-weight:800}
+/* MODALS */
+.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;z-index:100}
+.box{width:100%;max-width:580px;background:#fff;border-radius:26px 26px 0 0;padding:22px 18px 28px;max-height:90vh;overflow-y:auto}
+.box h2{font-size:17px;font-weight:800;margin-bottom:14px}
+.input{width:100%;height:46px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px;background:#f8fafc}.input:focus{border-color:#0284c7}
+.modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
+.modalrow button{height:46px;border:0;border-radius:13px;font-weight:800}
+.cancel{background:#f1f5f9;color:#64748b}.save{background:#059669;color:#fff}.danger{background:var(--redbg);color:var(--red)}
+.setting{background:#f8fafc;border-radius:15px;padding:12px;margin-bottom:10px;border:1px solid var(--line)}.setting small{font-size:10.5px;color:var(--muted);font-weight:600}.setting .input{margin-top:5px;margin-bottom:0;background:#fff}
+
+.toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
+.lock{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:500;display:none;align-items:center;justify-content:center;padding:25px}
+.lockbox{width:100%;max-width:340px;background:#fff;border-radius:24px;padding:24px;text-align:center}
+.lockicon{font-size:38px}.unlock{width:100%;height:46px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800}
 
 #invoicePrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
 @media print{
- body{background:#fff;padding:0}.top,.bottom,.fab,.actions,.whatsapp,.tools,.back,.mascot-wrap,.action-banner{display:none!important}.detail{padding:20px}.profile{box-shadow:none;border:1px solid #ddd}.tx{break-inside:avoid}.modal{display:none!important}
- #invoicePrintArea{display:block!important;padding:20px;font-size:12px}
+ body{background:#fff;padding:0}.top,.bottom,.fab,.actions,.whatsapp,.tools,.back,.mascot-wrap,.action-banner,.bill-type-toggle{display:none!important}
+ #invoicePrintArea{display:block!important;padding:10px;font-size:12px}
 }
 </style>
 </head>
 <body oncontextmenu="return false;">
 
+<!-- TOP HEADER -->
 <header class="top">
  <div class="toprow">
-  <div class="brand">
-    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" class="logo-img" alt="लोगो">
-    <div><h1 id="shopTitle">चुपाकाबरा खाता</h1><p id="upiPreview">UPI सेट करें ⚙</p></div>
+  <div class="brand" onclick="speakMunshiHonorific()">
+    <!-- REAL CHUPAKABRA MASCOT LOGO -->
+    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" class="logo-img" alt="चुपाकाबरा लोगो">
+    <div>
+      <h1 id="shopTitle">मेरी दुकान</h1>
+      <p id="livePanchangText">लोड हो रहा है...</p>
+    </div>
   </div>
   <div class="top-actions">
-    <button class="syncbtn" id="authBtn" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
+    <button class="syncbtn" id="authBtn" onclick="toggleAuth()">👤 मर्चेंट</button>
     <button class="topbtn" onclick="openSettings()">⚙</button>
   </div>
  </div>
-
- <!-- QUICK APK DOWNLOAD & TUTORIAL BUTTONS -->
- <div class="action-banner">
-   <button type="button" class="banner-btn banner-apk" onclick="triggerApkDownload()">📲 ऐप डाउनलोड (APK)</button>
-   <button type="button" class="banner-btn banner-video" onclick="openTutorialVideo()">🎥 वीडियो देखें</button>
- </div>
 </header>
 
+<!-- DASHBOARD SUMMARY -->
 <section class="wrap dash" id="dashboard">
  <div class="summary">
-  <div class="label">कुल बकाया</div>
+  <div class="label">गद्दी का कुल बकाया संतुलन</div>
   <div class="net" id="net">₹0</div>
   <div class="smallnote" id="syncStatusText">🛡️ 256-Bit सुरक्षित लोकल मोड</div>
   <div class="moneygrid">
-   <div class="money get"><span>आपको लेना है</span><strong id="totalGet">₹0</strong></div>
-   <div class="money give"><span>आपको देना है</span><strong id="totalGive">₹0</strong></div>
+   <div class="money get"><span>लेना है (आवक)</span><strong id="totalGet">₹0</strong></div>
+   <div class="money give"><span>देना है (जावक)</span><strong id="totalGive">₹0</strong></div>
   </div>
  </div>
 </section>
 
+<!-- MAIN LEDGER VIEW -->
 <main class="main" id="ledger">
  <div class="head"><h2>ग्राहकों का हिसाब</h2><span id="count">0 ग्राहक</span></div>
  <input id="search" class="search" placeholder="🔎  ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
  <div class="list" id="customers"></div>
 </main>
 
+<!-- DEDICATED INDEPENDENT BILLING DESK -->
+<section class="billing" id="billingDesk" style="display:none">
+ <div class="billing-card">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+     <div>
+       <h2 style="font-size:15px;font-weight:800">काउंटर बिलिंग डेस्क</h2>
+       <p style="font-size:10px;color:var(--muted)">कच्चा पर्चा एवं कानूनी GST इनवॉइस</p>
+     </div>
+     <div class="bill-type-toggle">
+       <button id="bTypeKaccha" class="bill-type-btn active" onclick="switchBillMode('kaccha')">कच्चा पर्चा</button>
+       <button id="bTypeGst" class="bill-type-btn" onclick="switchBillMode('gst')">पक्का GST</button>
+     </div>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+     <input id="cartCustName" class="input" style="height:40px;font-size:11px" placeholder="ग्राहक नाम (उदा. नकद)">
+     <input id="cartCustPhone" class="input" style="height:40px;font-size:11px" type="tel" maxlength="10" placeholder="मोबाइल नंबर (वैकल्पिक)">
+   </div>
+
+   <!-- SCANNER & BLUETOOTH STATUS BAR -->
+   <div style="background:#0f172a;color:#fff;border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:10px">
+     <div>
+       <b>🔫 बारकोड स्कैनर सक्रिय है</b>
+       <p style="color:#38bdf8;font-size:9px">लैपटॉप पर बीप करें, सामान खुद चढ़ेगा</p>
+     </div>
+     <button type="button" onclick="connectBluetoothThermal()" style="border:0;background:#059669;color:#fff;padding:5px 9px;border-radius:8px;font-weight:800;font-size:10px">
+       🖨 ब्लूटूथ प्रिंटर
+     </button>
+   </div>
+
+   <!-- CART TABLE -->
+   <table class="cart-table">
+     <thead>
+       <tr>
+         <th style="width:40%">सामान</th>
+         <th style="width:18%">मात्रा</th>
+         <th style="width:20%">इकाई</th>
+         <th style="width:22%;text-align:right">भाव (₹)</th>
+       </tr>
+     </thead>
+     <tbody id="cartTableBody"></tbody>
+   </table>
+
+   <button type="button" onclick="addCartRow()" style="border:0;background:#f1f5f9;color:#0284c7;font-size:11px;font-weight:800;padding:7px 12px;border-radius:9px;margin-top:8px;width:100%">
+     ＋ नया सामान जोड़ें
+   </button>
+
+   <div class="cart-summary">
+     <div class="cart-summary-row">
+       <span style="color:var(--muted)">उप-योग (Subtotal):</span>
+       <strong id="cSubtotal">₹0.00</strong>
+     </div>
+     <div class="cart-summary-row" id="gstSplitRow" style="display:none;color:#059669">
+       <span>GST (CGST + SGST 5%):</span>
+       <strong id="cGstAmount">₹0.00</strong>
+     </div>
+     <div class="cart-summary-row" style="align-items:center">
+       <span style="color:var(--muted)">छूट / डिस्काउंट:</span>
+       <div style="display:flex;align-items:center;gap:4px">
+         <span>₹</span>
+         <input type="number" id="cDiscount" value="0" oninput="recalcCart()" style="width:70px;height:30px;border:1px solid var(--line);border-radius:6px;text-align:right;padding:2px 5px;font-size:11px">
+       </div>
+     </div>
+     <div class="cart-summary-row" style="border-top:1px solid var(--line);padding-top:6px;margin-top:4px;font-size:14px;font-weight:800">
+       <span>कुल देय राशि:</span>
+       <strong id="cGrandTotal" style="color:#059669;font-size:17px">₹0.00</strong>
+     </div>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px">
+     <button class="save" style="height:44px;font-size:12px" onclick="printCartInvoice()">🖨️ पर्चा प्रिंट निकालें</button>
+     <button class="whatsapp" style="height:44px;font-size:12px;margin:0" onclick="sendCartWhatsApp()">📲 WhatsApp बिल</button>
+   </div>
+ </div>
+</section>
+
+<!-- CUSTOMER DETAIL VIEW -->
 <section class="detail" id="detail" style="display:none">
  <button class="back" onclick="back()">← वापस बहीखाते में</button>
  <div class="profile">
@@ -219,10 +291,10 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div id="transactions"></div>
 </section>
 
-<!-- Mandi Section -->
+<!-- MANDI VIEW -->
 <section class="mandi" id="mandi" style="display:none">
  <div class="head"><h2>मंडी भाव (Agmarknet)</h2><span id="mandiStatusText">🔴 लाइव डेटा</span></div>
- <select id="mandiDistrictSelect" class="mselect" onchange="loadDistrictMandi()">
+ <select id="mandiDistrictSelect" class="mselect" style="width:100%;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 10px;font-size:12px;font-weight:700;margin-bottom:12px;outline:0" onchange="loadDistrictMandi()">
    <option value="Bahraich" selected>📍 बहराइच मंडी (Bahraich)</option>
    <option value="Aligarh">📍 अलीगढ़ मंडी (Aligarh)</option>
    <option value="Bulandshahr">📍 बुलंदशहर मंडी (Bulandshahr)</option>
@@ -230,265 +302,94 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="mandiList"></div>
 </section>
 
-<section class="reports" id="reports" style="display:none">
- <div class="head"><h2>रिपोर्ट</h2><span>आपका कुल हिसाब</span></div>
- <div class="reportgrid">
-  <div class="reportbox get"><p>कुल लेना है</p><strong id="rGet">₹0</strong></div>
-  <div class="reportbox give"><p>कुल देना है</p><strong id="rGive">₹0</strong></div>
- </div>
- <div style="margin-top:12px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px">
-  <p style="font-size:11px;color:var(--muted);line-height:1.7">डेटा क्लाउड बैकअप के साथ आपके अधिकृत खाते से सुरक्षित रहेगा।</p>
- </div>
-</section>
-
-<!-- Services Section (Citizen Desk + Turtlemint & Finance) -->
+<!-- 12 VERIFIED CITIZEN & GOVT SERVICES -->
 <section class="services" id="services" style="display:none">
- 
- <!-- KISAN & CITIZEN DIRECT SERVICES DESK -->
- <div class="head"><h2>🌾 किसान व नागरिक सेवा केंद्र</h2><span>सीधे आधिकारिक पोर्टल (.gov.in)</span></div>
- <div style="background:#eaf8f0;border-left:4px solid var(--green);padding:10px 12px;border-radius:10px;margin-bottom:14px">
-   <b style="font-size:12px;color:var(--green)">100% असली व सुरक्षित सरकारी लिंक</b>
-   <p style="font-size:10px;color:#4b5563;margin-top:2px">सीधे केंद्र व उत्तर प्रदेश सरकार के अधिकृत पोर्टल्स पर जाएँ।</p>
- </div>
-
+ <div class="head"><h2>🌾 12 अधिकृत सरकारी व नागरिक सेवाएँ</h2><span>सीधे आधिकारिक पोर्टल्स (.gov.in)</span></div>
  <div class="citizen-grid">
+   <!-- 1. Shikshak Cashless Card -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">📜</div>
-       <div class="gov-tag">UP Bhulekh</div>
-       <div class="gov-title">खसरा / खतौनी</div>
-       <div class="gov-sub">ज़मीन नकल व खाता ब्योरा</div>
-     </div>
-     <a href="https://upbhulekh.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('खतौनी के लिए ज़िला, तहसील और गाटा संख्या तैयार रखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">💳</div><div class="gov-tag">UP Health</div><div class="gov-title">शिक्षक कैशलेस कार्ड</div><div class="gov-sub">मुख्यमंत्री कैशलेस चिकित्सा</div></div>
+     <a href="https://cmtcts.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 2. Ayushman Card -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🗺️</div>
-       <div class="gov-tag">Bhu-Naksha</div>
-       <div class="gov-title">खेत का नक्शा</div>
-       <div class="gov-sub">मेड़ व रकबे का भू-नक्शा</div>
-     </div>
-     <a href="https://upbhunaksha.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('गाँव चुनकर अपने खेत का नक्शा देखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🏥</div><div class="gov-tag">PM-JAY</div><div class="gov-title">आयुष्मान कार्ड</div><div class="gov-sub">परिवार पात्रता व डाउनलोड</div></div>
+     <a href="https://beneficiary.nha.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 3. Ration Card -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🚜</div>
-       <div class="gov-tag">PM-Kisan</div>
-       <div class="gov-title">PM-किसान क़िस्त</div>
-       <div class="gov-sub">₹2000 क़िस्त स्थिति व e-KYC</div>
-     </div>
-     <a href="https://pmkisan.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('मोबाइल नंबर डालकर क़िस्त की स्थिति जाँचें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🌾</div><div class="gov-tag">FCS UP</div><div class="gov-title">राशन कार्ड पर्ची</div><div class="gov-sub">कोटेदार सूची व यूनिट खोज</div></div>
+     <a href="https://fcs.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 4. Ganna Parcha -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🌾</div>
-       <div class="gov-tag">FCS UP</div>
-       <div class="gov-title">राशन कार्ड पर्ची</div>
-       <div class="gov-sub">कोटेदार सूची में नाम देखें</div>
-     </div>
-     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ज़िला और ब्लॉक चुनकर राशन कार्ड खोजें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🎋</div><div class="gov-tag">e-Ganna</div><div class="gov-title">गन्ना पर्ची कैलेंडर</div><div class="gov-sub">किसान सट्टा व पर्ची कैलेंडर</div></div>
+     <a href="https://enquiry.caneup.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 5. Manav Sampada -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🎋</div>
-       <div class="gov-tag">e-Ganna</div>
-       <div class="gov-title">गन्ना सट्टा पर्ची</div>
-       <div class="gov-sub">गन्ना तौल कैलेंडर व पर्ची</div>
-     </div>
-     <a href="https://caneup.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('किसान कोड डालकर गन्ना पर्ची कैलेंडर देखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🏫</div><div class="gov-tag">eHRMS UP</div><div class="gov-title">मानव संपदा पोर्टल</div><div class="gov-sub">सर्विस बुक व ऑनलाइन लीव</div></div>
+     <a href="https://ehrms.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 6. eCourts -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🌱</div>
-       <div class="gov-tag">कृषि विभाग UP</div>
-       <div class="gov-title">बीज व यंत्र सब्सिडी</div>
-       <div class="gov-sub">सोलर पंप व बीज अनुदान</div>
-     </div>
-     <a href="http://upagriculture.com/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('पारदर्शी किसान पोर्टल पर सब्सिडी टोकन देखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">⚖️</div><div class="gov-tag">eCourts</div><div class="gov-title">कोर्ट केस स्टेटस</div><div class="gov-sub">तहसील व ज़िला कोर्ट तारीख</div></div>
+     <a href="https://services.ecourts.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 7. e-District Verification -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">⚖️</div>
-       <div class="gov-tag">ई-उपार्जन UP</div>
-       <div class="gov-title">धान/गेहूँ खरीद</div>
-       <div class="gov-sub">सरकारी कांटा रजिस्ट्रेशन</div>
-     </div>
-     <a href="https://fcs.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('सरकारी कांटे पर गल्ला बेचने हेतु टोकन बनाएँ!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🔍</div><div class="gov-tag">eDistrict</div><div class="gov-title">प्रमाणपत्र सत्यापन</div><div class="gov-sub">आय/जाति/निवास असली-नकली</div></div>
+     <a href="https://edistrict.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 8. UP Bhulekh -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🛡️</div>
-       <div class="gov-tag">PMFBY</div>
-       <div class="gov-title">फसल नुक़सान क्लेम</div>
-       <div class="gov-sub">बाढ़/सूखा क्षतिपूर्ति क्लेम</div>
-     </div>
-     <a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('फसल नुक़सान की सूचना 72 घंटे में दर्ज करें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">📜</div><div class="gov-tag">Bhulekh</div><div class="gov-title">भूलेख खतौनी</div><div class="gov-sub">गाटा व ज़मीन नकल ब्योरा</div></div>
+     <a href="https://upbhulekh.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 9. PM-Kisan -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">📋</div>
-       <div class="gov-tag">e-Sathi UP</div>
-       <div class="gov-title">आय / जाति / निवास</div>
-       <div class="gov-sub">नागरिक ऑनलाइन आवेदन</div>
-     </div>
-     <a href="https://esathi.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('ई-साथी पोर्टल पर नागरिक लॉगिन करें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🚜</div><div class="gov-tag">PM-Kisan</div><div class="gov-title">PM-किसान क़िस्त</div><div class="gov-sub">सम्मान निधि स्थिति व eKYC</div></div>
+     <a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 10. Railway PNR -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🔍</div>
-       <div class="gov-tag">e-District</div>
-       <div class="gov-title">पर्चा सत्यापन</div>
-       <div class="gov-sub">प्रमाण पत्र असली/नकली जाँच</div>
-     </div>
-     <a href="https://edistrict.up.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('क्रमांक डालकर प्रमाण पत्र की सत्यता जाँचें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🚆</div><div class="gov-tag">Indian Rail</div><div class="gov-title">रेलवे PNR व ट्रेन</div><div class="gov-sub">लाइव स्थिति व सीट खोज</div></div>
+     <a href="https://www.indianrail.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 11. IGRSUP Registry -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">⚖️</div>
-       <div class="gov-tag">e-Courts Gov</div>
-       <div class="gov-title">कोर्ट केस स्टेटस</div>
-       <div class="gov-sub">ज़िला/तहसील कोर्ट तारीख</div>
-     </div>
-     <a href="https://services.ecourts.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('केस नंबर या वकील नाम से अगली तारीख देखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🏛️</div><div class="gov-tag">IGRSUP</div><div class="gov-title">बैनामा व रजिस्ट्री</div><div class="gov-sub">जायदाद भार व प्रतिलिपि</div></div>
+     <a href="https://igrsup.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
+   <!-- 12. PMFBY Crop Insurance -->
    <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🏛️</div>
-       <div class="gov-tag">IGRSUP</div>
-       <div class="gov-title">बैनामा व रजिस्ट्री</div>
-       <div class="gov-sub">जायदाद भार व नकल खोज</div>
-     </div>
-     <a href="https://igrsup.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('संपत्ति का विवरण डालकर बैनामा नकल देखें!')">पोर्टल खोलें ↗</a>
+     <div><div class="gov-emoji">🛡️</div><div class="gov-tag">PMFBY</div><div class="gov-title">फसल नुक़सान क्लेम</div><div class="gov-sub">क्षतिपूर्ति दावा व स्थिति</div></div>
+     <a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
    </div>
-
-   <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🏫</div>
-       <div class="gov-tag">e-HRMS UP</div>
-       <div class="gov-title">मानव संपदा पोर्टल</div>
-       <div class="gov-sub">छुट्टी आवेदन व सर्विस बुक</div>
-     </div>
-     <a href="https://ehrms.upsdc.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('मानव संपदा कोड से ऑनलाइन छुट्टी आवेदन करें!')">पोर्टल खोलें ↗</a>
-   </div>
-
-   <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🎟️</div>
-       <div class="gov-tag">Indian Railways</div>
-       <div class="gov-title">रेलवे PNR स्टेटस</div>
-       <div class="gov-sub">सीट कन्फ़र्म या वेटिंग देखें</div>
-     </div>
-     <a href="https://www.indianrail.gov.in/enquiry/PNR/PnrEnquiry.html" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का PNR डालकर कन्फ़र्म सीट देखें!')">पोर्टल खोलें ↗</a>
-   </div>
-
-   <div class="gov-box">
-     <div>
-       <div class="gov-emoji">🚆</div>
-       <div class="gov-tag">NTES Portal</div>
-       <div class="gov-title">ट्रेन कहाँ पहुँची?</div>
-       <div class="gov-sub">लाइव लोकेशन व देरी स्थिति</div>
-     </div>
-     <a href="https://enquiry.indianrail.gov.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('गाड़ी नंबर डालकर लाइव लोकेशन देखें!')">पोर्टल खोलें ↗</a>
-   </div>
-
-   <div class="gov-box">
-     <div>
-       <div class="gov-emoji">⚡</div>
-       <div class="gov-tag">UPPCL Rural</div>
-       <div class="gov-title">बिजली बिल</div>
-       <div class="gov-sub">ग्रामीण बिल देखें व भरें</div>
-     </div>
-     <a href="https://upenergy.in/" target="_blank" rel="noopener noreferrer" class="gov-btn" onclick="guideGov('10 अंकों का बिजली खाता नंबर दर्ज करें!')">पोर्टल खोलें ↗</a>
-   </div>
- </div>
-
- <!-- FINANCIAL SERVICES & INSURANCE -->
- <div class="head" style="margin-top:15px"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
- <div class="service-card">
-  <div class="service-head">
-    <div class="service-icon" style="background:#eaf8f0;color:var(--green)">🛡️</div>
-    <div class="service-info">
-      <h3>दुकान व स्वास्थ्य बीमा</h3>
-      <p>आग, चोरी व चिकित्सा सुरक्षा</p>
-    </div>
-  </div>
-  <div class="service-desc">
-    दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं वाहन बीमा तुरंत पाएँ।
-  </div>
-  <button class="service-btn" style="background:var(--green)" onclick="openInsurance()">
-    🔗 Turtlemint पोर्टल पर बीमा देखें →
-  </button>
- </div>
-
- <div class="service-card">
-  <div class="service-head">
-    <div class="service-icon" style="background:#eef2ff;color:var(--brand)">💰</div>
-    <div class="service-info">
-      <h3>व्यापार लोन (Business Loan)</h3>
-      <p>₹50,000 से ₹10 लाख तक</p>
-    </div>
-  </div>
-  <div class="service-desc">
-    दुकान के विस्तार या नए स्टॉक के लिए आसान EMI पर पूंजी प्राप्त करें।
-  </div>
-  <button class="service-btn" onclick="applyLoan()">
-    💬 लोन के लिए WhatsApp पर बात करें →
-  </button>
- </div>
-
- <div class="service-card">
-  <div class="service-head">
-    <div class="service-icon" style="background:#fff7ed;color:var(--orange)">📈</div>
-    <div class="service-info">
-      <h3>म्यूचुअल फंड व बचत (SIP)</h3>
-      <p>दैनिक/मासिक गुल्लक बचत</p>
-    </div>
-  </div>
-  <div class="service-desc">
-    अपने मुनाफ़े की सुरक्षित ग्रोथ के लिए ₹500 से SIP शुरू करें।
-  </div>
-  <button class="service-btn" style="background:var(--orange)" onclick="applyMF()">
-    💬 बचत व निवेश सलाह प्राप्त करें →
-  </button>
- </div>
-
- <!-- LEGAL SHIELD / DISCLAIMER -->
- <div class="disclaimer-box">
-   <b>🛡️ विधिक सूचना एवं अस्वीकरण (Disclaimer):</b><br>
-   'चुपाकाबरा खाता' एक स्वतंत्र डिजिटल बहीखाता व उपयोगिता प्लेटफ़ॉर्म है। यह किसी भी सरकारी विभाग की आधिकारिक सेवा नहीं है। सभी सरकारी लिंक उपयोगकर्ताओं की सहायता हेतु सीधे आधिकारिक सरकारी वेबसाइटों (.gov.in) पर ले जाते हैं।
  </div>
 </section>
 
-<!-- REAL ANIMATED CHUPAKABRA MASCOT -->
+<!-- ANIMATED REAL CHUPAKABRA DRAGON MASCOT -->
 <div class="mascot-wrap">
-  <div class="mascot-bubble" id="mascotBubble">राम-राम लाला जी! 🙏</div>
+  <div class="mascot-bubble" id="mascotBubble">नमस्ते लाला जी! 🙏</div>
   <div class="mascot-container" onclick="mascotTap()">
-    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा मुंशी">
+    <img src="Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन मुंशी">
     <div class="mascot-mute" id="mascotMuteBtn" onclick="toggleMascotMute(event)">🔊</div>
   </div>
 </div>
 
 <button class="fab" id="fab" onclick="openCustomer()">＋ नया ग्राहक</button>
 
+<!-- BOTTOM NAVIGATION DOCK -->
 <nav class="bottom">
  <button id="bLedger" class="active" onclick="showLedger()"><div>📒</div>बहीखाता</button>
+ <button id="bBilling" onclick="showBilling()"><div>🛒</div>बिल काउंटर</button>
  <button id="bMandi" onclick="showMandi()"><div>🌾</div>मंडी भाव</button>
- <button id="bReport" onclick="showReports()"><div>📊</div>रिपोर्ट</button>
  <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
+ <button onclick="openBankingHub()"><div>🏛️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
 </nav>
 
-<!-- Modals -->
+<!-- MODALS -->
 <div class="modal" id="customerModal"><div class="box">
  <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
  <input id="cName" class="input" placeholder="ग्राहक का नाम">
@@ -500,200 +401,150 @@ button,input,select{font:inherit}button{cursor:pointer}
  <h2 id="txTitle">उधार दर्ज करें</h2>
  <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder="राशि ₹">
  <input id="txNote" class="input" placeholder="विवरण — जैसे किराना, गल्ला">
- <div style="margin-bottom: 12px;">
-  <label for="txSlip" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; height:46px; background:#f0f4ff; border:1px dashed var(--brand); border-radius:13px; color:var(--brand); font-size:12px; font-weight:700; cursor:pointer;">
-    📷 बिल / पर्ची की फ़ोटो जोड़ें
-  </label>
-  <input id="txSlip" type="file" accept="image/*" style="display:none" onchange="previewSlip(event)">
-  <div id="slipPreviewBox" style="display:none; margin-top:8px; position:relative; text-align:center;">
-    <img id="slipPreviewImg" style="max-height:110px; border-radius:8px; border:1px solid #ddd; object-fit:contain;">
-    <button type="button" onclick="removeSlip()" style="position:absolute; top:4px; right:20%; background:rgba(0,0,0,0.65); color:#fff; border:0; border-radius:50%; width:24px; height:24px; font-size:12px;">✕</button>
-  </div>
- </div>
  <div class="modalrow"><button class="cancel" onclick="closeModal('txModal')">रद्द करें</button><button class="save" onclick="saveTx()">हिसाब सेव करें</button></div>
 </div></div>
 
-<div class="modal" id="invoiceModal"><div class="box">
- <h2>🧾 बिल / इनवॉइस बनाएँ</h2>
- <div class="setting"><small>बिल का प्रकार</small>
-   <select id="invType" class="input" style="margin-top:5px">
-     <option value="kacha">कच्चा पर्चा (सादा बिल)</option>
-     <option value="gst">पक्का बिल (GST Invoiced)</option>
+<div class="modal" id="settingsModal"><div class="box">
+ <h2>दुकान व मुंशी जी सेटिंग्स</h2>
+ <div class="setting">
+   <small>दुकानदार का नाम</small>
+   <input id="merchantName" class="input" placeholder="उदा. सत्यप्रकाश सिंह या सुनीता शर्मा">
+ </div>
+ <div class="setting">
+   <small>संबोधन / लिंग</small>
+   <select id="merchantGender" class="input" style="height:44px;margin-top:5px">
+     <option value="male">पुरुष (उदा. सिंह साहब / रतन जी)</option>
+     <option value="female">महिला (उदा. सुनीता जी / मैडम)</option>
    </select>
  </div>
- <input id="invItem" class="input" placeholder="सामान का विवरण">
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-   <input id="invRate" class="input" type="number" placeholder="मूल्य (₹)">
-   <input id="invGst" class="input" type="number" placeholder="GST %">
- </div>
- <div class="modalrow">
-   <button class="cancel" onclick="closeModal('invoiceModal')">रद्द करें</button>
-   <button class="save" onclick="generateInvoice()">🖨 पर्चा प्रिंट / शेयर</button>
- </div>
-</div></div>
-
-<div class="modal" id="settingsModal"><div class="box">
- <h2>दुकान की जानकारी</h2>
- <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="जैसे: मेरी दुकान"></div>
- <div class="setting"><small>UPI ID</small><input id="shopUpi" class="input" placeholder="जैसे: 9876543210@upi"></div>
+ <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="मेरी दुकान"></div>
+ <div class="setting"><small>UPI ID</small><input id="shopUpi" class="input" placeholder="merchant@upi"></div>
  <div class="setting"><small>GSTIN (वैकल्पिक)</small><input id="shopGst" class="input" placeholder="09AAAAA0000A1Z5"></div>
- <div class="setting"><small>ऐप सुरक्षा</small><div style="display:flex;justify-content:space-between;align-items:center;margin-top:5px"><b style="font-size:12px">PIN लॉक</b><button class="tool" style="margin:0" onclick="setPin()">🔐 PIN बदलें</button></div></div>
- <div class="setting"><small>डेटा बैकअप</small><div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px"><button class="tool" onclick="exportData()">⬇️ Backup</button><button class="tool" onclick="importData()">⬆️ Restore</button></div></div>
- <div class="modalrow"><button class="cancel" onclick="closeModal('settingsModal')">बंद करें</button><button class="save" onclick="saveSettings()">सेव करें</button></div>
- <button class="danger" style="width:100%;height:42px;border:0;border-radius:12px;margin-top:9px;font-weight:800" onclick="confirmReset()">⚠️ पूरा डेटा मिटाएँ</button>
-</div></div>
-
-<!-- THE IKKA ROYAL QR MODAL -->
-<div class="modal" id="qrModal"><div class="box">
- <div class="royal-qr-card" id="royalQrPoster">
-   <div class="royal-badge">👑 सुपरफ़ास्ट ऑल-इन-वन UPI</div>
-   <div class="royal-shop" id="qrShopTitle">चुपाकाबरा खाता</div>
-   <div style="font-size:10px;opacity:.8;margin-top:2px">सुरक्षित डिजिटल भुगतान</div>
-   
-   <div class="canvas-wrap">
-     <canvas id="qrCanvas" width="280" height="280"></canvas>
-   </div>
-
-   <div class="royal-upi" id="qrUpiText">UPI सेट करें ⚙</div>
-   
-   <div class="app-badges">
-     <span class="app-pill">GPay</span>
-     <span class="app-pill">PhonePe</span>
-     <span class="app-pill">Paytm</span>
-     <span class="app-pill">BHIM</span>
-   </div>
+ 
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+   <button type="button" class="tool" style="background:#eef2ff;color:#0284c7;font-weight:800;padding:10px 4px" onclick="downloadRoyalPoster()">⬇️ QR पोस्टर</button>
+   <button type="button" class="tool" style="background:#f1f5f9;font-weight:800;padding:10px 4px" onclick="setPin()">🔐 PIN बदलें</button>
  </div>
 
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-   <button type="button" class="tool" style="background:#eef2ff;color:var(--brand);font-weight:800;padding:12px 6px" onclick="downloadRoyalPoster()">⬇️ पोस्टर डाउनलोड</button>
-   <button type="button" class="tool" style="background:#eaf8f0;color:var(--green);font-weight:800;padding:12px 6px" onclick="shareRoyalQR()">📲 QR शेयर करें</button>
+ <div class="modalrow" style="margin-top:14px">
+   <button class="cancel" onclick="closeModal('settingsModal')">बंद करें</button>
+   <button class="save" onclick="saveSettings()">सेव करें</button>
+ </div>
+</div></div>
+
+<!-- ROYAL QR MODAL -->
+<div class="modal" id="qrModal"><div class="box">
+ <div class="royal-qr-card">
+   <div class="royal-badge">👑 सुपरफ़ास्ट ऑल-इन-वन UPI</div>
+   <div style="font-size:17px;font-weight:800;margin-top:8px" id="qrShopTitle">मेरी दुकान</div>
+   <div class="canvas-wrap"><canvas id="qrCanvas" width="280" height="280"></canvas></div>
+   <div style="font-size:12px;font-weight:800;color:#93c5fd" id="qrUpiText">UPI सेट करें ⚙</div>
  </div>
  <div class="modalrow">
    <button class="cancel" onclick="closeModal('qrModal')">बंद करें</button>
-   <button class="save" onclick="openUPI()">📲 UPI ऐप खोलें</button>
+   <button class="save" onclick="downloadRoyalPoster()">⬇️ पोस्टर डाउनलोड</button>
  </div>
 </div></div>
 
-<!-- VIDEO TUTORIAL MODAL -->
-<div class="modal" id="videoModal"><div class="box">
- <h2>🎥 ऐप चलाना सीखें (ट्यूटोरियल)</h2>
- <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:14px;background:#000;margin-bottom:12px">
-   <iframe id="tutIframe" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+<!-- BANKING COMING SOON MODAL -->
+<div class="modal" id="bankingModal"><div class="box" style="text-align:center">
+ <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto;box-shadow:inset 0 2px 6px rgba(0,0,0,0.06)">
+   🏛️
  </div>
- <p style="font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:14px">
-   इस वीडियो में सीखें: खाता कैसे खोलें, उधार-जमा कैसे चढ़ाएँ, रॉयल QR पोस्टर कैसे निकालें, और सरकारी सेवाओं का लाभ कैसे उठाएँ।
+ <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px;text-transform:uppercase">
+   🔐 Coming Soon • भावी विस्तार
+ </span>
+ <h2 style="margin-top:8px;font-size:16px">व्यापारी बैंकिंग व चालू खाता</h2>
+ <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">
+   दुकानदारों के लिए जीरो-बैलेंस डिजिटल चालू खाता, दैनिक ब्याज व आसान व्यावसायिक क्रेडिट सीधे आपकी गद्दी से जोड़े जा रहे हैं।
  </p>
- <button class="save" style="width:100%;height:44px" onclick="closeModal('videoModal')">समझ आ गया ✓</button>
-</div></div>
-
-<div class="modal" id="pinModal"><div class="box pin">
- <h2>PIN लॉक सेट करें</h2><p style="font-size:11px;color:var(--muted);margin-bottom:12px">4 अंकों का PIN रखें</p>
- <input id="newPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
- <div class="modalrow"><button class="cancel" onclick="closeModal('pinModal')">रद्द करें</button><button class="save" onclick="savePin()">PIN सेव करें</button></div>
-</div></div>
-
-<div class="lock" id="lockScreen"><div class="lockbox">
- <div class="lockicon">🔐</div><h2>चुपाकाबरा खाता</h2><p>ऐप खोलने के लिए PIN दर्ज करें</p>
- <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••">
- <button class="unlock" onclick="unlock()">खाता खोलें</button>
+ <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया / ठीक है ✓</button>
 </div></div>
 
 <div id="invoicePrintArea"></div>
 <div class="toast" id="toast"></div>
 
 <script>
-// Code Inspector / Right-Click Protection
-document.addEventListener('contextmenu', event => event.preventDefault());
+// Key / Security Lockouts
+document.addEventListener('contextmenu', e => e.preventDefault());
 document.onkeydown = function(e) {
-  if (e.keyCode == 123) { return false; } // F12
-  if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0) || e.keyCode == 'C'.charCodeAt(0))) { return false; }
-  if (e.ctrlKey && (e.keyCode == 'U'.charCodeAt(0) || e.keyCode == 'S'.charCodeAt(0))) { return false; }
+  if (e.keyCode == 123) return false;
+  if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(String.fromCharCode(e.keyCode))) return false;
+  if (e.ctrlKey && ['U','S'].includes(String.fromCharCode(e.keyCode))) return false;
 };
 
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
+const PK="chupaProfile_final", CK="chupaCustomers_final", PINKEY="chupaPin_final";
+let profile = JSON.parse(localStorage.getItem(PK)) || {
+  shopName: "मेरी दुकान का खाता",
+  merchantName: "सत्यप्रकाश सिंह",
+  gender: "male",
+  upi: "",
+  gstin: ""
+};
+let customers = JSON.parse(localStorage.getItem(CK)) || [];
+let active = null, txType = "give", editing = false;
+let isMuted = localStorage.getItem("chupaMute") === "1";
+let activeBillMode = 'kaccha';
+
+/* CART STATE FOR COUNTER BILLING */
+let cart = [
+  { name: "सरसों तेल", qty: 2, unit: "लीटर", rate: 140 },
+  { name: "गेहूँ आटा", qty: 5, unit: "किलो", rate: 35 }
+];
+
+/* HARDWARE BARCODE LISTENER */
+let barcodeBuffer = '';
+let lastKeyTime = performance.now();
+
+window.addEventListener('keydown', (e) => {
+  const tag = (document.activeElement.tagName || '').toLowerCase();
+  if (['input', 'textarea', 'select'].includes(tag)) return;
+
+  const now = performance.now();
+  if (now - lastKeyTime > 90) barcodeBuffer = '';
+  lastKeyTime = now;
+
+  if (e.key === 'Enter') {
+    if (barcodeBuffer.length >= 4) {
+      handleBarcodeScan(barcodeBuffer.trim());
+      barcodeBuffer = '';
+    }
+  } else if (e.key.length === 1) {
+    barcodeBuffer += e.key;
+  }
 });
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB-nWyD4RtphSv7WazRgM7o3Eaj2NwgPek",
-  authDomain: "chupakabra-khata.firebaseapp.com",
-  projectId: "chupakabra-khata",
-  storageBucket: "chupakabra-khata.firebasestorage.app",
-  messagingSenderId: "872712106347",
-  appId: "1:872712106347:web:48fc0bfcd7b9e182d89c2e",
-  measurementId: "G-0FBFX9979S"
-};
-
-try { firebase.initializeApp(firebaseConfig); } catch(e){}
-const auth = typeof firebase !== "undefined" && firebase.auth ? firebase.auth() : null;
-const db = typeof firebase !== "undefined" && firebase.firestore ? firebase.firestore() : null;
-let currentUser = null;
-
-const PK="chupaProfile_final",CK="chupaCustomers_final",PINKEY="chupaPin_final";
-// SECURE DEFAULT: Empty for new users, retains existing profile on current device
-let profile=JSON.parse(localStorage.getItem(PK))||{shopName:"मेरी दुकान का खाता",upi:"",gstin:""};
-let customers=JSON.parse(localStorage.getItem(CK))||[];
-let active=null,txType="give",editing=false;
-let currentSlipBase64 = "";
-let isMuted = localStorage.getItem("chupaMute") === "1";
-
-const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV4412722/ravindra_pratap_singh";
-const PARTNER_WHATSAPP = "9369913187";
-const GOV_API_KEY = "579b464db66ec23bdd000001a36f11e8747548be776874344c488a08";
-
-// APK DOWNLOAD HANDLER
-function triggerApkDownload(){
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choiceResult)=>{
-      if(choiceResult.outcome === 'accepted'){
-        toast("ऐप इंस्टॉल हो रहा है ✓");
-      }
-      deferredPrompt = null;
-    });
+function handleBarcodeScan(code) {
+  const item = { name: "आइटम (" + code.slice(-4) + ")", qty: 1, unit: "पीस", rate: 100 };
+  const exist = cart.find(x => x.name === item.name);
+  if (exist) {
+    exist.qty += 1;
   } else {
-    const apkUrl = "Chupakabra.apk";
-    const a = document.createElement("a");
-    a.href = apkUrl;
-    a.download = "Chupakabra_Khata.apk";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    toast("APK डाउनलोड शुरू हो रहा है... 📲");
+    cart.push(item);
   }
+  renderCart();
+  speakMunshi("बारकोड स्कैन हुआ: " + item.name);
 }
 
-// VIDEO TUTORIAL HANDLER
-function openTutorialVideo(){
-  document.getElementById("videoModal").style.display="flex";
-}
-
-// MASCOT DIALOGUES
-const munshiDialogues = [
-  "राम-राम लाला जी! डायरी-कलम तैयार है, बहीखाता दुरुस्त रखिए!",
-  "उधार उतना ही दीजिए, जितना मिलने पर रिश्ते में मिठास बनी रहे!",
-  "रोकड़ा समय पर आ जाए तो शाम की चाय बहुत मीठी लगती है!",
-  "तकादा करने में कैसी शर्म लाला जी? मेहनत की कमाई है!",
-  "चुपाकाबरा खाता में लक्ष्मी जी और सरस्वती जी दोनों का वास है!",
-  "एक-एक पैसे का हिसाब रखिए, यही बड़ा व्यापारी बनने का नियम है!",
-  "आज का हिसाब आज ही चढ़ा लीजिए, कल पर मत टालिए!",
-  "मंडी के ताज़ा भाव देखिए लाला जी, बाज़ार समझकर सौदा कीजिए!",
-  "ग्राहक भगवान होता है, पर हिसाब-किताब भाईचारे से भी ऊपर है!",
-  "चिंता मत कीजिए, मुंशी जी आपके एक-एक पैसे का पहरा दे रहे हैं!"
-];
-let lastDialogueIndex = -1;
-
+/* ZERO-LATENCY MUNSHI AUDIO & HONORIFIC PERSONA */
 let synthVoices = [];
 function loadVoices() {
-  if ('speechSynthesis' in window) {
-    synthVoices = window.speechSynthesis.getVoices();
-  }
+  if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices();
 }
 loadVoices();
-if ('speechSynthesis' in window && window.speechSynthesis.onvoiceschanged !== undefined) {
-  window.speechSynthesis.onvoiceschanged = loadVoices;
+if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = loadVoices;
+
+function getHonorific(name, gender = 'male') {
+  if (!name || !name.trim()) return 'साहब';
+  const parts = name.trim().split(/\s+/);
+  const lastName = parts[parts.length - 1];
+  const firstName = parts[0];
+
+  if (gender === 'female') return `${firstName} जी`;
+
+  const surnames = ['सिंह','खट्टर','गुप्ता','वर्मा','शर्मा','मिश्रा','पांडेय','चौधरी','यादव','अंसारी','खान','अग्रवाल','जैन'];
+  if (parts.length > 1 && surnames.includes(lastName)) return `${lastName} साहब`;
+  return `${firstName} जी`;
 }
 
 function speakMunshi(text) {
@@ -702,44 +553,44 @@ function speakMunshi(text) {
   
   bubble.textContent = text;
   bubble.style.display = "block";
-  if(img) img.classList.add("talking");
+  if (img) img.classList.add("talking");
 
   clearTimeout(window.mtt);
   window.mtt = setTimeout(() => {
     bubble.style.display = "none";
-    if(img) img.classList.remove("talking");
+    if (img) img.classList.remove("talking");
   }, 4500);
 
-  if (isMuted) return;
-  if ('speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'hi-IN';
-    u.pitch = 0.65; 
-    u.rate = 0.92;
+  if (isMuted || !('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel(); // 0ms lag cancel
 
-    if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
-    const maleVoice = synthVoices.find(v => v.lang.includes('hi') && (v.name.toLowerCase().includes('male') || !v.name.toLowerCase().includes('female')));
-    if (maleVoice) u.voice = maleVoice;
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'hi-IN';
+  u.pitch = 0.95;
+  u.rate = 1.0;
 
-    u.onend = () => { if(img) img.classList.remove("talking"); };
-    u.onerror = () => { if(img) img.classList.remove("talking"); };
-    window.speechSynthesis.speak(u);
-  }
+  if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
+  const v = synthVoices.find(x => x.lang.includes('hi'));
+  if (v) u.voice = v;
+
+  u.onend = () => { if (img) img.classList.remove("talking"); };
+  u.onerror = () => { if (img) img.classList.remove("talking"); };
+  window.speechSynthesis.speak(u);
 }
 
-function guideGov(msg) {
-  speakMunshi(msg);
+function speakMunshiHonorific() {
+  const h = getHonorific(profile.merchantName, profile.gender);
+  const quotes = [
+    `और ${h}, गद्दी संभालिए! बहीखाता एकदम दुरुस्त है।`,
+    `${h}, मेहनत की कमाई में ही सबसे बड़ी बरकत है!`,
+    `रोकड़ा समय पर आ जाए तो गद्दी का सुकून ही अलग होता है।`,
+    `एक-एक पाई का हिसाब साफ रखिए ${h}, मुंशी जी का पूरा पहरा है!`
+  ];
+  speakMunshi(quotes[Math.floor(Math.random() * quotes.length)]);
 }
 
 function mascotTap() {
-  let nextIdx;
-  do {
-    nextIdx = Math.floor(Math.random() * munshiDialogues.length);
-  } while (nextIdx === lastDialogueIndex && munshiDialogues.length > 1);
-  
-  lastDialogueIndex = nextIdx;
-  speakMunshi(munshiDialogues[nextIdx]);
+  speakMunshiHonorific();
 }
 
 function toggleMascotMute(e) {
@@ -750,467 +601,459 @@ function toggleMascotMute(e) {
   toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
 }
 
+/* PANCHANG DATE */
+function updateLivePanchang() {
+  const now = new Date();
+  const days = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+  const months = ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'];
+  document.getElementById("livePanchangText").textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+}
+
+/* HELPER FUNCTIONS */
 function esc(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
 function bal(c){return (c.tx||[]).reduce((s,t)=>s+(t.type==="give"?+t.amount:-t.amount),0)}
 function init(n){return (n||"?").trim().charAt(0)||"?"}
 function toast(s){let e=document.getElementById("toast");e.textContent=s;e.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.remove("show"),2200)}
-function closeModal(id){
-  document.getElementById(id).style.display="none";
-  if(id === "videoModal"){
-    const f = document.getElementById("tutIframe");
-    if(f) f.src = f.src;
-  }
-}
-
-function previewSlip(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const img = new Image();
-    img.src = e.target.result;
-    img.onload = function() {
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      const maxWidth = 750;
-      let w = img.width, h = img.height;
-      if (w > maxWidth) { h = Math.round((h * maxWidth) / w); w = maxWidth; }
-      canvas.width = w; canvas.height = h;
-      ctx.drawImage(img, 0, 0, w, h);
-      currentSlipBase64 = canvas.toDataURL("image/jpeg", 0.65);
-      document.getElementById("slipPreviewImg").src = currentSlipBase64;
-      document.getElementById("slipPreviewBox").style.display = "block";
-    };
-  };
-  reader.readAsDataURL(file);
-}
-
-function removeSlip() {
-  currentSlipBase64 = "";
-  const el = document.getElementById("txSlip");
-  if(el) el.value = "";
-  const box = document.getElementById("slipPreviewBox");
-  if(box) box.style.display = "none";
-}
-
-function viewSlip(imgData) {
-  const w = window.open("");
-  w.document.write(`<title>बिल / पर्ची रसीद</title><body style="margin:0; background:#0f172a; display:flex; justify-content:center; align-items:center; min-height:100vh;"><img src="${imgData}" style="max-width:96%; max-height:92vh; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.5); object-fit:contain;"></body>`);
-}
+function closeModal(id){document.getElementById(id).style.display="none"}
 
 function syncData(){
-  localStorage.setItem(CK,JSON.stringify(customers));
-  localStorage.setItem(PK,JSON.stringify(profile));
-  if(currentUser && db){
-    db.collection("merchants").doc(currentUser.uid).set({
-      profile: profile,
-      customers: customers,
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).catch(e=>console.log("Cloud sync error:", e));
-  }
-}
-
-if(auth){
-  auth.onAuthStateChanged((user)=>{
-    currentUser = user;
-    const btn = document.getElementById("authBtn");
-    const note = document.getElementById("syncStatusText");
-    if(user){
-      btn.innerHTML = "👤 लॉगआउट";
-      note.textContent = "🟢 256-Bit सुरक्षित बैकअप सक्रिय (" + (user.displayName||"दुकानदार") + ")";
-      if(db){
-        db.collection("merchants").doc(user.uid).onSnapshot((doc)=>{
-          if(doc.exists){
-            const d = doc.data();
-            if(d.profile) profile = d.profile;
-            if(d.customers) customers = d.customers;
-            localStorage.setItem(PK,JSON.stringify(profile));
-            localStorage.setItem(CK,JSON.stringify(customers));
-            profileUI();
-            renderCustomers();
-          } else {
-            syncData();
-          }
-        });
-      }
-    } else {
-      btn.innerHTML = "👤 मर्चेंट खाता";
-      note.textContent = "🛡️ 256-Bit सुरक्षित लोकल मोड";
-    }
-  });
-}
-
-function toggleAuth(){
-  if(!auth){ toast("नेटवर्क से जुड़ें"); return; }
-  if(currentUser){
-    if(confirm("लॉगआउट करना चाहते हैं?")){
-      auth.signOut().then(()=>toast("लॉगआउट सफल ✓"));
-    }
-  } else {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .then(()=>toast("मर्चेंट सत्यापन सफल ✓"))
-      .catch((e)=>toast("त्रुटि: " + e.message));
-  }
+  localStorage.setItem(CK, JSON.stringify(customers));
+  localStorage.setItem(PK, JSON.stringify(profile));
 }
 
 function profileUI(){
   document.getElementById("shopTitle").textContent = profile.shopName || "मेरी दुकान का खाता";
-  document.getElementById("upiPreview").textContent = profile.upi ? ("UPI • " + profile.upi) : "⚙ सेटिंग्स में UPI ID जोड़ें";
   document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
 }
 
 function dashboard(){
- let get=0,give=0;customers.forEach(c=>{let b=bal(c);if(b>=0)get+=b;else give+=Math.abs(b)});
- document.getElementById("totalGet").textContent=money(get);document.getElementById("totalGive").textContent=money(give);
- document.getElementById("net").textContent=money(Math.abs(get-give));
- document.getElementById("rGet").textContent=money(get);document.getElementById("rGive").textContent=money(give);
+  let get=0, give=0;
+  customers.forEach(c => {
+    let b = bal(c);
+    if(b >= 0) get += b; else give += Math.abs(b);
+  });
+  document.getElementById("totalGet").textContent = money(get);
+  document.getElementById("totalGive").textContent = money(give);
+  const net = get - give;
+  const netEl = document.getElementById("net");
+  netEl.textContent = (net >= 0 ? "+" : "-") + money(Math.abs(net));
+  netEl.style.color = net >= 0 ? "var(--green)" : "var(--red)";
 }
 
 function renderCustomers(){
- const q=document.getElementById("search").value.toLowerCase().trim(), list=document.getElementById("customers");
- const arr=customers.filter(c=>c.name.toLowerCase().includes(q)||c.phone.includes(q));list.innerHTML="";
- document.getElementById("count").textContent=customers.length+" ग्राहक";
- if(!arr.length){list.innerHTML='<div class="empty"><b>🔎</b>कोई ग्राहक नहीं मिला</div>';dashboard();return}
- arr.forEach(c=>{let b=bal(c),get=b>=0;list.innerHTML+=`
- <div class="customer" onclick="openDetail(${c.id})"><div class="left"><div class="avatar">${esc(init(c.name))}</div><div><div class="cname">${esc(c.name)}</div><div class="phone">📞 ${esc(c.phone)}</div></div></div>
- <div class="right"><div class="amt ${get?"receive":"pay"}">${money(Math.abs(b))}</div><div class="status ${get?"receive":"pay"}">${get?"लेना है":"देना है"}</div></div></div>`});
- dashboard();
+  const q = document.getElementById("search").value.toLowerCase().trim();
+  const list = document.getElementById("customers");
+  const arr = customers.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
+  list.innerHTML = "";
+  document.getElementById("count").textContent = customers.length + " ग्राहक";
+
+  if(!arr.length){
+    list.innerHTML = '<div class="empty"><b>🔎</b>कोई खाता नहीं मिला। नीचे \'+\' दबाकर शुरुआत करें!</div>';
+    dashboard();
+    return;
+  }
+  arr.forEach(c => {
+    let b = bal(c), isGet = b >= 0;
+    list.innerHTML += `
+    <div class="customer" onclick="openDetail(${c.id})">
+      <div class="left">
+        <div class="avatar">${esc(init(c.name))}</div>
+        <div><div class="cname">${esc(c.name)}</div><div class="phone">📞 ${esc(c.phone)}</div></div>
+      </div>
+      <div class="right">
+        <div class="amt ${isGet?"receive":"pay"}">${money(Math.abs(b))}</div>
+        <div class="status ${isGet?"receive":"pay"}">${isGet?"लेना है":"देना है"}</div>
+      </div>
+    </div>`;
+  });
+  dashboard();
 }
 
 function openDetail(id){
- active=id;let c=customers.find(x=>x.id===id);if(!c)return;
- ["dashboard","ledger","mandi","reports","services"].forEach(i=>document.getElementById(i).style.display="none");
- document.getElementById("detail").style.display="block";document.getElementById("fab").style.display="none";
- document.getElementById("dAvatar").textContent=init(c.name);document.getElementById("dName").textContent=c.name;document.getElementById("dPhone").textContent=c.phone;
- document.getElementById("dPoints").textContent=`⭐ ${c.points||0} लॉयल्टी पॉइंट्स`;
- 
- let b=bal(c);
- document.getElementById("dAmount").textContent=money(Math.abs(b));
- document.getElementById("dAmount").style.color=b>=0?"var(--red)":"var(--green)";
- document.getElementById("dStatus").textContent=b>=0?"आपको लेना है":"आपको देना है";
- renderTx(c);
+  active = id;
+  const c = customers.find(x => x.id === id);
+  if(!c) return;
+  ["dashboard","ledger","mandi","services","billingDesk"].forEach(i => document.getElementById(i).style.display="none");
+  document.getElementById("detail").style.display="block";
+  document.getElementById("fab").style.display="none";
+  document.getElementById("dAvatar").textContent = init(c.name);
+  document.getElementById("dName").textContent = c.name;
+  document.getElementById("dPhone").textContent = c.phone;
+  document.getElementById("dPoints").textContent = `⭐ ${c.points||0} लॉयल्टी पॉइंट्स`;
+  
+  let b = bal(c);
+  document.getElementById("dAmount").textContent = money(Math.abs(b));
+  document.getElementById("dAmount").style.color = b >= 0 ? "var(--red)" : "var(--green)";
+  document.getElementById("dStatus").textContent = b >= 0 ? "आपको लेना है" : "आपको देना है";
+  renderTx(c);
 }
 
 function renderTx(c){
- let box=document.getElementById("transactions");box.innerHTML="";
- if(!c.tx || !c.tx.length){box.innerHTML='<div class="empty">अभी कोई लेन-देन नहीं है</div>';return}
- c.tx.slice().reverse().forEach((t,i)=>{
-   let realIndex=c.tx.length-1-i;
-   box.innerHTML+=`
-   <div class="tx">
-     <div>
-       <div class="txnote">${esc(t.note||(t.type==="give"?"उधार दिया":"भुगतान मिला"))}</div>
-       <div class="txdate">${esc(t.date)}</div>
-       ${t.slip ? `<button class="tiny" onclick="viewSlip('${t.slip}')" style="margin-top:5px; background:#eef2ff; color:var(--brand); font-weight:700;">🧾 पर्ची देखें</button>` : ""}
-     </div>
-     <div style="display:flex;align-items:center">
-       <div class="txamt ${t.type==="give"?"receive":"pay"}">${t.type==="give"?"+":"−"} ${money(t.amount)}</div>
-       <div class="txbuttons"><button class="tiny" onclick="editTx(${realIndex})">✏️</button><button class="tiny" onclick="deleteTx(${realIndex})">×</button></div>
-     </div>
-   </div>`;
- });
+  const box = document.getElementById("transactions");
+  box.innerHTML = "";
+  if(!c.tx || !c.tx.length){ box.innerHTML = '<div class="empty">अभी कोई लेन-देन नहीं है</div>'; return; }
+  c.tx.slice().reverse().forEach((t, i) => {
+    let realIndex = c.tx.length - 1 - i;
+    box.innerHTML += `
+    <div class="tx">
+      <div>
+        <div class="txnote">${esc(t.note || (t.type==="give" ? "उधार दिया" : "भुगतान मिला"))}</div>
+        <div class="txdate">${esc(t.date)}</div>
+      </div>
+      <div style="display:flex;align-items:center">
+        <div class="txamt ${t.type==="give"?"receive":"pay"}">${t.type==="give"?"+":"−"} ${money(t.amount)}</div>
+        <div class="txbuttons">
+          <button class="tiny" onclick="deleteTx(${realIndex})">×</button>
+        </div>
+      </div>
+    </div>`;
+  });
 }
-function back(){document.getElementById("detail").style.display="none";showLedger()}
+function back(){ document.getElementById("detail").style.display="none"; showLedger(); }
 
 function openCustomer(){
- editing=false;document.getElementById("customerModalTitle").textContent="नया ग्राहक जोड़ें";document.getElementById("cName").value="";document.getElementById("cPhone").value="";document.getElementById("customerModal").style.display="flex";setTimeout(()=>document.getElementById("cName").focus(),80)
-}
-function editCustomer(){
- let c=customers.find(x=>x.id===active);if(!c)return;editing=true;document.getElementById("customerModalTitle").textContent="ग्राहक की जानकारी बदलें";document.getElementById("cName").value=c.name;document.getElementById("cPhone").value=c.phone;document.getElementById("customerModal").style.display="flex"
+  document.getElementById("cName").value = "";
+  document.getElementById("cPhone").value = "";
+  document.getElementById("customerModal").style.display = "flex";
 }
 function saveCustomer(){
- let n=document.getElementById("cName").value.trim(),p=document.getElementById("cPhone").value.trim();
- if(!n){toast("ग्राहक का नाम डालें");return}if(!/^\d{10}$/.test(p)){toast("10 अंकों का मोबाइल नंबर डालें");return}
- if(editing){
-   let c=customers.find(x=>x.id===active);c.name=n;c.phone=p;toast("ग्राहक अपडेट हो गया ✓");
- }else{
-   customers.push({id:Date.now(),name:n,phone:p,points:10,tx:[]});
-   toast("नया ग्राहक जोड़ दिया ✓");
-   speakMunshi(`अरे वाह लाला जी! ${n} जी का नया पन्ना खुल गया बहीखाते में!`);
- }
- syncData();closeModal("customerModal");renderCustomers();if(editing)openDetail(active)
+  const n = document.getElementById("cName").value.trim();
+  const p = document.getElementById("cPhone").value.trim();
+  if(!n){ toast("ग्राहक का नाम डालें"); return; }
+  if(!/^\d{10}$/.test(p)){ toast("10 अंकों का फोन नंबर डालें"); return; }
+
+  customers.push({ id: Date.now(), name: n, phone: p, points: 10, tx: [] });
+  syncData();
+  closeModal("customerModal");
+  renderCustomers();
+  toast("खाता जुड़ गया ✓");
+  speakMunshi(`${n} का नया खाता खुल गया है!`);
 }
 
 function openTx(type){
- txType=type;removeSlip();
- document.getElementById("txTitle").textContent=type==="give"?"उधार दर्ज करें":"भुगतान दर्ज करें";
- document.getElementById("txAmount").value="";document.getElementById("txNote").value="";
- document.getElementById("txModal").style.display="flex";
- setTimeout(()=>document.getElementById("txAmount").focus(),80)
+  txType = type;
+  document.getElementById("txTitle").textContent = type === "give" ? "उधार दर्ज करें" : "भुगतान दर्ज करें";
+  document.getElementById("txAmount").value = "";
+  document.getElementById("txNote").value = "";
+  document.getElementById("txModal").style.display = "flex";
 }
 function saveTx(){
- let a=Number(document.getElementById("txAmount").value),note=document.getElementById("txNote").value.trim();
- if(!a||a<=0){toast("सही राशि दर्ज करें");return}
- let c=customers.find(x=>x.id===active);if(!c.tx)c.tx=[];
- let date=new Intl.DateTimeFormat("hi-IN",{day:"numeric",month:"short",year:"numeric"}).format(new Date());
- 
- let earnedPoints = Math.floor(a / 100);
- c.points = (c.points || 0) + earnedPoints;
+  const a = Number(document.getElementById("txAmount").value);
+  const note = document.getElementById("txNote").value.trim();
+  if(!a || a <= 0){ toast("सही राशि दर्ज करें"); return; }
+  const c = customers.find(x => x.id === active);
+  if(!c.tx) c.tx = [];
+  const date = new Intl.DateTimeFormat("hi-IN", {day:"numeric",month:"short",year:"numeric"}).format(new Date());
 
- c.tx.push({amount:a,type:txType,note,date,slip:currentSlipBase64});
- removeSlip();syncData();closeModal("txModal");openDetail(active);toast("हिसाब सेव हो गया ✓");
+  c.tx.push({ amount: a, type: txType, note, date });
+  c.points = (c.points || 0) + Math.floor(a / 100);
 
- if(txType === "get") {
-   speakMunshi(`लक्ष्मी जी पधारीं! ₹${a} का पक्का भुगतान आ गया!`);
- } else {
-   speakMunshi(`₹${a} का उधार मैंने डायरी में चढ़ा लिया लाला जी!`);
- }
+  syncData();
+  closeModal("txModal");
+  openDetail(active);
+  toast("हिसाब सुरक्षित हुआ ✓");
+  speakMunshi(txType === "get" ? `₹${a} का भुगतान दर्ज हो गया!` : `₹${a} का उधार चढ़ा लिया!`);
 }
-function editTx(i){
- let c=customers.find(x=>x.id===active),t=c.tx[i];let a=prompt("राशि बदलें",t.amount);if(a===null)return;a=Number(a);if(!a||a<=0){toast("गलत राशि");return}let n=prompt("विवरण बदलें",t.note||"");if(n===null)return;t.amount=a;t.note=n;syncData();openDetail(active);toast("एंट्री अपडेट हो गई ✓")
+function deleteTx(i){
+  if(!confirm("यह प्रविष्टि हटाना चाहते हैं?")) return;
+  const c = customers.find(x => x.id === active);
+  c.tx.splice(i, 1);
+  syncData();
+  openDetail(active);
+  toast("हटा दिया गया");
 }
-function deleteTx(i){if(!confirm("यह लेन-देन हटाना है?"))return;let c=customers.find(x=>x.id===active);c.tx.splice(i,1);syncData();openDetail(active);toast("एंट्री हटा दी गई")}
 
 function whatsapp(){
- let c=customers.find(x=>x.id===active),b=bal(c);if(b<=0){toast("इस ग्राहक से कोई बकाया लेना नहीं है");return}
- if(!profile.upi){toast("कृपया सेटिंग्स में अपनी UPI ID दर्ज करें");return}
- let msg=`नमस्ते ${c.name} जी 🙏\n\n${profile.shopName} पर आपका ${money(b)} का बकाया है।\n\nUPI ID: ${profile.upi}\n\nधन्यवाद 🙏`;
- speakMunshi("तगड़ा तकादा भेज दिया लाला जी! अब जल्दी पेमेंट आएगा!");
- window.open("https://wa.me/91"+c.phone+"?text="+encodeURIComponent(msg),"_blank");
+  const c = customers.find(x => x.id === active);
+  const b = bal(c);
+  if(b <= 0){ toast("कोई बकाया नहीं है"); return; }
+  let msg = `नमस्ते ${c.name} जी 🙏\n${profile.shopName} पर आपका ${money(b)} का बकाया है।\nUPI: ${profile.upi}\nधन्यवाद!`;
+  window.open("https://wa.me/91" + c.phone + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
-// THE IKKA ROYAL BRANDED QR GENERATOR
+/* CART & BILLING DESK FUNCTIONS */
+function switchBillMode(mode) {
+  if (mode === 'gst' && (!profile.gstin || !profile.gstin.trim())) {
+    alert("कृपया पहले सेटिंग्स (⚙) में GSTIN नंबर दर्ज करें!");
+    return;
+  }
+  activeBillMode = mode;
+  document.getElementById("bTypeKaccha").className = "bill-type-btn " + (mode === 'kaccha' ? 'active' : '');
+  document.getElementById("bTypeGst").className = "bill-type-btn " + (mode === 'gst' ? 'active' : '');
+  document.getElementById("gstSplitRow").style.display = mode === 'gst' ? 'flex' : 'none';
+  recalcCart();
+}
+
+function renderCart() {
+  const tb = document.getElementById("cartTableBody");
+  tb.innerHTML = "";
+  cart.forEach((item, idx) => {
+    tb.innerHTML += `
+      <tr>
+        <td><input type="text" value="${esc(item.name)}" oninput="cart[${idx}].name=this.value"></td>
+        <td><input type="number" min="1" value="${item.qty}" oninput="cart[${idx}].qty=Number(this.value);recalcCart()"></td>
+        <td>
+          <select onchange="cart[${idx}].unit=this.value">
+            <option ${item.unit==='किलो'?'selected':''}>किलो</option>
+            <option ${item.unit==='लीटर'?'selected':''}>लीटर</option>
+            <option ${item.unit==='पैकेट'?'selected':''}>पैकेट</option>
+            <option ${item.unit==='पीस'?'selected':''}>पीस</option>
+            <option ${item.unit==='बोरी'?'selected':''}>बोरी</option>
+          </select>
+        </td>
+        <td><input type="number" value="${item.rate}" oninput="cart[${idx}].rate=Number(this.value);recalcCart()" style="text-align:right"></td>
+      </tr>
+    `;
+  });
+  recalcCart();
+}
+
+function addCartRow() {
+  cart.push({ name: "", qty: 1, unit: "किलो", rate: 0 });
+  renderCart();
+}
+
+function recalcCart() {
+  let sub = 0;
+  cart.forEach(i => sub += (i.qty * i.rate));
+  const disc = Number(document.getElementById("cDiscount").value) || 0;
+  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
+  const grand = Math.max(0, (sub + gst) - disc);
+
+  document.getElementById("cSubtotal").textContent = "₹" + sub.toFixed(2);
+  document.getElementById("cGstAmount").textContent = "₹" + gst.toFixed(2);
+  document.getElementById("cGrandTotal").textContent = "₹" + grand.toFixed(2);
+}
+
+async function connectBluetoothThermal() {
+  if (!navigator.bluetooth) {
+    alert("आपके ब्राउज़र में Web Bluetooth उपलब्ध नहीं है।");
+    return;
+  }
+  try {
+    const dev = await navigator.bluetooth.requestDevice({
+      acceptAllDevices: true,
+      optionalServices: ['000018f0-0000-1000-8000-00805f9b34fb']
+    });
+    toast("प्रिंटर जुड़ गया: " + dev.name);
+  } catch(e) {
+    toast("ब्लूटूथ कनेक्ट रद्द हुआ");
+  }
+}
+
+function printCartInvoice() {
+  const cName = document.getElementById("cartCustName").value.trim() || "नकद ग्राहक";
+  const pArea = document.getElementById("invoicePrintArea");
+  const now = new Date();
+  const dStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
+  let sub = 0;
+  let rows = "";
+
+  cart.forEach((i, idx) => {
+    sub += (i.qty * i.rate);
+    rows += `<tr>
+      <td style="padding:4px">${idx+1}</td>
+      <td style="padding:4px">${esc(i.name)}</td>
+      <td style="padding:4px;text-align:center">${i.qty} ${i.unit}</td>
+      <td style="padding:4px;text-align:right">₹${i.rate}</td>
+      <td style="padding:4px;text-align:right">₹${i.qty * i.rate}</td>
+    </tr>`;
+  });
+
+  const disc = Number(document.getElementById("cDiscount").value) || 0;
+  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
+  const grand = Math.max(0, (sub + gst) - disc);
+
+  pArea.innerHTML = `
+    <div style="border:2px solid #000;padding:15px;max-width:480px;margin:auto;font-family:monospace">
+      <div style="text-align:center;border-bottom:1px double #000;padding-bottom:8px">
+        <h2 style="font-size:18px;margin:0">${esc(profile.shopName)}</h2>
+        <p style="font-size:11px;margin:3px 0">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
+        ${profile.gstin ? `<p style="font-size:10px;margin:0">GSTIN: ${profile.gstin}</p>` : ''}
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:11px;margin:8px 0">
+        <div>ग्राहक: ${esc(cName)}</div>
+        <div>दिनांक: ${dStr}</div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:11px">
+        <thead>
+          <tr style="border-top:1px solid #000;border-bottom:1px solid #000">
+            <th style="padding:4px">#</th><th style="text-align:left;padding:4px">सामान</th><th style="padding:4px">मात्रा</th><th style="text-align:right;padding:4px">भाव</th><th style="text-align:right;padding:4px">कुल</th>
+          </tr>
+        </thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <div style="border-top:1px solid #000;padding-top:6px;margin-top:8px;text-align:right;font-size:13px;font-weight:bold">
+        कुल देय राशि: ₹${grand.toFixed(2)}
+      </div>
+      <div style="margin-top:14px;display:flex;justify-content:space-between;align-items:flex-end;font-size:10px">
+        <div>UPI: ${esc(profile.upi || 'उपलब्ध नहीं')}</div>
+        <div style="border-top:1px dashed #000;padding-top:2px">हस्ताक्षर</div>
+      </div>
+    </div>
+  `;
+  window.print();
+}
+
+function sendCartWhatsApp() {
+  const phone = document.getElementById("cartCustPhone").value.trim();
+  const cName = document.getElementById("cartCustName").value.trim() || "ग्राहक";
+  if (!phone || phone.length < 10) {
+    alert("कृपया मान्य 10 अंकों का फोन नंबर डालें!");
+    return;
+  }
+  let sub = 0;
+  let text = `*${profile.shopName}*\nनमस्ते ${cName} जी,\nआपका बिल पर्चा:\n\n`;
+  cart.forEach((i, idx) => {
+    sub += (i.qty * i.rate);
+    text += `${idx+1}. ${i.name} - ${i.qty} ${i.unit} x ₹${i.rate} = ₹${i.qty * i.rate}\n`;
+  });
+  const disc = Number(document.getElementById("cDiscount").value) || 0;
+  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
+  const grand = Math.max(0, (sub + gst) - disc);
+
+  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*\nभुगतान UPI: ${profile.upi}\nधन्यवाद! 🙏`;
+  window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(text), "_blank");
+}
+
+/* ROYAL QR CODE WITH REAL MASCOT EMBED */
 function openQR(){
- if(!profile.upi){
-   toast("कृपया सेटिंग्स (⚙) में जाकर अपनी UPI ID जोड़ें");
-   openSettings();
-   return;
- }
- let c=customers.find(x=>x.id===active),b=c?bal(c):0;let amount=b>0?b:"";
- let uri="upi://pay?pa="+encodeURIComponent(profile.upi)+"&pn="+encodeURIComponent(profile.shopName)+(amount?"&am="+amount+"&cu=INR":"");
+  if(!profile.upi){ toast("पहले सेटिंग्स में अपनी UPI ID जोड़ें"); openSettings(); return; }
+  const c = customers.find(x => x.id === active);
+  const b = c ? bal(c) : 0;
+  const amt = b > 0 ? b : "";
+  const uri = "upi://pay?pa=" + encodeURIComponent(profile.upi) + "&pn=" + encodeURIComponent(profile.shopName) + (amt ? "&am=" + amt + "&cu=INR" : "");
 
- document.getElementById("qrShopTitle").textContent = profile.shopName;
- document.getElementById("qrUpiText").textContent = profile.upi + (amount ? ` • ${money(amount)}` : "");
- document.getElementById("qrModal").style.display="flex";
+  document.getElementById("qrShopTitle").textContent = profile.shopName;
+  document.getElementById("qrUpiText").textContent = profile.upi + (amt ? ` • ${money(amt)}` : "");
+  document.getElementById("qrModal").style.display = "flex";
 
- const canvas = document.getElementById("qrCanvas");
- const ctx = canvas.getContext("2d");
- ctx.clearRect(0,0,280,280);
+  const canvas = document.getElementById("qrCanvas");
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, 280, 280);
 
- const qrImg = new Image();
- qrImg.crossOrigin = "anonymous";
- qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=H&data=" + encodeURIComponent(uri);
+  const qrImg = new Image();
+  qrImg.crossOrigin = "anonymous";
+  qrImg.src = "https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=H&data=" + encodeURIComponent(uri);
 
- qrImg.onload = function() {
-   ctx.drawImage(qrImg, 0, 0, 280, 280);
+  qrImg.onload = function() {
+    ctx.drawImage(qrImg, 0, 0, 280, 280);
+    const mascot = new Image();
+    mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
+    mascot.onload = function() {
+      const size = 58;
+      ctx.beginPath();
+      ctx.arc(140, 140, (size / 2) + 3, 0, Math.PI * 2);
+      ctx.fillStyle = "#ffffff";
+      ctx.fill();
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = "#059669";
+      ctx.stroke();
 
-   const mascot = new Image();
-   mascot.src = "Screenshot_2026-09-21-18-11-42-307_com.whatsapp.w4b-edit~2.jpg";
-   
-   mascot.onload = function() {
-     const size = 58;
-     const x = (280 - size) / 2;
-     const y = (280 - size) / 2;
-
-     ctx.beginPath();
-     ctx.arc(140, 140, (size / 2) + 4, 0, Math.PI * 2);
-     ctx.fillStyle = "#ffffff";
-     ctx.fill();
-     ctx.lineWidth = 2.5;
-     ctx.strokeStyle = "#139447";
-     ctx.stroke();
-
-     ctx.save();
-     ctx.beginPath();
-     ctx.arc(140, 140, size / 2, 0, Math.PI * 2);
-     ctx.clip();
-     ctx.drawImage(mascot, x, y, size, size);
-     ctx.restore();
-   };
- };
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(140, 140, size / 2, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(mascot, 140 - (size/2), 140 - (size/2), size, size);
+      ctx.restore();
+    };
+  };
 }
 
-// PRINT-READY STANDEE POSTER EXPORT
 function downloadRoyalPoster(){
   const canvas = document.getElementById("qrCanvas");
   if(!canvas) return;
-
   const p = document.createElement("canvas");
   p.width = 600; p.height = 850;
   const ctx = p.getContext("2d");
 
   const grad = ctx.createLinearGradient(0, 0, 0, 850);
-  grad.addColorStop(0, "#0d1538");
-  grad.addColorStop(1, "#17265f");
+  grad.addColorStop(0, "#0f172a"); grad.addColorStop(1, "#1e1b4b");
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, 600, 850);
 
-  ctx.lineWidth = 6;
-  ctx.strokeStyle = "#eab308";
+  ctx.lineWidth = 6; ctx.strokeStyle = "#f59e0b";
   ctx.strokeRect(20, 20, 560, 810);
 
-  ctx.fillStyle = "rgba(255,255,255,0.12)";
-  ctx.fillRect(170, 45, 260, 36);
-  ctx.fillStyle = "#fef08a";
-  ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "800 30px 'Plus Jakarta Sans', sans-serif";
   ctx.textAlign = "center";
-  ctx.fillText("👑 सुपरफ़ास्ट डिजिटल भुगतान", 300, 68);
+  ctx.fillText(profile.shopName, 300, 110);
 
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "800 32px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText(profile.shopName, 300, 125);
-
-  ctx.fillStyle = "rgba(255,255,255,0.75)";
+  ctx.fillStyle = "#94a3b8";
   ctx.font = "500 15px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 155);
+  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 145);
 
   ctx.fillStyle = "#ffffff";
   ctx.beginPath();
-  ctx.roundRect(90, 195, 420, 420, [24]);
+  ctx.roundRect(100, 185, 400, 400, [20]);
   ctx.fill();
 
-  ctx.drawImage(canvas, 120, 225, 360, 360);
+  ctx.drawImage(canvas, 130, 215, 340, 340);
 
-  ctx.fillStyle = "rgba(255,255,255,0.15)";
-  ctx.beginPath();
-  ctx.roundRect(80, 645, 440, 56, [14]);
-  ctx.fill();
   ctx.fillStyle = "#93c5fd";
-  ctx.font = "bold 21px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 680);
+  ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 650);
 
   ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 17px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("GPay  •  PhonePe  •  Paytm  •  BHIM UPI", 300, 745);
-
-  ctx.fillStyle = "#e2e8f0";
-  ctx.font = "13px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("चुपाकाबरा खाता • भारत के व्यापारी और किसान का सच्चा साथी", 300, 785);
+  ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
+  ctx.fillText("GPay • PhonePe • Paytm • BHIM", 300, 710);
 
   const a = document.createElement("a");
   a.href = p.toDataURL("image/png");
-  a.download = `${profile.shopName}_Royal_QR_Standee.png`;
+  a.download = `${profile.shopName}_QR.png`;
   a.click();
-  toast("रॉयल QR पोस्टर डाउनलोड सफल ✓");
+  toast("पोस्टर डाउनलोड सफल ✓");
 }
 
-async function shareRoyalQR(){
-  const canvas = document.getElementById("qrCanvas");
-  const c = customers.find(x=>x.id===active);const b=c?bal(c):0;
-  const shareText=`नमस्ते 🙏\n${profile.shopName} का आधिकारिक UPI भुगतान QR कोड।\nUPI ID: ${profile.upi}`+(b>0?`\nकुल बकाया: ${money(b)}`:"");
-
-  try{
-    canvas.toBlob(async (blob)=>{
-      const file = new File([blob], "Chupakabra_QR.png", {type: "image/png"});
-      if(navigator.canShare && navigator.canShare({files:[file]})){
-        await navigator.share({title: profile.shopName + " QR", text: shareText, files:[file]});
-      } else {
-        window.open("https://wa.me/?text="+encodeURIComponent(shareText),"_blank");
-      }
-    });
-  }catch(e){
-    window.open("https://wa.me/?text="+encodeURIComponent(shareText),"_blank");
-  }
-}
-
-function openUPI(){
- let c=customers.find(x=>x.id===active),b=bal(c);let uri="upi://pay?pa="+encodeURIComponent(profile.upi)+"&pn="+encodeURIComponent(profile.shopName)+(b>0?"&am="+b+"&cu=INR":"");window.location.href=uri
-}
-function printLedger(){window.print()}
-
-function openInvoiceModal(){
-  document.getElementById("invItem").value="";document.getElementById("invRate").value="";document.getElementById("invGst").value="";
-  document.getElementById("invoiceModal").style.display="flex";
-}
-
-function generateInvoice(){
-  const c = customers.find(x=>x.id===active);
-  const type = document.getElementById("invType").value;
-  const item = document.getElementById("invItem").value.trim() || "किराना सामान";
-  const rate = Number(document.getElementById("invRate").value) || 0;
-  const gst = Number(document.getElementById("invGst").value) || 0;
-  if(rate <= 0){ toast("सही मूल्य भरें"); return; }
-  
-  const taxAmount = (rate * gst) / 100;
-  const total = rate + taxAmount;
-  const invDate = new Intl.DateTimeFormat("hi-IN",{day:"numeric",month:"short",year:"numeric"}).format(new Date());
-
-  const pArea = document.getElementById("invoicePrintArea");
-  pArea.innerHTML = `
-    <div style="border:2px solid #111; padding:20px; border-radius:10px; max-width:480px; margin:auto;">
-      <div style="text-align:center; border-bottom:1px solid #ddd; padding-bottom:10px;">
-        <h2 style="font-size:20px;">${esc(profile.shopName)}</h2>
-        <p style="font-size:11px;">${type === 'gst' ? 'पक्का बिल (Tax Invoice)' : 'कच्चा पर्चा (Estimation Slip)'}</p>
-        ${profile.gstin ? `<p style="font-size:10px;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
-      </div>
-      <div style="display:flex; justify-content:space-between; margin-top:10px; font-size:11px;">
-        <div><b>ग्राहक:</b> ${esc(c ? c.name : 'नकद ग्राहक')}</div>
-        <div><b>दिनांक:</b> ${invDate}</div>
-      </div>
-      <table style="width:100%; border-collapse:collapse; margin-top:15px; font-size:12px;">
-        <thead>
-          <tr style="border-bottom:1px solid #111; text-align:left;">
-            <th style="padding:6px 0;">विवरण</th>
-            <th style="text-align:right;">मूल्य</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding:8px 0;">${esc(item)}</td>
-            <td style="text-align:right;">₹${rate.toFixed(2)}</td>
-          </tr>
-          ${type === 'gst' && gst > 0 ? `
-          <tr>
-            <td style="padding:4px 0; color:#555;">GST (${gst}%)</td>
-            <td style="text-align:right; color:#555;">₹${taxAmount.toFixed(2)}</td>
-          </tr>` : ''}
-          <tr style="border-top:2px solid #111; font-weight:800; font-size:14px;">
-            <td style="padding:10px 0;">कुल देय राशि:</td>
-            <td style="text-align:right; padding:10px 0;">₹${total.toFixed(2)}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="text-align:center; margin-top:20px; font-size:10px; color:#666;">
-        UPI भुगतान: ${esc(profile.upi || 'उपलब्ध नहीं')}<br>
-        🙏 धन्यवाद 🙏
-      </div>
-    </div>
-  `;
-  closeModal('invoiceModal');
-  window.print();
-}
-
-function openInsurance(){ window.open(TURTLEMINT_URL, "_blank"); }
-function applyLoan(){
-  let msg = `नमस्ते रवींद्र जी 🙏\n\nमुझे 'चुपाकाबरा खाता' ऐप से व्यापार लोन (Business Loan) की जानकारी चाहिए।`;
-  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
-}
-function applyMF(){
-  let msg = `नमस्ते रवींद्र जी 🙏\n\nमुझे 'चुपाकाबरा खाता' ऐप से म्यूचुअल फंड / SIP बचत योजना के बारे में जानकारी चाहिए।`;
-  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
+/* NAVIGATION ROUTER */
 function showLedger(){
- ["mandi","reports","detail","services"].forEach(id=>document.getElementById(id).style.display="none");
- document.getElementById("dashboard").style.display="block";document.getElementById("ledger").style.display="block";document.getElementById("fab").style.display="block";
- nav("bLedger");renderCustomers()
+  ["mandi","services","detail","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  document.getElementById("dashboard").style.display="block";
+  document.getElementById("ledger").style.display="block";
+  document.getElementById("fab").style.display="block";
+  setNav("bLedger");
+  renderCustomers();
+}
+function showBilling(){
+  ["dashboard","ledger","detail","mandi","services"].forEach(id => document.getElementById(id).style.display="none");
+  document.getElementById("billingDesk").style.display="block";
+  document.getElementById("fab").style.display="none";
+  setNav("bBilling");
+  renderCart();
 }
 function showMandi(){
- ["dashboard","ledger","detail","reports","services"].forEach(id=>document.getElementById(id).style.display="none");
- document.getElementById("mandi").style.display="block";document.getElementById("fab").style.display="none";nav("bMandi");loadDistrictMandi()
-}
-function showReports(){
- ["dashboard","ledger","detail","mandi","services"].forEach(id=>document.getElementById(id).style.display="none");
- document.getElementById("reports").style.display="block";document.getElementById("fab").style.display="none";nav("bReport");dashboard()
+  ["dashboard","ledger","detail","services","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  document.getElementById("mandi").style.display="block";
+  document.getElementById("fab").style.display="none";
+  setNav("bMandi");
+  loadDistrictMandi();
 }
 function showServices(){
- ["dashboard","ledger","detail","mandi","reports"].forEach(id=>document.getElementById(id).style.display="none");
- document.getElementById("services").style.display="block";document.getElementById("fab").style.display="none";nav("bServices");
+  ["dashboard","ledger","detail","mandi","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
+  document.getElementById("services").style.display="block";
+  document.getElementById("fab").style.display="none";
+  setNav("bServices");
 }
-function nav(id){document.querySelectorAll(".bottom button").forEach(b=>b.classList.remove("active"));document.getElementById(id).classList.add("active")}
+function openBankingHub(){
+  document.getElementById("bankingModal").style.display = "flex";
+}
+function setNav(id){
+  document.querySelectorAll(".bottom button").forEach(b => b.classList.remove("active"));
+  const btn = document.getElementById(id);
+  if(btn) btn.classList.add("active");
+}
 
-// LIVE MANDI AGMARKNET
+/* LIVE AGMARKNET MANDI API */
 async function loadDistrictMandi(){
   const dist = document.getElementById("mandiDistrictSelect").value;
   const list = document.getElementById("mandiList");
   const status = document.getElementById("mandiStatusText");
-  
   status.textContent = "⏳ लोड हो रहा है...";
   list.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:25px;color:var(--muted);font-size:12px">ताज़ा सरकारी मंडी भाव आ रहे हैं...</div>`;
 
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=${GOV_API_KEY}&format=json&limit=20&filters[state]=Uttar Pradesh&filters[district]=${dist}`;
+  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001a36f11e8747548be776874344c488a08&format=json&limit=20&filters[state]=Uttar Pradesh&filters[district]=${dist}`;
 
   try {
     const res = await fetch(url);
@@ -1218,51 +1061,71 @@ async function loadDistrictMandi(){
     if(data.records && data.records.length > 0){
       status.textContent = "🟢 लाइव सरकारी भाव";
       list.innerHTML = data.records.map(r => `
-        <div class="mandicard">
-          <div class="emoji">🌾</div>
-          <h3>${esc(r.commodity)}</h3>
-          <div class="mprice">₹${Number(r.modal_price||0).toLocaleString("en-IN")}</div>
-          <div class="mrange">₹${r.min_price} – ₹${r.max_price} / क्विंटल</div>
-          <div style="font-size:10px;font-weight:700;color:var(--brand);margin-top:6px">📍 ${esc(r.market)}</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px">📅 ${esc(r.arrival_date)}</div>
+        <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)">
+          <div style="font-size:20px">🌾</div>
+          <h3 style="font-size:12.5px;font-weight:800;margin-top:6px">${esc(r.commodity)}</h3>
+          <div style="font-size:17px;font-weight:800;color:#0284c7;margin-top:4px">₹${Number(r.modal_price||0).toLocaleString("en-IN")}</div>
+          <div style="font-size:9.5px;color:var(--muted)">₹${r.min_price} – ₹${r.max_price} / क्विंटल</div>
+          <div style="font-size:9.5px;font-weight:700;color:#059669;margin-top:4px">📍 ${esc(r.market)}</div>
         </div>
       `).join("");
     } else { throw new Error(); }
   } catch(e) {
-    status.textContent = "🟡 मानक भाव (ऑफ़लाइन)";
+    status.textContent = "🟡 मानक भाव";
     list.innerHTML = `
-      <div class="mandicard"><div class="emoji">🌾</div><h3>गेहूँ (Wheat)</h3><div class="mprice">₹2,450</div><div class="mrange">₹2,380 – ₹2,500 / क्विंटल</div><div style="font-size:10px;font-weight:700;color:var(--brand);margin-top:6px">📍 गल्ला मंडी</div></div>
-      <div class="mandicard"><div class="emoji">🍚</div><h3>धान (Paddy)</h3><div class="mprice">₹2,280</div><div class="mrange">₹2,180 – ₹2,340 / क्विंटल</div><div style="font-size:10px;font-weight:700;color:var(--brand);margin-top:6px">📍 कृषि मंडी</div></div>`;
+      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">🌾 <b>गेहूँ</b><div style="font-size:16px;font-weight:800;color:#0284c7">₹2,450</div><small>प्रति क्विंटल</small></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">🍚 <b>धान</b><div style="font-size:16px;font-weight:800;color:#0284c7">₹2,280</div><small>प्रति क्विंटल</small></div>
+    `;
   }
 }
 
+/* SETTINGS MODAL */
 function openSettings(){
- document.getElementById("shopName").value = profile.shopName || "";
- document.getElementById("shopUpi").value = profile.upi || "";
- document.getElementById("shopGst").value = profile.gstin || "";
- document.getElementById("settingsModal").style.display = "flex";
+  document.getElementById("shopName").value = profile.shopName || "";
+  document.getElementById("merchantName").value = profile.merchantName || "";
+  document.getElementById("merchantGender").value = profile.gender || "male";
+  document.getElementById("shopUpi").value = profile.upi || "";
+  document.getElementById("shopGst").value = profile.gstin || "";
+  document.getElementById("settingsModal").style.display = "flex";
 }
 function saveSettings(){
- let n = document.getElementById("shopName").value.trim(), u = document.getElementById("shopUpi").value.trim(), g = document.getElementById("shopGst").value.trim();
- if(!n || !u){ toast("दुकान का नाम और UPI ID भरें"); return; }
- profile.shopName = n; profile.upi = u; profile.gstin = g;
- syncData(); profileUI(); closeModal("settingsModal"); toast("जानकारी सुरक्षित हो गई ✓");
-}
-function setPin(){closeModal("settingsModal");document.getElementById("newPin").value="";document.getElementById("pinModal").style.display="flex"}
-function savePin(){let p=document.getElementById("newPin").value.trim();if(!/^\d{4}$/.test(p)){toast("4 अंकों का PIN डालें");return}localStorage.setItem(PINKEY,p);closeModal("pinModal");toast("PIN लॉक सक्रिय हो गया 🔐")}
-function unlock(){let saved=localStorage.getItem(PINKEY),p=document.getElementById("unlockPin").value;if(p===saved){document.getElementById("lockScreen").style.display="none";sessionStorage.setItem("chupaUnlocked","1")}else toast("गलत PIN")}
-function confirmReset(){if(!confirm("सभी ग्राहक और लेन-देन हमेशा के लिए मिट जाएंगे। जारी रखें?"))return;localStorage.removeItem(CK);localStorage.removeItem(PK);localStorage.removeItem(PINKEY);location.reload()}
+  const s = document.getElementById("shopName").value.trim();
+  const m = document.getElementById("merchantName").value.trim();
+  const g = document.getElementById("merchantGender").value;
+  const u = document.getElementById("shopUpi").value.trim();
+  const gst = document.getElementById("shopGst").value.trim().toUpperCase();
 
-function exportData(){
- let data={profile,customers,exportedAt:new Date().toISOString()};let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chupakabra-khata-backup.json";a.click();URL.revokeObjectURL(a.href)
-}
-function importData(){
- let input=document.createElement("input");input.type="file";input.accept=".json,application/json";input.onchange=()=>{let f=input.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.customers)throw 0;customers=d.customers;profile=d.profile||profile;syncData();profileUI();renderCustomers();toast("Backup वापस आ गया ✓")}catch(e){toast("Backup फाइल सही नहीं है")}};r.readAsText(f)};input.click()
+  if(!s){ toast("दुकान का नाम दर्ज करें"); return; }
+  profile.shopName = s;
+  profile.merchantName = m;
+  profile.gender = g;
+  profile.upi = u;
+  profile.gstin = gst;
+
+  syncData();
+  profileUI();
+  closeModal("settingsModal");
+  toast("सेटिंग्स सुरक्षित हुईं ✓");
+  speakMunshiHonorific();
 }
 
-document.querySelectorAll(".modal").forEach(m=>m.addEventListener("click",e=>{if(e.target===m)m.style.display="none"}));
-profileUI();renderCustomers();
-if(localStorage.getItem(PINKEY)&&sessionStorage.getItem("chupaUnlocked")!=="1")document.getElementById("lockScreen").style.display="flex";
+function setPin(){
+  const p = prompt("4 अंकों का नया सुरक्षा PIN दर्ज करें:");
+  if(p && /^\d{4}$/.test(p)){
+    localStorage.setItem(PINKEY, p);
+    toast("PIN लॉक सक्रिय हो गया 🔐");
+  } else if(p !== null) {
+    alert("कृपया केवल 4 अंक दर्ज करें!");
+  }
+}
+
+// INITIALIZATION
+window.addEventListener('DOMContentLoaded', () => {
+  updateLivePanchang();
+  profileUI();
+  renderCustomers();
+  renderCart();
+});
 </script>
 </body>
 </html>
