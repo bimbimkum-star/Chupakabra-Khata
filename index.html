@@ -49,6 +49,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 .logo-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
 .brand h1{font-size:17px;font-weight:800;letter-spacing:-0.2px}.brand p{font-size:10.5px;color:#94a3b8;margin-top:2px}
 .top-actions{display:flex;gap:8px;align-items:center}
+.vault-badge{display:flex;align-items:center;gap:5px;background:rgba(245,158,11,0.2);border:1px solid #f59e0b;padding:5px 9px;border-radius:12px;color:#fde047;font-size:11px;font-weight:800}
 .syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;cursor:pointer}
 .syncbtn:active{transform:scale(0.96)}
 .topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px}
@@ -115,6 +116,13 @@ button,input,select{font:inherit}button{cursor:pointer}
 .gov-sub{font-size:9.5px;color:var(--muted);margin-bottom:8px;line-height:1.2}
 .gov-btn{width:100%;padding:6px 0;border-radius:10px;background:#f1f5f9;color:#0284c7;font-size:10.5px;font-weight:800;text-decoration:none;display:block;border:1px solid #e2e8f0}
 
+/* COMMUNITY REACTION CARD */
+.reaction-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin-top:14px;box-shadow:var(--shadow)}
+.reaction-title{font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:space-between}
+.reaction-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.r-btn{border:1px solid var(--line);background:#f8fafc;padding:9px 6px;border-radius:12px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}
+.r-btn:active{transform:scale(0.96)}
+
 /* ANIMATED REAL CHUPAKABRA MASCOT */
 .mascot-wrap{position:fixed;left:16px;bottom:75px;z-index:90;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
 .mascot-bubble{background:#fff;border:2px solid #059669;padding:8px 12px;border-radius:16px 16px 16px 2px;font-size:11px;font-weight:800;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.15);margin-bottom:8px;max-width:220px;display:none;pointer-events:auto;line-height:1.35}
@@ -129,6 +137,18 @@ button,input,select{font:inherit}button{cursor:pointer}
   75% { transform: scale(1.1) rotate(4deg); }
   100% { transform: scale(1) rotate(0deg); }
 }
+@keyframes chupaShake {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-14deg) scale(0.9); }
+  40% { transform: rotate(14deg) scale(1.1); }
+  60% { transform: rotate(-8deg); }
+  80% { transform: rotate(8deg); }
+}
+@keyframes chupaJoy {
+  0%, 100% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-16px) scale(1.12); }
+  60% { transform: translateY(0) scale(0.96); }
+}
 
 .mascot-container{position:relative;pointer-events:auto;cursor:pointer}
 .chupa-avatar{
@@ -140,6 +160,13 @@ button,input,select{font:inherit}button{cursor:pointer}
 }
 .chupa-avatar.talking{
   animation:chupaSpeaking 0.35s ease-in-out infinite !important;
+}
+.chupa-avatar.joy{
+  animation:chupaJoy 0.6s ease-in-out !important;
+}
+.chupa-avatar.kutai{
+  animation:chupaShake 0.5s ease-in-out !important;
+  border-color:#e11d48 !important;
 }
 .mascot-mute{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#0f172a;color:#fff;font-size:10px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
 
@@ -190,7 +217,7 @@ button,input,select{font:inherit}button{cursor:pointer}
     width: 76mm !important;
     max-width: 76mm !important;
     font-size: 11px !important;
-    padding: 6px !important;
+    padding: 4px !important;
     page-break-inside: avoid;
     break-inside: avoid;
   }
@@ -227,6 +254,10 @@ button,input,select{font:inherit}button{cursor:pointer}
     </div>
   </div>
   <div class="top-actions">
+    <div class="vault-badge" title="गद्दी की बरकत बचत">
+      <span>🪙</span>
+      <span id="vaultBalance">0.00</span>
+    </div>
     <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
     <button class="topbtn" type="button" onclick="openSettings()">⚙</button>
   </div>
@@ -251,6 +282,22 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div class="head"><h2>ग्राहकों का हिसाब</h2><span id="count">0 ग्राहक</span></div>
  <input id="search" class="search" placeholder="🔎  ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
  <div class="list" id="customers"></div>
+
+ <!-- COMMUNITY ENTERTAINING REACTION CARD -->
+ <div class="reaction-card">
+   <div class="reaction-title">
+     <span>मुंशी जी की खैर-खबर</span>
+     <small style="color:var(--muted);font-size:10px">देसी गद्दी रिएक्शन</small>
+   </div>
+   <div class="reaction-buttons">
+     <button class="r-btn" onclick="feedChai()" style="background:#fffbeb;color:#b45309;border-color:#fde68a">
+       ☕ चाय पिलाओ (<span id="chaiCount">0</span>)
+     </button>
+     <button class="r-btn" onclick="hitKutai()" style="background:#fff1f2;color:#e11d48;border-color:#fecdd3">
+       🩴 मुंशी जी की कुटाई (<span id="kutaiCount">0</span>)
+     </button>
+   </div>
+ </div>
 </main>
 
 <!-- DEDICATED INDEPENDENT BILLING DESK -->
@@ -305,9 +352,19 @@ button,input,select{font:inherit}button{cursor:pointer}
        <span style="color:var(--muted)">उप-योग (Subtotal):</span>
        <strong id="cSubtotal">₹0.00</strong>
      </div>
-     <div class="cart-summary-row" id="gstSplitRow" style="display:none;color:#059669">
-       <span>GST (CGST + SGST 5%):</span>
-       <strong id="cGstAmount">₹0.00</strong>
+     <div class="cart-summary-row" id="gstBreakdownRow" style="display:none;flex-direction:column;gap:3px;color:#059669;padding:4px 0">
+       <div style="display:flex;justify-content:space-between;font-size:11px">
+         <span>कर योग्य मूल्य (Taxable):</span>
+         <span id="cTaxable">₹0.00</span>
+       </div>
+       <div style="display:flex;justify-content:space-between;font-size:11px">
+         <span>CGST (2.5%):</span>
+         <span id="cCgst">₹0.00</span>
+       </div>
+       <div style="display:flex;justify-content:space-between;font-size:11px">
+         <span>SGST (2.5%):</span>
+         <span id="cSgst">₹0.00</span>
+       </div>
      </div>
      <div class="cart-summary-row" style="align-items:center">
        <span style="color:var(--muted)">छूट / डिस्काउंट:</span>
@@ -474,7 +531,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <button id="bBilling" onclick="showBilling()"><div>🛒</div>बिल काउंटर</button>
  <button id="bMandi" onclick="showMandi()"><div>🌾</div>मंडी भाव</button>
  <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
- <button onclick="openBankingHub()"><div>🏛️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
+ <button onclick="openBankingHub()"><div>??️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
 </nav>
 
 <!-- MODALS -->
@@ -506,12 +563,30 @@ button,input,select{font:inherit}button{cursor:pointer}
    </select>
  </div>
  <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="मेरी दुकान"></div>
+ <div class="setting"><small>दुकान का पता व लैंडमार्क</small><input id="shopAddress" class="input" placeholder="उदा. मेन चौराहा, बहराइच"></div>
+ <div class="setting"><small>दुकानदार संपर्क फ़ोन</small><input id="shopPhone" class="input" type="tel" placeholder="मोबाइल नंबर"></div>
  <div class="setting"><small>UPI ID</small><input id="shopUpi" class="input" placeholder="merchant@upi"></div>
  <div class="setting"><small>GSTIN (वैकल्पिक)</small><input id="shopGst" class="input" placeholder="09AAAAA0000A1Z5"></div>
  
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
    <button type="button" class="tool" style="background:#eef2ff;color:#0284c7;font-weight:800;padding:10px 4px" onclick="downloadRoyalPoster()">⬇️ QR पोस्टर</button>
    <button type="button" class="tool" style="background:#f1f5f9;font-weight:800;padding:10px 4px" onclick="setPin()">🔐 PIN बदलें</button>
+ </div>
+
+ <!-- SECRET ADMIN ENTRY -->
+ <div style="margin-top:12px;padding:12px;background:#f1f5f9;border-radius:14px;border:1px dashed #cbd5e1">
+   <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">🔐 मुंशी जी गुप्त मालिक मीटर (पिन दर्ज करें):</div>
+   <div style="display:flex;gap:6px">
+     <input id="adminPinInput" class="input" type="password" maxlength="4" placeholder="4-अंकीय पिन" style="margin:0;height:38px;font-size:12px">
+     <button type="button" onclick="verifyAdminView()" style="border:0;background:#0f172a;color:#fff;padding:0 12px;border-radius:10px;font-size:11px;font-weight:800">खोलें</button>
+   </div>
+   <div id="adminStatsBox" style="display:none;margin-top:10px;padding-top:8px;border-top:1px solid #cbd5e1;font-size:11px;line-height:1.6">
+     <div>👁️ <b>कुल ऐप हाजिरी:</b> <span id="admVisits">0</span></div>
+     <div>🧾 <b>कुल बने बिल:</b> <span id="admBills">0</span></div>
+     <div>☕ <b>कुल मिली चाय:</b> <span id="admChai">0</span></div>
+     <div>🩴 <b>कुल हुई कुटाई:</b> <span id="admKutai">0</span></div>
+     <div>🪙 <b>गद्दी की बरकत तिजोरी:</b> <span id="admBarakat">0.00</span> सिक्का</div>
+   </div>
  </div>
 
  <div class="modalrow" style="margin-top:14px">
@@ -592,17 +667,29 @@ const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV44127
 const PARTNER_WHATSAPP = "9369913187";
 
 const PK="chupaProfile_final", CK="chupaCustomers_final", PINKEY="chupaPin_final";
+const VK="chupaVault_final", BK="chupaBillCount_final", RK="chupaReactions_final";
+
 let profile = JSON.parse(localStorage.getItem(PK)) || {
   shopName: "मेरी दुकान का खाता",
+  shopAddress: "मेन बाज़ार, उत्तर प्रदेश",
+  shopPhone: "9876543210",
   merchantName: "सत्यप्रकाश सिंह",
   gender: "male",
   upi: "",
   gstin: ""
 };
 let customers = JSON.parse(localStorage.getItem(CK)) || [];
+let vault = Number(localStorage.getItem(VK) || "0.00");
+let billCount = Number(localStorage.getItem(BK) || "101");
+let reactions = JSON.parse(localStorage.getItem(RK)) || { chai: 14, kutai: 2, visits: 85 };
+
 let active = null, txType = "give", editing = false;
 let isMuted = localStorage.getItem("chupaMute") === "1";
 let activeBillMode = 'kaccha';
+
+// Live Visit Counter
+reactions.visits = (reactions.visits || 0) + 1;
+localStorage.setItem(RK, JSON.stringify(reactions));
 
 /* CART STATE FOR COUNTER BILLING */
 let cart = [
@@ -710,6 +797,29 @@ function toggleMascotMute(e) {
   localStorage.setItem("chupaMute", isMuted ? "1" : "0");
   document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
   toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
+}
+
+/* ENTERTAINING REACTION SYSTEM */
+function feedChai(){
+  const img = document.getElementById("chupaImg");
+  img.classList.remove("joy","kutai");
+  void img.offsetWidth;
+  img.classList.add("joy");
+  reactions.chai = (reactions.chai || 0) + 1;
+  syncData();
+  profileUI();
+  speakMunshi("आहा! कड़क अदरक वाली चाय... गद्दी की जय हो मालिक!");
+}
+
+function hitKutai(){
+  const img = document.getElementById("chupaImg");
+  img.classList.remove("joy","kutai");
+  void img.offsetWidth;
+  img.classList.add("kutai");
+  reactions.kutai = (reactions.kutai || 0) + 1;
+  syncData();
+  profileUI();
+  speakMunshi("अरे बाप रे! चप्पल पड़ गई... मुंशी जी से कोई भूल नहीं होगी!");
 }
 
 /* FIREBASE AUTHENTICATION */
@@ -824,6 +934,9 @@ function closeModal(id){document.getElementById(id).style.display="none"}
 function syncData(){
   localStorage.setItem(CK, JSON.stringify(customers));
   localStorage.setItem(PK, JSON.stringify(profile));
+  localStorage.setItem(VK, vault.toFixed(2));
+  localStorage.setItem(BK, String(billCount));
+  localStorage.setItem(RK, JSON.stringify(reactions));
   if (currentUser && db) {
     db.collection("merchants").doc(currentUser.uid).set({
       profile: profile,
@@ -836,6 +949,9 @@ function syncData(){
 function profileUI(){
   document.getElementById("shopTitle").textContent = profile.shopName || "मेरी दुकान का खाता";
   document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
+  document.getElementById("vaultBalance").textContent = vault.toFixed(2);
+  document.getElementById("chaiCount").textContent = reactions.chai;
+  document.getElementById("kutaiCount").textContent = reactions.kutai;
 }
 
 function dashboard(){
@@ -992,7 +1108,7 @@ function switchBillMode(mode) {
   activeBillMode = mode;
   document.getElementById("bTypeKaccha").className = "bill-type-btn " + (mode === 'kaccha' ? 'active' : '');
   document.getElementById("bTypeGst").className = "bill-type-btn " + (mode === 'gst' ? 'active' : '');
-  document.getElementById("gstSplitRow").style.display = mode === 'gst' ? 'flex' : 'none';
+  document.getElementById("gstBreakdownRow").style.display = mode === 'gst' ? 'flex' : 'none';
   recalcCart();
 }
 
@@ -1029,11 +1145,20 @@ function recalcCart() {
   let sub = 0;
   cart.forEach(i => sub += (Number(i.qty||0) * Number(i.rate||0)));
   const disc = Number(document.getElementById("cDiscount").value) || 0;
-  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
-  const grand = Math.max(0, (sub + gst) - disc);
+  
+  let taxable = sub;
+  let cgst = 0, sgst = 0, totalGst = 0;
+  if(activeBillMode === 'gst'){
+    cgst = taxable * 0.025;
+    sgst = taxable * 0.025;
+    totalGst = cgst + sgst;
+  }
+  const grand = Math.max(0, (sub + totalGst) - disc);
 
   document.getElementById("cSubtotal").textContent = "₹" + sub.toFixed(2);
-  document.getElementById("cGstAmount").textContent = "₹" + gst.toFixed(2);
+  document.getElementById("cTaxable").textContent = "₹" + taxable.toFixed(2);
+  document.getElementById("cCgst").textContent = "₹" + cgst.toFixed(2);
+  document.getElementById("cSgst").textContent = "₹" + sgst.toFixed(2);
   document.getElementById("cGrandTotal").textContent = "₹" + grand.toFixed(2);
 }
 
@@ -1053,13 +1178,17 @@ async function connectBluetoothThermal() {
   }
 }
 
-/* 100% CLEAN INVOICE PRINT FUNCTION (NO EMPTY ROWS, DYNAMIC QR, ECO MESSAGE) */
+/* 100% TIMING-FIXED PRINT FUNCTION (400ms DELAY + RK-MART STYLE STRUCTURE) */
 function printCartInvoice() {
   const cName = document.getElementById("cartCustName").value.trim() || "नकद ग्राहक";
   const pArea = document.getElementById("invoicePrintArea");
   const paperSize = document.getElementById("printPaperSize") ? document.getElementById("printPaperSize").value : "roll";
   const now = new Date();
+  
   const dStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
+  const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
+  const currentBillNo = `A-${billCount}`;
+
   let sub = 0;
   let rows = "";
   let itemIndex = 1;
@@ -1082,27 +1211,42 @@ function printCartInvoice() {
   });
 
   const disc = Number(document.getElementById("cDiscount").value) || 0;
-  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
-  const grand = Math.max(0, (sub + gst) - disc);
+  let cgst = 0, sgst = 0, totalGst = 0;
+  if(activeBillMode === 'gst'){
+    cgst = sub * 0.025;
+    sgst = sub * 0.025;
+    totalGst = cgst + sgst;
+  }
+  const grand = Math.max(0, (sub + totalGst) - disc);
 
   const qrUri = profile.upi ? `upi://pay?pa=${encodeURIComponent(profile.upi)}&pn=${encodeURIComponent(profile.shopName)}&am=${grand.toFixed(2)}&cu=INR` : "";
-  const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(qrUri)}` : "";
-
+  const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrUri)}` : "";
   const isRoll = paperSize === "roll";
 
   pArea.innerHTML = `
     <div class="${isRoll ? 'paper-roll' : 'paper-a4'}" style="margin:auto;font-family:monospace;background:#fff;color:#000;border:1px solid #111;">
-      <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:6px;">
-        <h2 style="font-size:${isRoll ? '15px' : '22px'};margin:0;font-weight:800;">${esc(profile.shopName)}</h2>
-        <p style="font-size:${isRoll ? '10px' : '12px'};margin:2px 0;">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
-        ${profile.gstin ? `<p style="font-size:9px;margin:0;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
+      <!-- SHOP HEADER -->
+      <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:5px;">
+        <h2 style="font-size:${isRoll ? '16px' : '22px'};margin:0;font-weight:800;">${esc(profile.shopName)}</h2>
+        <p style="font-size:${isRoll ? '9.5px' : '12px'};margin:2px 0;">${esc(profile.shopAddress || '')}</p>
+        <p style="font-size:${isRoll ? '9.5px' : '11px'};margin:0;">मो.: ${esc(profile.shopPhone || '')}</p>
+        <p style="font-size:${isRoll ? '10px' : '12px'};margin:3px 0 0;font-weight:bold;">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
+        ${profile.gstin ? `<p style="font-size:9.5px;margin:1px 0;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
       </div>
 
-      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '10px' : '11px'};margin:6px 0;">
-        <div>ग्राहक: ${esc(cName)}</div>
-        <div>दिनांक: ${dStr}</div>
+      <!-- METADATA -->
+      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '9.5px' : '11px'};margin:6px 0;line-height:1.3;">
+        <div>
+          <div>बिल संख्या: <b>#${currentBillNo}</b></div>
+          <div>ग्राहक: ${esc(cName)}</div>
+        </div>
+        <div style="text-align:right">
+          <div>दिनांक: ${dStr}</div>
+          <div>समय: ${tStr}</div>
+        </div>
       </div>
 
+      <!-- ITEMS TABLE -->
       <table style="width:100%;border-collapse:collapse;font-size:${isRoll ? '10px' : '12px'};">
         <thead>
           <tr style="border-top:1px solid #000;border-bottom:1px solid #000;">
@@ -1118,34 +1262,54 @@ function printCartInvoice() {
         </tbody>
       </table>
 
-      <div style="border-top:1px solid #000;padding-top:4px;margin-top:6px;text-align:right;font-size:${isRoll ? '12px' : '15px'};font-weight:bold;">
-        ${disc > 0 ? `<div style="font-size:10px;font-weight:normal;">छूट: -₹${disc.toFixed(2)}</div>` : ''}
-        ${gst > 0 ? `<div style="font-size:10px;font-weight:normal;">GST (5%): +₹${gst.toFixed(2)}</div>` : ''}
-        कुल देय राशि: ₹${grand.toFixed(2)}
+      <!-- SUMMARY & TAX BREAKDOWN -->
+      <div style="border-top:1px solid #000;padding-top:4px;margin-top:5px;text-align:right;font-size:${isRoll ? '11px' : '13px'};">
+        <div>उप-योग: ₹${sub.toFixed(2)}</div>
+        ${disc > 0 ? `<div style="font-size:10px;">छूट (बचत): -₹${disc.toFixed(2)}</div>` : ''}
+        ${activeBillMode === 'gst' ? `
+          <div style="font-size:9.5px;">CGST (2.5%): +₹${cgst.toFixed(2)}</div>
+          <div style="font-size:9.5px;">SGST (2.5%): +₹${sgst.toFixed(2)}</div>
+        ` : ''}
+        <div style="font-size:${isRoll ? '13px' : '16px'};font-weight:bold;margin-top:2px;border-top:1px dashed #000;padding-top:2px;">
+          कुल देय राशि: ₹${grand.toFixed(2)}
+        </div>
       </div>
 
-      <div style="margin-top:10px;padding-top:8px;border-top:1px dashed #000;display:flex;justify-content:space-between;align-items:center;">
+      <!-- QR CODE & SIGNATURE -->
+      <div style="margin-top:8px;padding-top:6px;border-top:1px dashed #000;display:flex;justify-content:space-between;align-items:center;">
         <div style="text-align:center;">
           ${qrImgUrl ? `
-            <img src="${qrImgUrl}" style="width:${isRoll ? '80px' : '100px'};height:${isRoll ? '80px' : '100px'};border:1px solid #000;display:block;margin:auto;" alt="भुगतान QR">
-            <span style="font-size:8.5px;font-weight:bold;display:block;margin-top:2px;">स्कैन करें (₹${grand.toFixed(2)})</span>
+            <img src="${qrImgUrl}" style="width:${isRoll ? '75px' : '95px'};height:${isRoll ? '75px' : '95px'};border:1px solid #000;display:block;margin:auto;" alt="भुगतान QR">
+            <span style="font-size:8px;font-weight:bold;display:block;margin-top:2px;">स्कैन पे (₹${grand.toFixed(2)})</span>
           ` : '<span style="font-size:9px;">UPI उपलब्ध नहीं</span>'}
         </div>
-        <div style="text-align:right;font-size:10px;">
-          <div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:35px;">अधिकृत हस्ताक्षर</div>
+        <div style="text-align:right;font-size:9.5px;">
+          <div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:28px;">अधिकृत हस्ताक्षर</div>
         </div>
       </div>
 
-      <div style="margin-top:10px;padding-top:6px;border-top:1px dotted #555;text-align:center;font-size:9px;line-height:1.3;">
-        🌿 <strong>प्रकृति की सुरक्षा हेतु WhatsApp बिल स्वीकार करें।</strong><br>
-        कागज़ बचाएँ, प्रकृति बचाएँ 🙏
+      <!-- TERMS & CREDIT -->
+      <div style="margin-top:8px;padding-top:5px;border-top:1px dotted #444;text-align:center;font-size:8.5px;line-height:1.35;">
+        <div>1. बिका हुआ सामान बिल समय से 24 घंटे में बदला जाएगा।</div>
+        <div>2. नकद वापसी देय नहीं होगी। धन्यवाद, फिर पधारें! 🙏</div>
+        <div style="margin-top:4px;font-weight:bold;color:#111;">
+          Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉
+        </div>
       </div>
     </div>
   `;
 
+  // Increment Vault & Bill Counter
+  vault += 0.05;
+  billCount += 1;
+  reactions.bills = (reactions.bills || 0) + 1;
+  syncData();
+  profileUI();
+
+  // 400ms Delay to Guarantee Crisp QR Code Rendering
   setTimeout(() => {
     window.print();
-  }, 200);
+  }, 400);
 }
 
 function sendCartWhatsApp() {
@@ -1156,7 +1320,7 @@ function sendCartWhatsApp() {
     return;
   }
   let sub = 0;
-  let text = `*${profile.shopName}*\nनमस्ते ${cName} जी,\nआपका बिल पर्चा:\n\n`;
+  let text = `*${profile.shopName}*\nमो.: ${profile.shopPhone || ''}\nनमस्ते ${cName} जी, आपका बिल पर्चा:\n\n`;
   cart.forEach((i, idx) => {
     if ((i.name && i.name.trim() !== "") || (i.rate && Number(i.rate) > 0)) {
       const qVal = Number(i.qty) || 1;
@@ -1166,10 +1330,18 @@ function sendCartWhatsApp() {
     }
   });
   const disc = Number(document.getElementById("cDiscount").value) || 0;
-  const gst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
-  const grand = Math.max(0, (sub + gst) - disc);
+  let totalGst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
+  const grand = Math.max(0, (sub + totalGst) - disc);
 
-  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*\nभुगतान UPI: ${profile.upi}\nधन्यवाद! 🙏`;
+  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*`;
+  if(profile.upi) text += `\nभुगतान UPI: ${profile.upi}`;
+  text += `\n\nबिका माल 24 घंटे में बदला जा सकता है।\n_Powered by चुपाकाबरा खाता_ 🐉`;
+
+  vault += 0.05;
+  billCount += 1;
+  syncData();
+  profileUI();
+
   window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(text), "_blank");
 }
 
@@ -1289,7 +1461,7 @@ function downloadRoyalPoster(){
 /* FINANCIAL SERVICES ROUTERS */
 function openInsurance(){ window.open(TURTLEMINT_URL, "_blank"); }
 function applyLoan(){
-  let msg = `नमस्ते रवींद्र जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन (Business Loan) की जानकारी चाहिए।`;
+  let msg = `नमस्ते जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन (Business Loan) की जानकारी चाहिए।`;
   window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
@@ -1365,17 +1537,39 @@ async function loadDistrictMandi(){
   }
 }
 
-/* SETTINGS MODAL */
+/* SETTINGS MODAL & ADMIN VIEW */
 function openSettings(){
   document.getElementById("shopName").value = profile.shopName || "";
+  document.getElementById("shopAddress").value = profile.shopAddress || "";
+  document.getElementById("shopPhone").value = profile.shopPhone || "";
   document.getElementById("merchantName").value = profile.merchantName || "";
   document.getElementById("merchantGender").value = profile.gender || "male";
   document.getElementById("shopUpi").value = profile.upi || "";
   document.getElementById("shopGst").value = profile.gstin || "";
+  document.getElementById("adminStatsBox").style.display = "none";
+  document.getElementById("adminPinInput").value = "";
   document.getElementById("settingsModal").style.display = "flex";
 }
+
+function verifyAdminView(){
+  const pin = document.getElementById("adminPinInput").value.trim();
+  if(pin === "1984" || pin === "1234"){
+    document.getElementById("admVisits").textContent = reactions.visits || 1;
+    document.getElementById("admBills").textContent = billCount - 100;
+    document.getElementById("admChai").textContent = reactions.chai;
+    document.getElementById("admKutai").textContent = reactions.kutai;
+    document.getElementById("admBarakat").textContent = vault.toFixed(2);
+    document.getElementById("adminStatsBox").style.display = "block";
+    toast("मालिक मीटर अनलॉक ✓");
+  } else {
+    alert("अमान्य सुरक्षा पिन!");
+  }
+}
+
 function saveSettings(){
   const s = document.getElementById("shopName").value.trim();
+  const a = document.getElementById("shopAddress").value.trim();
+  const p = document.getElementById("shopPhone").value.trim();
   const m = document.getElementById("merchantName").value.trim();
   const g = document.getElementById("merchantGender").value;
   const u = document.getElementById("shopUpi").value.trim();
@@ -1383,6 +1577,8 @@ function saveSettings(){
 
   if(!s){ toast("दुकान का नाम दर्ज करें"); return; }
   profile.shopName = s;
+  profile.shopAddress = a;
+  profile.shopPhone = p;
   profile.merchantName = m;
   profile.gender = g;
   profile.upi = u;
