@@ -1,12 +1,14 @@
 {
-  "name": "चुपाकाबरा खाता",
-  "short_name": "चुपाकाबरा",
-  "description": "सुरक्षित डिजिटल गद्दी और बहीखाता",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
   "background_color": "#0f172a",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "चुपाकाबरा खाता",
+  "orientation": "any",
+  "scope": "./",
+  "short_name": "चुपाकाबरा",
+  "start_url": "./index.html",
   "theme_color": "#0f172a",
+  "description": "सुरक्षित डिजिटल गद्दी और बहीखाता",
   "icons": [
     {
       "src": "logo.png",
