@@ -946,6 +946,27 @@ function syncData(){
   }
 }
 
+/* 100% STRICT DAILY CAP ENGINE (MAXIMUM 2.00 COINS PER DAY) */
+function addVaultReward(amount = 0.05) {
+  const today = new Date().toISOString().slice(0, 10);
+  const key = "chupaDailyEarned_" + today;
+  let earnedToday = Number(localStorage.getItem(key) || "0");
+
+  if (earnedToday < 2.00) {
+    const toAdd = Math.min(amount, 2.00 - earnedToday);
+    vault += toAdd;
+    earnedToday += toAdd;
+    localStorage.setItem(key, earnedToday.toFixed(2));
+    syncData();
+    profileUI();
+    toast(`+${toAdd.toFixed(2)} बरकत सिक्का तिजोरी में जुड़ा 🪙`);
+  } else {
+    syncData();
+    profileUI();
+    toast("आज का बरकत कोटा (2.00 सिक्के) पूरा हो चुका है! कल फिर मिलेगा।");
+  }
+}
+
 function profileUI(){
   document.getElementById("shopTitle").textContent = profile.shopName || "मेरी दुकान का खाता";
   document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
@@ -1299,8 +1320,8 @@ function printCartInvoice() {
     </div>
   `;
 
-  // Increment Vault & Bill Counter
-  vault += 0.05;
+  // Safe Daily Reward Execution
+  addVaultReward(0.05);
   billCount += 1;
   reactions.bills = (reactions.bills || 0) + 1;
   syncData();
@@ -1337,7 +1358,8 @@ function sendCartWhatsApp() {
   if(profile.upi) text += `\nभुगतान UPI: ${profile.upi}`;
   text += `\n\nबिका माल 24 घंटे में बदला जा सकता है।\n_Powered by चुपाकाबरा खाता_ 🐉`;
 
-  vault += 0.05;
+  // Safe Daily Reward Execution
+  addVaultReward(0.05);
   billCount += 1;
   syncData();
   profileUI();
