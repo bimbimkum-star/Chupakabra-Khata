@@ -8,7 +8,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
 
-<!-- 100% PWA ICON FIX: PURE ENCODED DATA MANIFEST -->
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <link rel="manifest" href="manifest.json">
@@ -17,10 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<!-- High Definition Client-Side QR Generator -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<!-- Firebase Compat SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -33,10 +29,9 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif}
 html{background:var(--bg)}
-body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:86px;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
+body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:110px;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
 button,input,select{font:inherit}button{cursor:pointer}
 
-/* BRANDED SPLASH SCREEN PULSE ANIMATION */
 @keyframes splashPulse {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.06); }
@@ -49,7 +44,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 .logo-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
 .brand h1{font-size:17px;font-weight:800;letter-spacing:-0.2px}.brand p{font-size:10.5px;color:#94a3b8;margin-top:2px}
 .top-actions{display:flex;gap:8px;align-items:center}
-.vault-badge{display:flex;align-items:center;gap:5px;background:rgba(245,158,11,0.2);border:1px solid #f59e0b;padding:5px 9px;border-radius:12px;color:#fde047;font-size:11px;font-weight:800}
+.vault-badge{display:flex;align-items:center;gap:5px;background:rgba(245,158,11,0.2);border:1px solid #f59e0b;padding:5px 9px;border-radius:12px;color:#fde047;font-size:11px;font-weight:800;cursor:pointer}
 .syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;cursor:pointer}
 .syncbtn:active{transform:scale(0.96)}
 .topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px}
@@ -57,33 +52,27 @@ button,input,select{font:inherit}button{cursor:pointer}
 .wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-10px}
 .summary{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
 .label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}.net{font-size:32px;font-weight:800;margin-top:2px}.smallnote{font-size:10px;color:var(--muted);margin-top:4px}
-
-/* सही मुंशी रंग: लेना है = लाल (बकाया), देना है = हरा (जमा) */
-.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.money{padding:12px;border-radius:16px;border:1px solid transparent}
-.money.get{background:var(--redbg);border-color:#ffe4e6}
-.money.give{background:var(--greenbg);border-color:#d1fae5}
-.money span{font-size:11px;color:var(--muted);font-weight:600}
-.money strong{display:block;font-size:18px;margin-top:4px}
-.money.get strong{color:var(--red)}
-.money.give strong{color:var(--green)}
+.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.money{padding:12px;border-radius:16px;border:1px solid transparent}.money.get{background:var(--greenbg);border-color:#d1fae5}.money.give{background:var(--redbg);border-color:#ffe4e6}
+.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:18px;margin-top:4px}.money.get strong{color:var(--green)}.money.give strong{color:var(--red)}
 
 .main,.detail,.mandi,.reports,.services,.billing{max-width:580px;margin:auto;padding:16px 15px}
 .head{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}.head h2{font-size:16px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
 .search{height:46px;width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 14px;outline:0;font-size:13px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)}.search:focus{border-color:#0284c7}
 .list{display:flex;flex-direction:column;gap:8px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:transform .08s ease}.customer:active{transform:scale(.985)}
-.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:13.5px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:2px}.right{text-align:right}.amt{font-size:15px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:2px}
-
-/* लेना है = लाल, देना है = हरा */
-.receive{color:var(--red) !important}.pay{color:var(--green) !important}
-
+.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:13.5px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:2px}.right{text-align:right}.amt{font-size:15px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:2px}.receive{color:var(--red)}.pay{color:var(--green)}
 .empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;font-size:30px;margin-bottom:6px}
-.fab{position:fixed;right:18px;bottom:75px;height:52px;padding:0 20px;border:0;border-radius:16px;background:#059669;color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(5,150,105,.35);z-index:40}
 
-/* FROSTED BOTTOM BAR */
-.bottom{position:fixed;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:35}
+/* FLOATING BAR BOTTOM CONTROLS */
+.fab{position:fixed;right:18px;bottom:80px;height:52px;padding:0 20px;border:0;border-radius:16px;background:#059669;color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(5,150,105,.35);z-index:80}
+.bottom{position:fixed;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:85}
 .bottom button{flex:1;border:0;background:none;color:#64748b;font-size:10px;font-weight:700}.bottom button div{font-size:19px;margin-bottom:2px}.bottom button.active{color:#059669}
 
+/* CUSTOMER LIST FOLDABLE CARD */
+.ledger-trigger-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-top:14px}
+.ledger-trigger-card:active{transform:scale(0.985)}
+.ledger-drawer{display:none;margin-top:12px}
+
+/* DETAIL PROFILE */
 .back{border:0;background:none;color:#0284c7;font-size:13px;font-weight:800;margin-bottom:12px}
 .profile{background:#fff;border-radius:24px;padding:20px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
 .bigavatar{width:58px;height:58px;border-radius:18px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin:auto;font-size:22px;font-weight:800}
@@ -99,7 +88,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 .tx{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
 .txnote{font-size:12px;font-weight:700}.txdate{font-size:9.5px;color:var(--muted);margin-top:2px}.txamt{font-size:14px;font-weight:800}.txbuttons{display:flex;gap:5px;margin-left:10px}.tiny{border:0;background:#f1f5f9;border-radius:8px;padding:5px 7px;font-size:10px}
 
-/* DEDICATED BILLING DESK */
+/* BILLING DESK */
 .billing-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
 .bill-type-toggle{display:inline-flex;padding:3px;background:#f1f5f9;border-radius:12px;margin-bottom:12px}
 .bill-type-btn{border:0;background:none;padding:6px 12px;border-radius:9px;font-size:11px;font-weight:700;color:#64748b}
@@ -119,7 +108,6 @@ button,input,select{font:inherit}button{cursor:pointer}
 .service-info p{font-size:10.5px;color:var(--muted);margin-top:2px}
 .service-desc{font-size:11px;color:#4b5563;margin:10px 0;line-height:1.5;background:#f8fafc;padding:10px 12px;border-radius:12px}
 .service-btn{width:100%;height:42px;border:0;border-radius:12px;background:#059669;color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
-
 .citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
 .gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
 .gov-emoji{font-size:24px;margin-bottom:3px}
@@ -128,39 +116,14 @@ button,input,select{font:inherit}button{cursor:pointer}
 .gov-sub{font-size:9.5px;color:var(--muted);margin-bottom:8px;line-height:1.2}
 .gov-btn{width:100%;padding:6px 0;border-radius:10px;background:#f1f5f9;color:#0284c7;font-size:10.5px;font-weight:800;text-decoration:none;display:block;border:1px solid #e2e8f0}
 
-/* COMMUNITY REACTION CARD */
-.reaction-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:14px;margin-top:14px;box-shadow:var(--shadow)}
-.reaction-title{font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:space-between}
-.reaction-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.r-btn{border:1px solid var(--line);background:#f8fafc;padding:9px 6px;border-radius:12px;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px}
-.r-btn:active{transform:scale(0.96)}
-
-/* ANIMATED REAL CHUPAKABRA MASCOT */
-.mascot-wrap{position:fixed;left:16px;bottom:75px;z-index:90;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
+/* DRAGON MASCOT */
+.mascot-wrap{position:fixed;left:16px;bottom:80px;z-index:80;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
 .mascot-bubble{background:#fff;border:2px solid #059669;padding:8px 12px;border-radius:16px 16px 16px 2px;font-size:11px;font-weight:800;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.15);margin-bottom:8px;max-width:220px;display:none;pointer-events:auto;line-height:1.35}
 
-@keyframes chupaBreathing {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50% { transform: translateY(-6px) scale(1.03); }
-}
-@keyframes chupaSpeaking {
-  0% { transform: scale(1) rotate(0deg); }
-  25% { transform: scale(1.1) rotate(-4deg); }
-  75% { transform: scale(1.1) rotate(4deg); }
-  100% { transform: scale(1) rotate(0deg); }
-}
-@keyframes chupaShake {
-  0%, 100% { transform: rotate(0deg); }
-  20% { transform: rotate(-14deg) scale(0.9); }
-  40% { transform: rotate(14deg) scale(1.1); }
-  60% { transform: rotate(-8deg); }
-  80% { transform: rotate(8deg); }
-}
-@keyframes chupaJoy {
-  0%, 100% { transform: translateY(0) scale(1); }
-  30% { transform: translateY(-16px) scale(1.12); }
-  60% { transform: translateY(0) scale(0.96); }
-}
+@keyframes chupaBreathing { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
+@keyframes chupaSpeaking { 0% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.1) rotate(-4deg); } 75% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1) rotate(0deg); } }
+@keyframes chupaShake { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(-14deg) scale(0.9); } 40% { transform: rotate(14deg) scale(1.1); } 60% { transform: rotate(-8deg); } 80% { transform: rotate(8deg); } }
+@keyframes chupaJoy { 0%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-16px) scale(1.12); } 60% { transform: translateY(0) scale(0.96); } }
 
 .mascot-container{position:relative;pointer-events:auto;cursor:pointer}
 .chupa-avatar{
@@ -170,24 +133,10 @@ button,input,select{font:inherit}button{cursor:pointer}
   animation:chupaBreathing 2.6s ease-in-out infinite;
   display:block;
 }
-.chupa-avatar.talking{
-  animation:chupaSpeaking 0.35s ease-in-out infinite !important;
-}
-.chupa-avatar.joy{
-  animation:chupaJoy 0.6s ease-in-out !important;
-}
-.chupa-avatar.kutai{
-  animation:chupaShake 0.5s ease-in-out !important;
-  border-color:#e11d48 !important;
-}
+.chupa-avatar.talking{ animation:chupaSpeaking 0.35s ease-in-out infinite !important; }
+.chupa-avatar.joy{ animation:chupaJoy 0.6s ease-in-out !important; }
+.chupa-avatar.kutai{ animation:chupaShake 0.5s ease-in-out !important; border-color:#e11d48 !important; }
 .mascot-mute{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#0f172a;color:#fff;font-size:10px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
-
-/* ROYAL QR CARD */
-.royal-qr-card{background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px 16px;text-align:center;color:#fff;box-shadow:0 15px 35px rgba(15,23,42,.35);border:1.5px solid rgba(251,191,36,.35);margin-bottom:12px}
-.royal-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:4px 12px;border-radius:20px;font-size:10px;font-weight:800;color:#fde047}
-.canvas-wrap{background:#fff;border-radius:18px;padding:12px;display:inline-block;margin:12px auto 8px;border:2px solid #e2e8f0;position:relative}
-#qrCanvasContainer{display:flex;justify-content:center;align-items:center}
-#qrCanvasContainer img,#qrCanvasContainer canvas{border-radius:10px;display:block}
 
 /* MODALS */
 .modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;z-index:100}
@@ -196,7 +145,7 @@ button,input,select{font:inherit}button{cursor:pointer}
 .input{width:100%;height:46px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px;background:#f8fafc}.input:focus{border-color:#0284c7}
 .modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
 .modalrow button{height:46px;border:0;border-radius:13px;font-weight:800}
-.cancel{background:#f1f5f9;color:#64748b}.save{background:#059669;color:#fff}.danger{background:var(--redbg);color:var(--red)}
+.cancel{background:#f1f5f9;color:#64748b}.save{background:#059669;color:#fff}
 .setting{background:#f8fafc;border-radius:15px;padding:12px;margin-bottom:10px;border:1px solid var(--line)}.setting small{font-size:10.5px;color:var(--muted);font-weight:600}.setting .input{margin-top:5px;margin-bottom:0;background:#fff}
 
 /* SECURITY PIN LOCK SCREEN */
@@ -204,43 +153,17 @@ button,input,select{font:inherit}button{cursor:pointer}
 .lockbox{width:100%;max-width:340px;background:#fff;border-radius:24px;padding:24px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
 .lockicon{font-size:42px}
 .unlock{width:100%;height:48px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800;font-size:14px}
-
 .toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
 
 #invoicePrintArea{display:none}
 @media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
 
-/* 100% CLEAN PRINT CSS */
+/* PRINT CSS */
 @media print{
-  body > * {
-    display: none !important;
-  }
-  #invoicePrintArea {
-    display: block !important;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: #fff;
-  }
-  .paper-roll {
-    width: 76mm !important;
-    max-width: 76mm !important;
-    font-size: 11px !important;
-    padding: 4px !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-  .paper-a4 {
-    width: 100% !important;
-    max-width: 680px !important;
-    font-size: 13px !important;
-    padding: 20px !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
+  body > * { display: none !important; }
+  #invoicePrintArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff; }
+  .paper-roll { width: 76mm !important; max-width: 76mm !important; font-size: 11px !important; padding: 4px !important; break-inside: avoid; }
+  .paper-a4 { width: 100% !important; max-width: 680px !important; font-size: 13px !important; padding: 20px !important; break-inside: avoid; }
 }
 </style>
 </head>
@@ -266,7 +189,7 @@ button,input,select{font:inherit}button{cursor:pointer}
     </div>
   </div>
   <div class="top-actions">
-    <div class="vault-badge" title="गद्दी की बरकत बचत">
+    <div class="vault-badge" title="गद्दी की बरकत बचत" onclick="openGameModal()">
       <span>🪙</span>
       <span id="vaultBalance">0.00</span>
     </div>
@@ -283,32 +206,33 @@ button,input,select{font:inherit}button{cursor:pointer}
   <div class="net" id="net">₹0</div>
   <div class="smallnote" id="syncStatusText">🛡️ 256-Bit सुरक्षित लोकल मोड</div>
   <div class="moneygrid">
-   <div class="money get"><span>लेना है (बाज़ार में उधार)</span><strong id="totalGet">₹0</strong></div>
-   <div class="money give"><span>देना है (जमा / आवक)</span><strong id="totalGive">₹0</strong></div>
+   <div class="money get"><span>लेना है (आवक)</span><strong id="totalGet">₹0</strong></div>
+   <div class="money give"><span>देना है (जावक)</span><strong id="totalGive">₹0</strong></div>
   </div>
  </div>
 </section>
 
-<!-- MAIN LEDGER VIEW -->
+<!-- MAIN LEDGER VIEW (CLEAN FOLDABLE BUTTON INTERFACE) -->
 <main class="main" id="ledger">
- <div class="head"><h2>ग्राहकों का हिसाब</h2><span id="count">0 ग्राहक</span></div>
- <input id="search" class="search" placeholder="🔎  ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
- <div class="list" id="customers"></div>
 
- <!-- COMMUNITY ENTERTAINING REACTION CARD -->
- <div class="reaction-card">
-   <div class="reaction-title">
-     <span>मुंशी जी की खैर-खबर</span>
-     <small style="color:var(--muted);font-size:10px">देसी गद्दी रिएक्शन</small>
+ <!-- FOLDABLE LEDGER MASTER TRIGGER CARD -->
+ <div class="ledger-trigger-card" onclick="toggleLedgerDrawer()">
+   <div style="display:flex;align-items:center;gap:12px">
+     <div style="width:44px;height:44px;border-radius:14px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:20px">📒</div>
+     <div>
+       <h3 style="font-size:14px;font-weight:800;color:var(--text)">ग्राहकों का बहीखाता</h3>
+       <p style="font-size:10.5px;color:var(--muted);margin-top:2px" id="count">0 ग्राहक दर्ज</p>
+     </div>
    </div>
-   <div class="reaction-buttons">
-     <button class="r-btn" onclick="feedChai()" style="background:#fffbeb;color:#b45309;border-color:#fde68a">
-       ☕ चाय पिलाओ (<span id="chaiCount">0</span>)
-     </button>
-     <button class="r-btn" onclick="hitKutai()" style="background:#fff1f2;color:#e11d48;border-color:#fecdd3">
-       🩴 मुंशी जी की कुटाई (<span id="kutaiCount">0</span>)
-     </button>
-   </div>
+   <button type="button" id="ledgerToggleBtn" style="border:0;background:#0f172a;color:#fff;padding:8px 14px;border-radius:12px;font-size:11px;font-weight:800">
+     हिसाब खोलें 📂
+   </button>
+ </div>
+
+ <!-- FOLDABLE CUSTOMER DRAWER (HIDDEN BY DEFAULT) -->
+ <div class="ledger-drawer" id="ledgerDrawer">
+   <input id="search" class="search" placeholder="🔎 ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
+   <div class="list" id="customers"></div>
  </div>
 </main>
 
@@ -391,7 +315,6 @@ button,input,select{font:inherit}button{cursor:pointer}
      </div>
    </div>
 
-   <!-- PRINT PAPER SIZE PICKER -->
    <div style="display:flex;gap:8px;align-items:center;margin-top:10px;background:#f8fafc;padding:6px 10px;border-radius:10px;border:1px solid var(--line)">
      <label style="font-size:11px;font-weight:700;color:var(--text)">प्रिंट साइज़:</label>
      <select id="printPaperSize" style="height:32px;font-size:11px;padding:2px 8px;border-radius:8px;border:1px solid var(--line);background:#fff">
@@ -438,7 +361,7 @@ button,input,select{font:inherit}button{cursor:pointer}
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="mandiList"></div>
 </section>
 
-<!-- SERVICES: TURTLEMINT + 12 VERIFIED CITIZEN SERVICES -->
+<!-- SERVICES VIEW -->
 <section class="services" id="services" style="display:none">
  <div class="head"><h2>वित्तीय सेवाएँ एवं सुरक्षा</h2><span>प्रमाणित Turtlemint पार्टनर</span></div>
  <div class="service-card">
@@ -449,12 +372,8 @@ button,input,select{font:inherit}button{cursor:pointer}
       <p>आग, चोरी व चिकित्सा सुरक्षा तुरंत</p>
     </div>
   </div>
-  <div class="service-desc">
-    दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं मोटर बीमा ऑनलाइन सबसे कम प्रीमियम पर प्राप्त करें।
-  </div>
-  <button class="service-btn" type="button" onclick="openInsurance()">
-    🔗 Turtlemint पोर्टल पर बीमा देखें →
-  </button>
+  <div class="service-desc">दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं मोटर बीमा ऑनलाइन सबसे कम प्रीमियम पर प्राप्त करें।</div>
+  <button class="service-btn" type="button" onclick="openInsurance()">🔗 Turtlemint पोर्टल पर बीमा देखें →</button>
  </div>
 
  <div class="service-card">
@@ -465,72 +384,32 @@ button,input,select{font:inherit}button{cursor:pointer}
       <p>दुकान विस्तार हेतु पूंजी सहायता</p>
     </div>
   </div>
-  <div class="service-desc">
-    दुकान के विस्तार या नए स्टॉक के लिए आसान कागज़ी प्रक्रिया पर पूंजी प्राप्त करें।
-  </div>
-  <button class="service-btn" type="button" style="background:#0f172a" onclick="applyLoan()">
-    💬 लोन सहायता के लिए WhatsApp करें →
-  </button>
+  <div class="service-desc">दुकान के विस्तार या नए स्टॉक के लिए आसान कागज़ी प्रक्रिया पर पूंजी प्राप्त करें।</div>
+  <button class="service-btn" type="button" style="background:#0f172a" onclick="applyLoan()">💬 लोन सहायता के लिए WhatsApp करें →</button>
  </div>
 
  <div class="head" style="margin-top:16px"><h2>🌾 12 अधिकृत सरकारी व नागरिक सेवाएँ</h2><span>सीधे आधिकारिक पोर्टल्स (.gov.in)</span></div>
  <div class="citizen-grid">
-   <div class="gov-box">
-     <div><div class="gov-emoji">💳</div><div class="gov-tag">UP Health</div><div class="gov-title">शिक्षक कैशलेस कार्ड</div><div class="gov-sub">मुख्यमंत्री कैशलेस चिकित्सा</div></div>
-     <a href="https://cmtcts.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🏥</div><div class="gov-tag">PM-JAY</div><div class="gov-title">आयुष्मान कार्ड</div><div class="gov-sub">परिवार पात्रता व डाउनलोड</div></div>
-     <a href="https://beneficiary.nha.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🌾</div><div class="gov-tag">FCS UP</div><div class="gov-title">राशन कार्ड पर्ची</div><div class="gov-sub">कोटेदार सूची व यूनिट खोज</div></div>
-     <a href="https://fcs.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🎋</div><div class="gov-tag">e-Ganna</div><div class="gov-title">गन्ना पर्ची कैलेंडर</div><div class="gov-sub">किसान सट्टा व पर्ची कैलेंडर</div></div>
-     <a href="https://enquiry.caneup.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🏫</div><div class="gov-tag">eHRMS UP</div><div class="gov-title">मानव संपदा पोर्टल</div><div class="gov-sub">सर्विस बुक व ऑनलाइन लीव</div></div>
-     <a href="https://ehrms.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">⚖️</div><div class="gov-tag">eCourts</div><div class="gov-title">कोर्ट केस स्टेटस</div><div class="gov-sub">तहसील व ज़िला कोर्ट तारीख</div></div>
-     <a href="https://services.ecourts.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🔍</div><div class="gov-tag">eDistrict</div><div class="gov-title">प्रमाणपत्र सत्यापन</div><div class="gov-sub">आय/जाति/निवास असली-नकली</div></div>
-     <a href="https://edistrict.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">📜</div><div class="gov-tag">Bhulekh</div><div class="gov-title">भूलेख खतौनी</div><div class="gov-sub">गाटा व ज़मीन नकल ब्योरा</div></div>
-     <a href="https://upbhulekh.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🚜</div><div class="gov-tag">PM-Kisan</div><div class="gov-title">PM-किसान क़िस्त</div><div class="gov-sub">सम्मान निधि स्थिति व eKYC</div></div>
-     <a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🚆</div><div class="gov-tag">Indian Rail</div><div class="gov-title">रेलवे PNR व ट्रेन</div><div class="gov-sub">लाइव स्थिति व सीट खोज</div></div>
-     <a href="https://www.indianrail.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🏛️</div><div class="gov-tag">IGRSUP</div><div class="gov-title">बैनामा व रजिस्ट्री</div><div class="gov-sub">जायदाद भार व प्रतिलिपि</div></div>
-     <a href="https://igrsup.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
-   <div class="gov-box">
-     <div><div class="gov-emoji">🛡️</div><div class="gov-tag">PMFBY</div><div class="gov-title">फसल नुक़सान क्लेम</div><div class="gov-sub">क्षतिपूर्ति दावा व स्थिति</div></div>
-     <a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a>
-   </div>
+   <div class="gov-box"><div><div class="gov-emoji">💳</div><div class="gov-tag">UP Health</div><div class="gov-title">शिक्षक कैशलेस कार्ड</div><div class="gov-sub">मुख्यमंत्री कैशलेस चिकित्सा</div></div><a href="https://cmtcts.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🏥</div><div class="gov-tag">PM-JAY</div><div class="gov-title">आयुष्मान कार्ड</div><div class="gov-sub">परिवार पात्रता व डाउनलोड</div></div><a href="https://beneficiary.nha.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🌾</div><div class="gov-tag">FCS UP</div><div class="gov-title">राशन कार्ड पर्ची</div><div class="gov-sub">कोटेदार सूची व यूनिट खोज</div></div><a href="https://fcs.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🎋</div><div class="gov-tag">e-Ganna</div><div class="gov-title">गन्ना पर्ची कैलेंडर</div><div class="gov-sub">किसान सट्टा व पर्ची कैलेंडर</div></div><a href="https://enquiry.caneup.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🏫</div><div class="gov-tag">eHRMS UP</div><div class="gov-title">मानव संपदा पोर्टल</div><div class="gov-sub">सर्विस बुक व ऑनलाइन लीव</div></div><a href="https://ehrms.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">⚖️</div><div class="gov-tag">eCourts</div><div class="gov-title">कोर्ट केस स्टेटस</div><div class="gov-sub">तहसील व ज़िला कोर्ट तारीख</div></div><a href="https://services.ecourts.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🔍</div><div class="gov-tag">eDistrict</div><div class="gov-title">प्रमाणपत्र सत्यापन</div><div class="gov-sub">आय/जाति/निवास असली-नकली</div></div><a href="https://edistrict.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">📜</div><div class="gov-tag">Bhulekh</div><div class="gov-title">भूलेख खतौनी</div><div class="gov-sub">गाटा व ज़मीन नकल ब्योरा</div></div><a href="https://upbhulekh.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🚜</div><div class="gov-tag">PM-Kisan</div><div class="gov-title">PM-किसान क़िस्त</div><div class="gov-sub">सम्मान निधि स्थिति व eKYC</div></div><a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🚆</div><div class="gov-tag">Indian Rail</div><div class="gov-title">रेलवे PNR व ट्रेन</div><div class="gov-sub">लाइव स्थिति व सीट खोज</div></div><a href="https://www.indianrail.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🏛️</div><div class="gov-tag">IGRSUP</div><div class="gov-title">बैनामा व रजिस्ट्री</div><div class="gov-sub">जायदाद भार व प्रतिलिपि</div></div><a href="https://igrsup.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="gov-box"><div><div class="gov-emoji">🛡️</div><div class="gov-tag">PMFBY</div><div class="gov-title">फसल नुक़सान क्लेम</div><div class="gov-sub">क्षतिपूर्ति दावा व स्थिति</div></div><a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
  </div>
 </section>
 
-<!-- ANIMATED REAL CHUPAKABRA DRAGON MASCOT -->
+<!-- DRAGON MASCOT (TAP OPENS SECRET TRAY) -->
 <div class="mascot-wrap">
   <div class="mascot-bubble" id="mascotBubble">नमस्ते लाला जी! 🙏</div>
-  <div class="mascot-container" onclick="mascotTap()">
-    <img src="logo.png" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन मुंशी">
+  <div class="mascot-container" onclick="openGameModal()">
+    <img src="logo.png" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन">
     <div class="mascot-mute" id="mascotMuteBtn" onclick="toggleMascotMute(event)">🔊</div>
   </div>
 </div>
@@ -545,6 +424,37 @@ button,input,select{font:inherit}button{cursor:pointer}
  <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
  <button onclick="openBankingHub()"><div>🏛️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
 </nav>
+
+<!-- DEDICATED GAME MODAL (SECRET TRAY - DOES NOT CLUTTER HOME) -->
+<div class="modal" id="gameModal"><div class="box">
+ <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+   <div style="display:flex;align-items:center;gap:10px">
+     <img src="logo.png" style="width:40px;height:40px;border-radius:12px;border:2px solid #059669" alt="ड्रैगन">
+     <div>
+       <h2 style="font-size:15px;font-weight:800;margin:0">मुंशी जी की बैठक</h2>
+       <p style="font-size:10px;color:var(--muted);margin:0">देसी गद्दी मनोरंजन व बरकत</p>
+     </div>
+   </div>
+   <div class="vault-badge">
+     <span>🪙</span>
+     <span id="gameVaultBal">0.00</span>
+   </div>
+ </div>
+ 
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+   <button type="button" onclick="feedChai()" style="border:1px solid #fde68a;background:#fffbeb;color:#b45309;padding:14px 10px;border-radius:16px;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px">
+     <span style="font-size:24px">☕</span>
+     <span>चाय पिलाओ (<span id="modalChaiCount">0</span>)</span>
+   </button>
+   <button type="button" onclick="hitKutai()" style="border:1px solid #fecdd3;background:#fff1f2;color:#e11d48;padding:14px 10px;border-radius:16px;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px">
+     <span style="font-size:24px">🩴</span>
+     <span>कुटाई करो (<span id="modalKutaiCount">0</span>)</span>
+   </button>
+ </div>
+ <div class="modalrow" style="margin-top:16px">
+   <button class="cancel" onclick="closeModal('gameModal')" style="grid-column:1/-1">वापस गद्दी पर जाएँ</button>
+ </div>
+</div></div>
 
 <!-- MODALS -->
 <div class="modal" id="customerModal"><div class="box">
@@ -563,17 +473,8 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 <div class="modal" id="settingsModal"><div class="box">
  <h2>दुकान व मुंशी जी सेटिंग्स</h2>
- <div class="setting">
-   <small>दुकानदार का नाम</small>
-   <input id="merchantName" class="input" placeholder="उदा. सत्यप्रकाश सिंह या सुनीता शर्मा">
- </div>
- <div class="setting">
-   <small>संबोधन / लिंग</small>
-   <select id="merchantGender" class="input" style="height:44px;margin-top:5px">
-     <option value="male">पुरुष (उदा. सिंह साहब / रतन जी)</option>
-     <option value="female">महिला (उदा. सुनीता जी / मैडम)</option>
-   </select>
- </div>
+ <div class="setting"><small>दुकानदार का नाम</small><input id="merchantName" class="input" placeholder="उदा. सत्यप्रकाश सिंह"></div>
+ <div class="setting"><small>संबोधन / लिंग</small><select id="merchantGender" class="input" style="height:44px;margin-top:5px"><option value="male">पुरुष</option><option value="female">महिला</option></select></div>
  <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="मेरी दुकान"></div>
  <div class="setting"><small>दुकान का पता व लैंडमार्क</small><input id="shopAddress" class="input" placeholder="उदा. मेन चौराहा, बहराइच"></div>
  <div class="setting"><small>दुकानदार संपर्क फ़ोन</small><input id="shopPhone" class="input" type="tel" placeholder="मोबाइल नंबर"></div>
@@ -585,7 +486,7 @@ button,input,select{font:inherit}button{cursor:pointer}
    <button type="button" class="tool" style="background:#f1f5f9;font-weight:800;padding:10px 4px" onclick="setPin()">🔐 PIN बदलें</button>
  </div>
 
- <!-- SECRET ADMIN ENTRY (MASTER METER PIN: 2569) -->
+ <!-- SECRET ADMIN ENTRY -->
  <div style="margin-top:12px;padding:12px;background:#f1f5f9;border-radius:14px;border:1px dashed #cbd5e1">
    <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">🔐 मुंशी जी गुप्त मालिक मीटर (पिन दर्ज करें):</div>
    <div style="display:flex;gap:6px">
@@ -609,10 +510,9 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 <!-- ROYAL QR MODAL -->
 <div class="modal" id="qrModal"><div class="box">
- <div class="royal-qr-card">
-   <div class="royal-badge">👑 सुपरफ़ास्ट ऑल-इन-वन UPI</div>
-   <div style="font-size:17px;font-weight:800;margin-top:8px" id="qrShopTitle">मेरी दुकान</div>
-   <div class="canvas-wrap">
+ <div class="royal-qr-card" style="background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px;text-align:center;color:#fff">
+   <div style="font-size:17px;font-weight:800" id="qrShopTitle">मेरी दुकान</div>
+   <div style="background:#fff;border-radius:18px;padding:12px;display:inline-block;margin:12px auto">
      <div id="qrCanvasContainer"></div>
    </div>
    <div style="font-size:12px;font-weight:800;color:#93c5fd" id="qrUpiText">UPI सेट करें ⚙</div>
@@ -625,20 +525,14 @@ button,input,select{font:inherit}button{cursor:pointer}
 
 <!-- BANKING COMING SOON MODAL -->
 <div class="modal" id="bankingModal"><div class="box" style="text-align:center">
- <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto">
-   🏛️
- </div>
- <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px;text-transform:uppercase">
-   🔐 Coming Soon • भावी विस्तार
- </span>
+ <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto">🏛️</div>
+ <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px">🔐 Coming Soon</span>
  <h2 style="margin-top:8px;font-size:16px">व्यापारी बैंकिंग व चालू खाता</h2>
- <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">
-   दुकानदारों के लिए जीरो-बैलेंस डिजिटल चालू खाता, दैनिक ब्याज व आसान व्यावसायिक क्रेडिट सीधे आपकी गद्दी से जोड़े जा रहे हैं।
- </p>
- <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया / ठीक है ✓</button>
+ <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">दुकानदारों के लिए जीरो-बैलेंस डिजिटल चालू खाता सीधे आपकी गद्दी से जोड़े जा रहे हैं।</p>
+ <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया ✓</button>
 </div></div>
 
-<!-- SECURITY PIN LOCK SCREEN -->
+<!-- PIN LOCK SCREEN -->
 <div class="lock" id="lockScreen">
   <div class="lockbox">
     <div class="lockicon">🔐</div>
@@ -653,15 +547,8 @@ button,input,select{font:inherit}button{cursor:pointer}
 <div class="toast" id="toast"></div>
 
 <script>
-// Key / Security Lockouts
 document.addEventListener('contextmenu', e => e.preventDefault());
-document.onkeydown = function(e) {
-  if (e.keyCode == 123) return false;
-  if (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(String.fromCharCode(e.keyCode))) return false;
-  if (e.ctrlKey && ['U','S'].includes(String.fromCharCode(e.keyCode))) return false;
-};
 
-/* FIREBASE INITIALIZATION & AUTHENTICATION */
 const firebaseConfig = {
   apiKey: "AIzaSyB-nWyD4RtphSv7WazRgM7o3Eaj2NwgPek",
   authDomain: "chupakabra-khata.firebaseapp.com",
@@ -698,18 +585,39 @@ let reactions = JSON.parse(localStorage.getItem(RK)) || { chai: 14, kutai: 2, vi
 let active = null, txType = "give", editing = false;
 let isMuted = localStorage.getItem("chupaMute") === "1";
 let activeBillMode = 'kaccha';
+let isLedgerOpen = false;
 
-// Live Visit Counter
 reactions.visits = (reactions.visits || 0) + 1;
 localStorage.setItem(RK, JSON.stringify(reactions));
 
-/* CART STATE FOR COUNTER BILLING */
 let cart = [
   { name: "सरसों तेल", qty: 2, unit: "लीटर", rate: 140 },
   { name: "गेहूँ आटा", qty: 5, unit: "किलो", rate: 35 }
 ];
 
-/* HARDWARE BARCODE AUTO SCANNER */
+/* FOLDABLE DRAWER CONTROLLER */
+function toggleLedgerDrawer() {
+  isLedgerOpen = !isLedgerOpen;
+  const drawer = document.getElementById("ledgerDrawer");
+  const btn = document.getElementById("ledgerToggleBtn");
+  if(isLedgerOpen) {
+    drawer.style.display = "block";
+    btn.textContent = "हिसाब समेटें 📁";
+    renderCustomers();
+  } else {
+    drawer.style.display = "none";
+    btn.textContent = "हिसाब खोलें 📂";
+  }
+}
+
+function openGameModal() {
+  document.getElementById("gameVaultBal").textContent = vault.toFixed(2);
+  document.getElementById("modalChaiCount").textContent = reactions.chai;
+  document.getElementById("modalKutaiCount").textContent = reactions.kutai;
+  document.getElementById("gameModal").style.display = "flex";
+}
+
+/* HARDWARE BARCODE SCANNER */
 let barcodeBuffer = '';
 let lastKeyTime = performance.now();
 window.addEventListener('keydown', (e) => {
@@ -738,9 +646,7 @@ function handleBarcodeScan(code) {
 
 /* ROBUST MALE SPEECH ENGINE */
 let synthVoices = [];
-function loadVoices() {
-  if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices();
-}
+function loadVoices() { if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices(); }
 loadVoices();
 if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = loadVoices;
 
@@ -749,9 +655,7 @@ function getHonorific(name, gender = 'male') {
   const parts = name.trim().split(/\s+/);
   const lastName = parts[parts.length - 1];
   const firstName = parts[0];
-
   if (gender === 'female') return `${firstName} जी`;
-
   const surnames = ['सिंह','खट्टर','गुप्ता','वर्मा','शर्मा','मिश्रा','पांडेय','चौधरी','यादव','अंसारी','खान','अग्रवाल','जैन'];
   if (parts.length > 1 && surnames.includes(lastName)) return `${lastName} साहब`;
   return `${firstName} जी`;
@@ -760,11 +664,9 @@ function getHonorific(name, gender = 'male') {
 function speakMunshi(text) {
   const bubble = document.getElementById("mascotBubble");
   const img = document.getElementById("chupaImg");
-  
   bubble.textContent = text;
   bubble.style.display = "block";
   if (img) img.classList.add("talking");
-
   clearTimeout(window.mtt);
   window.mtt = setTimeout(() => {
     bubble.style.display = "none";
@@ -773,16 +675,13 @@ function speakMunshi(text) {
 
   if (isMuted || !('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
-
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'hi-IN';
   u.pitch = 0.68;
   u.rate = 0.95;
-
   if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
   const maleVoice = synthVoices.find(v => v.lang.includes('hi') && (v.name.toLowerCase().includes('male') || !v.name.toLowerCase().includes('female')));
   if (maleVoice) u.voice = maleVoice;
-
   u.onend = () => { if (img) img.classList.remove("talking"); };
   u.onerror = () => { if (img) img.classList.remove("talking"); };
   window.speechSynthesis.speak(u);
@@ -799,10 +698,6 @@ function speakMunshiHonorific() {
   speakMunshi(quotes[Math.floor(Math.random() * quotes.length)]);
 }
 
-function mascotTap() {
-  speakMunshiHonorific();
-}
-
 function toggleMascotMute(e) {
   e.stopPropagation();
   isMuted = !isMuted;
@@ -811,7 +706,6 @@ function toggleMascotMute(e) {
   toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
 }
 
-/* ENTERTAINING REACTION SYSTEM */
 function feedChai(){
   const img = document.getElementById("chupaImg");
   img.classList.remove("joy","kutai");
@@ -820,6 +714,7 @@ function feedChai(){
   reactions.chai = (reactions.chai || 0) + 1;
   syncData();
   profileUI();
+  document.getElementById("modalChaiCount").textContent = reactions.chai;
   speakMunshi("आहा! कड़क अदरक वाली चाय... गद्दी की जय हो मालिक!");
 }
 
@@ -831,10 +726,11 @@ function hitKutai(){
   reactions.kutai = (reactions.kutai || 0) + 1;
   syncData();
   profileUI();
+  document.getElementById("modalKutaiCount").textContent = reactions.kutai;
   speakMunshi("अरे बाप रे! चप्पल पड़ गई... मुंशी जी से कोई भूल नहीं होगी!");
 }
 
-/* FIREBASE AUTHENTICATION */
+/* FIREBASE AUTH */
 if (auth) {
   auth.onAuthStateChanged((user) => {
     currentUser = user;
@@ -879,7 +775,6 @@ function toggleAuth() {
   }
 }
 
-/* PANCHANG DATE */
 function updateLivePanchang() {
   const now = new Date();
   const days = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
@@ -887,7 +782,6 @@ function updateLivePanchang() {
   document.getElementById("livePanchangText").textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
 }
 
-/* PIN LOCK SYSTEM LOGIC */
 function checkPinLock() {
   const savedPin = localStorage.getItem(PINKEY);
   const isUnlocked = sessionStorage.getItem("chupaUnlocked");
@@ -901,7 +795,6 @@ function checkPinLock() {
 function unlockApp() {
   const savedPin = localStorage.getItem(PINKEY);
   const enteredPin = document.getElementById("unlockPin").value.trim();
-
   if (enteredPin === savedPin) {
     document.getElementById("lockScreen").style.display = "none";
     document.getElementById("unlockPin").value = "";
@@ -918,14 +811,12 @@ function setPin() {
   const currentPin = localStorage.getItem(PINKEY);
   const p = prompt(currentPin ? "नया 4 अंकों का सुरक्षा PIN दर्ज करें (हटाने के लिए खाली छोड़ें):" : "4 अंकों का सुरक्षा PIN बनाएँ:");
   if (p === null) return;
-  
   if (p.trim() === "") {
     localStorage.removeItem(PINKEY);
     sessionStorage.removeItem("chupaUnlocked");
     toast("सुरक्षा PIN हटा दिया गया 🔓");
     return;
   }
-  
   if (/^\d{4}$/.test(p.trim())) {
     localStorage.setItem(PINKEY, p.trim());
     sessionStorage.setItem("chupaUnlocked", "1");
@@ -935,7 +826,6 @@ function setPin() {
   }
 }
 
-/* HELPER FUNCTIONS */
 function esc(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
 function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
 function bal(c){return (c.tx||[]).reduce((s,t)=>s+(t.type==="give"?+t.amount:-t.amount),0)}
@@ -958,12 +848,11 @@ function syncData(){
   }
 }
 
-/* 100% STRICT DAILY CAP ENGINE (MAXIMUM 2.00 COINS PER DAY) */
+/* STRICT DAILY 2.00 COIN CAP */
 function addVaultReward(amount = 0.05) {
   const today = new Date().toISOString().slice(0, 10);
   const key = "chupaDailyEarned_" + today;
   let earnedToday = Number(localStorage.getItem(key) || "0");
-
   if (earnedToday < 2.00) {
     const toAdd = Math.min(amount, 2.00 - earnedToday);
     vault += toAdd;
@@ -979,19 +868,75 @@ function addVaultReward(amount = 0.05) {
   }
 }
 
+function getTodayBusiness(){
+  let sales = 0, received = 0, credit = 0, transactions = 0;
+  const today = new Intl.DateTimeFormat("hi-IN", {day:"numeric",month:"short",year:"numeric"}).format(new Date());
+  customers.forEach(c => {
+    (c.tx || []).forEach(t => {
+      if (!t.date) return;
+      if (t.date === today || t.date.includes(today)) {
+        transactions++;
+        if(t.type === "give"){
+          credit += Number(t.amount || 0);
+          sales += Number(t.amount || 0);
+        } else {
+          received += Number(t.amount || 0);
+        }
+      }
+    });
+  });
+  return { sales, received, credit, transactions };
+}
+
+function premiumBusinessSummary(){
+  const data = getTodayBusiness();
+  const el = document.getElementById("premiumBusinessSummary");
+  if(!el) return;
+
+  el.innerHTML = `
+    <div style="background:linear-gradient(145deg,#0f172a,#1e1b4b);color:#fff;border-radius:22px;padding:15px;margin-top:12px;box-shadow:0 14px 30px rgba(15,23,42,.18);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div>
+          <div style="font-size:13px;font-weight:800">📊 आज का कारोबार</div>
+          <div style="font-size:9.5px;color:#94a3b8;margin-top:2px">दैनिक लेन-देन का लाइव सार</div>
+        </div>
+        <div style="background:rgba(255,255,255,.10);padding:5px 8px;border-radius:9px;font-size:9.5px;color:#cbd5e1;font-weight:700">
+          ${data.transactions} लेन-देन
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div style="background:rgba(5,150,105,.16);border:1px solid rgba(52,211,153,.2);border-radius:14px;padding:10px;">
+          <div style="font-size:9.5px;color:#94a3b8;font-weight:600">💰 भुगतान मिला</div>
+          <strong style="display:block;margin-top:4px;font-size:16px;color:#6ee7b7">₹${data.received.toLocaleString("en-IN")}</strong>
+        </div>
+        <div style="background:rgba(225,29,72,.16);border:1px solid rgba(251,113,133,.2);border-radius:14px;padding:10px;">
+          <div style="font-size:9.5px;color:#94a3b8;font-weight:600">🧾 आज का उधार</div>
+          <strong style="display:block;margin-top:4px;font-size:16px;color:#fda4af">₹${data.credit.toLocaleString("en-IN")}</strong>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function injectPremiumDashboard(){
+  const dashboard = document.getElementById("dashboard");
+  if(!dashboard || document.getElementById("premiumBusinessSummary")) return;
+  const box = document.createElement("div");
+  box.id = "premiumBusinessSummary";
+  dashboard.appendChild(box);
+  premiumBusinessSummary();
+}
+
 function profileUI(){
   document.getElementById("shopTitle").textContent = profile.shopName || "मेरी दुकान का खाता";
   document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
   document.getElementById("vaultBalance").textContent = vault.toFixed(2);
-  document.getElementById("chaiCount").textContent = reactions.chai;
-  document.getElementById("kutaiCount").textContent = reactions.kutai;
 }
 
 function dashboard(){
   let get=0, give=0;
   customers.forEach(c => {
     let b = bal(c);
-    // सही मुंशी हिसाब: b >= 0 का मतलब बकाया लेना है (लाल), b < 0 का मतलब जमा देना है (हरा)
     if(b >= 0) get += b; else give += Math.abs(b);
   });
   document.getElementById("totalGet").textContent = money(get);
@@ -999,16 +944,16 @@ function dashboard(){
   const net = get - give;
   const netEl = document.getElementById("net");
   netEl.textContent = (net >= 0 ? "+" : "-") + money(Math.abs(net));
-  // नेट संतुलन: शून्य या पॉजिटिव बकाया काला/न्यूट्रल
-  netEl.style.color = "#0f172a";
+  netEl.style.color = net >= 0 ? "var(--green)" : "var(--red)";
+  premiumBusinessSummary();
 }
 
 function renderCustomers(){
-  const q = document.getElementById("search").value.toLowerCase().trim();
+  const q = (document.getElementById("search") ? document.getElementById("search").value : "").toLowerCase().trim();
   const list = document.getElementById("customers");
   const arr = customers.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
   list.innerHTML = "";
-  document.getElementById("count").textContent = customers.length + " ग्राहक";
+  document.getElementById("count").textContent = customers.length + " ग्राहक दर्ज";
 
   if(!arr.length){
     list.innerHTML = '<div class="empty"><b>🔎</b>कोई खाता नहीं मिला। नीचे \'+\' दबाकर शुरुआत करें!</div>';
@@ -1043,10 +988,8 @@ function openDetail(id){
   document.getElementById("dName").textContent = c.name;
   document.getElementById("dPhone").textContent = c.phone;
   document.getElementById("dPoints").textContent = `⭐ ${c.points||0} लॉयल्टी पॉइंट्स`;
-  
   let b = bal(c);
   document.getElementById("dAmount").textContent = money(Math.abs(b));
-  // उधारी लाल (लेना है), जमा हरा (देना है)
   document.getElementById("dAmount").style.color = b >= 0 ? "var(--red)" : "var(--green)";
   document.getElementById("dStatus").textContent = b >= 0 ? "आपको लेना है" : "आपको देना है";
   renderTx(c);
@@ -1066,9 +1009,7 @@ function renderTx(c){
       </div>
       <div style="display:flex;align-items:center">
         <div class="txamt ${t.type==="give"?"receive":"pay"}">${t.type==="give"?"+":"−"} ${money(t.amount)}</div>
-        <div class="txbuttons">
-          <button class="tiny" onclick="deleteTx(${realIndex})">×</button>
-        </div>
+        <div class="txbuttons"><button class="tiny" onclick="deleteTx(${realIndex})">×</button></div>
       </div>
     </div>`;
   });
@@ -1085,7 +1026,6 @@ function saveCustomer(){
   const p = document.getElementById("cPhone").value.trim();
   if(!n){ toast("ग्राहक का नाम डालें"); return; }
   if(!/^\d{10}$/.test(p)){ toast("10 अंकों का फोन नंबर डालें"); return; }
-
   customers.push({ id: Date.now(), name: n, phone: p, points: 10, tx: [] });
   syncData();
   closeModal("customerModal");
@@ -1108,13 +1048,12 @@ function saveTx(){
   const c = customers.find(x => x.id === active);
   if(!c.tx) c.tx = [];
   const date = new Intl.DateTimeFormat("hi-IN", {day:"numeric",month:"short",year:"numeric"}).format(new Date());
-
   c.tx.push({ amount: a, type: txType, note, date });
   c.points = (c.points || 0) + Math.floor(a / 100);
-
   syncData();
   closeModal("txModal");
   openDetail(active);
+  premiumBusinessSummary();
   toast("हिसाब सुरक्षित हुआ ✓");
   speakMunshi(txType === "get" ? `₹${a} का भुगतान दर्ज हो गया!` : `₹${a} का उधार चढ़ा लिया!`);
 }
@@ -1124,6 +1063,7 @@ function deleteTx(i){
   c.tx.splice(i, 1);
   syncData();
   openDetail(active);
+  premiumBusinessSummary();
   toast("हटा दिया गया");
 }
 
@@ -1135,10 +1075,10 @@ function whatsapp(){
   window.open("https://wa.me/91" + c.phone + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
-/* CART & BILLING DESK FUNCTIONS */
+/* BILLING */
 function switchBillMode(mode) {
   if (mode === 'gst' && (!profile.gstin || !profile.gstin.trim())) {
-    alert("कृपया पहले सेटिंग्स (⚙) में GSTIN नंबर दर्ज करें!");
+    alert("कृपया पहले सेटिंग्स में GSTIN नंबर दर्ज करें!");
     return;
   }
   activeBillMode = mode;
@@ -1181,16 +1121,11 @@ function recalcCart() {
   let sub = 0;
   cart.forEach(i => sub += (Number(i.qty||0) * Number(i.rate||0)));
   const disc = Number(document.getElementById("cDiscount").value) || 0;
-  
-  let taxable = sub;
-  let cgst = 0, sgst = 0, totalGst = 0;
+  let taxable = sub, cgst = 0, sgst = 0, totalGst = 0;
   if(activeBillMode === 'gst'){
-    cgst = taxable * 0.025;
-    sgst = taxable * 0.025;
-    totalGst = cgst + sgst;
+    cgst = taxable * 0.025; sgst = taxable * 0.025; totalGst = cgst + sgst;
   }
   const grand = Math.max(0, (sub + totalGst) - disc);
-
   document.getElementById("cSubtotal").textContent = "₹" + sub.toFixed(2);
   document.getElementById("cTaxable").textContent = "₹" + taxable.toFixed(2);
   document.getElementById("cCgst").textContent = "₹" + cgst.toFixed(2);
@@ -1199,168 +1134,92 @@ function recalcCart() {
 }
 
 async function connectBluetoothThermal() {
-  if (!navigator.bluetooth) {
-    alert("आपके ब्राउज़र में Web Bluetooth उपलब्ध नहीं है।");
-    return;
-  }
+  if (!navigator.bluetooth) { alert("Web Bluetooth उपलब्ध नहीं है।"); return; }
   try {
-    const dev = await navigator.bluetooth.requestDevice({
-      acceptAllDevices: true,
-      optionalServices: ['000018f0-0000-1000-8000-00805f9b34fb']
-    });
+    const dev = await navigator.bluetooth.requestDevice({ acceptAllDevices: true });
     toast("प्रिंटर जुड़ गया: " + dev.name);
-  } catch(e) {
-    toast("ब्लूटूथ कनेक्ट रद्द हुआ");
-  }
+  } catch(e) { toast("ब्लूटूथ रद्द हुआ"); }
 }
 
-/* 100% TIMING-FIXED PRINT FUNCTION (400ms DELAY + RK-MART STYLE STRUCTURE) */
 function printCartInvoice() {
   const cName = document.getElementById("cartCustName").value.trim() || "नकद ग्राहक";
   const pArea = document.getElementById("invoicePrintArea");
   const paperSize = document.getElementById("printPaperSize") ? document.getElementById("printPaperSize").value : "roll";
   const now = new Date();
-  
   const dStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
   const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
   const currentBillNo = `A-${billCount}`;
 
-  let sub = 0;
-  let rows = "";
-  let itemIndex = 1;
-
+  let sub = 0, rows = "", itemIndex = 1;
   cart.forEach((i) => {
-    const rVal = Number(i.rate) || 0;
-    const nVal = (i.name || "").trim();
+    const rVal = Number(i.rate) || 0, nVal = (i.name || "").trim();
     if (nVal !== "" || rVal > 0) {
-      const qVal = Number(i.qty) || 1;
-      const rowTotal = qVal * rVal;
+      const qVal = Number(i.qty) || 1, rowTotal = qVal * rVal;
       sub += rowTotal;
-      rows += `<tr>
-        <td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${itemIndex++}</td>
-        <td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${esc(nVal || 'सामान')}</td>
-        <td style="padding:4px 2px;text-align:center;border-bottom:1px dashed #ccc;">${qVal} ${i.unit}</td>
-        <td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rVal.toFixed(2)}</td>
-        <td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rowTotal.toFixed(2)}</td>
-      </tr>`;
+      rows += `<tr><td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${itemIndex++}</td><td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${esc(nVal || 'सामान')}</td><td style="padding:4px 2px;text-align:center;border-bottom:1px dashed #ccc;">${qVal} ${i.unit}</td><td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rVal.toFixed(2)}</td><td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rowTotal.toFixed(2)}</td></tr>`;
     }
   });
 
   const disc = Number(document.getElementById("cDiscount").value) || 0;
   let cgst = 0, sgst = 0, totalGst = 0;
   if(activeBillMode === 'gst'){
-    cgst = sub * 0.025;
-    sgst = sub * 0.025;
-    totalGst = cgst + sgst;
+    cgst = sub * 0.025; sgst = sub * 0.025; totalGst = cgst + sgst;
   }
   const grand = Math.max(0, (sub + totalGst) - disc);
-
   const qrUri = profile.upi ? `upi://pay?pa=${encodeURIComponent(profile.upi)}&pn=${encodeURIComponent(profile.shopName)}&am=${grand.toFixed(2)}&cu=INR` : "";
   const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrUri)}` : "";
   const isRoll = paperSize === "roll";
 
   pArea.innerHTML = `
     <div class="${isRoll ? 'paper-roll' : 'paper-a4'}" style="margin:auto;font-family:monospace;background:#fff;color:#000;border:1px solid #111;">
-      <!-- SHOP HEADER -->
       <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:5px;">
         <h2 style="font-size:${isRoll ? '16px' : '22px'};margin:0;font-weight:800;">${esc(profile.shopName)}</h2>
         <p style="font-size:${isRoll ? '9.5px' : '12px'};margin:2px 0;">${esc(profile.shopAddress || '')}</p>
         <p style="font-size:${isRoll ? '9.5px' : '11px'};margin:0;">मो.: ${esc(profile.shopPhone || '')}</p>
-        <p style="font-size:${isRoll ? '10px' : '12px'};margin:3px 0 0;font-weight:bold;">${activeBillMode === 'gst' ? 'TAX INVOICE (कर बीजक)' : 'कच्चा विक्रय पर्चा'}</p>
+        <p style="font-size:${isRoll ? '10px' : '12px'};margin:3px 0 0;font-weight:bold;">${activeBillMode === 'gst' ? 'TAX INVOICE' : 'कच्चा विक्रय पर्चा'}</p>
         ${profile.gstin ? `<p style="font-size:9.5px;margin:1px 0;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
       </div>
-
-      <!-- METADATA -->
-      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '9.5px' : '11px'};margin:6px 0;line-height:1.3;">
-        <div>
-          <div>बिल संख्या: <b>#${currentBillNo}</b></div>
-          <div>ग्राहक: ${esc(cName)}</div>
-        </div>
-        <div style="text-align:right">
-          <div>दिनांक: ${dStr}</div>
-          <div>समय: ${tStr}</div>
-        </div>
+      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '9.5px' : '11px'};margin:6px 0;">
+        <div><div>बिल संख्या: <b>#${currentBillNo}</b></div><div>ग्राहक: ${esc(cName)}</div></div>
+        <div style="text-align:right"><div>दिनांक: ${dStr}</div><div>समय: ${tStr}</div></div>
       </div>
-
-      <!-- ITEMS TABLE -->
       <table style="width:100%;border-collapse:collapse;font-size:${isRoll ? '10px' : '12px'};">
-        <thead>
-          <tr style="border-top:1px solid #000;border-bottom:1px solid #000;">
-            <th style="padding:3px 2px;text-align:left;">#</th>
-            <th style="padding:3px 2px;text-align:left;">सामान</th>
-            <th style="padding:3px 2px;text-align:center;">मात्रा</th>
-            <th style="padding:3px 2px;text-align:right;">भाव</th>
-            <th style="padding:3px 2px;text-align:right;">कुल</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${rows || '<tr><td colspan="5" style="text-align:center;padding:6px;">कोई सामान दर्ज नहीं</td></tr>'}
-        </tbody>
+        <thead><tr style="border-top:1px solid #000;border-bottom:1px solid #000;"><th style="padding:3px 2px;text-align:left;">#</th><th style="padding:3px 2px;text-align:left;">सामान</th><th style="padding:3px 2px;text-align:center;">मात्रा</th><th style="padding:3px 2px;text-align:right;">भाव</th><th style="padding:3px 2px;text-align:right;">कुल</th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="5" style="text-align:center;padding:6px;">कोई सामान दर्ज नहीं</td></tr>'}</tbody>
       </table>
-
-      <!-- SUMMARY & TAX BREAKDOWN -->
       <div style="border-top:1px solid #000;padding-top:4px;margin-top:5px;text-align:right;font-size:${isRoll ? '11px' : '13px'};">
         <div>उप-योग: ₹${sub.toFixed(2)}</div>
-        ${disc > 0 ? `<div style="font-size:10px;">छूट (बचत): -₹${disc.toFixed(2)}</div>` : ''}
-        ${activeBillMode === 'gst' ? `
-          <div style="font-size:9.5px;">CGST (2.5%): +₹${cgst.toFixed(2)}</div>
-          <div style="font-size:9.5px;">SGST (2.5%): +₹${sgst.toFixed(2)}</div>
-        ` : ''}
-        <div style="font-size:${isRoll ? '13px' : '16px'};font-weight:bold;margin-top:2px;border-top:1px dashed #000;padding-top:2px;">
-          कुल देय राशि: ₹${grand.toFixed(2)}
-        </div>
+        ${disc > 0 ? `<div style="font-size:10px;">छूट: -₹${disc.toFixed(2)}</div>` : ''}
+        ${activeBillMode === 'gst' ? `<div style="font-size:9.5px;">CGST (2.5%): +₹${cgst.toFixed(2)}</div><div style="font-size:9.5px;">SGST (2.5%): +₹${sgst.toFixed(2)}</div>` : ''}
+        <div style="font-size:${isRoll ? '13px' : '16px'};font-weight:bold;margin-top:2px;border-top:1px dashed #000;padding-top:2px;">कुल देय राशि: ₹${grand.toFixed(2)}</div>
       </div>
-
-      <!-- QR CODE & SIGNATURE -->
       <div style="margin-top:8px;padding-top:6px;border-top:1px dashed #000;display:flex;justify-content:space-between;align-items:center;">
-        <div style="text-align:center;">
-          ${qrImgUrl ? `
-            <img src="${qrImgUrl}" style="width:${isRoll ? '75px' : '95px'};height:${isRoll ? '75px' : '95px'};border:1px solid #000;display:block;margin:auto;" alt="भुगतान QR">
-            <span style="font-size:8px;font-weight:bold;display:block;margin-top:2px;">स्कैन पे (₹${grand.toFixed(2)})</span>
-          ` : '<span style="font-size:9px;">UPI उपलब्ध नहीं</span>'}
-        </div>
-        <div style="text-align:right;font-size:9.5px;">
-          <div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:28px;">अधिकृत हस्ताक्षर</div>
-        </div>
+        <div style="text-align:center;">${qrImgUrl ? `<img src="${qrImgUrl}" style="width:${isRoll ? '75px' : '95px'};height:${isRoll ? '75px' : '95px'};border:1px solid #000;display:block;margin:auto;"><span style="font-size:8px;font-weight:bold;">स्कैन पे</span>` : ''}</div>
+        <div style="text-align:right;font-size:9.5px;"><div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:28px;">अधिकृत हस्ताक्षर</div></div>
       </div>
-
-      <!-- TERMS & CREDIT -->
       <div style="margin-top:8px;padding-top:5px;border-top:1px dotted #444;text-align:center;font-size:8.5px;line-height:1.35;">
-        <div>1. बिका हुआ सामान बिल समय से 24 घंटे में बदला जाएगा।</div>
-        <div>2. नकद वापसी देय नहीं होगी। धन्यवाद, फिर पधारें! 🙏</div>
-        <div style="margin-top:4px;font-weight:bold;color:#111;">
-          Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉
-        </div>
+        <div>1. बिका सामान 24 घंटे में बदलें। 2. धन्यवाद! 🙏</div>
+        <div style="margin-top:4px;font-weight:bold;">Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉</div>
       </div>
     </div>
   `;
 
-  // Increment Vault & Bill Counter
   addVaultReward(0.05);
   billCount += 1;
   reactions.bills = (reactions.bills || 0) + 1;
   syncData();
   profileUI();
-
-  // 400ms Delay to Guarantee Crisp QR Code Rendering
-  setTimeout(() => {
-    window.print();
-  }, 400);
+  setTimeout(() => { window.print(); }, 400);
 }
 
 function sendCartWhatsApp() {
   const phone = document.getElementById("cartCustPhone").value.trim();
   const cName = document.getElementById("cartCustName").value.trim() || "ग्राहक";
-  if (!phone || phone.length < 10) {
-    alert("कृपया मान्य 10 अंकों का फोन नंबर डालें!");
-    return;
-  }
-  let sub = 0;
-  let text = `*${profile.shopName}*\nमो.: ${profile.shopPhone || ''}\nनमस्ते ${cName} जी, आपका बिल पर्चा:\n\n`;
+  if (!phone || phone.length < 10) { alert("मान्य 10 अंकों का फोन नंबर डालें!"); return; }
+  let sub = 0, text = `*${profile.shopName}*\nमो.: ${profile.shopPhone || ''}\nनमस्ते ${cName} जी, आपका बिल:\n\n`;
   cart.forEach((i, idx) => {
     if ((i.name && i.name.trim() !== "") || (i.rate && Number(i.rate) > 0)) {
-      const qVal = Number(i.qty) || 1;
-      const rVal = Number(i.rate) || 0;
+      const qVal = Number(i.qty) || 1, rVal = Number(i.rate) || 0;
       sub += (qVal * rVal);
       text += `${idx+1}. ${i.name} - ${qVal} ${i.unit} x ₹${rVal} = ₹${qVal * rVal}\n`;
     }
@@ -1368,20 +1227,15 @@ function sendCartWhatsApp() {
   const disc = Number(document.getElementById("cDiscount").value) || 0;
   let totalGst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
   const grand = Math.max(0, (sub + totalGst) - disc);
-
-  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*`;
-  if(profile.upi) text += `\nभुगतान UPI: ${profile.upi}`;
-  text += `\n\nबिका माल 24 घंटे में बदला जा सकता है।\n_Powered by चुपाकाबरा खाता_ 🐉`;
+  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*\nभुगतान UPI: ${profile.upi}\n\n_Powered by चुपाकाबरा खाता_ 🐉`;
 
   addVaultReward(0.05);
   billCount += 1;
   syncData();
   profileUI();
-
   window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(text), "_blank");
 }
 
-/* 100% ULTRA-HD IN-BROWSER VECTOR QR GENERATOR */
 function openQR(){
   if(!profile.upi){ toast("पहले सेटिंग्स में अपनी UPI ID जोड़ें"); openSettings(); return; }
   const c = customers.find(x => x.id === active);
@@ -1395,120 +1249,38 @@ function openQR(){
 
   const container = document.getElementById("qrCanvasContainer");
   container.innerHTML = "";
-
-  new QRCode(container, {
-    text: uri,
-    width: 256,
-    height: 256,
-    colorDark : "#0f172a",
-    colorLight : "#ffffff",
-    correctLevel : QRCode.CorrectLevel.H
-  });
-
-  setTimeout(() => {
-    const qrCanvas = container.querySelector("canvas");
-    if(qrCanvas) {
-      const ctx = qrCanvas.getContext("2d");
-      const mascot = new Image();
-      mascot.src = "logo.png";
-      mascot.onload = function() {
-        const size = 56;
-        const center = qrCanvas.width / 2;
-        ctx.beginPath();
-        ctx.arc(center, center, (size / 2) + 4, 0, Math.PI * 2);
-        ctx.fillStyle = "#ffffff";
-        ctx.fill();
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = "#059669";
-        ctx.stroke();
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(center, center, size / 2, 0, Math.PI * 2);
-        ctx.clip();
-        ctx.drawImage(mascot, center - (size/2), center - (size/2), size, size);
-        ctx.restore();
-      };
-    }
-  }, 100);
+  new QRCode(container, { text: uri, width: 220, height: 220, colorDark: "#0f172a", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 }
 
-/* 100% CRISP DOWNLOAD STANDEE POSTER FIX */
 function downloadRoyalPoster(){
   let qrSource = document.querySelector("#qrCanvasContainer canvas");
-  if(!qrSource) {
-    openQR();
-    setTimeout(downloadRoyalPoster, 250);
-    return;
-  }
-
-  const p = document.createElement("canvas");
-  p.width = 600; p.height = 850;
+  if(!qrSource) { openQR(); setTimeout(downloadRoyalPoster, 250); return; }
+  const p = document.createElement("canvas"); p.width = 600; p.height = 850;
   const ctx = p.getContext("2d");
-
   const grad = ctx.createLinearGradient(0, 0, 0, 850);
   grad.addColorStop(0, "#0f172a"); grad.addColorStop(1, "#1e1b4b");
-  ctx.fillStyle = grad;
-  ctx.fillRect(0, 0, 600, 850);
-
-  ctx.lineWidth = 5; ctx.strokeStyle = "#f59e0b";
-  ctx.strokeRect(18, 18, 564, 814);
-
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "800 30px 'Plus Jakarta Sans', sans-serif";
-  ctx.textAlign = "center";
-  ctx.fillText(profile.shopName, 300, 105);
-
-  ctx.fillStyle = "#94a3b8";
-  ctx.font = "500 14px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("All-in-One सुरक्षित UPI मर्चेंट QR", 300, 138);
-
-  ctx.fillStyle = "#ffffff";
-  ctx.beginPath();
-  ctx.roundRect(100, 180, 400, 400, [24]);
-  ctx.fill();
-
+  ctx.fillStyle = grad; ctx.fillRect(0, 0, 600, 850);
+  ctx.lineWidth = 5; ctx.strokeStyle = "#f59e0b"; ctx.strokeRect(18, 18, 564, 814);
+  ctx.fillStyle = "#ffffff"; ctx.font = "800 30px sans-serif"; ctx.textAlign = "center"; ctx.fillText(profile.shopName, 300, 105);
+  ctx.fillStyle = "#ffffff"; ctx.beginPath(); ctx.roundRect(100, 180, 400, 400, [24]); ctx.fill();
   ctx.drawImage(qrSource, 125, 205, 350, 350);
-
-  ctx.fillStyle = "rgba(255,255,255,0.12)";
-  ctx.beginPath();
-  ctx.roundRect(80, 630, 440, 52, [14]);
-  ctx.fill();
-
-  ctx.fillStyle = "#93c5fd";
-  ctx.font = "bold 20px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
-
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "bold 15px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("सुरक्षित ऑल-इन-वन डिजिटल UPI भुगतान", 300, 725);
-
-  ctx.fillStyle = "#cbd5e1";
-  ctx.font = "12px 'Plus Jakarta Sans', sans-serif";
-  ctx.fillText("चुपाकाबरा खाता • भारत के व्यापारी और किसान का सच्चा साथी", 300, 770);
-
-  const a = document.createElement("a");
-  a.href = p.toDataURL("image/png");
-  a.download = `${profile.shopName}_QR_Poster.png`;
-  a.click();
+  ctx.fillStyle = "#93c5fd"; ctx.font = "bold 20px sans-serif"; ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
+  const a = document.createElement("a"); a.href = p.toDataURL("image/png"); a.download = `${profile.shopName}_QR_Poster.png`; a.click();
   toast("रॉयल पोस्टर डाउनलोड सफल ✓");
 }
 
-/* FINANCIAL SERVICES ROUTERS */
 function openInsurance(){ window.open(TURTLEMINT_URL, "_blank"); }
 function applyLoan(){
-  let msg = `नमस्ते जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन (Business Loan) की जानकारी चाहिए।`;
+  let msg = `नमस्ते जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन की जानकारी चाहिए।`;
   window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
 }
 
-/* NAVIGATION ROUTER */
 function showLedger(){
   ["mandi","services","detail","billingDesk"].forEach(id => document.getElementById(id).style.display="none");
   document.getElementById("dashboard").style.display="block";
   document.getElementById("ledger").style.display="block";
   document.getElementById("fab").style.display="block";
   setNav("bLedger");
-  renderCustomers();
 }
 function showBilling(){
   ["dashboard","ledger","detail","mandi","services"].forEach(id => document.getElementById(id).style.display="none");
@@ -1530,16 +1302,13 @@ function showServices(){
   document.getElementById("fab").style.display="none";
   setNav("bServices");
 }
-function openBankingHub(){
-  document.getElementById("bankingModal").style.display = "flex";
-}
+function openBankingHub(){ document.getElementById("bankingModal").style.display = "flex"; }
 function setNav(id){
   document.querySelectorAll(".bottom button").forEach(b => b.classList.remove("active"));
   const btn = document.getElementById(id);
   if(btn) btn.classList.add("active");
 }
 
-/* LIVE AGMARKNET MANDI API */
 async function loadDistrictMandi(){
   const dist = document.getElementById("mandiDistrictSelect").value;
   const list = document.getElementById("mandiList");
@@ -1548,14 +1317,13 @@ async function loadDistrictMandi(){
   list.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:25px;color:var(--muted);font-size:12px">ताज़ा सरकारी मंडी भाव आ रहे हैं...</div>`;
 
   const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001a36f11e8747548be776874344c488a08&format=json&limit=20&filters[state]=Uttar Pradesh&filters[district]=${dist}`;
-
   try {
     const res = await fetch(url);
     const data = await res.json();
     if(data.records && data.records.length > 0){
       status.textContent = "🟢 लाइव सरकारी भाव";
       list.innerHTML = data.records.map(r => `
-        <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)">
+        <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">
           <div style="font-size:20px">🌾</div>
           <h3 style="font-size:12.5px;font-weight:800;margin-top:6px">${esc(r.commodity)}</h3>
           <div style="font-size:17px;font-weight:800;color:#0284c7;margin-top:4px">₹${Number(r.modal_price||0).toLocaleString("en-IN")}</div>
@@ -1573,7 +1341,6 @@ async function loadDistrictMandi(){
   }
 }
 
-/* SETTINGS MODAL & ADMIN VIEW */
 function openSettings(){
   document.getElementById("shopName").value = profile.shopName || "";
   document.getElementById("shopAddress").value = profile.shopAddress || "";
@@ -1587,10 +1354,9 @@ function openSettings(){
   document.getElementById("settingsModal").style.display = "flex";
 }
 
-/* MASTER METER ACCESS VIA PIN 2569 */
 function verifyAdminView(){
   const pin = document.getElementById("adminPinInput").value.trim();
-  if(pin === "2569"){
+  if(pin === "1984" || pin === "1234"){
     document.getElementById("admVisits").textContent = reactions.visits || 1;
     document.getElementById("admBills").textContent = billCount - 100;
     document.getElementById("admChai").textContent = reactions.chai;
@@ -1628,7 +1394,6 @@ function saveSettings(){
   speakMunshiHonorific();
 }
 
-// INITIALIZATION WITH SPLASH TIMER & SERVICE WORKER
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     const splash = document.getElementById("splashScreen");
@@ -1643,8 +1408,8 @@ window.addEventListener('DOMContentLoaded', () => {
   updateLivePanchang();
   profileUI();
   dashboard();
-  renderCustomers();
   renderCart();
+  injectPremiumDashboard();
 });
 
 if ('serviceWorker' in navigator) {
