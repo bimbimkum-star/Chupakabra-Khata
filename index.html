@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0f172a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>चुपाकाबरा खाता</title>
+<title> </title>
 
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
@@ -16,1930 +16,529 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!--   -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
-<style>
-:root{
- --brand:#1e293b;--brand2:#0f172a;--soft:#f1f5f9;--bg:#f8fafc;--card:#fff;
- --text:#0f172a;--muted:#64748b;--line:#e2e8f0;--green:#059669;--greenbg:#ecfdf5;
- --red:#e11d48;--redbg:#fff1f2;--orange:#f59e0b;--shadow:0 12px 30px -8px rgba(15,23,42,.08),0 4px 12px -4px rgba(15,23,42,.04)
-}
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Plus Jakarta Sans','Noto Sans Devanagari',sans-serif}
-html{background:var(--bg)}
-body{background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:110px;-webkit-font-smoothing:antialiased;user-select:none;-webkit-user-select:none}
-button,input,select,textarea{font:inherit}button{cursor:pointer}
-
-@keyframes splashPulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-}
-
-/* HEADER */
-.top{background:linear-gradient(135deg,#0f172a,#1e1b4b);color:#fff;padding:16px 16px 26px;border-radius:0 0 28px 28px;box-shadow:0 8px 20px rgba(15,23,42,0.18)}
-.toprow{max-width:580px;margin:auto;display:flex;align-items:center;justify-content:space-between}
-.brand{display:flex;align-items:center;gap:12px;cursor:pointer}
-.logo-img{width:46px;height:46px;border-radius:14px;border:2px solid #38bdf8;object-fit:cover;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,0.25)}
-.brand h1{font-size:17px;font-weight:800;letter-spacing:-0.2px}.brand p{font-size:10.5px;color:#94a3b8;margin-top:2px}
-.top-actions{display:flex;gap:8px;align-items:center}
-.vault-badge{display:flex;align-items:center;gap:5px;background:rgba(245,158,11,0.2);border:1px solid #f59e0b;padding:5px 9px;border-radius:12px;color:#fde047;font-size:11px;font-weight:800;cursor:pointer}
-.syncbtn{padding:7px 11px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px;cursor:pointer}
-.syncbtn:active{transform:scale(0.96)}
-.topbtn{width:40px;height:40px;border:0;border-radius:12px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:18px}
-
-.wrap{max-width:580px;margin:auto;padding:0 15px}.dash{margin-top:-10px}
-.summary{background:#fff;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
-.label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px}.net{font-size:32px;font-weight:800;margin-top:2px}.smallnote{font-size:10px;color:var(--muted);margin-top:4px}
-.moneygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.money{padding:12px;border-radius:16px;border:1px solid transparent}.money.get{background:var(--redbg);border-color:#ffe4e6}.money.give{background:var(--greenbg);border-color:#d1fae5}
-.money span{font-size:11px;color:var(--muted);font-weight:600}.money strong{display:block;font-size:18px;margin-top:4px}.money.get strong{color:var(--red)}.money.give strong{color:var(--green)}
-
-.main,.detail,.mandi,.reports,.services,.billing,.clinic-desk{max-width:580px;margin:auto;padding:16px 15px}
-.head{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 10px}.head h2{font-size:16px;font-weight:800}.head span{font-size:10px;color:var(--muted)}
-.search{height:46px;width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;padding:0 14px;outline:0;font-size:13px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)}.search:focus{border-color:#0284c7}
-.list{display:flex;flex-direction:column;gap:8px}.customer{background:#fff;border:1px solid var(--line);border-radius:18px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.02);transition:transform .08s ease}.customer:active{transform:scale(.985)}
-.left{display:flex;align-items:center;gap:11px;min-width:0}.avatar{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:var(--soft);color:var(--brand);display:grid;place-items:center;font-weight:800}.cname{font-size:13.5px;font-weight:800}.phone{font-size:10px;color:var(--muted);margin-top:2px}.right{text-align:right}.amt{font-size:15px;font-weight:800}.status{font-size:10px;font-weight:700;margin-top:2px}.receive{color:var(--red)}.pay{color:var(--green)}
-.empty{background:#fff;border:1px solid var(--line);border-radius:18px;padding:32px 20px;text-align:center;color:var(--muted);font-size:12px}.empty b{display:block;font-size:30px;margin-bottom:6px}
-
-/* FLOATING BAR BOTTOM CONTROLS */
-.fab{position:fixed;right:18px;bottom:80px;height:52px;padding:0 20px;border:0;border-radius:16px;background:#059669;color:#fff;font-size:13px;font-weight:800;box-shadow:0 10px 24px rgba(5,150,105,.35);z-index:80}
-.bottom{position:fixed;bottom:0;left:0;right:0;height:66px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;z-index:85}
-.bottom button{flex:1;border:0;background:none;color:#64748b;font-size:10px;font-weight:700}.bottom button div{font-size:19px;margin-bottom:2px}.bottom button.active{color:#059669}
-
-/* FOLDABLE CARDS */
-.ledger-trigger-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:16px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-top:14px}
-.ledger-trigger-card:active{transform:scale(0.985)}
-.ledger-drawer{display:none;margin-top:12px}
-
-/* DETAIL PROFILE */
-.back{border:0;background:none;color:#0284c7;font-size:13px;font-weight:800;margin-bottom:12px}
-.profile{background:#fff;border-radius:24px;padding:20px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(226,232,240,.8)}
-.bigavatar{width:58px;height:58px;border-radius:18px;background:var(--soft);color:var(--brand);display:grid;place-items:center;margin:auto;font-size:22px;font-weight:800}
-.profile h2{font-size:19px;margin-top:8px}.profile .phone{font-size:11px}
-.detailamt{font-size:30px;font-weight:800;margin-top:12px}.detailstatus{font-size:11px;color:var(--muted);font-weight:700;margin-top:2px}
-.points-tag{display:inline-flex;align-items:center;gap:4px;background:#fff7ed;color:var(--orange);padding:3px 9px;border-radius:10px;font-size:10.5px;font-weight:800;margin-top:6px;border:1px solid #fed7aa}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:16px}
-.action{border:0;border-radius:13px;padding:12px 7px;font-size:12px;font-weight:800}.action.give{background:var(--redbg);color:var(--red)}.action.get{background:var(--greenbg);color:var(--green)}
-.whatsapp{width:100%;border:0;border-radius:13px;background:#ecfdf5;color:#059669;padding:11px;margin-top:8px;font-size:12px;font-weight:800}
-.tools{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-top:9px}
-.tool{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 4px;font-size:10px;font-weight:700;color:#475569}
-.txhead{font-size:13.5px;font-weight:800;margin:18px 2px 9px}
-.tx{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.txnote{font-size:12px;font-weight:700}.txdate{font-size:9.5px;color:var(--muted);margin-top:2px}.txamt{font-size:14px;font-weight:800}.txbuttons{display:flex;gap:5px;margin-left:10px}.tiny{border:0;background:#f1f5f9;border-radius:8px;padding:5px 7px;font-size:10px}
-
-/* CLINICAL RX STYLES */
-.rx-card-box{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
-.rx-grid-3{display:grid;grid-template-columns:1.4fr 0.8fr 1fr;gap:8px;margin-bottom:12px}
-.rx-section-bar{display:flex;justify-content:space-between;align-items:center;margin:14px 0 6px}
-.rx-section-title{font-size:11.5px;font-weight:800;color:var(--text)}
-.rx-add-btn{border:1px dashed #0284c7;background:#f0f9ff;color:#0284c7;padding:3px 9px;border-radius:8px;font-size:10.5px;font-weight:800}
-.rx-tag-cloud{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.rx-chip{background:#f8fafc;border:1px solid var(--line);padding:6px 11px;border-radius:8px;font-size:11.5px;font-weight:600;color:#334155;cursor:pointer;user-select:none}
-.rx-chip.active{background:#0f172a;color:#fff;border-color:#0f172a}
-.rx-mode-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px}
-.rx-mode-tab{background:#fff;border:1px solid var(--line);padding:9px 4px;border-radius:10px;font-size:11px;font-weight:700;color:#475569;text-align:center;cursor:pointer}
-.rx-mode-tab.active{background:#0f172a;color:#fff;border-color:#0f172a}
-
-/* BILLING DESK */
-.billing-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
-.bill-type-toggle{display:inline-flex;padding:3px;background:#f1f5f9;border-radius:12px;margin-bottom:12px}
-.bill-type-btn{border:0;background:none;padding:6px 12px;border-radius:9px;font-size:11px;font-weight:700;color:#64748b}
-.bill-type-btn.active{background:#0f172a;color:#fff}
-.cart-table{width:100%;border-collapse:collapse;font-size:11px;margin-top:10px}
-.cart-table th{text-align:left;padding:6px 4px;color:#64748b;border-bottom:1px solid var(--line)}
-.cart-table td{padding:6px 4px;border-bottom:1px dashed #f1f5f9}
-.cart-table input,.cart-table select{width:100%;border:1px solid var(--line);border-radius:8px;padding:4px 6px;font-size:11px;background:#f8fafc}
-.cart-summary{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:12px}
-.cart-summary-row{display:flex;justify-content:space-between;margin-bottom:5px}
-
-/* SERVICES STYLES */
-.service-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;margin-bottom:12px;box-shadow:var(--shadow)}
-.service-head{display:flex;align-items:center;gap:12px}
-.service-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px}
-.service-info h3{font-size:14px;font-weight:800;color:var(--text)}
-.service-info p{font-size:10.5px;color:var(--muted);margin-top:2px}
-.service-desc{font-size:11px;color:#4b5563;margin:10px 0;line-height:1.5;background:#f8fafc;padding:10px 12px;border-radius:12px}
-.service-btn{width:100%;height:42px;border:0;border-radius:12px;background:#059669;color:#fff;font-size:11.5px;font-weight:800;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}
-
-/* 12 CITIZEN SERVICES ACCORDION DRAWER */
-.gov-master-card{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:20px;padding:16px;box-shadow:var(--shadow);cursor:pointer;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.gov-drawer{display:none;margin-top:8px}
-.citizen-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.gov-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 8px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.02);display:flex;flex-direction:column;justify-content:space-between;align-items:center}
-.gov-emoji{font-size:24px;margin-bottom:3px}
-.gov-tag{font-size:8.5px;font-weight:800;background:#ecfdf5;color:#059669;padding:2px 6px;border-radius:6px;margin-bottom:4px}
-.gov-title{font-size:11.5px;font-weight:800;color:var(--text);margin-bottom:2px}
-.gov-sub{font-size:9.5px;color:var(--muted);margin-bottom:8px;line-height:1.2}
-.gov-btn{width:100%;padding:6px 0;border-radius:10px;background:#f1f5f9;color:#0284c7;font-size:10.5px;font-weight:800;text-decoration:none;display:block;border:1px solid #e2e8f0}
-
-/* DRAGON MASCOT */
-.mascot-wrap{position:fixed;left:16px;bottom:80px;z-index:80;display:flex;flex-direction:column;align-items:flex-start;pointer-events:none}
-.mascot-bubble{background:#fff;border:2px solid #059669;padding:8px 12px;border-radius:16px 16px 16px 2px;font-size:11px;font-weight:800;color:var(--text);box-shadow:0 8px 24px rgba(0,0,0,.15);margin-bottom:8px;max-width:220px;display:none;pointer-events:auto;line-height:1.35}
-
-@keyframes chupaBreathing { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.03); } }
-@keyframes chupaSpeaking { 0% { transform: scale(1) rotate(0deg); } 25% { transform: scale(1.1) rotate(-4deg); } 75% { transform: scale(1.1) rotate(4deg); } 100% { transform: scale(1) rotate(0deg); } }
-@keyframes chupaShake { 0%, 100% { transform: rotate(0deg); } 20% { transform: rotate(-14deg) scale(0.9); } 40% { transform: rotate(14deg) scale(1.1); } 60% { transform: rotate(-8deg); } 80% { transform: rotate(8deg); } }
-@keyframes chupaJoy { 0%, 100% { transform: translateY(0) scale(1); } 30% { transform: translateY(-16px) scale(1.12); } 60% { transform: translateY(0) scale(0.96); } }
-
-.mascot-container{position:relative;pointer-events:auto;cursor:pointer}
-.chupa-avatar{
-  width:62px;height:62px;border-radius:50%;object-fit:cover;
-  border:3px solid #059669;background:#e0f2fe;
-  box-shadow:0 8px 25px rgba(5,150,105,.35);
-  animation:chupaBreathing 2.6s ease-in-out infinite;
-  display:block;
-}
-.chupa-avatar.talking{ animation:chupaSpeaking 0.35s ease-in-out infinite !important; }
-.chupa-avatar.joy{ animation:chupaJoy 0.6s ease-in-out !important; }
-.chupa-avatar.kutai{ animation:chupaShake 0.5s ease-in-out !important; border-color:#e11d48 !important; }
-.mascot-mute{position:absolute;top:-4px;right:-4px;width:20px;height:20px;border-radius:50%;background:#0f172a;color:#fff;font-size:10px;display:grid;place-items:center;border:1.5px solid #fff;cursor:pointer}
-
-/* MODALS */
-.modal{display:none;position:fixed;inset:0;background:rgba(15,23,42,.6);backdrop-filter:blur(4px);align-items:flex-end;justify-content:center;z-index:100}
-.box{width:100%;max-width:580px;background:#fff;border-radius:26px 26px 0 0;padding:22px 18px 28px;max-height:90vh;overflow-y:auto}
-.box h2{font-size:17px;font-weight:800;margin-bottom:14px}
-.input{width:100%;height:46px;border:1px solid var(--line);border-radius:13px;padding:0 13px;outline:0;font-size:13px;margin-bottom:9px;background:#f8fafc}.input:focus{border-color:#0284c7}
-.modalrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:4px}
-.modalrow button{height:46px;border:0;border-radius:13px;font-weight:800}
-.cancel{background:#f1f5f9;color:#64748b}.save{background:#059669;color:#fff}
-.setting{background:#f8fafc;border-radius:15px;padding:12px;margin-bottom:10px;border:1px solid var(--line)}.setting small{font-size:10.5px;color:var(--muted);font-weight:600}.setting .input{margin-top:5px;margin-bottom:0;background:#fff}
-
-/* SECURITY PIN LOCK SCREEN */
-.lock{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:9999;display:none;align-items:center;justify-content:center;padding:25px}
-.lockbox{width:100%;max-width:340px;background:#fff;border-radius:24px;padding:24px;text-align:center;box-shadow:0 20px 40px rgba(0,0,0,0.3)}
-.lockicon{font-size:42px}
-.unlock{width:100%;height:48px;border:0;border-radius:13px;background:#059669;color:#fff;font-weight:800;font-size:14px}
-.toast{position:fixed;left:50%;bottom:82px;transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:10px 16px;border-radius:12px;font-size:11px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;z-index:300;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-
-#invoicePrintArea,#clinicPrintArea{display:none}
-@media(min-width:700px){.bottom{width:580px;left:50%;right:auto;transform:translateX(-50%);border-radius:18px 18px 0 0}.fab{right:calc(50% - 270px)}.mascot-wrap{left:calc(50% - 270px)}}
-
-/* PRINT CSS */
-@media print{
-  body > * { display: none !important; }
-  #invoicePrintArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff; }
-  #clinicPrintArea { display: block !important; position: absolute; left: 0; top: 0; width: 100%; margin: 0; padding: 0; background: #fff; color: #000; }
-  .paper-roll { width: 76mm !important; max-width: 76mm !important; font-size: 11px !important; padding: 4px !important; break-inside: avoid; }
-  .paper-a4 { width: 100% !important; max-width: 680px !important; font-size: 13px !important; padding: 20px !important; break-inside: avoid; }
-  
-  .tpl-classic { border: 2px solid #0f172a; padding: 22px; font-family: serif; }
-  .tpl-rehab { border: 1px solid #cbd5e1; border-top: 8px solid #0284c7; padding: 22px; border-radius: 12px; font-family: sans-serif; }
-  .tpl-ayush { border: 4px double #854d0e; padding: 20px; background: #fffdf5; font-family: 'Noto Sans Devanagari', serif; }
-  .tpl-thermal { width: 76mm !important; max-width: 76mm !important; font-family: monospace; font-size: 11px; padding: 4px; }
-  .tpl-minimal { padding: 24px; font-family: sans-serif; border: none; }
-}
-</style>
+<!--    -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false;">
 
-<!-- 1. SPLASH SCREEN -->
-<div id="splashScreen" style="position:fixed;inset:0;background:linear-gradient(135deg,#0f172a,#1e1b4b);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity 0.6s ease, visibility 0.6s ease;">
+<!--   -->
+<div id="splashScreen">
   <div style="text-align:center;">
-    <img src="logo.png" style="width:110px;height:110px;border-radius:28px;border:3px solid #38bdf8;box-shadow:0 12px 35px rgba(0,0,0,0.45);animation:splashPulse 1.8s ease-in-out infinite;" alt="चुपाकाबरा लोगो">
-    <h1 style="color:#fff;font-size:22px;font-weight:800;margin-top:16px;letter-spacing:-0.5px;">चुपाकाबरा खाता</h1>
-    <p style="color:#94a3b8;font-size:12px;margin-top:4px;font-weight:600;">सुरक्षित डिजिटल गद्दी • भारत का बहीखाता</p>
+    <img src="logo.png" class="splash-logo" alt=" ">
+    <h1 style="color:#fff;font-size:22px;font-weight:800;margin-top:16px;"> </h1>
+    <p style="color:#94a3b8;font-size:12px;margin-top:4px;font-weight:600;">      </p>
   </div>
 </div>
 
-<!-- TOP HEADER -->
+<!--  -->
 <header class="top">
  <div class="toprow">
   <div class="brand" onclick="speakMunshiHonorific()">
-    <img src="logo.png" class="logo-img" alt="चुपाकाबरा लोगो">
+    <img src="logo.png" class="logo-img" alt=" ">
     <div>
-      <h1 id="shopTitle">मेरी दुकान</h1>
-      <p id="livePanchangText">लोड हो रहा है...</p>
+      <h1 id="shopTitle"> </h1>
+      <p id="livePanchangText">   ...</p>
     </div>
   </div>
   <div class="top-actions">
-    <div class="vault-badge" title="गद्दी की बरकत बचत" onclick="openGameModal()">
-      <span>🪙</span>
+    <div class="vault-badge" onclick="openGameModal()">
+      <span></span>
       <span id="vaultBalance">0.00</span>
     </div>
-    <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
-    <button class="topbtn" type="button" onclick="openSettings()">⚙</button>
+    <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">  </button>
+    <button class="topbtn" type="button" onclick="openSettings()"></button>
   </div>
  </div>
 </header>
 
-<!-- DASHBOARD (100% नीट एंड क्लीन मुख्य पेज) -->
+<!--  -->
 <section class="wrap dash" id="dashboard">
  <div class="summary">
-  <div class="label">गद्दी का कुल बकाया संतुलन</div>
-  <div class="net" id="net">₹0</div>
-  <div class="smallnote" id="syncStatusText">🛡️ 256-Bit सुरक्षित लोकल मोड</div>
+  <div class="label">    </div>
+  <div class="net" id="net">0</div>
+  <div class="smallnote" id="syncStatusText"> 256-Bit   </div>
   <div class="moneygrid">
-   <div class="money get"><span>लेना है (बाज़ार में उधार)</span><strong id="totalGet">₹0</strong></div>
-   <div class="money give"><span>देना है (जमा / आवक)</span><strong id="totalGive">₹0</strong></div>
+   <div class="money get"><span>  (  )</span><strong id="totalGet">0</strong></div>
+   <div class="money give"><span>  ( / )</span><strong id="totalGive">0</strong></div>
   </div>
  </div>
 </section>
 
-<!-- MAIN LEDGER VIEW (NO CLUTTER - CLEAN HOMEPAGE) -->
+<!--    -->
 <main class="main" id="ledger">
- <!-- FOLDABLE CUSTOMERS CARD -->
  <div class="ledger-trigger-card" onclick="toggleLedgerDrawer()">
    <div style="display:flex;align-items:center;gap:12px">
-     <div style="width:44px;height:44px;border-radius:14px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:20px">📒</div>
+     <div style="width:44px;height:44px;border-radius:14px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:20px"></div>
      <div>
-       <h3 style="font-size:14px;font-weight:800;color:var(--text)">ग्राहकों का बहीखाता</h3>
-       <p style="font-size:10.5px;color:var(--muted);margin-top:2px" id="count">0 ग्राहक दर्ज</p>
+       <h3 style="font-size:14px;font-weight:800;color:var(--text)">  </h3>
+       <p style="font-size:10.5px;color:var(--muted);margin-top:2px" id="count">0  </p>
      </div>
    </div>
-   <button type="button" id="ledgerToggleBtn" style="border:0;background:#0f172a;color:#fff;padding:8px 14px;border-radius:12px;font-size:11px;font-weight:800">
-     हिसाब खोलें 📂
-   </button>
+   <button type="button" id="ledgerToggleBtn" class="pill-btn">  </button>
  </div>
 
  <div class="ledger-drawer" id="ledgerDrawer">
-   <input id="search" class="search" placeholder="🔎 ग्राहक या मोबाइल खोजें..." oninput="renderCustomers()">
+   <input id="search" class="search" placeholder="    ..." oninput="renderCustomers()">
    <div class="list" id="customers"></div>
  </div>
 </main>
 
-<!-- SERVICES VIEW (ALL PROFESSIONAL & CITIZEN SERVICES CONSOLIDATED) -->
+<!--   (My Services) -->
 <section class="services" id="services" style="display:none">
- <div class="head"><h2>मेरी सेवाएँ (My Services)</h2><span>व्यावसायिक व क्लिनिकल टूल्स</span></div>
+ <div class="head"><h2>  (My Services)</h2><span>   </span></div>
 
- <!-- 1. CLINICAL PRESCRIPTION DESK CARD (सेवाओं में शिफ्ट) -->
- <div class="service-card" style="border-color:#bbf7d0;background:linear-gradient(to right,#ffffff,#f0fdf4)">
+ <!--     -->
+ <div class="service-card pharma-card">
   <div class="service-head">
-    <div class="service-icon" style="background:#ecfdf5;color:#059669">🩺</div>
+    <div class="service-icon blue-icon"></div>
     <div class="service-info">
-      <h3>क्लिनिकल व पर्चा डेस्क</h3>
-      <p>50 टेम्पलेट्स • ℞ प्रिंट व WhatsApp पर्चा</p>
+      <h3>    </h3>
+      <p> , ,   Google Maps </p>
     </div>
   </div>
   <div class="service-desc">
-    फिजियोथेरेपी, न्यूरोथेरेपी व क्लिनिकल प्रैक्टिशनरों के लिए त्वरित डिजिटल पर्चा जनरेटर। अपने लेटरहेड पर प्रिंट निकालें व मरीज़ को भेजें।
+              WhatsApp     <b>Google Maps  </b>          
   </div>
-  <button class="service-btn" type="button" onclick="showClinicDesk()">
-    📄 क्लिनिकल पर्चा डेस्क खोलें →
-  </button>
+  <button class="service-btn blue-btn" type="button" onclick="showPharmacyDesk()">    </button>
  </div>
 
- <!-- 2. TURTLEMINT INSURANCE -->
- <div class="service-card">
+ <!--     -->
+ <div class="service-card clinic-card">
   <div class="service-head">
-    <div class="service-icon" style="background:#ecfdf5;color:#059669">🛡️</div>
+    <div class="service-icon green-icon"></div>
     <div class="service-info">
-      <h3>दुकान, वाहन व स्वास्थ्य बीमा</h3>
-      <p>प्रमाणित Turtlemint पार्टनर</p>
+      <h3>   </h3>
+      <p>50      WhatsApp </p>
     </div>
   </div>
-  <div class="service-desc">दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं मोटर बीमा ऑनलाइन सबसे कम प्रीमियम पर प्राप्त करें।</div>
-  <button class="service-btn" type="button" onclick="openInsurance()">🔗 Turtlemint पोर्टल पर बीमा देखें →</button>
+  <div class="service-desc">
+    ,              Google Maps     
+  </div>
+  <button class="service-btn" type="button" onclick="showClinicDesk()">     </button>
  </div>
 
- <!-- 3. BUSINESS LOAN -->
+ <!--     -->
  <div class="service-card">
   <div class="service-head">
-    <div class="service-icon" style="background:#f1f5f9;color:#0284c7">💰</div>
-    <div class="service-info">
-      <h3>व्यापार लोन (Business Loan)</h3>
-      <p>दुकान विस्तार हेतु पूंजी सहायता</p>
-    </div>
+    <div class="service-icon green-icon"></div>
+    <div class="service-info"><h3>,    </h3><p> Turtlemint </p></div>
   </div>
-  <div class="service-desc">दुकान के विस्तार या नए स्टॉक के लिए आसान कागज़ी प्रक्रिया पर पूंजी प्राप्त करें।</div>
-  <button class="service-btn" type="button" style="background:#0f172a" onclick="applyLoan()">💬 लोन सहायता के लिए WhatsApp करें →</button>
+  <div class="service-desc">  ,            </div>
+  <button class="service-btn" type="button" onclick="openInsurance()"> Turtlemint     </button>
  </div>
 
- <!-- 4. CONSOLIDATED SINGLE CARD FOR 12 GOV SERVICES (एक ही कार्ड में जब टैप करे तब खुले) -->
- <div class="head" style="margin-top:20px"><h2>🌾 सरकारी व नागरिक सेवाएँ</h2><span>आधिकारिक पोर्टल्स (.gov.in)</span></div>
+ <div class="service-card">
+  <div class="service-head">
+    <div class="service-icon grey-icon"></div>
+    <div class="service-info"><h3>  (Business Loan)</h3><p>    </p></div>
+  </div>
+  <div class="service-desc">              </div>
+  <button class="service-btn dark-btn" type="button" onclick="applyLoan()">     WhatsApp  </button>
+ </div>
+
+ <!-- 12      -->
+ <div class="head" style="margin-top:20px"><h2>    </h2><span>  (.gov.in)</span></div>
  <div class="gov-master-card" onclick="toggleGovDrawer()">
    <div style="display:flex;align-items:center;gap:12px">
-     <div style="font-size:26px">🏛️</div>
+     <div style="font-size:26px"></div>
      <div>
-       <h3 style="font-size:13.5px;font-weight:800">12 आवश्यक सरकारी सेवाएँ</h3>
-       <p style="font-size:10px;color:#94a3b8;margin-top:2px">आयुष्मान, राशन, खतौनी, गन्ना, पेंशन, eCourts आदि</p>
+       <h3 style="font-size:13.5px;font-weight:800">12   </h3>
+       <p style="font-size:10px;color:#94a3b8;margin-top:2px">, , , , , eCourts </p>
      </div>
    </div>
-   <button type="button" id="govToggleBtn" style="border:0;background:rgba(255,255,255,0.15);color:#fde047;padding:6px 12px;border-radius:10px;font-size:11px;font-weight:800">
-     सेवाएँ खोलें ↗
-   </button>
+   <button type="button" id="govToggleBtn" class="gov-toggle-pill">  </button>
  </div>
 
- <!-- FOLDABLE 12 CITIZEN SERVICES DRAWER -->
  <div class="gov-drawer" id="govDrawer">
-   <div class="citizen-grid">
-     <div class="gov-box"><div><div class="gov-emoji">💳</div><div class="gov-tag">UP Health</div><div class="gov-title">शिक्षक कैशलेस कार्ड</div><div class="gov-sub">मुख्यमंत्री कैशलेस चिकित्सा</div></div><a href="https://cmtcts.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🏥</div><div class="gov-tag">PM-JAY</div><div class="gov-title">आयुष्मान कार्ड</div><div class="gov-sub">परिवार पात्रता व डाउनलोड</div></div><a href="https://beneficiary.nha.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🌾</div><div class="gov-tag">FCS UP</div><div class="gov-title">राशन कार्ड पर्ची</div><div class="gov-sub">कोटेदार सूची व यूनिट खोज</div></div><a href="https://fcs.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🎋</div><div class="gov-tag">e-Ganna</div><div class="gov-title">गन्ना पर्ची कैलेंडर</div><div class="gov-sub">किसान सट्टा व पर्ची कैलेंडर</div></div><a href="https://enquiry.caneup.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🏫</div><div class="gov-tag">eHRMS UP</div><div class="gov-title">मानव संपदा पोर्टल</div><div class="gov-sub">सर्विस बुक व ऑनलाइन लीव</div></div><a href="https://ehrms.upsdc.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">⚖️</div><div class="gov-tag">eCourts</div><div class="gov-title">कोर्ट केस स्टेटस</div><div class="gov-sub">तहसील व ज़िला कोर्ट तारीख</div></div><a href="https://services.ecourts.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🔍</div><div class="gov-tag">eDistrict</div><div class="gov-title">प्रमाणपत्र सत्यापन</div><div class="gov-sub">आय/जाति/निवास असली-नकली</div></div><a href="https://edistrict.up.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">📜</div><div class="gov-tag">Bhulekh</div><div class="gov-title">भूलेख खतौनी</div><div class="gov-sub">गाटा व ज़मीन नकल ब्योरा</div></div><a href="https://upbhulekh.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🚜</div><div class="gov-tag">PM-Kisan</div><div class="gov-title">PM-किसान क़िस्त</div><div class="gov-sub">सम्मान निधि स्थिति व eKYC</div></div><a href="https://pmkisan.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🚆</div><div class="gov-tag">Indian Rail</div><div class="gov-title">रेलवे PNR व ट्रेन</div><div class="gov-sub">लाइव स्थिति व सीट खोज</div></div><a href="https://www.indianrail.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🏛️</div><div class="gov-tag">IGRSUP</div><div class="gov-title">बैनामा व रजिस्ट्री</div><div class="gov-sub">जायदाद भार व प्रतिलिपि</div></div><a href="https://igrsup.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
-     <div class="gov-box"><div><div class="gov-emoji">🛡️</div><div class="gov-tag">PMFBY</div><div class="gov-title">फसल नुक़सान क्लेम</div><div class="gov-sub">क्षतिपूर्ति दावा व स्थिति</div></div><a href="https://pmfby.gov.in" target="_blank" rel="noopener" class="gov-btn">पोर्टल खोलें ↗</a></div>
+   <div class="citizen-grid" id="citizenGrid"></div>
+ </div>
+</section>
+
+<!--   -->
+<section class="pharmacy-desk" id="pharmacyDesk" style="display:none">
+ <button class="back" onclick="showServices()">    </button>
+ <div class="rx-card-box">
+   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+     <div>
+       <h2 style="font-size:16px;font-weight:800" id="dispPharmaName">   </h2>
+       <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispPharmaSub">.. .: UP-DL-8942 |     </p>
+     </div>
+     <button type="button" class="tool edit-pharma-btn" onclick="editPharmaSetup()">  </button>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
+     <input id="phCustName" class="input" style="height:42px;margin:0" placeholder="   (. )">
+     <input id="phCustPhone" type="tel" maxlength="10" class="input" style="height:42px;margin:0" placeholder="WhatsApp  ()">
+   </div>
+   <input id="phDocRef" class="input" style="height:40px;margin-bottom:10px;font-size:12px" placeholder="    (. . )">
+
+   <table class="pharma-table">
+     <thead>
+       <tr>
+         <th style="width:38%">  </th>
+         <th style="width:20%"> / </th>
+         <th style="width:16%"></th>
+         <th style="width:26%;text-align:right"> ()</th>
+       </tr>
+     </thead>
+     <tbody id="pharmaTableBody"></tbody>
+   </table>
+
+   <button type="button" onclick="addPharmaRow()" class="add-row-btn">   /  </button>
+
+   <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-size:12px">
+     <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+       <span style="color:var(--muted)">-:</span>
+       <strong id="phSubTotal">0.00</strong>
+     </div>
+     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+       <span style="color:var(--muted)"> / :</span>
+       <div style="display:flex;align-items:center;gap:4px">
+         <span></span>
+         <input type="number" id="phDiscount" value="0" oninput="recalcPharma()" style="width:70px;height:30px;border:1px solid var(--line);border-radius:6px;text-align:right;padding:2px 5px;font-size:11px">
+       </div>
+     </div>
+     <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:800;border-top:1px solid var(--line);padding-top:6px;margin-top:4px">
+       <span>  :</span>
+       <strong id="phGrandTotal" style="color:#0284c7;font-size:17px">0.00</strong>
+     </div>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+     <button class="save" style="height:46px;font-size:12.5px;background:#0f172a" onclick="printPharmaInvoice()">   </button>
+     <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendPharmaWhatsApp()"> WhatsApp  + </button>
    </div>
  </div>
 </section>
 
-<!-- CLINIC PRESCRIPTION DESK VIEW -->
+<!--   -->
 <section class="clinic-desk" id="clinicDesk" style="display:none">
- <button class="back" onclick="showServices()">← वापस मेरी सेवाओं में</button>
+ <button class="back" onclick="showServices()">    </button>
  
  <div class="rx-card-box">
    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
      <div>
-       <h2 style="font-size:16px;font-weight:800;color:var(--text)" id="dispClinicName">आरोग्य रिहैब व थेरेपी क्लिनिक</h2>
-       <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispClinicSub">डॉ. आर. पी. सिंह | Reg: UP-RMP-2026/A</p>
+       <h2 style="font-size:16px;font-weight:800" id="dispClinicName">    </h2>
+       <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispClinicSub">. . .  | Reg: UP-RMP-2026/A</p>
      </div>
-     <button type="button" class="tool" style="padding:6px 12px;background:#f1f5f9;font-weight:800" onclick="editClinicSetup()">⚙️ सेटअप</button>
+     <button type="button" class="tool" style="padding:6px 12px;background:#f1f5f9;font-weight:800" onclick="editClinicSetup()">  </button>
    </div>
 
-   <!-- 50 TEMPLATES PICKER -->
-   <div style="background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:14px">
+   <!-- 50   -->
+   <div class="template-selector-box">
      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-       <span style="font-size:11px;font-weight:800;color:var(--text)">📄 पर्चा टेम्पलेट (50 शैलियाँ)</span>
-       <span style="font-size:9.5px;font-weight:800;color:#0284c7;background:#e0f2fe;padding:2px 7px;border-radius:6px" id="rxCategoryBadge">1. क्लासिक क्लिनिकल</span>
+       <span style="font-size:11px;font-weight:800">   (50 )</span>
+       <span class="tpl-badge" id="rxCategoryBadge">1.  </span>
      </div>
-     <select id="rxTemplatePicker" class="input" style="height:40px;margin-bottom:0;font-size:11.5px;font-weight:700" onchange="updateRxCategoryBadge()">
-       <optgroup label="🏥 1. क्लासिक क्लिनिकल (1-10)">
-         <option value="1" selected>टेम्पलेट 01: क्लासिक ℞ एम्स फॉर्मल स्टाइल</option>
-         <option value="2">टेम्पलेट 02: क्लासिक हेडर + डबल लाइन बॉर्डर</option>
-         <option value="3">टेम्पलेट 03: गवर्नमेंट हॉस्पिटल पर्चा लेआउट</option>
-         <option value="4">टेम्पलेट 04: नर्सिंग होम क्लीन लेटरहेड</option>
-         <option value="5">टेम्पलेट 05: क्लासिक रॉयल ℞ वॉटरमार्क</option>
-         <option value="6">टेम्पलेट 06: चैरिटेबल ट्रस्ट फॉर्मल स्लिप</option>
-         <option value="7">टेम्पलेट 07: सीनियर कंसल्टेंट प्रेस्क्रिप्शन</option>
-         <option value="8">टेम्पलेट 08: टू-कॉलम क्लासिक डायग्नोसिस</option>
-         <option value="9">टेम्पलेट 09: क्लासिक ब्लू बॉर्डर पैड</option>
-         <option value="10">टेम्पलेट 10: विंटेज एपोथेकरी स्टाइल</option>
-       </optgroup>
-       <optgroup label="🧘 2. मॉडर्न फिजियो व न्यूरो रिहैब (11-20)">
-         <option value="11">टेम्पलेट 11: स्पाइन व डिस्क असेसमेंट शीट</option>
-         <option value="12">टेम्पलेट 12: कपिंग व हिजामा सिटिंग ट्रैकर</option>
-         <option value="13">टेम्पलेट 13: न्यूरोथेरेपी नवल स्टिम्युलेशन प्रोटोकॉल</option>
-         <option value="14">टेम्पलेट 14: जॉइंट मोबिलिटी व पेन स्केल (VAS)</option>
-         <option value="15">टेम्पलेट 15: फिजियो एक्सरसाइज चेकलिस्ट फॉर्मेट</option>
-         <option value="16">टेम्पलेट 16: पैरालिसिस रिकवरी चार्ट</option>
-         <option value="17">टेम्पलेट 17: स्पोर्ट्स इंजरी व रिहैब कार्ड</option>
-         <option value="18">टेम्पलेट 18: ऑर्थोपेडिक रिहैबिलिटेशन लेआउट</option>
-         <option value="19">टेम्पलेट 19: मॉडर्न टील हेडर रिहैब पैड</option>
-         <option value="20">टेम्पलेट 20: प्रिवेंटिव वेलनेस व पोस्चर गाइड</option>
-       </optgroup>
-       <optgroup label="🌿 3. आयुष, देसी व नाड़ी वैदिकी (21-30)">
-         <option value="21">टेम्पलेट 21: पारंपरिक नाड़ी व पंचकर्म पर्चा</option>
-         <option value="22">टेम्पलेट 22: वात-पित्त-कफ त्रिदोष डायरी</option>
-         <option value="23">टेम्पलेट 23: हर्बल काढ़ा व अनुपान चार्ट</option>
-         <option value="24">टेम्पलेट 24: प्राकृतिक चिकित्सा व स्वेदन स्लिप</option>
-         <option value="25">टेम्पलेट 25: मर्म चिकित्सा उपचार पत्रक</option>
-         <option value="26">टेम्पलेट 26: आयुष ग्राम आरोग्य पत्र</option>
-         <option value="27">टेम्पलेट 27: स्वर्ण प्राशन व बाल संस्कार कार्ड</option>
-         <option value="28">टेम्पलेट 28: योग व दिनचर्या परामर्श पर्चा</option>
-         <option value="29">टेम्पलेट 29: प्राचीन बॉर्डर देसी दवा पत्र</option>
-         <option value="30">टेम्पलेट 30: शोधन व शमन थेरेपी शीट</option>
-       </optgroup>
-       <optgroup label="🧾 4. थर्मल रोल पर्चा (काउंटर प्रिंटर) (31-40)">
-         <option value="31">टेम्पलेट 31: 58mm मिनी पॉकेट पर्ची</option>
-         <option value="32">टेम्पलेट 32: 80mm रोल बारकोड क्लिनिक स्लिप</option>
-         <option value="33">टेम्पलेट 33: थर्मल सिटिंग टोकन व परामर्श</option>
-         <option value="34">टेम्पलेट 34: थर्मल बिल + प्रिस्क्रिप्शन कंबाइंड</option>
-         <option value="35">टेम्पलेट 35: कॉम्पैक्ट फॉलो-अप स्लिप</option>
-         <option value="36">टेम्पलेट 36: इमरजेंसी ओपीडी रोल टिकट</option>
-         <option value="37">टेम्पलेट 37: 80mm बॉक्स ग्रिड पर्चा</option>
-         <option value="38">टेम्पलेट 38: थर्मल मेडिसिन डोज टेबल</option>
-         <option value="39">टेम्पलेट 39: सुपरफास्ट 10-सेकंड रोल स्लिप</option>
-         <option value="40">टेम्पलेट 40: थर्मल बारकोड डिस्चार्ज समरी</option>
-       </optgroup>
-       <optgroup label="✒️ 5. एग्जीक्यूटिव मिनिमल व आधुनिक (41-50)">
-         <option value="41">टेम्पलेट 41: स्लीक मॉडर्न ग्रे हेडर</option>
-         <option value="42">टेम्पलेट 42: नो-बॉर्डर अल्ट्रा मिनिमल A4</option>
-         <option value="43">टेम्पलेट 43: टू-टोन कॉर्पोरेट हेल्थ कार्ड</option>
-         <option value="44">टेम्पलेट 44: डिजिटल ई-प्रिस्क्रिप्शन फॉर्मेट</option>
-         <option value="45">टेम्पलेट 45: टेली-कंसल्टेशन ऑफिशियल पैड</option>
-         <option value="46">टेम्पलेट 46: बुलेटेड क्लीन क्लिनिकल समरी</option>
-         <option value="47">टेम्पलेट 47: मॉडर्न ज्योमेट्रिक कॉर्नर लेटरहेड</option>
-         <option value="48">टेम्पलेट 48: डार्क-एलिगेंट हेडर मेडिकल शीट</option>
-         <option value="49">टेम्पलेट 49: पोर्ट्रेट कार्ड स्टाइल प्रिस्क्रिप्शन</option>
-         <option value="50">टेम्पलेट 50: प्रीमियम गोल्डन स्टैम्प स्टाइल</option>
-       </optgroup>
-     </select>
+     <select id="rxTemplatePicker" class="input" style="height:40px;margin-bottom:0;font-size:11.5px;font-weight:700" onchange="updateRxCategoryBadge()"></select>
    </div>
 
-   <!-- PRACTICE SPECIALTY TABS -->
    <div class="rx-mode-tabs">
-     <div class="rx-mode-tab active" data-rxm="therapy" onclick="setRxCategory('therapy')">फिजियो व न्यूरो</div>
-     <div class="rx-mode-tab" data-rxm="medical" onclick="setRxCategory('medical')">एलोपैथ / मेडिकल</div>
-     <div class="rx-mode-tab" data-rxm="rural" onclick="setRxCategory('rural')">प्राथमिक सेवा</div>
+     <div class="rx-mode-tab active" data-rxm="therapy" onclick="setRxCategory('therapy')">  </div>
+     <div class="rx-mode-tab" data-rxm="medical" onclick="setRxCategory('medical')"> / </div>
+     <div class="rx-mode-tab" data-rxm="rural" onclick="setRxCategory('rural')"> </div>
    </div>
 
-   <!-- PATIENT ENTRY -->
    <div class="rx-grid-3">
-     <input id="rxPtName" class="input" style="margin-bottom:0;height:42px" placeholder="मरीज़ का नाम *">
+     <input id="rxPtName" class="input" style="margin-bottom:0;height:42px" placeholder="   *">
      <input id="rxPtAgeGender" class="input" style="margin-bottom:0;height:42px" placeholder="42 / M">
-     <input id="rxPtPhone" type="tel" maxlength="10" class="input" style="margin-bottom:0;height:42px" placeholder="WhatsApp नंबर">
+     <input id="rxPtPhone" type="tel" maxlength="10" class="input" style="margin-bottom:0;height:42px" placeholder="WhatsApp ">
    </div>
 
-   <!-- 1. COMPLAINTS SECTION WITH CUSTOM ADD BUTTON -->
    <div class="rx-section-bar">
-     <span class="rx-section-title">लक्षण व तकलीफ़ (Complaints):</span>
-     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('c')">＋ नया जोड़ें</button>
+     <span class="rx-section-title">   (Complaints):</span>
+     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('c')">  </button>
    </div>
    <div class="rx-tag-cloud" id="rxComplaintsCloud"></div>
 
-   <!-- 2. TREATMENT SECTION WITH CUSTOM ADD BUTTON -->
    <div class="rx-section-bar">
-     <span class="rx-section-title" id="rxTreatLbl">थेरेपी व दवा प्रोटोकॉल (Treatment):</span>
-     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('t')">＋ नया जोड़ें</button>
+     <span class="rx-section-title" id="rxTreatLbl">    (Treatment):</span>
+     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('t')">  </button>
    </div>
    <div class="rx-tag-cloud" id="rxTreatmentCloud"></div>
 
-   <!-- 3. ADVICE SECTION WITH CUSTOM ADD BUTTON -->
    <div class="rx-section-bar">
-     <span class="rx-section-title">घरेलू कसरत व परहेज (Advice):</span>
-     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('a')">＋ नया जोड़ें</button>
+     <span class="rx-section-title">    (Advice):</span>
+     <button type="button" class="rx-add-btn" onclick="openRxItemAdder('a')">  </button>
    </div>
    <div class="rx-tag-cloud" id="rxAdviceCloud"></div>
 
-   <input id="rxPtNext" class="input" style="height:42px;margin-top:8px" placeholder="अगला परामर्श / सिटिंग (उदा. 3 दिन बाद सुबह 10 बजे)">
+   <input id="rxPtNext" class="input" style="height:42px;margin-top:8px" placeholder="  /  (. 3    10 )">
 
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
-     <button class="save" style="height:46px;font-size:12.5px" onclick="printClinicPrescription()">🖨️ पर्चा प्रिंट निकालें</button>
-     <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendClinicWhatsAppRx()">📲 WhatsApp पर्चा</button>
+     <button class="save" style="height:46px;font-size:12.5px" onclick="printClinicPrescription()">   </button>
+     <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendClinicWhatsAppRx()"> WhatsApp  + </button>
    </div>
  </div>
 </section>
 
-<!-- BILLING DESK -->
+<!--    -->
 <section class="billing" id="billingDesk" style="display:none">
  <div class="billing-card">
    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
      <div>
-       <h2 style="font-size:15px;font-weight:800">काउंटर बिलिंग डेस्क</h2>
-       <p style="font-size:10px;color:var(--muted)">कच्चा पर्चा एवं कानूनी GST इनवॉइस</p>
+       <h2 style="font-size:15px;font-weight:800">  </h2>
+       <p style="font-size:10px;color:var(--muted)">    GST </p>
      </div>
      <div class="bill-type-toggle">
-       <button id="bTypeKaccha" class="bill-type-btn active" onclick="switchBillMode('kaccha')">कच्चा पर्चा</button>
-       <button id="bTypeGst" class="bill-type-btn" onclick="switchBillMode('gst')">पक्का GST</button>
+       <button id="bTypeKaccha" class="bill-type-btn active" onclick="switchBillMode('kaccha')"> </button>
+       <button id="bTypeGst" class="bill-type-btn" onclick="switchBillMode('gst')"> GST</button>
      </div>
    </div>
 
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-     <input id="cartCustName" class="input" style="height:40px;font-size:11px" placeholder="ग्राहक नाम (उदा. नकद)">
-     <input id="cartCustPhone" class="input" style="height:40px;font-size:11px" type="tel" maxlength="10" placeholder="मोबाइल नंबर (वैकल्पिक)">
-   </div>
-
-   <div style="background:#0f172a;color:#fff;border-radius:12px;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;margin:8px 0;font-size:10px">
-     <div>
-       <b>🔫 बारकोड स्कैनर सक्रिय है</b>
-       <p style="color:#38bdf8;font-size:9px">लैपटॉप पर बीप करें, सामान खुद चढ़ेगा</p>
-     </div>
-     <button type="button" onclick="connectBluetoothThermal()" style="border:0;background:#059669;color:#fff;padding:5px 9px;border-radius:8px;font-weight:800;font-size:10px">
-       🖨 ब्लूटूथ प्रिंटर
-     </button>
+     <input id="cartCustName" class="input" style="height:40px;font-size:11px" placeholder="  (. )">
+     <input id="cartCustPhone" class="input" style="height:40px;font-size:11px" type="tel" maxlength="10" placeholder="  ()">
    </div>
 
    <table class="cart-table">
      <thead>
        <tr>
-         <th style="width:40%">सामान</th>
-         <th style="width:18%">मात्रा</th>
-         <th style="width:20%">इकाई</th>
-         <th style="width:22%;text-align:right">भाव (₹)</th>
+         <th style="width:40%"></th>
+         <th style="width:18%"></th>
+         <th style="width:20%"></th>
+         <th style="width:22%;text-align:right"> ()</th>
        </tr>
      </thead>
      <tbody id="cartTableBody"></tbody>
    </table>
 
    <button type="button" onclick="addCartRow()" style="border:0;background:#f1f5f9;color:#0284c7;font-size:11px;font-weight:800;padding:7px 12px;border-radius:9px;margin-top:8px;width:100%">
-     ＋ नया सामान जोड़ें
+        
    </button>
 
    <div class="cart-summary">
      <div class="cart-summary-row">
-       <span style="color:var(--muted)">उप-योग (Subtotal):</span>
-       <strong id="cSubtotal">₹0.00</strong>
-     </div>
-     <div class="cart-summary-row" id="gstBreakdownRow" style="display:none;flex-direction:column;gap:3px;color:#059669;padding:4px 0">
-       <div style="display:flex;justify-content:space-between;font-size:11px">
-         <span>कर योग्य मूल्य (Taxable):</span>
-         <span id="cTaxable">₹0.00</span>
-       </div>
-       <div style="display:flex;justify-content:space-between;font-size:11px">
-         <span>CGST (2.5%):</span>
-         <span id="cCgst">₹0.00</span>
-       </div>
-       <div style="display:flex;justify-content:space-between;font-size:11px">
-         <span>SGST (2.5%):</span>
-         <span id="cSgst">₹0.00</span>
-       </div>
+       <span style="color:var(--muted)">-:</span>
+       <strong id="cSubtotal">0.00</strong>
      </div>
      <div class="cart-summary-row" style="align-items:center">
-       <span style="color:var(--muted)">छूट / डिस्काउंट:</span>
+       <span style="color:var(--muted)"> / :</span>
        <div style="display:flex;align-items:center;gap:4px">
-         <span>₹</span>
+         <span></span>
          <input type="number" id="cDiscount" value="0" oninput="recalcCart()" style="width:70px;height:30px;border:1px solid var(--line);border-radius:6px;text-align:right;padding:2px 5px;font-size:11px">
        </div>
      </div>
      <div class="cart-summary-row" style="border-top:1px solid var(--line);padding-top:6px;margin-top:4px;font-size:14px;font-weight:800">
-       <span>कुल देय राशि:</span>
-       <strong id="cGrandTotal" style="color:#059669;font-size:17px">₹0.00</strong>
+       <span>  :</span>
+       <strong id="cGrandTotal" style="color:#059669;font-size:17px">0.00</strong>
      </div>
    </div>
 
-   <div style="display:flex;gap:8px;align-items:center;margin-top:10px;background:#f8fafc;padding:6px 10px;border-radius:10px;border:1px solid var(--line)">
-     <label style="font-size:11px;font-weight:700;color:var(--text)">प्रिंट साइज़:</label>
-     <select id="printPaperSize" style="height:32px;font-size:11px;padding:2px 8px;border-radius:8px;border:1px solid var(--line);background:#fff">
-       <option value="roll">पतला रोल पर्चा (58mm / 80mm)</option>
-       <option value="a4">पूरा पन्ना (A4 साइज़)</option>
-     </select>
-   </div>
-
    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
-     <button class="save" style="height:44px;font-size:12px" onclick="printCartInvoice()">🖨️ पर्चा प्रिंट निकालें</button>
-     <button class="whatsapp" style="height:44px;font-size:12px;margin:0" onclick="sendCartWhatsApp()">📲 WhatsApp बिल</button>
+     <button class="save" style="height:44px;font-size:12px" onclick="printCartInvoice()">   </button>
+     <button class="whatsapp" style="height:44px;font-size:12px;margin:0" onclick="sendCartWhatsApp()"> WhatsApp </button>
    </div>
  </div>
 </section>
 
-<!-- DETAIL VIEW -->
+<!--    -->
 <section class="detail" id="detail" style="display:none">
- <button class="back" onclick="back()">← वापस बहीखाते में</button>
+ <button class="back" onclick="back()">   </button>
  <div class="profile">
   <div class="bigavatar" id="dAvatar">?</div>
   <h2 id="dName">-</h2><div class="phone" id="dPhone">-</div>
-  <div class="points-tag" id="dPoints">⭐ 0 लॉयल्टी पॉइंट्स</div>
-  <div class="detailamt" id="dAmount">₹0</div><div class="detailstatus" id="dStatus">-</div>
-  <button class="whatsapp" onclick="whatsapp()">💬 WhatsApp भुगतान रिमाइंडर</button>
-  <div class="actions"><button class="action give" onclick="openTx('give')">＋ उधार दिया</button><button class="action get" onclick="openTx('get')">✓ भुगतान मिला</button></div>
+  <div class="points-tag" id="dPoints"> 0  </div>
+  <div class="detailamt" id="dAmount">0</div><div class="detailstatus" id="dStatus">-</div>
+  <button class="whatsapp" onclick="whatsapp()"> WhatsApp  </button>
+  <div class="actions"><button class="action give" onclick="openTx('give')">  </button><button class="action get" onclick="openTx('get')">  </button></div>
   <div class="tools">
-    <button class="tool" onclick="openQR()">▣ रॉयल UPI QR</button>
-    <button class="tool" onclick="printLedger()">🖨 रसीद</button>
-    <button class="tool" onclick="editCustomer()">✏️ एडिट</button>
+    <button class="tool" onclick="openQR()">  UPI QR</button>
+    <button class="tool" onclick="printLedger()"> </button>
+    <button class="tool" onclick="editCustomer()"> </button>
   </div>
  </div>
- <div class="txhead">लेन-देन का इतिहास</div>
+ <div class="txhead">-  </div>
  <div id="transactions"></div>
 </section>
 
-<!-- MANDI VIEW -->
+<!--   -->
 <section class="mandi" id="mandi" style="display:none">
- <div class="head"><h2>मंडी भाव (Agmarknet)</h2><span id="mandiStatusText">🔴 लाइव डेटा</span></div>
+ <div class="head"><h2>  (Agmarknet)</h2><span id="mandiStatusText">  </span></div>
  <select id="mandiDistrictSelect" class="mselect" style="width:100%;height:44px;border:1px solid var(--line);border-radius:12px;background:#fff;padding:0 10px;font-size:12px;font-weight:700;margin-bottom:12px;outline:0" onchange="loadDistrictMandi()">
-   <option value="Bahraich" selected>📍 बहराइच मंडी (Bahraich)</option>
-   <option value="Aligarh">📍 अलीगढ़ मंडी (Aligarh)</option>
-   <option value="Bulandshahr">📍 बुलंदशहर मंडी (Bulandshahr)</option>
+   <option value="Bahraich" selected>   (Bahraich)</option>
+   <option value="Aligarh">   (Aligarh)</option>
+   <option value="Bulandshahr">   (Bulandshahr)</option>
  </select>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="mandiList"></div>
 </section>
 
-<!-- MASCOT -->
+<!--     -->
 <div class="mascot-wrap">
-  <div class="mascot-bubble" id="mascotBubble">नमस्ते लाला जी! 🙏</div>
+  <div class="mascot-bubble" id="mascotBubble">  ! </div>
   <div class="mascot-container" onclick="openGameModal()">
-    <img src="logo.png" id="chupaImg" class="chupa-avatar" alt="चुपाकाबरा ड्रैगन">
-    <div class="mascot-mute" id="mascotMuteBtn" onclick="toggleMascotMute(event)">🔊</div>
+    <img src="logo.png" id="chupaImg" class="chupa-avatar" alt=" ">
+    <div class="mascot-mute" id="mascotMuteBtn" onclick="toggleMascotMute(event)"></div>
   </div>
 </div>
 
-<button class="fab" id="fab" onclick="openCustomer()">＋ नया ग्राहक</button>
+<button class="fab" id="fab" onclick="openCustomer()">  </button>
 
-<!-- 100% ORIGINAL CLEAN BOTTOM DOCK (NO CLUTTER) -->
+<!--    ( 5  -  ) -->
 <nav class="bottom">
- <button id="bLedger" class="active" onclick="showLedger()"><div>📒</div>बहीखाता</button>
- <button id="bBilling" onclick="showBilling()"><div>🛒</div>बिल काउंटर</button>
- <button id="bMandi" onclick="showMandi()"><div>🌾</div>मंडी भाव</button>
- <button id="bServices" onclick="showServices()"><div>🛡️</div>सेवाएँ</button>
- <button onclick="openBankingHub()"><div>🏛️</div>बैंकिंग <span style="font-size:8px;background:#fef3c7;color:#b45309;padding:1px 4px;border-radius:4px;font-weight:800">लॉक</span></button>
+ <button id="bLedger" class="active" onclick="showLedger()"><div></div></button>
+ <button id="bBilling" onclick="showBilling()"><div></div> </button>
+ <button id="bMandi" onclick="showMandi()"><div></div> </button>
+ <button id="bServices" onclick="showServices()"><div></div></button>
+ <button onclick="openBankingHub()"><div></div> <span class="badge-lock"></span></button>
 </nav>
 
-<!-- MODALS -->
-<!-- 1. CUSTOM RX ITEM ADDER (अलग पेज/मॉडल नई बीमारी/दवा लिखने के लिए) -->
+<!--   (Modals) -->
 <div class="modal" id="rxCustomItemModal"><div class="box">
- <h2 id="rxCustomItemTitle">नया आइटम जोड़ें</h2>
- <div style="font-size:11px;color:var(--muted);margin-bottom:8px">अपनी पसंद से कोई भी नई बीमारी, दवा, थेरेपी या कसरत यहाँ लिखें:</div>
- <textarea id="customRxInput" class="input" style="height:85px;padding:10px;resize:none;font-size:12.5px" placeholder="यहाँ पूरा विवरण लिखें..."></textarea>
+ <h2 id="rxCustomItemTitle">  </h2>
+ <div style="font-size:11px;color:var(--muted);margin-bottom:8px">      , ,     :</div>
+ <textarea id="customRxInput" class="input" style="height:85px;padding:10px;resize:none;font-size:12.5px" placeholder="   ..."></textarea>
  <div class="modalrow">
-   <button class="cancel" onclick="closeModal('rxCustomItemModal')">रद्द करें</button>
-   <button class="save" onclick="saveCustomRxItem()">पर्चे में जोड़ें ✓</button>
+   <button class="cancel" onclick="closeModal('rxCustomItemModal')"> </button>
+   <button class="save" onclick="saveCustomRxItem()">   </button>
  </div>
 </div></div>
 
-<!-- CLINIC SETUP MODAL -->
-<div class="modal" id="clinicSetupModal"><div class="box">
- <h2>क्लिनिक व डॉक्टर सेटअप</h2>
- <div class="setting"><small>क्लिनिक / अस्पताल का नाम</small><input id="setClinicName" class="input" placeholder="उदा. आरोग्य रिहैब व थेरेपी क्लिनिक"></div>
- <div class="setting"><small>डॉक्टर / थेरेपिस्ट का नाम व डिग्री</small><input id="setDocName" class="input" placeholder="उदा. डॉ. आर. पी. सिंह (B.P.T, न्यूरोथेरेपिस्ट)"></div>
- <div class="setting"><small>पंजीकरण संख्या (Reg. No / RMP - वैकल्पिक)</small><input id="setDocReg" class="input" placeholder="उदा. UP-RMP-2026/A या खाली छोड़ें"></div>
- <div class="setting"><small>क्लिनिक का पता व लैंडमार्क</small><input id="setClinicAddress" class="input" placeholder="उदा. मेन चौराहा, उत्तर प्रदेश"></div>
- <div class="setting"><small>क्लिनिक संपर्क फ़ोन / WhatsApp</small><input id="setClinicPhone" class="input" type="tel" placeholder="मोबाइल नंबर"></div>
+<div class="modal" id="pharmaSetupModal"><div class="box">
+ <h2>    </h2>
+ <div class="setting"><small>   </small><input id="setPhName" class="input" placeholder=".    "></div>
+ <div class="setting"><small>   (D.L. No. - )</small><input id="setPhDl" class="input" placeholder=". UP-DL-8942"></div>
+ <div class="setting"><small>   </small><input id="setPhAddress" class="input" placeholder=".   , "></div>
+ <div class="setting"><small>  /  </small><input id="setPhPhone" class="input" type="tel" placeholder=" "></div>
+ <div class="setting">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+     <small>Google Maps   </small>
+     <button type="button" onclick="fetchCurrentLocation('pharma')" class="btn-geo">   </button>
+   </div>
+   <input id="setPhMap" class="input" placeholder="https://maps.google.com/?q=lat,lng">
+ </div>
  <div class="modalrow" style="margin-top:14px">
-   <button class="cancel" onclick="closeModal('clinicSetupModal')">बंद करें</button>
-   <button class="save" onclick="saveClinicSetup()">सेव करें</button>
+   <button class="cancel" onclick="closeModal('pharmaSetupModal')"> </button>
+   <button class="save" onclick="savePharmaSetup()"> </button>
  </div>
 </div></div>
 
-<!-- BANKING MODAL -->
-<div class="modal" id="bankingModal"><div class="box" style="text-align:center">
- <div style="width:58px;height:58px;background:#fef3c7;border-radius:18px;display:grid;place-items:center;font-size:28px;margin:auto">🏛️</div>
- <span style="display:inline-block;background:#fef3c7;color:#92400e;font-size:9.5px;font-weight:800;padding:3px 10px;border-radius:20px;margin-top:10px">🔐 Coming Soon</span>
- <h2 style="margin-top:8px;font-size:16px">व्यापारी बैंकिंग व चालू खाता</h2>
- <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">दुकानदारों के लिए जीरो-बैलेंस डिजिटल चालू खाता सीधे आपकी गद्दी से जोड़े जा रहे हैं।</p>
- <button class="save" style="width:100%" onclick="closeModal('bankingModal')">समझ गया ✓</button>
-</div></div>
-
-<!-- GAME MODAL -->
-<div class="modal" id="gameModal"><div class="box">
- <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-   <div style="display:flex;align-items:center;gap:10px">
-     <img src="logo.png" style="width:40px;height:40px;border-radius:12px;border:2px solid #059669" alt="ड्रैगन">
-     <div>
-       <h2 style="font-size:15px;font-weight:800;margin:0">मुंशी जी की बैठक</h2>
-       <p style="font-size:10px;color:var(--muted);margin:0">देसी गद्दी मनोरंजन व बरकत</p>
-     </div>
+<div class="modal" id="clinicSetupModal"><div class="box">
+ <h2>   </h2>
+ <div class="setting"><small> /   </small><input id="setClinicName" class="input" placeholder=".     "></div>
+ <div class="setting"><small> /     </small><input id="setDocName" class="input" placeholder=". . . .  (B.P.T, )"></div>
+ <div class="setting"><small>  (Reg. No / RMP - )</small><input id="setDocReg" class="input" placeholder=". UP-RMP-2026/A   "></div>
+ <div class="setting"><small>    </small><input id="setClinicAddress" class="input" placeholder=".  ,  "></div>
+ <div class="setting"><small>   / WhatsApp</small><input id="setClinicPhone" class="input" type="tel" placeholder=" "></div>
+ <div class="setting">
+   <div style="display:flex;justify-content:space-between;align-items:center">
+     <small>Google Maps   </small>
+     <button type="button" onclick="fetchCurrentLocation('clinic')" class="btn-geo">   </button>
    </div>
-   <div class="vault-badge">
-     <span>🪙</span>
-     <span id="gameVaultBal">0.00</span>
-   </div>
+   <input id="setClinicMap" class="input" placeholder="https://maps.google.com/?q=lat,lng">
  </div>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
-   <button type="button" onclick="feedChai()" style="border:1px solid #fde68a;background:#fffbeb;color:#b45309;padding:14px 10px;border-radius:16px;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px">
-     <span style="font-size:24px">☕</span>
-     <span>चाय पिलाओ (<span id="modalChaiCount">0</span>)</span>
-   </button>
-   <button type="button" onclick="hitKutai()" style="border:1px solid #fecdd3;background:#fff1f2;color:#e11d48;padding:14px 10px;border-radius:16px;font-size:12px;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:4px">
-     <span style="font-size:24px">🩴</span>
-     <span>कुटाई करो (<span id="modalKutaiCount">0</span>)</span>
-   </button>
- </div>
- <div class="modalrow" style="margin-top:16px">
-   <button class="cancel" onclick="closeModal('gameModal')" style="grid-column:1/-1">वापस गद्दी पर जाएँ</button>
+ <div class="modalrow" style="margin-top:14px">
+   <button class="cancel" onclick="closeModal('clinicSetupModal')"> </button>
+   <button class="save" onclick="saveClinicSetup()"> </button>
  </div>
 </div></div>
 
 <div class="modal" id="customerModal"><div class="box">
- <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
- <input id="cName" class="input" placeholder="ग्राहक का नाम">
- <input id="cPhone" class="input" type="tel" inputmode="numeric" maxlength="10" placeholder="मोबाइल नंबर (10 अंक)">
- <div class="modalrow"><button class="cancel" onclick="closeModal('customerModal')">रद्द करें</button><button class="save" onclick="saveCustomer()">सेव करें</button></div>
+ <h2 id="customerModalTitle">  </h2>
+ <input id="cName" class="input" placeholder="  ">
+ <input id="cPhone" class="input" type="tel" inputmode="numeric" maxlength="10" placeholder="  (10 )">
+ <div class="modalrow"><button class="cancel" onclick="closeModal('customerModal')"> </button><button class="save" onclick="saveCustomer()"> </button></div>
 </div></div>
 
 <div class="modal" id="txModal"><div class="box">
- <h2 id="txTitle">उधार दर्ज करें</h2>
- <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder="राशि ₹">
- <input id="txNote" class="input" placeholder="विवरण — जैसे किराना, गल्ला">
- <div class="modalrow"><button class="cancel" onclick="closeModal('txModal')">रद्द करें</button><button class="save" onclick="saveTx()">हिसाब सेव करें</button></div>
+ <h2 id="txTitle">  </h2>
+ <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder=" ">
+ <input id="txNote" class="input" placeholder="   , ">
+ <div class="modalrow"><button class="cancel" onclick="closeModal('txModal')"> </button><button class="save" onclick="saveTx()">  </button></div>
 </div></div>
 
 <div class="modal" id="settingsModal"><div class="box">
- <h2>दुकान व मुंशी जी सेटिंग्स</h2>
- <div class="setting"><small>दुकानदार का नाम</small><input id="merchantName" class="input" placeholder="उदा. सत्यप्रकाश सिंह"></div>
- <div class="setting"><small>संबोधन / लिंग</small><select id="merchantGender" class="input" style="height:44px;margin-top:5px"><option value="male">पुरुष</option><option value="female">महिला</option></select></div>
- <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="मेरी दुकान"></div>
- <div class="setting"><small>दुकान का पता व लैंडमार्क</small><input id="shopAddress" class="input" placeholder="उदा. मेन चौराहा, बहराइच"></div>
- <div class="setting"><small>दुकानदार संपर्क फ़ोन</small><input id="shopPhone" class="input" type="tel" placeholder="मोबाइल नंबर"></div>
+ <h2>    </h2>
+ <div class="setting"><small>  </small><input id="merchantName" class="input" placeholder=".  "></div>
+ <div class="setting"><small> / </small><select id="merchantGender" class="input" style="height:44px;margin-top:5px"><option value="male"></option><option value="female"></option></select></div>
+ <div class="setting"><small>  </small><input id="shopName" class="input" placeholder=" "></div>
+ <div class="setting"><small>    </small><input id="shopAddress" class="input" placeholder=".  , "></div>
+ <div class="setting"><small>  </small><input id="shopPhone" class="input" type="tel" placeholder=" "></div>
  <div class="setting"><small>UPI ID</small><input id="shopUpi" class="input" placeholder="merchant@upi"></div>
- <div class="setting"><small>GSTIN (वैकल्पिक)</small><input id="shopGst" class="input" placeholder="09AAAAA0000A1Z5"></div>
+ <div class="setting"><small>GSTIN ()</small><input id="shopGst" class="input" placeholder="09AAAAA0000A1Z5"></div>
  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-   <button type="button" class="tool" style="background:#eef2ff;color:#0284c7;font-weight:800;padding:10px 4px" onclick="downloadRoyalPoster()">⬇️ QR पोस्टर</button>
-   <button type="button" class="tool" style="background:#f1f5f9;font-weight:800;padding:10px 4px" onclick="setPin()">🔐 PIN बदलें</button>
+   <button type="button" class="tool qr-btn" onclick="downloadRoyalPoster()"> QR </button>
+   <button type="button" class="tool pin-btn" onclick="setPin()"> PIN </button>
  </div>
- <div style="margin-top:12px;padding:12px;background:#f1f5f9;border-radius:14px;border:1px dashed #cbd5e1">
-   <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">🔐 मुंशी जी गुप्त मालिक मीटर (पिन दर्ज करें):</div>
+ <div class="admin-entry-box">
+   <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">      (  ):</div>
    <div style="display:flex;gap:6px">
-     <input id="adminPinInput" class="input" type="password" maxlength="4" placeholder="4-अंकीय पिन" style="margin:0;height:38px;font-size:12px">
-     <button type="button" onclick="verifyAdminView()" style="border:0;background:#0f172a;color:#fff;padding:0 12px;border-radius:10px;font-size:11px;font-weight:800">खोलें</button>
+     <input id="adminPinInput" class="input" type="password" maxlength="4" placeholder="4- " style="margin:0;height:38px;font-size:12px">
+     <button type="button" onclick="verifyAdminView()" class="admin-unlock-btn"></button>
    </div>
    <div id="adminStatsBox" style="display:none;margin-top:10px;padding-top:8px;border-top:1px solid #cbd5e1;font-size:11px;line-height:1.6">
-     <div>👁️ <b>कुल ऐप हाजिरी:</b> <span id="admVisits">0</span></div>
-     <div>🧾 <b>कुल बने बिल:</b> <span id="admBills">0</span></div>
-     <div>☕ <b>कुल मिली चाय:</b> <span id="admChai">0</span></div>
-     <div>🩴 <b>कुल हुई कुटाई:</b> <span id="admKutai">0</span></div>
-     <div>🪙 <b>गद्दी की बरकत तिजोरी:</b> <span id="admBarakat">0.00</span> सिक्का</div>
+     <div> <b>  :</b> <span id="admVisits">0</span></div>
+     <div> <b>  :</b> <span id="admBills">0</span></div>
+     <div> <b>  :</b> <span id="admChai">0</span></div>
+     <div> <b>  :</b> <span id="admKutai">0</span></div>
+     <div> <b>   :</b> <span id="admBarakat">0.00</span> </div>
    </div>
  </div>
  <div class="modalrow" style="margin-top:14px">
-   <button class="cancel" onclick="closeModal('settingsModal')">बंद करें</button>
-   <button class="save" onclick="saveSettings()">सेव करें</button>
+   <button class="cancel" onclick="closeModal('settingsModal')"> </button>
+   <button class="save" onclick="saveSettings()"> </button>
  </div>
 </div></div>
 
 <div class="modal" id="qrModal"><div class="box">
- <div class="royal-qr-card" style="background:linear-gradient(145deg,#0f172a,#1e1b4b);border-radius:24px;padding:20px;text-align:center;color:#fff">
-   <div style="font-size:17px;font-weight:800" id="qrShopTitle">मेरी दुकान</div>
-   <div style="background:#fff;border-radius:18px;padding:12px;display:inline-block;margin:12px auto">
-     <div id="qrCanvasContainer"></div>
-   </div>
-   <div style="font-size:12px;font-weight:800;color:#93c5fd" id="qrUpiText">UPI सेट करें ⚙</div>
+ <div class="royal-qr-card">
+   <div style="font-size:17px;font-weight:800" id="qrShopTitle"> </div>
+   <div class="qr-canvas-wrap"><div id="qrCanvasContainer"></div></div>
+   <div style="font-size:12px;font-weight:800;color:#93c5fd" id="qrUpiText">UPI   </div>
  </div>
  <div class="modalrow">
-   <button class="cancel" onclick="closeModal('qrModal')">बंद करें</button>
-   <button class="save" onclick="downloadRoyalPoster()">⬇️ पोस्टर डाउनलोड</button>
+   <button class="cancel" onclick="closeModal('qrModal')"> </button>
+   <button class="save" onclick="downloadRoyalPoster()">  </button>
  </div>
 </div></div>
 
-<!-- PIN LOCK SCREEN -->
+<div class="modal" id="gameModal"><div class="box">
+ <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+   <div style="display:flex;align-items:center;gap:10px">
+     <img src="logo.png" style="width:40px;height:40px;border-radius:12px;border:2px solid #059669" alt="">
+     <div><h2 style="font-size:15px;font-weight:800;margin:0">   </h2><p style="font-size:10px;color:var(--muted);margin:0">    </p></div>
+   </div>
+   <div class="vault-badge"><span></span><span id="gameVaultBal">0.00</span></div>
+ </div>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+   <button type="button" onclick="feedChai()" class="game-btn chai-btn"><span style="font-size:24px"></span><span>  (<span id="modalChaiCount">0</span>)</span></button>
+   <button type="button" onclick="hitKutai()" class="game-btn kutai-btn"><span style="font-size:24px"></span><span>  (<span id="modalKutaiCount">0</span>)</span></button>
+ </div>
+ <div class="modalrow" style="margin-top:16px"><button class="cancel" onclick="closeModal('gameModal')" style="grid-column:1/-1">   </button></div>
+</div></div>
+
+<div class="modal" id="bankingModal"><div class="box" style="text-align:center">
+ <div class="bank-icon-wrap"></div>
+ <span class="bank-tag"> Coming Soon</span>
+ <h2 style="margin-top:8px;font-size:16px">    </h2>
+ <p style="font-size:11.5px;color:var(--muted);line-height:1.6;margin-bottom:16px">   -           </p>
+ <button class="save" style="width:100%" onclick="closeModal('bankingModal')">  </button>
+</div></div>
+
 <div class="lock" id="lockScreen">
   <div class="lockbox">
-    <div class="lockicon">🔐</div>
-    <h2 style="font-size:18px;font-weight:800;margin-top:6px;color:#0f172a">चुपाकाबरा खाता</h2>
-    <p style="font-size:11px;color:var(--muted);margin:4px 0 16px">सुरक्षित गद्दी • 4 अंकों का पिन दर्ज करें</p>
-    <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="text-align:center;letter-spacing:10px;font-size:22px;height:50px;background:#f8fafc">
-    <button class="unlock" onclick="unlockApp()" style="margin-top:8px">खाता खोलें 🔓</button>
+    <div class="lockicon"></div>
+    <h2 style="font-size:18px;font-weight:800;margin-top:6px;color:#0f172a"> </h2>
+    <p style="font-size:11px;color:var(--muted);margin:4px 0 16px">   4     </p>
+    <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="" style="text-align:center;letter-spacing:10px;font-size:22px;height:50px;background:#f8fafc">
+    <button class="unlock" onclick="unlockApp()" style="margin-top:8px">  </button>
   </div>
 </div>
 
+<!--   -->
 <div id="invoicePrintArea"></div>
 <div id="clinicPrintArea"></div>
+<div id="pharmaPrintArea"></div>
 <div class="toast" id="toast"></div>
 
-<script>
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB-nWyD4RtphSv7WazRgM7o3Eaj2NwgPek",
-  authDomain: "chupakabra-khata.firebaseapp.com",
-  projectId: "chupakabra-khata",
-  storageBucket: "chupakabra-khata.firebasestorage.app",
-  messagingSenderId: "872712106347",
-  appId: "1:872712106347:web:48fc0bfcd7b9e182d89c2e"
-};
-try { firebase.initializeApp(firebaseConfig); } catch(e){}
-const auth = typeof firebase !== "undefined" && firebase.auth ? firebase.auth() : null;
-const db = typeof firebase !== "undefined" && firebase.firestore ? firebase.firestore() : null;
-let currentUser = null;
-
-const TURTLEMINT_URL = "https://advisor.turtlemintinsurance.com/profile/RAV4412722/ravindra_pratap_singh";
-const PARTNER_WHATSAPP = "9369913187";
-
-const PK="chupaProfile_final", CK="chupaCustomers_final", PINKEY="chupaPin_final";
-const VK="chupaVault_final", BK="chupaBillCount_final", RK="chupaReactions_final";
-const CLINIKEY="chupaClinicProfile_final", RXCUSTOMKEY="chupaRxCustom_final";
-
-let profile = JSON.parse(localStorage.getItem(PK)) || {
-  shopName: "मेरी दुकान का खाता",
-  shopAddress: "मेन बाज़ार, उत्तर प्रदेश",
-  shopPhone: "9876543210",
-  merchantName: "सत्यप्रकाश सिंह",
-  gender: "male",
-  upi: "",
-  gstin: ""
-};
-
-let clinicProfile = JSON.parse(localStorage.getItem(CLINIKEY)) || {
-  name: "आरोग्य रिहैब व थेरेपी क्लिनिक",
-  doc: "डॉ. आर. पी. सिंह (B.P.T, न्यूरोथेरेपिस्ट)",
-  reg: "UP-RMP-2026/A",
-  address: "मेन चौराहा, उत्तर प्रदेश",
-  phone: "9369913187"
-};
-
-let customRxItems = JSON.parse(localStorage.getItem(RXCUSTOMKEY)) || {
-  c: [], t: [], a: []
-};
-
-let customers = JSON.parse(localStorage.getItem(CK)) || [];
-let vault = Number(localStorage.getItem(VK) || "0.00");
-let billCount = Number(localStorage.getItem(BK) || "101");
-let reactions = JSON.parse(localStorage.getItem(RK)) || { chai: 14, kutai: 2, visits: 85 };
-
-let active = null, txType = "give", editing = false;
-let isMuted = localStorage.getItem("chupaMute") === "1";
-let activeBillMode = 'kaccha';
-let isLedgerOpen = false;
-let isGovOpen = false;
-
-/* CLINIC RX LIBRARY & STATE */
-let rxMode = "therapy";
-let currentAdderType = 'c';
-
-const rxDataLibrary = {
-  therapy: {
-    complaints: ["सर्वाइकल स्पॉन्डिलाइटिस", "साइटिका (L4-L5 डिस्क)", "फ्रोजन शोल्डर (कंधा जाम)", "घुटने का दर्द (Osteoarthritis)", "माइग्रेन / आधासीसी", "कमर दर्द (Lumbago)", "लकवा / पैरालिसिस रिहैब", "टेनिस एल्बो", "हील पेन (Plantar Fasciitis)", "अपच व नाभि डिगना"],
-    treatment: ["ड्राई कपिंग थेरेपी (5 Cups)", "वेट कपिंग / हिजामा (डिटॉक्स)", "न्यूरोथेरेपी नवल स्टिम्युलेशन", "Tens + IFT फिजियो थेरेपी", "अल्ट्रासाउंड पेन रिलीफ", "मैनुअल जॉइंट मोबिलाइज़ेशन", "स्पाइन ट्रैक्शन (मैनुअल)", "हर्बल पोटली स्वेदन"],
-    advice: ["तकिया लगाना पूरी तरह बंद रखें", "गरम पानी की सिकाई (दिन में 2 बार)", "कमर सीधी रखकर बैठें", "भारी वज़न बिल्कुल न उठाएं", "स्ट्रेचिंग कसरत 15 मिनट सुबह", "ठंडी व बादी चीज़ों से परहेज"]
-  },
-  medical: {
-    complaints: ["वायरल फीवर / बुखार", "गले में खराश व सूखी खांसी", "एसिडिटी व पेट दर्द (GERD)", "डायरिया / लूज मोशन", "हाई बीपी (हाइपरटेंशन)", "दाद, खाज, खुजली (फंगल)", "कमजोरी व चक्कर", "जोड़ों का दर्द (यूरिक एसिड)"],
-    treatment: ["Paracetamol 650mg SOS", "Pantoprazole 40mg (खाली पेट)", "Amoxicillin + Clav 625mg BD", "ORS + Zinc घोल दिन में 3 बार", "Levocetirizine 5mg रात को", "B-Complex + Multivitamin OD", "Diclofenac Gel स्थानीय लेप"],
-    advice: ["उबला पानी पिएं", "हल्का व सुपाच्य भोजन (खिचड़ी/दलिया)", "3 दिन बाद फॉलो-अप दिखाएं", "दवा का पूरा कोर्स लें", "धूल व ठंडी हवा से बचें"]
-  },
-  rural: {
-    complaints: ["सामान्य हरारत व बदन दर्द", "मौसमी सर्दी-जुकाम", "पेट में मरोड़ व गैस", "साधारण घाव व खरोंच", "उल्टी व दस्त का आरंभ", "आंखों में लाली व जलन", "सिरदर्द व थकान"],
-    treatment: ["बुखार प्राथमिक गोली (OTC)", "गैस नाशक एंटासिड सिरप", "ओआरएस इलेक्ट्रोलाइट पैकेट", "एंटीसेप्टिक डेटॉल ड्रेसिंग", "दर्द निवारक बाम लेप", "सलाइन नेज़ल ड्रॉप्स", "उच्च केंद्र / ज़िला अस्पताल रेफरल"],
-    advice: ["तत्काल आराम करें व पर्याप्त तरल लें", "लक्षण 24 घंटे में न सुधरें तो तुरंत CHC जाएं", "कोई भारी एंटीबायोटिक बिना जांच न लें", "ब्लड प्रेशर की नियमित जांच कराएं"]
-  }
-};
-
-let selRxComplaints = new Set();
-let selRxTreatments = new Set();
-let selRxAdvices = new Set();
-
-reactions.visits = (reactions.visits || 0) + 1;
-localStorage.setItem(RK, JSON.stringify(reactions));
-
-let cart = [
-  { name: "सरसों तेल", qty: 2, unit: "लीटर", rate: 140 },
-  { name: "गेहूँ आटा", qty: 5, unit: "किलो", rate: 35 }
-];
-
-/* DRAWER TOGGLES */
-function toggleLedgerDrawer() {
-  isLedgerOpen = !isLedgerOpen;
-  const drawer = document.getElementById("ledgerDrawer");
-  const btn = document.getElementById("ledgerToggleBtn");
-  if(isLedgerOpen) {
-    drawer.style.display = "block";
-    btn.textContent = "हिसाब समेटें 📁";
-    renderCustomers();
-  } else {
-    drawer.style.display = "none";
-    btn.textContent = "हिसाब खोलें 📂";
-  }
-}
-
-function toggleGovDrawer() {
-  isGovOpen = !isGovOpen;
-  const drawer = document.getElementById("govDrawer");
-  const btn = document.getElementById("govToggleBtn");
-  if(isGovOpen) {
-    drawer.style.display = "block";
-    btn.textContent = "समेटें ✕";
-  } else {
-    drawer.style.display = "none";
-    btn.textContent = "सेवाएँ खोलें ↗";
-  }
-}
-
-function openGameModal() {
-  document.getElementById("gameVaultBal").textContent = vault.toFixed(2);
-  document.getElementById("modalChaiCount").textContent = reactions.chai;
-  document.getElementById("modalKutaiCount").textContent = reactions.kutai;
-  document.getElementById("gameModal").style.display = "flex";
-}
-
-/* HARDWARE BARCODE SCANNER */
-let barcodeBuffer = '';
-let lastKeyTime = performance.now();
-window.addEventListener('keydown', (e) => {
-  const tag = (document.activeElement.tagName || '').toLowerCase();
-  if (['input', 'textarea', 'select'].includes(tag)) return;
-  const now = performance.now();
-  if (now - lastKeyTime > 90) barcodeBuffer = '';
-  lastKeyTime = now;
-  if (e.key === 'Enter') {
-    if (barcodeBuffer.length >= 4) {
-      handleBarcodeScan(barcodeBuffer.trim());
-      barcodeBuffer = '';
-    }
-  } else if (e.key.length === 1) {
-    barcodeBuffer += e.key;
-  }
-});
-
-function handleBarcodeScan(code) {
-  const item = { name: "आइटम (" + code.slice(-4) + ")", qty: 1, unit: "पीस", rate: 100 };
-  const exist = cart.find(x => x.name === item.name);
-  if (exist) { exist.qty += 1; } else { cart.push(item); }
-  renderCart();
-  speakMunshi("बारकोड स्कैन हुआ: " + item.name);
-}
-
-/* ROBUST MALE SPEECH ENGINE */
-let synthVoices = [];
-function loadVoices() { if ('speechSynthesis' in window) synthVoices = window.speechSynthesis.getVoices(); }
-loadVoices();
-if ('speechSynthesis' in window) window.speechSynthesis.onvoiceschanged = loadVoices;
-
-function getHonorific(name, gender = 'male') {
-  if (!name || !name.trim()) return 'साहब';
-  const parts = name.trim().split(/\s+/);
-  const lastName = parts[parts.length - 1];
-  const firstName = parts[0];
-  if (gender === 'female') return `${firstName} जी`;
-  const surnames = ['सिंह','खट्टर','गुप्ता','वर्मा','शर्मा','मिश्रा','पांडेय','चौधरी','यादव','अंसारी','खान','अग्रवाल','जैन'];
-  if (parts.length > 1 && surnames.includes(lastName)) return `${lastName} साहब`;
-  return `${firstName} जी`;
-}
-
-function speakMunshi(text) {
-  const bubble = document.getElementById("mascotBubble");
-  const img = document.getElementById("chupaImg");
-  bubble.textContent = text;
-  bubble.style.display = "block";
-  if (img) img.classList.add("talking");
-  clearTimeout(window.mtt);
-  window.mtt = setTimeout(() => {
-    bubble.style.display = "none";
-    if (img) img.classList.remove("talking");
-  }, 4500);
-
-  if (isMuted || !('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'hi-IN';
-  u.pitch = 0.68;
-  u.rate = 0.95;
-  if (!synthVoices.length) synthVoices = window.speechSynthesis.getVoices();
-  const maleVoice = synthVoices.find(v => v.lang.includes('hi') && (v.name.toLowerCase().includes('male') || !v.name.toLowerCase().includes('female')));
-  if (maleVoice) u.voice = maleVoice;
-  u.onend = () => { if (img) img.classList.remove("talking"); };
-  u.onerror = () => { if (img) img.classList.remove("talking"); };
-  window.speechSynthesis.speak(u);
-}
-
-function speakMunshiHonorific() {
-  const h = getHonorific(profile.merchantName, profile.gender);
-  const quotes = [
-    `और ${h}, गद्दी संभालिए! बहीखाता एकदम दुरुस्त है।`,
-    `${h}, मेहनत की कमाई में ही सबसे बड़ी बरकत है!`,
-    `रोकड़ा समय पर आ जाए तो गद्दी का सुकून ही अलग होता है।`,
-    `एक-एक पाई का हिसाब साफ रखिए ${h}, मुंशी जी का पूरा पहरा है!`
-  ];
-  speakMunshi(quotes[Math.floor(Math.random() * quotes.length)]);
-}
-
-function toggleMascotMute(e) {
-  e.stopPropagation();
-  isMuted = !isMuted;
-  localStorage.setItem("chupaMute", isMuted ? "1" : "0");
-  document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
-  toast(isMuted ? "मुंशी जी शांत हो गए 🔇" : "मुंशी जी बोलने लगे 🔊");
-}
-
-function feedChai(){
-  const img = document.getElementById("chupaImg");
-  img.classList.remove("joy","kutai");
-  void img.offsetWidth;
-  img.classList.add("joy");
-  reactions.chai = (reactions.chai || 0) + 1;
-  syncData();
-  profileUI();
-  document.getElementById("modalChaiCount").textContent = reactions.chai;
-  speakMunshi("आहा! कड़क अदरक वाली चाय... गद्दी की जय हो मालिक!");
-}
-
-function hitKutai(){
-  const img = document.getElementById("chupaImg");
-  img.classList.remove("joy","kutai");
-  void img.offsetWidth;
-  img.classList.add("kutai");
-  reactions.kutai = (reactions.kutai || 0) + 1;
-  syncData();
-  profileUI();
-  document.getElementById("modalKutaiCount").textContent = reactions.kutai;
-  speakMunshi("अरे बाप रे! चप्पल पड़ गई... मुंशी जी से कोई भूल नहीं होगी!");
-}
-
-/* FIREBASE AUTH */
-if (auth) {
-  auth.onAuthStateChanged((user) => {
-    currentUser = user;
-    const btn = document.getElementById("authBtn");
-    const note = document.getElementById("syncStatusText");
-    if (user) {
-      btn.innerHTML = "👤 लॉगआउट";
-      note.textContent = "🟢 क्लाउड बैकअप सक्रिय (" + (user.displayName || "दुकानदार") + ")";
-      if (db) {
-        db.collection("merchants").doc(user.uid).onSnapshot((doc) => {
-          if (doc.exists) {
-            const d = doc.data();
-            if (d.profile) profile = d.profile;
-            if (d.clinicProfile) clinicProfile = d.clinicProfile;
-            if (d.customRxItems) customRxItems = d.customRxItems;
-            if (d.customers) customers = d.customers;
-            localStorage.setItem(PK, JSON.stringify(profile));
-            localStorage.setItem(CLINIKEY, JSON.stringify(clinicProfile));
-            localStorage.setItem(RXCUSTOMKEY, JSON.stringify(customRxItems));
-            localStorage.setItem(CK, JSON.stringify(customers));
-            profileUI();
-            updateClinicUI();
-            renderCustomers();
-          } else {
-            syncData();
-          }
-        });
-      }
-    } else {
-      btn.innerHTML = "👤 मर्चेंट खाता";
-      note.textContent = "🛡️ 256-Bit सुरक्षित लोकल मोड";
-    }
-  });
-}
-
-function toggleAuth() {
-  if (!auth) { toast("नेटवर्क से जुड़ें"); return; }
-  if (currentUser) {
-    if (confirm("लॉगआउट करना चाहते हैं?")) {
-      auth.signOut().then(() => toast("लॉगआउट सफल ✓"));
-    }
-  } else {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .then(() => toast("मर्चेंट लॉगिन सफल ✓"))
-      .catch((e) => toast("त्रुटि: " + e.message));
-  }
-}
-
-function updateLivePanchang() {
-  const now = new Date();
-  const days = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
-  const months = ['जनवरी', 'फ़रवरी', 'मार्च', 'अप्रैल', 'मई', 'जून', 'जुलाई', 'अगस्त', 'सितम्बर', 'अक्टूबर', 'नवम्बर', 'दिसम्बर'];
-  document.getElementById("livePanchangText").textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-}
-
-function checkPinLock() {
-  const savedPin = localStorage.getItem(PINKEY);
-  const isUnlocked = sessionStorage.getItem("chupaUnlocked");
-  if (savedPin && isUnlocked !== "1") {
-    document.getElementById("lockScreen").style.display = "flex";
-  } else {
-    document.getElementById("lockScreen").style.display = "none";
-  }
-}
-
-function unlockApp() {
-  const savedPin = localStorage.getItem(PINKEY);
-  const enteredPin = document.getElementById("unlockPin").value.trim();
-  if (enteredPin === savedPin) {
-    document.getElementById("lockScreen").style.display = "none";
-    document.getElementById("unlockPin").value = "";
-    sessionStorage.setItem("chupaUnlocked", "1");
-    toast("गद्दी खुल गई ✓");
-    speakMunshiHonorific();
-  } else {
-    toast("गलत PIN! दोबारा प्रयास करें ❌");
-    document.getElementById("unlockPin").value = "";
-  }
-}
-
-function setPin() {
-  const currentPin = localStorage.getItem(PINKEY);
-  const p = prompt(currentPin ? "नया 4 अंकों का सुरक्षा PIN दर्ज करें (हटाने के लिए खाली छोड़ें):" : "4 अंकों का सुरक्षा PIN बनाएँ:");
-  if (p === null) return;
-  if (p.trim() === "") {
-    localStorage.removeItem(PINKEY);
-    sessionStorage.removeItem("chupaUnlocked");
-    toast("सुरक्षा PIN हटा दिया गया 🔓");
-    return;
-  }
-  if (/^\d{4}$/.test(p.trim())) {
-    localStorage.setItem(PINKEY, p.trim());
-    sessionStorage.setItem("chupaUnlocked", "1");
-    toast("4 अंकों का PIN लॉक सक्रिय हो गया 🔐");
-  } else {
-    alert("कृपया केवल 4 अंकों का संख्यात्मक PIN दर्ज करें!");
-  }
-}
-
-function esc(x){return String(x??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function money(n){return "₹"+Number(n||0).toLocaleString("en-IN")}
-function bal(c){return (c.tx||[]).reduce((s,t)=>s+(t.type==="give"?+t.amount:-t.amount),0)}
-function init(n){return (n||"?").trim().charAt(0)||"?"}
-function toast(s){let e=document.getElementById("toast");e.textContent=s;e.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>e.classList.remove("show"),2200)}
-function closeModal(id){document.getElementById(id).style.display="none"}
-
-function syncData(){
-  localStorage.setItem(CK, JSON.stringify(customers));
-  localStorage.setItem(PK, JSON.stringify(profile));
-  localStorage.setItem(CLINIKEY, JSON.stringify(clinicProfile));
-  localStorage.setItem(RXCUSTOMKEY, JSON.stringify(customRxItems));
-  localStorage.setItem(VK, vault.toFixed(2));
-  localStorage.setItem(BK, String(billCount));
-  localStorage.setItem(RK, JSON.stringify(reactions));
-  if (currentUser && db) {
-    db.collection("merchants").doc(currentUser.uid).set({
-      profile: profile,
-      clinicProfile: clinicProfile,
-      customRxItems: customRxItems,
-      customers: customers,
-      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-    }).catch(e => console.log(e));
-  }
-}
-
-/* STRICT DAILY 2.00 COIN CAP */
-function addVaultReward(amount = 0.05) {
-  const today = new Date().toISOString().slice(0, 10);
-  const key = "chupaDailyEarned_" + today;
-  let earnedToday = Number(localStorage.getItem(key) || "0");
-  if (earnedToday < 2.00) {
-    const toAdd = Math.min(amount, 2.00 - earnedToday);
-    vault += toAdd;
-    earnedToday += toAdd;
-    localStorage.setItem(key, earnedToday.toFixed(2));
-    syncData();
-    profileUI();
-    toast(`+${toAdd.toFixed(2)} बरकत सिक्का तिजोरी में जुड़ा 🪙`);
-  } else {
-    syncData();
-    profileUI();
-    toast("आज का बरकत कोटा (2.00 सिक्के) पूरा हो चुका है! कल फिर मिलेगा।");
-  }
-}
-
-function getTodayBusiness(){
-  let sales = 0, received = 0, credit = 0, transactions = 0;
-  const today = new Intl.DateTimeFormat("hi-IN", {day:"numeric",month:"short",year:"numeric"}).format(new Date());
-  customers.forEach(c => {
-    (c.tx || []).forEach(t => {
-      if (!t.date) return;
-      if (t.date === today || t.date.includes(today)) {
-        transactions++;
-        if(t.type === "give"){
-          credit += Number(t.amount || 0);
-          sales += Number(t.amount || 0);
-        } else {
-          received += Number(t.amount || 0);
-        }
-      }
-    });
-  });
-  return { sales, received, credit, transactions };
-}
-
-function premiumBusinessSummary(){
-  const data = getTodayBusiness();
-  const el = document.getElementById("premiumBusinessSummary");
-  if(!el) return;
-
-  el.innerHTML = `
-    <div style="background:linear-gradient(145deg,#0f172a,#1e1b4b);color:#fff;border-radius:22px;padding:15px;margin-top:12px;box-shadow:0 14px 30px rgba(15,23,42,.18);">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-        <div>
-          <div style="font-size:13px;font-weight:800">📊 आज का कारोबार</div>
-          <div style="font-size:9.5px;color:#94a3b8;margin-top:2px">दैनिक लेन-देन का लाइव सार</div>
-        </div>
-        <div style="background:rgba(255,255,255,.10);padding:5px 8px;border-radius:9px;font-size:9.5px;color:#cbd5e1;font-weight:700">
-          ${data.transactions} लेन-देन
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-        <div style="background:rgba(5,150,105,.16);border:1px solid rgba(52,211,153,.2);border-radius:14px;padding:10px;">
-          <div style="font-size:9.5px;color:#94a3b8;font-weight:600">💰 भुगतान मिला</div>
-          <strong style="display:block;margin-top:4px;font-size:16px;color:#6ee7b7">₹${data.received.toLocaleString("en-IN")}</strong>
-        </div>
-        <div style="background:rgba(225,29,72,.16);border:1px solid rgba(251,113,133,.2);border-radius:14px;padding:10px;">
-          <div style="font-size:9.5px;color:#94a3b8;font-weight:600">🧾 आज का उधार</div>
-          <strong style="display:block;margin-top:4px;font-size:16px;color:#fda4af">₹${data.credit.toLocaleString("en-IN")}</strong>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function injectPremiumDashboard(){
-  const dashboard = document.getElementById("dashboard");
-  if(!dashboard || document.getElementById("premiumBusinessSummary")) return;
-  const box = document.createElement("div");
-  box.id = "premiumBusinessSummary";
-  dashboard.appendChild(box);
-  premiumBusinessSummary();
-}
-
-function profileUI(){
-  document.getElementById("shopTitle").textContent = profile.shopName || "मेरी दुकान का खाता";
-  document.getElementById("mascotMuteBtn").textContent = isMuted ? "🔇" : "🔊";
-  document.getElementById("vaultBalance").textContent = vault.toFixed(2);
-}
-
-function dashboard(){
-  let get=0, give=0;
-  customers.forEach(c => {
-    let b = bal(c);
-    if(b >= 0) get += b; else give += Math.abs(b);
-  });
-  document.getElementById("totalGet").textContent = money(get);
-  document.getElementById("totalGive").textContent = money(give);
-  const net = get - give;
-  const netEl = document.getElementById("net");
-  netEl.textContent = (net >= 0 ? "+" : "-") + money(Math.abs(net));
-  netEl.style.color = "#0f172a";
-  premiumBusinessSummary();
-}
-
-function renderCustomers(){
-  const q = (document.getElementById("search") ? document.getElementById("search").value : "").toLowerCase().trim();
-  const list = document.getElementById("customers");
-  const arr = customers.filter(c => c.name.toLowerCase().includes(q) || c.phone.includes(q));
-  list.innerHTML = "";
-  document.getElementById("count").textContent = customers.length + " ग्राहक दर्ज";
-
-  if(!arr.length){
-    list.innerHTML = '<div class="empty"><b>🔎</b>कोई खाता नहीं मिला। नीचे \'+\' दबाकर शुरुआत करें!</div>';
-    dashboard();
-    return;
-  }
-  arr.forEach(c => {
-    let b = bal(c), isGet = b >= 0;
-    list.innerHTML += `
-    <div class="customer" onclick="openDetail(${c.id})">
-      <div class="left">
-        <div class="avatar">${esc(init(c.name))}</div>
-        <div><div class="cname">${esc(c.name)}</div><div class="phone">📞 ${esc(c.phone)}</div></div>
-      </div>
-      <div class="right">
-        <div class="amt ${isGet?"receive":"pay"}">${money(Math.abs(b))}</div>
-        <div class="status ${isGet?"receive":"pay"}">${isGet?"लेना है":"देना है"}</div>
-      </div>
-    </div>`;
-  });
-  dashboard();
-}
-
-function openDetail(id){
-  active = id;
-  const c = customers.find(x => x.id === id);
-  if(!c) return;
-  ["dashboard","ledger","mandi","services","billingDesk","clinicDesk"].forEach(i => {
-    const el = document.getElementById(i); if(el) el.style.display="none";
-  });
-  document.getElementById("detail").style.display="block";
-  document.getElementById("fab").style.display="none";
-  document.getElementById("dAvatar").textContent = init(c.name);
-  document.getElementById("dName").textContent = c.name;
-  document.getElementById("dPhone").textContent = c.phone;
-  document.getElementById("dPoints").textContent = `⭐ ${c.points||0} लॉयल्टी पॉइंट्स`;
-  let b = bal(c);
-  document.getElementById("dAmount").textContent = money(Math.abs(b));
-  document.getElementById("dAmount").style.color = b >= 0 ? "var(--red)" : "var(--green)";
-  document.getElementById("dStatus").textContent = b >= 0 ? "आपको लेना है" : "आपको देना है";
-  renderTx(c);
-}
-
-function renderTx(c){
-  const box = document.getElementById("transactions");
-  box.innerHTML = "";
-  if(!c.tx || !c.tx.length){ box.innerHTML = '<div class="empty">अभी कोई लेन-देन नहीं है</div>'; return; }
-  c.tx.slice().reverse().forEach((t, i) => {
-    let realIndex = c.tx.length - 1 - i;
-    box.innerHTML += `
-    <div class="tx">
-      <div>
-        <div class="txnote">${esc(t.note || (t.type==="give" ? "उधार दिया" : "भुगतान मिला"))}</div>
-        <div class="txdate">${esc(t.date)}</div>
-      </div>
-      <div style="display:flex;align-items:center">
-        <div class="txamt ${t.type==="give"?"receive":"pay"}">${t.type==="give"?"+":"−"} ${money(t.amount)}</div>
-        <div class="txbuttons"><button class="tiny" onclick="deleteTx(${realIndex})">×</button></div>
-      </div>
-    </div>`;
-  });
-}
-function back(){ document.getElementById("detail").style.display="none"; showLedger(); }
-
-function openCustomer(){
-  document.getElementById("cName").value = "";
-  document.getElementById("cPhone").value = "";
-  document.getElementById("customerModal").style.display = "flex";
-}
-function saveCustomer(){
-  const n = document.getElementById("cName").value.trim();
-  const p = document.getElementById("cPhone").value.trim();
-  if(!n){ toast("ग्राहक का नाम डालें"); return; }
-  if(!/^\d{10}$/.test(p)){ toast("10 अंकों का फोन नंबर डालें"); return; }
-  customers.push({ id: Date.now(), name: n, phone: p, points: 10, tx: [] });
-  syncData();
-  closeModal("customerModal");
-  renderCustomers();
-  toast("खाता जुड़ गया ✓");
-  speakMunshi(`${n} का नया खाता खुल गया है!`);
-}
-
-function openTx(type){
-  txType = type;
-  document.getElementById("txTitle").textContent = type === "give" ? "उधार दर्ज करें" : "भुगतान दर्ज करें";
-  document.getElementById("txAmount").value = "";
-  document.getElementById("txNote").value = "";
-  document.getElementById("txModal").style.display = "flex";
-}
-function saveTx(){
-  const a = Number(document.getElementById("txAmount").value);
-  const note = document.getElementById("txNote").value.trim();
-  if(!a || a <= 0){ toast("सही राशि दर्ज करें"); return; }
-  const c = customers.find(x => x.id === active);
-  if(!c.tx) c.tx = [];
-  const date = new Intl.DateTimeFormat("hi-IN", {day:"numeric",month:"short",year:"numeric"}).format(new Date());
-  c.tx.push({ amount: a, type: txType, note, date });
-  c.points = (c.points || 0) + Math.floor(a / 100);
-  syncData();
-  closeModal("txModal");
-  openDetail(active);
-  premiumBusinessSummary();
-  toast("हिसाब सुरक्षित हुआ ✓");
-  speakMunshi(txType === "get" ? `₹${a} का भुगतान दर्ज हो गया!` : `₹${a} का उधार चढ़ा लिया!`);
-}
-function deleteTx(i){
-  if(!confirm("यह प्रविष्टि हटाना चाहते हैं?")) return;
-  const c = customers.find(x => x.id === active);
-  c.tx.splice(i, 1);
-  syncData();
-  openDetail(active);
-  premiumBusinessSummary();
-  toast("हटा दिया गया");
-}
-
-function whatsapp(){
-  const c = customers.find(x => x.id === active);
-  const b = bal(c);
-  if(b <= 0){ toast("कोई बकाया नहीं है"); return; }
-  let msg = `नमस्ते ${c.name} जी 🙏\n${profile.shopName} पर आपका ${money(b)} का बकाया है।\nUPI: ${profile.upi}\nधन्यवाद!`;
-  window.open("https://wa.me/91" + c.phone + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
-/* =========================================================
-   CLINICAL & PRESCRIPTION DESK CONTROLLERS
-   ========================================================= */
-function showClinicDesk(){
-  ["dashboard","ledger","detail","mandi","services","billingDesk"].forEach(id => {
-    const el = document.getElementById(id); if(el) el.style.display="none";
-  });
-  document.getElementById("clinicDesk").style.display="block";
-  document.getElementById("fab").style.display="none";
-  setNav("bServices");
-  updateClinicUI();
-  initRxClouds();
-}
-
-function updateClinicUI(){
-  document.getElementById("dispClinicName").textContent = clinicProfile.name || "आरोग्य रिहैब व थेरेपी क्लिनिक";
-  let sub = clinicProfile.doc || "डॉ. आर. पी. सिंह";
-  if(clinicProfile.reg && clinicProfile.reg.trim()){
-    sub += ` | Reg: ${clinicProfile.reg}`;
-  }
-  document.getElementById("dispClinicSub").textContent = sub;
-}
-
-function setRxCategory(cat){
-  rxMode = cat;
-  document.querySelectorAll(".rx-mode-tab").forEach(t => t.classList.remove("active"));
-  const tab = document.querySelector(`[data-rxm="${cat}"]`);
-  if(tab) tab.classList.add("active");
-
-  const lbl = document.getElementById("rxTreatLbl");
-  if(cat === "rural") lbl.textContent = "प्राथमिक सुरक्षित उपचार (Safe OTC):";
-  else if(cat === "medical") lbl.textContent = "दवाइयाँ व प्रिस्क्रिप्शन (Rx):";
-  else lbl.textContent = "थेरेपी व उपचार प्रोटोकॉल (Treatment):";
-
-  selRxComplaints.clear();
-  selRxTreatments.clear();
-  selRxAdvices.clear();
-  initRxClouds();
-}
-
-function initRxClouds(){
-  const d = rxDataLibrary[rxMode];
-  const allC = [...d.complaints, ...(customRxItems.c || [])];
-  const allT = [...d.treatment, ...(customRxItems.t || [])];
-  const allA = [...d.advice, ...(customRxItems.a || [])];
-
-  document.getElementById("rxComplaintsCloud").innerHTML = allC.map(item => `
-    <span class="rx-chip ${selRxComplaints.has(item)?'active':''}" onclick="toggleRxTag('c', '${item}')">${item}</span>
-  `).join("");
-
-  document.getElementById("rxTreatmentCloud").innerHTML = allT.map(item => `
-    <span class="rx-chip ${selRxTreatments.has(item)?'active':''}" onclick="toggleRxTag('t', '${item}')">${item}</span>
-  `).join("");
-
-  document.getElementById("rxAdviceCloud").innerHTML = allA.map(item => `
-    <span class="rx-chip ${selRxAdvices.has(item)?'active':''}" onclick="toggleRxTag('a', '${item}')">${item}</span>
-  `).join("");
-}
-
-function toggleRxTag(type, val){
-  let s = type === 'c' ? selRxComplaints : type === 't' ? selRxTreatments : selRxAdvices;
-  if(s.has(val)) s.delete(val); else s.add(val);
-  initRxClouds();
-}
-
-/* CUSTOM RX ITEM ADDER (अलग स्क्रीन/पॉपअप पेज नया लिखने के लिए) */
-function openRxItemAdder(type){
-  currentAdderType = type;
-  const titleEl = document.getElementById("rxCustomItemTitle");
-  if(type === 'c') titleEl.textContent = "＋ नया लक्षण / तकलीफ़ लिखें";
-  else if(type === 't') titleEl.textContent = "＋ नई थेरेपी / दवा लिखें";
-  else titleEl.textContent = "＋ नया परहेज / कसरत निर्देश लिखें";
-
-  document.getElementById("customRxInput").value = "";
-  document.getElementById("rxCustomItemModal").style.display = "flex";
-}
-
-function saveCustomRxItem(){
-  const val = document.getElementById("customRxInput").value.trim();
-  if(!val){ toast("कृपया कुछ विवरण लिखें"); return; }
-
-  if(!customRxItems[currentAdderType]) customRxItems[currentAdderType] = [];
-  if(!customRxItems[currentAdderType].includes(val)){
-    customRxItems[currentAdderType].push(val);
-  }
-
-  // ऑटो-सेलेक्ट करें ताकि पर्चे में तुरंत शामिल हो जाए
-  if(currentAdderType === 'c') selRxComplaints.add(val);
-  else if(currentAdderType === 't') selRxTreatments.add(val);
-  else selRxAdvices.add(val);
-
-  syncData();
-  closeModal("rxCustomItemModal");
-  initRxClouds();
-  toast("नया आइटम सूची में जुड़ गया ✓");
-}
-
-function updateRxCategoryBadge(){
-  const val = parseInt(document.getElementById("rxTemplatePicker").value);
-  const badge = document.getElementById("rxCategoryBadge");
-  if(val <= 10) badge.textContent = "1. क्लासिक क्लिनिकल";
-  else if(val <= 20) badge.textContent = "2. मॉडर्न फिजियो व न्यूरो";
-  else if(val <= 30) badge.textContent = "3. आयुष व नाड़ी वैदिकी";
-  else if(val <= 40) badge.textContent = "4. थर्मल पॉकेट रोल";
-  else badge.textContent = "5. एग्जीक्यूटिव मिनिमल";
-}
-
-function editClinicSetup(){
-  document.getElementById("setClinicName").value = clinicProfile.name || "";
-  document.getElementById("setDocName").value = clinicProfile.doc || "";
-  document.getElementById("setDocReg").value = clinicProfile.reg || "";
-  document.getElementById("setClinicAddress").value = clinicProfile.address || "";
-  document.getElementById("setClinicPhone").value = clinicProfile.phone || "";
-  document.getElementById("clinicSetupModal").style.display = "flex";
-}
-
-function saveClinicSetup(){
-  const n = document.getElementById("setClinicName").value.trim();
-  if(!n){ toast("क्लिनिक का नाम दर्ज करें"); return; }
-  clinicProfile.name = n;
-  clinicProfile.doc = document.getElementById("setDocName").value.trim();
-  clinicProfile.reg = document.getElementById("setDocReg").value.trim();
-  clinicProfile.address = document.getElementById("setClinicAddress").value.trim();
-  clinicProfile.phone = document.getElementById("setClinicPhone").value.trim();
-
-  syncData();
-  updateClinicUI();
-  closeModal("clinicSetupModal");
-  toast("क्लिनिक सेटअप सुरक्षित हुआ ✓");
-}
-
-function printClinicPrescription(){
-  const name = document.getElementById("rxPtName").value.trim();
-  if(!name){ alert("कृपया मरीज़ का नाम लिखें!"); return; }
-
-  const ageGen = document.getElementById("rxPtAgeGender").value.trim() || "-";
-  const phone = document.getElementById("rxPtPhone").value.trim() || "-";
-  const next = document.getElementById("rxPtNext").value.trim() || "आवश्यकतानुसार";
-  const tplId = parseInt(document.getElementById("rxTemplatePicker").value);
-  const today = new Date().toLocaleDateString('hi-IN');
-  const rxNo = "#RX-" + (1000 + tplId * 10 + Math.floor(Math.random() * 9));
-
-  const complaints = Array.from(selRxComplaints).join(", ") || "सामान्य क्लिनिकल परीक्षण";
-  const treatments = Array.from(selRxTreatments).map((t, i) => `<div><b>${i+1}.</b> ${t}</div>`).join("") || "परामर्श पूर्ण";
-  const advices = Array.from(selRxAdvices).map(a => `<div>• ${a}</div>`).join("") || "सावधानी रखें";
-
-  let tplClass = "tpl-classic";
-  if(tplId >= 11 && tplId <= 20) tplClass = "tpl-rehab";
-  else if(tplId >= 21 && tplId <= 30) tplClass = "tpl-ayush";
-  else if(tplId >= 31 && tplId <= 40) tplClass = "tpl-thermal";
-  else if(tplId >= 41 && tplId <= 50) tplClass = "tpl-minimal";
-
-  const pArea = document.getElementById("clinicPrintArea");
-  pArea.innerHTML = `
-    <div class="${tplClass}">
-      <div style="border-bottom:2px solid #0f172a;padding-bottom:10px;display:flex;justify-content:space-between;align-items:flex-start;">
-        <div>
-          <h2 style="font-size:20px;font-weight:800;margin:0;color:#0f172a;">${esc(clinicProfile.name)}</h2>
-          <p style="font-size:12.5px;font-weight:700;margin:2px 0;">${esc(clinicProfile.doc)}</p>
-          ${clinicProfile.reg && clinicProfile.reg.trim() ? `<p style="font-size:11px;color:#334155;margin:1px 0;">पंजीकरण सं. (Reg. No): <b>${esc(clinicProfile.reg)}</b></p>` : ''}
-          <p style="font-size:10px;color:#64748b;margin:0;">${esc(clinicProfile.address)} | संपर्क: ${esc(clinicProfile.phone)}</p>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:26px;font-weight:800;color:#0284c7;line-height:1;">℞</div>
-          <div style="font-size:11px;font-weight:700;margin-top:4px;">दिनांक: ${today}</div>
-          <div style="font-size:10px;color:#64748b;">पर्चा सं.: ${rxNo}</div>
-        </div>
-      </div>
-
-      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #cbd5e1;font-size:12px;margin-top:6px;">
-        <div>मरीज़: <b>${esc(name)}</b> (${esc(ageGen)})</div>
-        <div>मो.: <b>${esc(phone)}</b></div>
-        <div>टेम्पलेट: #${tplId}</div>
-      </div>
-
-      <div style="margin-top:14px;">
-        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">मुख्य तकलीफ़ / निदान (Complaints):</div>
-        <div style="font-size:13px;font-weight:700;color:#0f172a;margin:3px 0 12px;">${complaints}</div>
-
-        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">उपचार व थेरेपी प्रोटोकॉल (Treatment / Rx):</div>
-        <div style="font-size:13px;line-height:1.6;color:#0f172a;margin:4px 0 12px;">${treatments}</div>
-
-        <div style="font-size:11px;font-weight:800;color:#475569;text-transform:uppercase;">घरेलू कसरत व परहेज (Advice & Precautions):</div>
-        <div style="font-size:12px;line-height:1.5;color:#334155;margin:4px 0 12px;">${advices}</div>
-
-        <div style="margin-top:14px;padding:6px 10px;border:1px solid #cbd5e1;border-radius:6px;font-size:11px;display:inline-block;">
-          <b>अगला परामर्श / सिटिंग:</b> ${esc(next)}
-        </div>
-      </div>
-
-      <div style="margin-top:55px;display:flex;justify-content:space-between;align-items:flex-end;">
-        <div style="max-width:390px;">
-          <div style="font-size:8.5px;color:#64748b;line-height:1.35;border-top:1px solid #e2e8f0;padding-top:4px;">
-            * कानूनी सुरक्षा (Disclaimer): यह पर्चा केवल क्लिनिकल परामर्श व रिकॉर्ड हेतु है। सभी चिकित्सा निर्णय व पंजीकरण की प्रामाणिकता हेतु परामर्शदाता स्वयं उत्तरदायी है।
-          </div>
-          <div style="font-size:9.5px;font-weight:800;color:#0f172a;margin-top:3px;">
-            Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉
-          </div>
-        </div>
-        <div style="text-align:center;font-size:11px;font-weight:700;">
-          <div style="border-top:1px solid #000;width:140px;margin-bottom:4px;"></div>
-          अधिकृत हस्ताक्षर
-        </div>
-      </div>
-    </div>
-  `;
-
-  addVaultReward(0.05);
-  syncData();
-  setTimeout(() => { window.print(); }, 250);
-}
-
-function sendClinicWhatsAppRx(){
-  const name = document.getElementById("rxPtName").value.trim();
-  const phone = document.getElementById("rxPtPhone").value.trim();
-  if(!name){ alert("कृपया मरीज़ का नाम लिखें!"); return; }
-  if(!phone || phone.length < 10){ alert("10 अंकों का WhatsApp नंबर लिखें!"); return; }
-
-  const complaints = Array.from(selRxComplaints).join(", ") || "क्लिनिकल परामर्श";
-  const treatments = Array.from(selRxTreatments).map((t, idx) => `${idx+1}. ${t}`).join("\n");
-  const advices = Array.from(selRxAdvices).map(a => `• ${a}`).join("\n");
-  const next = document.getElementById("rxPtNext").value.trim() || "आवश्यकतानुसार";
-  const tplId = document.getElementById("rxTemplatePicker").value;
-
-  let msg = `*${clinicProfile.name}*\n` +
-            `${clinicProfile.doc}\n`;
-  if(clinicProfile.reg && clinicProfile.reg.trim()){
-    msg += `पंजीकरण संख्या (Reg. No): ${clinicProfile.reg}\n`;
-  }
-  msg += `मो.: ${clinicProfile.phone} | ${clinicProfile.address}\n` +
-         `------------------------\n` +
-         `नमस्ते *${name}* जी, आपका डिजिटल क्लिनिकल पर्चा (Tpl #${tplId}):\n\n` +
-         `*तकलीफ़/लक्षण:* ${complaints}\n\n` +
-         `*दवा व थेरेपी प्रोटोकॉल:*\\n${treatments || 'परामर्श पूर्ण'}\n\n` +
-         `*परहेज व निर्देश:*\\n${advices || 'सावधानी रखें'}\n\n` +
-         `*अगला परामर्श:* ${next}\n\n` +
-         `धन्यवाद! शीघ्र स्वास्थ्य लाभ की शुभकामनाएँ 🙏\n\n` +
-         `_कानूनी सूचना: यह पर्चा क्लिनिकल परामर्श व रिकॉर्ड हेतु है। परामर्शदाता स्वयं उत्तरदायी है।_\n` +
-         `*Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉*`;
-
-  addVaultReward(0.05);
-  syncData();
-  window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
-/* BILLING DESK FUNCTIONS */
-function switchBillMode(mode) {
-  if (mode === 'gst' && (!profile.gstin || !profile.gstin.trim())) {
-    alert("कृपया पहले सेटिंग्स में GSTIN नंबर दर्ज करें!");
-    return;
-  }
-  activeBillMode = mode;
-  document.getElementById("bTypeKaccha").className = "bill-type-btn " + (mode === 'kaccha' ? 'active' : '');
-  document.getElementById("bTypeGst").className = "bill-type-btn " + (mode === 'gst' ? 'active' : '');
-  document.getElementById("gstBreakdownRow").style.display = mode === 'gst' ? 'flex' : 'none';
-  recalcCart();
-}
-
-function renderCart() {
-  const tb = document.getElementById("cartTableBody");
-  tb.innerHTML = "";
-  cart.forEach((item, idx) => {
-    tb.innerHTML += `
-      <tr>
-        <td><input type="text" value="${esc(item.name)}" oninput="cart[${idx}].name=this.value"></td>
-        <td><input type="number" min="1" value="${item.qty}" oninput="cart[${idx}].qty=Number(this.value);recalcCart()"></td>
-        <td>
-          <select onchange="cart[${idx}].unit=this.value">
-            <option ${item.unit==='किलो'?'selected':''}>किलो</option>
-            <option ${item.unit==='लीटर'?'selected':''}>लीटर</option>
-            <option ${item.unit==='पैकेट'?'selected':''}>पैकेट</option>
-            <option ${item.unit==='पीस'?'selected':''}>पीस</option>
-            <option ${item.unit==='बोरी'?'selected':''}>बोरी</option>
-          </select>
-        </td>
-        <td><input type="number" value="${item.rate}" oninput="cart[${idx}].rate=Number(this.value);recalcCart()" style="text-align:right"></td>
-      </tr>
-    `;
-  });
-  recalcCart();
-}
-
-function addCartRow() {
-  cart.push({ name: "", qty: 1, unit: "किलो", rate: 0 });
-  renderCart();
-}
-
-function recalcCart() {
-  let sub = 0;
-  cart.forEach(i => sub += (Number(i.qty||0) * Number(i.rate||0)));
-  const disc = Number(document.getElementById("cDiscount").value) || 0;
-  let taxable = sub, cgst = 0, sgst = 0, totalGst = 0;
-  if(activeBillMode === 'gst'){
-    cgst = taxable * 0.025; sgst = taxable * 0.025; totalGst = cgst + sgst;
-  }
-  const grand = Math.max(0, (sub + totalGst) - disc);
-  document.getElementById("cSubtotal").textContent = "₹" + sub.toFixed(2);
-  document.getElementById("cTaxable").textContent = "₹" + taxable.toFixed(2);
-  document.getElementById("cCgst").textContent = "₹" + cgst.toFixed(2);
-  document.getElementById("cSgst").textContent = "₹" + sgst.toFixed(2);
-  document.getElementById("cGrandTotal").textContent = "₹" + grand.toFixed(2);
-}
-
-async function connectBluetoothThermal() {
-  if (!navigator.bluetooth) { alert("Web Bluetooth उपलब्ध नहीं है।"); return; }
-  try {
-    const dev = await navigator.bluetooth.requestDevice({ acceptAllDevices: true });
-    toast("प्रिंटर जुड़ गया: " + dev.name);
-  } catch(e) { toast("ब्लूटूथ रद्द हुआ"); }
-}
-
-function printCartInvoice() {
-  const cName = document.getElementById("cartCustName").value.trim() || "नकद ग्राहक";
-  const pArea = document.getElementById("invoicePrintArea");
-  const paperSize = document.getElementById("printPaperSize") ? document.getElementById("printPaperSize").value : "roll";
-  const now = new Date();
-  const dStr = `${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`;
-  const tStr = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true });
-  const currentBillNo = `A-${billCount}`;
-
-  let sub = 0, rows = "", itemIndex = 1;
-  cart.forEach((i) => {
-    const rVal = Number(i.rate) || 0, nVal = (i.name || "").trim();
-    if (nVal !== "" || rVal > 0) {
-      const qVal = Number(i.qty) || 1, rowTotal = qVal * rVal;
-      sub += rowTotal;
-      rows += `<tr><td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${itemIndex++}</td><td style="padding:4px 2px;border-bottom:1px dashed #ccc;">${esc(nVal || 'सामान')}</td><td style="padding:4px 2px;text-align:center;border-bottom:1px dashed #ccc;">${qVal} ${i.unit}</td><td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rVal.toFixed(2)}</td><td style="padding:4px 2px;text-align:right;border-bottom:1px dashed #ccc;">₹${rowTotal.toFixed(2)}</td></tr>`;
-    }
-  });
-
-  const disc = Number(document.getElementById("cDiscount").value) || 0;
-  let cgst = 0, sgst = 0, totalGst = 0;
-  if(activeBillMode === 'gst'){
-    cgst = sub * 0.025; sgst = sub * 0.025; totalGst = cgst + sgst;
-  }
-  const grand = Math.max(0, (sub + totalGst) - disc);
-  const qrUri = profile.upi ? `upi://pay?pa=${encodeURIComponent(profile.upi)}&pn=${encodeURIComponent(profile.shopName)}&am=${grand.toFixed(2)}&cu=INR` : "";
-  const qrImgUrl = qrUri ? `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(qrUri)}` : "";
-  const isRoll = paperSize === "roll";
-
-  pArea.innerHTML = `
-    <div class="${isRoll ? 'paper-roll' : 'paper-a4'}" style="margin:auto;font-family:monospace;background:#fff;color:#000;border:1px solid #111;">
-      <div style="text-align:center;border-bottom:1px dashed #000;padding-bottom:5px;">
-        <h2 style="font-size:${isRoll ? '16px' : '22px'};margin:0;font-weight:800;">${esc(profile.shopName)}</h2>
-        <p style="font-size:${isRoll ? '9.5px' : '12px'};margin:2px 0;">${esc(profile.shopAddress || '')}</p>
-        <p style="font-size:${isRoll ? '9.5px' : '11px'};margin:0;">मो.: ${esc(profile.shopPhone || '')}</p>
-        <p style="font-size:${isRoll ? '10px' : '12px'};margin:3px 0 0;font-weight:bold;">${activeBillMode === 'gst' ? 'TAX INVOICE' : 'कच्चा विक्रय पर्चा'}</p>
-        ${profile.gstin ? `<p style="font-size:9.5px;margin:1px 0;">GSTIN: ${esc(profile.gstin)}</p>` : ''}
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:${isRoll ? '9.5px' : '11px'};margin:6px 0;">
-        <div><div>बिल संख्या: <b>#${currentBillNo}</b></div><div>ग्राहक: ${esc(cName)}</div></div>
-        <div style="text-align:right"><div>दिनांक: ${dStr}</div><div>समय: ${tStr}</div></div>
-      </div>
-      <table style="width:100%;border-collapse:collapse;font-size:${isRoll ? '10px' : '12px'};">
-        <thead><tr style="border-top:1px solid #000;border-bottom:1px solid #000;"><th style="padding:3px 2px;text-align:left;">#</th><th style="padding:3px 2px;text-align:left;">सामान</th><th style="padding:3px 2px;text-align:center;">मात्रा</th><th style="padding:3px 2px;text-align:right;">भाव</th><th style="padding:3px 2px;text-align:right;">कुल</th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="5" style="text-align:center;padding:6px;">कोई सामान दर्ज नहीं</td></tr>'}</tbody>
-      </table>
-      <div style="border-top:1px solid #000;padding-top:4px;margin-top:5px;text-align:right;font-size:${isRoll ? '11px' : '13px'};">
-        <div>उप-योग: ₹${sub.toFixed(2)}</div>
-        ${disc > 0 ? `<div style="font-size:10px;">छूट: -₹${disc.toFixed(2)}</div>` : ''}
-        ${activeBillMode === 'gst' ? `<div style="font-size:9.5px;">CGST (2.5%): +₹${cgst.toFixed(2)}</div><div style="font-size:9.5px;">SGST (2.5%): +₹${sgst.toFixed(2)}</div>` : ''}
-        <div style="font-size:${isRoll ? '13px' : '16px'};font-weight:bold;margin-top:2px;border-top:1px dashed #000;padding-top:2px;">कुल देय राशि: ₹${grand.toFixed(2)}</div>
-      </div>
-      <div style="margin-top:8px;padding-top:6px;border-top:1px dashed #000;display:flex;justify-content:space-between;align-items:center;">
-        <div style="text-align:center;">${qrImgUrl ? `<img src="${qrImgUrl}" style="width:${isRoll ? '75px' : '95px'};height:${isRoll ? '75px' : '95px'};border:1px solid #000;display:block;margin:auto;"><span style="font-size:8px;font-weight:bold;">स्कैन पे</span>` : ''}</div>
-        <div style="text-align:right;font-size:9.5px;"><div style="border-top:1px dashed #000;padding-top:2px;display:inline-block;margin-top:28px;">अधिकृत हस्ताक्षर</div></div>
-      </div>
-      <div style="margin-top:8px;padding-top:5px;border-top:1px dotted #444;text-align:center;font-size:8.5px;line-height:1.35;">
-        <div>1. बिका सामान 24 घंटे में बदलें। 2. धन्यवाद! 🙏</div>
-        <div style="margin-top:4px;font-weight:bold;">Powered by चुपाकाबरा खाता | सुरक्षित डिजिटल बहीखाता 🐉</div>
-      </div>
-    </div>
-  `;
-
-  addVaultReward(0.05);
-  billCount += 1;
-  reactions.bills = (reactions.bills || 0) + 1;
-  syncData();
-  profileUI();
-  setTimeout(() => { window.print(); }, 400);
-}
-
-function sendCartWhatsApp() {
-  const phone = document.getElementById("cartCustPhone").value.trim();
-  const cName = document.getElementById("cartCustName").value.trim() || "ग्राहक";
-  if (!phone || phone.length < 10) { alert("मान्य 10 अंकों का फोन नंबर डालें!"); return; }
-  let sub = 0, text = `*${profile.shopName}*\nमो.: ${profile.shopPhone || ''}\nनमस्ते ${cName} जी, आपका बिल:\n\n`;
-  cart.forEach((i, idx) => {
-    if ((i.name && i.name.trim() !== "") || (i.rate && Number(i.rate) > 0)) {
-      const qVal = Number(i.qty) || 1, rVal = Number(i.rate) || 0;
-      sub += (qVal * rVal);
-      text += `${idx+1}. ${i.name} - ${qVal} ${i.unit} x ₹${rVal} = ₹${qVal * rVal}\n`;
-    }
-  });
-  const disc = Number(document.getElementById("cDiscount").value) || 0;
-  let totalGst = activeBillMode === 'gst' ? (sub * 0.05) : 0;
-  const grand = Math.max(0, (sub + totalGst) - disc);
-  text += `\n*कुल राशि: ₹${grand.toFixed(2)}*\nभुगतान UPI: ${profile.upi}\n\n_Powered by चुपाकाबरा खाता_ 🐉`;
-
-  addVaultReward(0.05);
-  billCount += 1;
-  syncData();
-  profileUI();
-  window.open("https://wa.me/91" + phone + "?text=" + encodeURIComponent(text), "_blank");
-}
-
-function openQR(){
-  if(!profile.upi){ toast("पहले सेटिंग्स में अपनी UPI ID जोड़ें"); openSettings(); return; }
-  const c = customers.find(x => x.id === active);
-  const b = c ? bal(c) : 0;
-  const amt = b > 0 ? b : "";
-  const uri = "upi://pay?pa=" + encodeURIComponent(profile.upi) + "&pn=" + encodeURIComponent(profile.shopName) + (amt ? "&am=" + amt + "&cu=INR" : "");
-
-  document.getElementById("qrShopTitle").textContent = profile.shopName;
-  document.getElementById("qrUpiText").textContent = profile.upi + (amt ? ` • ${money(amt)}` : "");
-  document.getElementById("qrModal").style.display = "flex";
-
-  const container = document.getElementById("qrCanvasContainer");
-  container.innerHTML = "";
-  new QRCode(container, { text: uri, width: 220, height: 220, colorDark: "#0f172a", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
-}
-
-function downloadRoyalPoster(){
-  let qrSource = document.querySelector("#qrCanvasContainer canvas");
-  if(!qrSource) { openQR(); setTimeout(downloadRoyalPoster, 250); return; }
-  const p = document.createElement("canvas"); p.width = 600; p.height = 850;
-  const ctx = p.getContext("2d");
-  const grad = ctx.createLinearGradient(0, 0, 0, 850);
-  grad.addColorStop(0, "#0f172a"); grad.addColorStop(1, "#1e1b4b");
-  ctx.fillStyle = grad; ctx.fillRect(0, 0, 600, 850);
-  ctx.lineWidth = 5; ctx.strokeStyle = "#f59e0b"; ctx.strokeRect(18, 18, 564, 814);
-  ctx.fillStyle = "#ffffff"; ctx.font = "800 30px sans-serif"; ctx.textAlign = "center"; ctx.fillText(profile.shopName, 300, 105);
-  ctx.fillStyle = "#ffffff"; ctx.beginPath(); ctx.roundRect(100, 180, 400, 400, [24]); ctx.fill();
-  ctx.drawImage(qrSource, 125, 205, 350, 350);
-  ctx.fillStyle = "#93c5fd"; ctx.font = "bold 20px sans-serif"; ctx.fillText("UPI: " + (profile.upi || "सेटिंग्स में दर्ज करें"), 300, 663);
-  const a = document.createElement("a"); a.href = p.toDataURL("image/png"); a.download = `${profile.shopName}_QR_Poster.png`; a.click();
-  toast("रॉयल पोस्टर डाउनलोड सफल ✓");
-}
-
-function openInsurance(){ window.open(TURTLEMINT_URL, "_blank"); }
-function applyLoan(){
-  let msg = `नमस्ते जी 🙏\nमुझे 'चुपाकाबरा खाता' से व्यापार लोन की जानकारी चाहिए।`;
-  window.open("https://wa.me/91" + PARTNER_WHATSAPP + "?text=" + encodeURIComponent(msg), "_blank");
-}
-
-function openBankingHub(){ document.getElementById("bankingModal").style.display = "flex"; }
-
-function showLedger(){
-  ["mandi","services","detail","billingDesk","clinicDesk"].forEach(id => {
-    const el = document.getElementById(id); if(el) el.style.display="none";
-  });
-  document.getElementById("dashboard").style.display="block";
-  document.getElementById("ledger").style.display="block";
-  document.getElementById("fab").style.display="block";
-  setNav("bLedger");
-}
-function showBilling(){
-  ["dashboard","ledger","detail","mandi","services","clinicDesk"].forEach(id => {
-    const el = document.getElementById(id); if(el) el.style.display="none";
-  });
-  document.getElementById("billingDesk").style.display="block";
-  document.getElementById("fab").style.display="none";
-  setNav("bBilling");
-  renderCart();
-}
-function showMandi(){
-  ["dashboard","ledger","detail","services","billingDesk","clinicDesk"].forEach(id => {
-    const el = document.getElementById(id); if(el) el.style.display="none";
-  });
-  document.getElementById("mandi").style.display="block";
-  document.getElementById("fab").style.display="none";
-  setNav("bMandi");
-  loadDistrictMandi();
-}
-function showServices(){
-  ["dashboard","ledger","detail","mandi","billingDesk","clinicDesk"].forEach(id => {
-    const el = document.getElementById(id); if(el) el.style.display="none";
-  });
-  document.getElementById("services").style.display="block";
-  document.getElementById("fab").style.display="none";
-  setNav("bServices");
-}
-function setNav(id){
-  document.querySelectorAll(".bottom button").forEach(b => b.classList.remove("active"));
-  const btn = document.getElementById(id);
-  if(btn) btn.classList.add("active");
-}
-
-async function loadDistrictMandi(){
-  const dist = document.getElementById("mandiDistrictSelect").value;
-  const list = document.getElementById("mandiList");
-  const status = document.getElementById("mandiStatusText");
-  status.textContent = "⏳ लोड हो रहा है...";
-  list.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:25px;color:var(--muted);font-size:12px">ताज़ा सरकारी मंडी भाव आ रहे हैं...</div>`;
-
-  const url = `https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key=579b464db66ec23bdd000001a36f11e8747548be776874344c488a08&format=json&limit=20&filters[state]=Uttar Pradesh&filters[district]=${dist}`;
-  try {
-    const res = await fetch(url);
-    const data = await res.json();
-    if(data.records && data.records.length > 0){
-      status.textContent = "🟢 लाइव सरकारी भाव";
-      list.innerHTML = data.records.map(r => `
-        <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">
-          <div style="font-size:20px">🌾</div>
-          <h3 style="font-size:12.5px;font-weight:800;margin-top:6px">${esc(r.commodity)}</h3>
-          <div style="font-size:17px;font-weight:800;color:#0284c7;margin-top:4px">₹${Number(r.modal_price||0).toLocaleString("en-IN")}</div>
-          <div style="font-size:9.5px;color:var(--muted)">₹${r.min_price} – ₹${r.max_price} / क्विंटल</div>
-          <div style="font-size:9.5px;font-weight:700;color:#059669;margin-top:4px">📍 ${esc(r.market)}</div>
-        </div>
-      `).join("");
-    } else { throw new Error(); }
-  } catch(e) {
-    status.textContent = "🟡 मानक भाव";
-    list.innerHTML = `
-      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">🌾 <b>गेहूँ</b><div style="font-size:16px;font-weight:800;color:#0284c7">₹2,450</div><small>प्रति क्विंटल</small></div>
-      <div style="background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px">🍚 <b>धान</b><div style="font-size:16px;font-weight:800;color:#0284c7">₹2,280</div><small>प्रति क्विंटल</small></div>
-    `;
-  }
-}
-
-function openSettings(){
-  document.getElementById("shopName").value = profile.shopName || "";
-  document.getElementById("shopAddress").value = profile.shopAddress || "";
-  document.getElementById("shopPhone").value = profile.shopPhone || "";
-  document.getElementById("merchantName").value = profile.merchantName || "";
-  document.getElementById("merchantGender").value = profile.gender || "male";
-  document.getElementById("shopUpi").value = profile.upi || "";
-  document.getElementById("shopGst").value = profile.gstin || "";
-  document.getElementById("adminStatsBox").style.display = "none";
-  document.getElementById("adminPinInput").value = "";
-  document.getElementById("settingsModal").style.display = "flex";
-}
-
-/* MASTER PIN: 2569 */
-function verifyAdminView(){
-  const pin = document.getElementById("adminPinInput").value.trim();
-  if(pin === "2569"){
-    document.getElementById("admVisits").textContent = reactions.visits || 1;
-    document.getElementById("admBills").textContent = billCount - 100;
-    document.getElementById("admChai").textContent = reactions.chai;
-    document.getElementById("admKutai").textContent = reactions.kutai;
-    document.getElementById("admBarakat").textContent = vault.toFixed(2);
-    document.getElementById("adminStatsBox").style.display = "block";
-    toast("मालिक मीटर अनलॉक ✓");
-  } else {
-    alert("अमान्य सुरक्षा पिन!");
-  }
-}
-
-function saveSettings(){
-  const s = document.getElementById("shopName").value.trim();
-  const a = document.getElementById("shopAddress").value.trim();
-  const p = document.getElementById("shopPhone").value.trim();
-  const m = document.getElementById("merchantName").value.trim();
-  const g = document.getElementById("merchantGender").value;
-  const u = document.getElementById("shopUpi").value.trim();
-  const gst = document.getElementById("shopGst").value.trim().toUpperCase();
-
-  if(!s){ toast("दुकान का नाम दर्ज करें"); return; }
-  profile.shopName = s;
-  profile.shopAddress = a;
-  profile.shopPhone = p;
-  profile.merchantName = m;
-  profile.gender = g;
-  profile.upi = u;
-  profile.gstin = gst;
-
-  syncData();
-  profileUI();
-  closeModal("settingsModal");
-  toast("सेटिंग्स सुरक्षित हुईं ✓");
-  speakMunshiHonorific();
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    const splash = document.getElementById("splashScreen");
-    if (splash) {
-      splash.style.opacity = "0";
-      splash.style.visibility = "hidden";
-      setTimeout(() => splash.remove(), 600);
-    }
-  }, 1400);
-
-  checkPinLock();
-  updateLivePanchang();
-  profileUI();
-  dashboard();
-  renderCart();
-  injectPremiumDashboard();
-  initRxClouds();
-});
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
-}
-</script>
+<!--     -->
+<script src="app.js"></script>
+<script src="services.js"></script>
 </body>
 </html>
