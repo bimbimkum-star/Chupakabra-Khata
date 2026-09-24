@@ -2,9 +2,8 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0f172a">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>चुपाकाबरा खाता</title>
@@ -15,7 +14,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -28,307 +27,438 @@
 
 <div id="splashScreen">
   <div style="text-align:center;">
-    <img src="logo.png" style="width:72px;height:72px;border-radius:20px;" alt="चुपाकाबरा लोगो">
+    <img src="logo.png" class="splash-logo" alt="चुपाकाबरा लोगो">
     <h1 style="color:#fff;font-size:22px;font-weight:800;margin-top:16px;">चुपाकाबरा खाता</h1>
-    <p style="color:#94a3b8;font-size:12px;margin-top:4px;font-weight:600;">सुरक्षित डिजिटल गद्दी &bull; भारत का बहीखाता</p>
+    <p style="color:#94a3b8;font-size:12px;margin-top:4px;font-weight:600;">सुरक्षित डिजिटल गद्दी • भारत का बहीखाता</p>
   </div>
 </div>
 
-<!-- 1. TOP BAR WITH DRAGON LOGO -->
-<header class="top-search-row">
-  <img src="logo.png" style="width:40px;height:40px;border-radius:50%;cursor:pointer;object-fit:cover;border:2px solid var(--g-primary-blue);" alt="लोगो" onclick="speakMunshiHonorific()">
-  <div class="search-pill">
-    <span style="font-size:16px;">&#128269;</span>
-    <input id="search" placeholder="ग्राहक, खाता या पर्चा खोजें..." oninput="renderCustomers()">
+<header class="top">
+  <div class="toprow">
+    <div class="brand" onclick="speakMunshiHonorific()">
+      <img src="logo.png" class="logo-img" alt="चुपाकाबरा लोगो">
+      <div>
+        <h1 id="shopTitle">मेरी दुकान</h1>
+        <p id="livePanchangText">लोड हो रहा है...</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <div class="vault-badge" onclick="openGameModal()">
+        <span>🪙</span>
+        <span id="vaultBalance">0.00</span>
+      </div>
+      <button class="syncbtn" id="authBtn" type="button" onclick="toggleAuth()">👤 मर्चेंट खाता</button>
+      <button class="topbtn" type="button" onclick="openSettings()">⚙️</button>
+    </div>
   </div>
-  <div class="profile-avatar" onclick="openSettings()">&#9881;&#65039;</div>
 </header>
 
-<!-- MAIN DASHBOARD CONTAINER -->
-<div id="mainDashboardView">
-  <!-- 2. GADDI REWARDS & BALANCE CHIPS -->
-  <div class="chip-row">
-    <div class="g-chip" onclick="openGameModal()">&#129689; बरकत: <strong id="vaultBalance">0.00</strong></div>
-    <div class="g-chip" id="authBtn" onclick="toggleAuth()">&#128100; मर्चेंट खाता</div>
-    <div class="g-chip" id="syncStatusText">&#128737;&#65039; 256-Bit सुरक्षित</div>
+<section class="wrap dash" id="dashboard">
+  <div class="summary">
+    <div class="label">गद्दी का कुल बकाया संतुलन</div>
+    <div class="net" id="net">₹0</div>
+    <div class="smallnote" id="syncStatusText">🛡️ 256-Bit सुरक्षित लोकल मोड</div>
+    <div class="moneygrid">
+      <div class="money get"><span>लेना है (बाज़ार में उधार)</span><strong id="totalGet">₹0</strong></div>
+      <div class="money give"><span>देना है (जमा / आवक)</span><strong id="totalGive">₹0</strong></div>
+    </div>
+  </div>
+</section>
+
+<main class="main" id="ledger">
+  <div class="ledger-trigger-card" onclick="toggleLedgerDrawer()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="width:44px;height:44px;border-radius:14px;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:22px;">📒</div>
+      <div>
+        <h3 style="font-size:14px;font-weight:800;color:var(--text);">ग्राहकों का बहीखाता</h3>
+        <p style="font-size:10.5px;color:var(--muted);margin-top:2px;" id="count">0 ग्राहक दर्ज</p>
+      </div>
+    </div>
+    <button type="button" id="ledgerToggleBtn" class="pill-btn">हिसाब खोलें 🤝</button>
+  </div>
+  
+  <div class="ledger-drawer" id="ledgerDrawer">
+    <input id="search" class="search" placeholder="🔎 ग्राहक व मोबाइल खोजें..." oninput="renderCustomers()">
+    <div class="list" id="customers"></div>
+  </div>
+</main>
+
+<section class="services" id="services" style="display:none">
+  <div class="head"><h2>मेरी सेवाएँ (My Services)</h2><span>व्यावसायिक व क्लिनिकल टूल्स</span></div>
+  
+  <div class="service-card pharma-card">
+    <div class="service-head">
+      <div class="service-icon blue-icon">💊</div>
+      <div class="service-info">
+        <h3>दवा व मेडिकल स्टोर काउंटर</h3>
+        <p>पक्का पर्चा, बैच, एक्सपायरी व Google Maps लोकेशन</p>
+      </div>
+    </div>
+    <div class="service-desc">
+      केवल 60 सेकंड के अंदर खोज कर बनाएं सरल बिल और WhatsApp पर मेडिकल की सटीक 📍Google Maps लाइव लोकेशन भेजें।
+    </div>
+    <button class="service-btn blue-btn" type="button" onclick="showPharmacyDesk()">💊 फार्मेसी काउंटर खोलें</button>
   </div>
 
-  <!-- 3. HERO GADDI CARD -->
-  <section class="money-manage-card">
-    <div class="net-box">
+  <div class="service-card clinic-card">
+    <div class="service-head">
+      <div class="service-icon green-icon">🩺</div>
+      <div class="service-info">
+        <h3>क्लिनिकल व पर्चा डेस्क</h3>
+        <p>50 टेम्पलेट्स • एक क्लिक में WhatsApp पर्चा</p>
+      </div>
+    </div>
+    <div class="service-desc">
+      फिजियोथेरेपी, न्यूरोथेरेपी व क्लिनिकल प्रैक्टिशनर्स के लिए त्वरित डिजिटल पर्चा जनरेटर। अपने लेटरहेड और Google Maps लोकेशन के साथ पर्चा भेजें।
+    </div>
+    <button class="service-btn" type="button" onclick="showClinicDesk()">🩺 क्लिनिकल पर्चा डेस्क खोलें</button>
+  </div>
+
+  <div class="service-card">
+    <div class="service-head">
+      <div class="service-icon green-icon">🛡️</div>
+      <div class="service-info">
+        <h3>टर्टलमिंट बीमा सुरक्षा</h3>
+        <p>दुकान, वाहन व स्वास्थ्य बीमा • प्रमाणित Turtlemint पोर्टल</p>
+      </div>
+    </div>
+    <div class="service-desc">
+      दुकान सुरक्षा बीमा, स्वास्थ्य बीमा एवं मोटर बीमा ऑनलाइन सबसे कम प्रीमियम पर प्राप्त करें।
+    </div>
+    <button class="service-btn" type="button" onclick="openInsurance()">🛡️ Turtlemint पोर्टल पर बीमा देखें</button>
+  </div>
+
+  <div class="service-card">
+    <div class="service-head">
+      <div class="service-icon grey-icon">💰</div>
+      <div class="service-info">
+        <h3>व्यापार वृद्धि लोन व क्रेडिट</h3>
+        <p>दुकान के विस्तार के लिए आसान ऋण</p>
+      </div>
+    </div>
+    <div class="service-desc">
+      सरकारी व बैंक योजनाओं के तहत गद्दी विस्तार हेतु लोन सहायता।
+    </div>
+    <button class="service-btn dark-btn" type="button" onclick="applyLoan()">💰 लोन आवेदन सहायता</button>
+  </div>
+
+  <div class="gov-master-card" onclick="toggleGovDrawer()">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="font-size:24px;">🏛️</span>
       <div>
-        <div class="net-title" id="shopTitle">चुपाकाबरा खाता</div>
-        <div class="net-val" id="net">&#8377;0</div>
-      </div>
-      <button type="button" onclick="showLedgerView()" style="border:none;background:var(--g-light-blue);color:var(--g-primary-blue);padding:7px 14px;border-radius:16px;font-size:11.5px;font-weight:800;cursor:pointer;">हिसाब खोलें &#8599;</button>
-    </div>
-    <div class="gaddi-grid">
-      <div class="g-pill">
-        <small>लेना है (बाज़ार में उधार)</small>
-        <strong id="totalGet" style="color:var(--g-red);">&#8377;0</strong>
-      </div>
-      <div class="g-pill">
-        <small>देना है (जमा / आवक)</small>
-        <strong id="totalGive" style="color:var(--g-green);">&#8377;0</strong>
+        <h3 style="font-size:14px;font-weight:800;">12 आवश्यक सरकारी सेवाएँ</h3>
+        <p style="font-size:10.5px;color:#94a3b8;margin-top:2px;">नागरिक व डिजिटल गद्दी पोर्टल</p>
       </div>
     </div>
-  </section>
+    <span class="gov-toggle-pill" id="govTogglePill">खोलें ▼</span>
+  </div>
 
-  <!-- 4. RECENT CUSTOMERS -->
-  <section class="section-block">
-    <div class="section-head-title">
-      <span>ग्राहक बहीखाता (Recent)</span>
-      <span onclick="showLedgerView()" style="font-size:12px;color:var(--g-primary-blue);font-weight:700;cursor:pointer;">सभी देखें &#8599;</span>
-    </div>
-    <div class="people-grid" id="customers"></div>
-  </section>
-
-  <!-- 5. SERVICES GRID -->
-  <section class="section-block" style="padding-top:6px;">
-    <div class="section-head-title">
-      <span>सेवाएँ व आधिकारिक पोर्टल (Services)</span>
-    </div>
-
-    <div class="services-grid">
-      <div class="person-item" onclick="openDeskView('clinicDesk')">
-        <div class="srv-icon">&#129658;</div>
-        <div class="srv-name">क्लिनिक 50 Rx</div>
-      </div>
-      <div class="person-item" onclick="openDeskView('pharmacyDesk')">
-        <div class="srv-icon">&#128138;</div>
-        <div class="srv-name">दवा काउंटर</div>
-      </div>
-      <div class="person-item" onclick="openInsurance()">
-        <div class="srv-icon">&#128737;&#65039;</div>
-        <div class="srv-name">टर्टलमिंट बीमा</div>
-      </div>
-      <div class="person-item" onclick="openDeskView('mandi')">
-        <div class="srv-icon">&#127806;</div>
-        <div class="srv-name">मंडी भाव</div>
-      </div>
-      <div class="person-item" onclick="openDeskView('services')">
-        <div class="srv-icon">&#127963;&#65039;</div>
-        <div class="srv-name">12 सरकारी</div>
-      </div>
-      <div class="person-item" onclick="applyLoan()">
-        <div class="srv-icon">&#128176;</div>
-        <div class="srv-name">व्यापार लोन</div>
-      </div>
-      <div class="person-item" onclick="openGameModal()">
-        <div class="srv-icon">&#9749;</div>
-        <div class="srv-name">मुंशी जी</div>
-      </div>
-      <div class="person-item" onclick="openDeskView('billingDesk')">
-        <div class="srv-icon">&#129534;</div>
-        <div class="srv-name">बिल काउंटर</div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- 12 GOVERNMENT SERVICES -->
-<div id="services" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
-  <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
-  <div class="head"><h2>&#127963;&#65039; 12 आवश्यक सरकारी सेवाएँ</h2></div>
-  <div class="citizen-grid" id="citizenGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;"></div>
-</div>
+  <div class="gov-drawer" id="govDrawer">
+    <div class="citizen-grid" id="citizenGrid"></div>
+  </div>
+</section>
 
 <!-- PHARMACY DESK -->
-<section class="universal-desk-screen" id="pharmacyDesk" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
- <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
- <div class="desk-card">
-   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-     <div>
-       <h2 style="font-size:16px;font-weight:800" id="dispPharmaName">आरोग्य मेडिकल व फार्मेसी</h2>
-       <p style="font-size:11px;color:var(--g-text-sub);margin-top:2px" id="dispPharmaSub">डी.एल. सं.: UP-DL-8942 | &#128205; मैप लिंक सक्रिय</p>
-     </div>
-     <button type="button" class="btn-icon" onclick="editPharmaSetup()" style="border:none;background:var(--g-chip-bg);padding:6px 12px;border-radius:12px;font-weight:700;cursor:pointer;">&#9881;&#65039; सेटअप</button>
-   </div>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
-     <input id="phCustName" class="u-input" placeholder="मरीज़ का नाम (उदा. नकद)">
-     <input id="phCustPhone" type="tel" maxlength="10" class="u-input" placeholder="WhatsApp नंबर">
-   </div>
-   <input id="phDocRef" class="u-input" placeholder="रेफरिंग डॉक्टर का नाम">
-   <table class="u-table">
-     <thead><tr><th>दवा</th><th>बैच/एक्स</th><th>मात्रा</th><th style="text-align:right">एमआरपी</th></tr></thead>
-     <tbody id="pharmaTableBody"></tbody>
-   </table>
-   <button type="button" onclick="addPharmaRow()" style="width:100%;height:40px;background:var(--g-chip-bg);border:1px dashed var(--g-primary-blue);border-radius:12px;color:var(--g-primary-blue);font-weight:800;margin:8px 0;cursor:pointer;">&#65291; नई दवा जोड़ें</button>
-   <div class="desk-total-row"><span>कुल देय:</span><strong id="phGrandTotal" style="color:var(--g-primary-blue);font-size:20px;">&#8377;0.00</strong></div>
-   <div class="desk-actions">
-     <button type="button" class="btn-print" onclick="printPharmaInvoice()">&#128424;&#65039; पर्चा प्रिंट</button>
-     <button type="button" class="btn-whatsapp" onclick="sendPharmaWhatsApp()">&#128242; WhatsApp बिल</button>
-   </div>
- </div>
+<section class="pharmacy-desk" id="pharmacyDesk" style="display:none">
+  <button class="back" onclick="showServices()">← वापस मेरी सेवाएँ</button>
+  <div class="rx-card-box pharma-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div>
+        <h2 style="font-size:16px;font-weight:800" id="dispPharmaName">आरोग्य मेडिकल व फार्मेसी</h2>
+        <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispPharmaSub">डी. एल. सं.: UP-DL-8942 | 📍 मैप लिंक सक्रिय</p>
+      </div>
+      <button type="button" class="btn-icon edit-pharma-btn" onclick="editPharmaSetup()">⚙️ सेटअप</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <input id="phCustName" class="input" style="height:40px;margin:0" placeholder="मरीज़ का नाम (उदा. नकद)">
+      <input id="phCustPhone" type="tel" maxlength="10" class="input" style="height:42px;margin:0" placeholder="WhatsApp नंबर (वैकल्पिक)">
+    </div>
+    <input id="phDocRef" class="input" style="height:40px;margin-bottom:10px;font-size:12px" placeholder="रेफरिंग डॉक्टर का नाम (डा. डी. के. सिंह)">
+    <table class="pharma-table">
+      <thead>
+        <tr>
+          <th style="width:38%">दवा का नाम</th>
+          <th style="width:20%">बैच / एक्सपायरी</th>
+          <th style="width:16%">मात्रा</th>
+          <th style="width:26%;text-align:right">एमआरपी (₹)</th>
+        </tr>
+      </thead>
+      <tbody id="pharmaTableBody"></tbody>
+    </table>
+    <button type="button" onclick="addPharmaRow()" class="add-row-btn">＋ नई दवा / सिरप जोड़ें</button>
+    <div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--line);font-size:12px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="color:var(--muted)">उप-योग</span>
+        <strong id="phSubtotal">₹0.00</strong>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="color:var(--muted)">छूट / डिस्काउंट</span>
+        <div style="display:flex;align-items:center;gap:4px">
+          <span>₹</span>
+          <input type="number" id="phDiscount" value="0" oninput="recalcPharma()" style="width:70px;height:30px;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:12px;text-align:right">
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:800;border-top:1px solid var(--line);padding-top:6px;margin-top:6px">
+        <span>कुल देय राशि:</span>
+        <strong id="phGrandTotal" style="color:#0284c7;font-size:17px">₹0.00</strong>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+      <button class="save" style="height:46px;font-size:12.5px;background:#0f172a" onclick="printPharmaInvoice()">🖨️ फार्मेसी पर्चा प्रिंट</button>
+      <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendPharmaWhatsApp()">📲 WhatsApp बिल + मैप</button>
+    </div>
+  </div>
 </section>
 
 <!-- CLINIC DESK -->
-<section class="universal-desk-screen" id="clinicDesk" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
- <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
- <div class="desk-card">
-   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-     <div>
-       <h2 style="font-size:16px;font-weight:800" id="dispClinicName">आरोग्य रिहैब व थेरेपी क्लिनिक</h2>
-       <p style="font-size:11px;color:var(--g-text-sub);margin-top:2px" id="dispClinicSub">डॉ. आर. पी. सिंह | Reg: UP-RMP-2026/A</p>
-     </div>
-     <button type="button" class="btn-icon" onclick="editClinicSetup()" style="border:none;background:var(--g-chip-bg);padding:6px 12px;border-radius:12px;font-weight:700;cursor:pointer;">&#9881;&#65039; सेटअप</button>
-   </div>
-   <select id="rxTemplatePicker" class="u-input" style="font-weight:800;" onchange="updateRxCategoryBadge()"></select>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-     <input id="rxPtName" class="u-input" placeholder="मरीज़ का नाम *">
-     <input id="rxPtPhone" type="tel" maxlength="10" class="u-input" placeholder="WhatsApp नंबर">
-   </div>
-   <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0 4px;">
-     <span style="font-size:12px;font-weight:700;">लक्षण (Complaints):</span>
-     <button type="button" onclick="openRxItemAdder('c')" style="border:none;background:none;color:var(--g-primary-blue);font-weight:800;cursor:pointer;">&#65291; जोड़ें</button>
-   </div>
-   <div id="rxComplaintsCloud" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;"></div>
-   <div style="display:flex;justify-content:space-between;align-items:center;margin:8px 0 4px;">
-     <span style="font-size:12px;font-weight:700;" id="rxTreatLbl">उपचार (Treatment):</span>
-     <button type="button" onclick="openRxItemAdder('t')" style="border:none;background:none;color:var(--g-primary-blue);font-weight:800;cursor:pointer;">&#65291; जोड़ें</button>
-   </div>
-   <div id="rxTreatmentCloud" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;"></div>
-   <div class="desk-actions" style="margin-top:14px;">
-     <button type="button" class="btn-print" onclick="printClinicPrescription()">&#128424;&#65039; पर्चा प्रिंट</button>
-     <button type="button" class="btn-whatsapp" onclick="sendClinicWhatsAppRx()">&#128242; WhatsApp पर्चा</button>
-   </div>
- </div>
-</section>
-
-<!-- COUNTER BILLING DESK -->
-<section class="universal-desk-screen" id="billingDesk" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
- <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
- <div class="desk-card">
-   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-     <h2 style="font-size:15px;font-weight:800">काउंटर बिलिंग</h2>
-     <div style="display:flex;gap:6px">
-       <button type="button" id="bTypeKaccha" class="btn-icon" onclick="switchBillMode('kaccha')">कच्चा</button>
-       <button type="button" id="bTypeGst" class="btn-icon" onclick="switchBillMode('gst')">GST</button>
-     </div>
-   </div>
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-     <input id="cartCustName" class="u-input" placeholder="ग्राहक नाम">
-     <input id="cartCustPhone" class="u-input" type="tel" maxlength="10" placeholder="मोबाइल">
-   </div>
-   <table class="u-table">
-     <thead><tr><th>सामान</th><th>मात्रा</th><th style="text-align:right">भाव</th></tr></thead>
-     <tbody id="cartTableBody"></tbody>
-   </table>
-   <button type="button" onclick="addCartRow()" style="width:100%;height:40px;background:var(--g-chip-bg);border:1px dashed var(--g-primary-blue);border-radius:12px;color:var(--g-primary-blue);font-weight:800;margin:8px 0;cursor:pointer;">&#65291; नया सामान जोड़ें</button>
-   <div class="desk-total-row"><span>कुल राशि:</span><strong id="cGrandTotal" style="color:var(--g-green);font-size:20px;">&#8377;0.00</strong></div>
-   <div class="desk-actions">
-     <button type="button" class="btn-print" onclick="printCartInvoice()">&#128424;&#65039; प्रिंट</button>
-     <button type="button" class="btn-whatsapp" onclick="sendCartWhatsApp()">&#128242; WhatsApp बिल</button>
-   </div>
- </div>
-</section>
-
-<!-- DETAIL VIEW -->
-<section class="universal-desk-screen" id="detail" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
- <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
- <div class="desk-card" style="text-align:center;">
-  <div style="width:50px;height:50px;border-radius:50%;background:#e0f2fe;color:#0284c7;display:grid;place-items:center;font-size:20px;font-weight:800;margin:0 auto 8px;" id="dAvatar">?</div>
-  <h2 id="dName">-</h2><div id="dPhone" style="font-size:12px;color:var(--g-text-sub);">-</div>
-  <div id="dAmount" style="font-size:28px;font-weight:800;margin:10px 0;color:var(--g-red);">&#8377;0</div>
-  <button type="button" class="btn-whatsapp" style="width:100%;margin-bottom:10px;" onclick="whatsapp()">&#128172; WhatsApp रिमाइंडर</button>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-    <button type="button" class="btn-print" style="background:var(--g-red);" onclick="openTx('give')">&#65291; उधार दिया</button>
-    <button type="button" class="btn-print" style="background:var(--g-green);" onclick="openTx('get')">&#10003; भुगतान मिला</button>
-  </div>
- </div>
- <div class="section-head-title" style="margin-top:14px;">लेन-देन का इतिहास</div>
- <div id="transactions"></div>
-</section>
-
-<!-- MANDI VIEW -->
-<section class="universal-desk-screen" id="mandi" style="display:none;padding:16px;background:var(--g-bg);min-height:85vh;">
- <button type="button" class="back" onclick="closeAllDesks()" style="border:none;background:var(--g-chip-bg);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer;margin-bottom:12px;">&#8592; वापस होम पर</button>
- <div class="head" style="margin-bottom:10px;"><h2>&#127806; मंडी भाव (Agmarknet)</h2></div>
- <select id="mandiDistrictSelect" class="u-input" onchange="loadDistrictMandi()">
-   <option value="Bahraich" selected>&#128205; बहराइच मंडी</option>
-   <option value="Aligarh">&#128205; अलीगढ़ मंडी</option>
-   <option value="Bulandshahr">&#128205; बुलंदशहर मंडी</option>
- </select>
- <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px" id="mandiList"></div>
-</section>
-
-<!-- 7. FIXED BOTTOM DOCK (SCAN QR DOCKED IN CENTER) -->
-<nav class="bottom-dock">
-  <button type="button" class="dock-btn active" id="bHome" onclick="closeAllDesks()">
-    <div style="font-size:19px;">&#127968;</div>
-    <span>होम</span>
-  </button>
-  
-  <button type="button" class="dock-btn" onclick="openCustomer()">
-    <div style="font-size:19px;">&#128100;</div>
-    <span>+ ग्राहक</span>
-  </button>
-
-  <div class="scan-center-slot">
-    <div class="docked-scan-btn" onclick="openQR()">
-      &#128247;
+<section class="clinic-desk" id="clinicDesk" style="display:none">
+  <button class="back" onclick="showServices()">← वापस मेरी सेवाएँ</button>
+  <div class="rx-card-box">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <div>
+        <h2 style="font-size:16px;font-weight:800" id="dispClinicName">आरोग्य रिहैब व थेरेपी क्लिनिक</h2>
+        <p style="font-size:11px;color:var(--muted);margin-top:2px" id="dispClinicSub">डॉ. आर. पी. सिंह | Reg: UP-RMP-2026/A</p>
+      </div>
+      <button type="button" class="tool" style="padding:6px 12px;background:#f1f5f9;font-weight:800" onclick="editClinicSetup()">⚙️ सेटअप</button>
+    </div>
+    <div class="template-selector-box">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+        <span style="font-size:11px;font-weight:800">पर्चा टेम्पलेट (50 शैलियाँ)</span>
+        <span class="tpl-badge" id="rxCategoryBadge">1. क्लासिक क्लिनिकल</span>
+      </div>
+      <select id="rxTemplatePicker" class="input" style="height:40px;margin-bottom:0;font-size:11.5px;font-weight:700" onchange="updateRxCategoryBadge()"></select>
+    </div>
+    <div class="rx-mode-tabs">
+      <div class="rx-mode-tab active" data-rx="therapy" onclick="setRxCategory('therapy')">फिजियो व न्यूरो</div>
+      <div class="rx-mode-tab" data-rx="medical" onclick="setRxCategory('medical')">एलोपैथ / मेडिकल</div>
+      <div class="rx-mode-tab" data-rx="rural" onclick="setRxCategory('rural')">प्राथमिक सेवा</div>
+    </div>
+    <div class="rx-grid-3">
+      <input id="rxPtName" class="input" style="margin-bottom:0;height:42px" placeholder="मरीज़ का नाम *">
+      <input id="rxPtAgeGender" class="input" style="margin-bottom:0;height:42px" placeholder="42 / M">
+      <input id="rxPtPhone" type="tel" maxlength="10" class="input" style="margin-bottom:0;height:42px" placeholder="WhatsApp नंबर">
+    </div>
+    <div class="rx-section-bar">
+      <span class="rx-section-title">लक्षण व तकलीफ (Complaints):</span>
+      <button type="button" class="rx-add-btn" onclick="openRxItemAdder('c')">＋ नया जोड़ें</button>
+    </div>
+    <div class="rx-tag-cloud" id="rxComplaintsCloud"></div>
+    <div class="rx-section-bar">
+      <span class="rx-section-title" id="rxTreatLbl">दवा व उपचार (Treatment):</span>
+      <button type="button" class="rx-add-btn" onclick="openRxItemAdder('t')">＋ नया जोड़ें</button>
+    </div>
+    <div class="rx-tag-cloud" id="rxTreatmentCloud"></div>
+    <div class="rx-section-bar">
+      <span class="rx-section-title">घरेलू कसरत व परहेज (Advice):</span>
+      <button type="button" class="rx-add-btn" onclick="openRxItemAdder('a')">＋ नया जोड़ें</button>
+    </div>
+    <div class="rx-tag-cloud" id="rxAdviceCloud"></div>
+    <input id="rxPtNext" class="input" style="height:42px;margin-top:8px" placeholder="अगला परामर्श / विजिट (उदा. 5 दिन बाद सुबह 10 बजे)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+      <button class="save" style="height:46px;font-size:12.5px" onclick="printClinicPrescription()">🖨️ पर्चा प्रिंट निकालें</button>
+      <button class="whatsapp" style="height:46px;font-size:12.5px;margin:0" onclick="sendClinicWhatsAppRx()">📲 WhatsApp पर्चा + मैप</button>
     </div>
   </div>
+</section>
 
-  <button type="button" class="dock-btn" id="bBilling" onclick="openDeskView('billingDesk')">
-    <div style="font-size:19px;">&#129534;</div>
-    <span>बिल डेस्क</span>
-  </button>
+<!-- BILLING -->
+<section class="billing" id="billingDesk" style="display:none">
+  <div class="billing-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+      <h2 style="font-size:15px;font-weight:800">काउंटर बिलिंग डेस्क</h2>
+      <div class="bill-type-toggle">
+        <button id="bTypeKaccha" class="bill-type-btn active" onclick="switchBillMode('kaccha')">कच्चा पर्चा</button>
+        <button id="bTypeGst" class="bill-type-btn" onclick="switchBillMode('gst')">पक्का GST</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <input id="cartCustName" class="input" style="height:40px;font-size:11px" placeholder="ग्राहक नाम (उदा. नकद)">
+      <input id="cartCustPhone" class="input" style="height:40px;font-size:11px" type="tel" maxlength="10" placeholder="मोबाइल नंबर (वैकल्पिक)">
+    </div>
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th style="width:40%">सामान</th>
+          <th style="width:18%">मात्रा</th>
+          <th style="width:20%">इकाई</th>
+          <th style="width:22%;text-align:right">भाव (₹)</th>
+        </tr>
+      </thead>
+      <tbody id="cartTableBody"></tbody>
+    </table>
+    <button type="button" onclick="addCartRow()" style="border:0;background:#f1f5f9;color:#0284c7;font-size:11px;font-weight:800;padding:8px;border-radius:10px;margin-top:8px;width:100%">＋ नया सामान जोड़ें</button>
+    <div class="cart-summary">
+      <div class="cart-summary-row">
+        <span style="color:var(--muted)">उप-योग:</span>
+        <strong id="cSubtotal">₹0.00</strong>
+      </div>
+      <div class="cart-summary-row" style="align-items:center">
+        <span style="color:var(--muted)">छूट / डिस्काउंट:</span>
+        <div style="display:flex;align-items:center;gap:4px">
+          <span>₹</span>
+          <input type="number" id="cDiscount" value="0" oninput="recalcCart()" style="width:70px;height:30px;border:1px solid var(--line);border-radius:6px;padding:2px 6px;font-size:12px;text-align:right">
+        </div>
+      </div>
+      <div class="cart-summary-row" style="border-top:1px solid var(--line);padding-top:6px;margin-top:4px;font-size:14px;font-weight:800">
+        <span>कुल देय राशि:</span>
+        <strong id="cGrandTotal" style="color:#059669;font-size:17px">₹0.00</strong>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+      <button class="save" style="height:44px;font-size:12px" onclick="printCartInvoice()">🖨️ पर्चा प्रिंट निकालें</button>
+      <button class="whatsapp" style="height:44px;font-size:12px;margin:0" onclick="sendCartWhatsApp()">📲 WhatsApp बिल</button>
+    </div>
+  </div>
+</section>
 
-  <button type="button" class="dock-btn" id="bMandi" onclick="openDeskView('mandi')">
-    <div style="font-size:19px;">&#127806;</div>
-    <span>मंडी</span>
-  </button>
+<!-- DETAIL -->
+<section class="detail" id="detail" style="display:none">
+  <button class="back" onclick="back()">← वापस बहीखाता</button>
+  <div class="profile">
+    <div class="bigavatar" id="dAvatar">?</div>
+    <h2 id="dName">-</h2>
+    <div class="phone" id="dPhone">-</div>
+    <div class="points-tag" id="dLoyaltyTag" style="display:none">🪙 <span id="dLoyaltyPts">0</span> लॉयल्टी पॉइंट्स</div>
+    <div class="detailamt" id="dAmount">₹0</div>
+    <div class="detailstatus" id="dStatus">हिसाब चुकता</div>
+    <button class="whatsapp" onclick="whatsapp()">💬 WhatsApp पर हिसाब भेजें</button>
+    <div class="actions">
+      <button class="action give" onclick="openTx('give')">＋ मैंने दिया (उधार)</button>
+      <button class="action get" onclick="openTx('get')">✓ मुझे मिला (जमा)</button>
+    </div>
+    <div class="tools">
+      <button class="tool" onclick="editCustomer()">✏️ सुधार</button>
+      <button class="tool" onclick="deleteCustomer()">🗑️ हटाएं</button>
+      <button class="tool" onclick="callCustomer()">📞 फोन</button>
+      <button class="tool" onclick="openQR()">📷 UPI QR</button>
+    </div>
+  </div>
+  <div class="txhead">लेन-देन इतिहास</div>
+  <div class="txlist" id="transactions"></div>
+</section>
+
+<!-- MANDI -->
+<section class="mandi" id="mandi" style="display:none">
+  <div class="head"><h2>🌾 दैनिक कृषि मंडी भाव</h2><span>Agmarknet यूपी लाइव</span></div>
+  <div style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:12px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.02)">
+    <label style="font-size:11px;font-weight:700;color:var(--muted);display:block;margin-bottom:6px">मंडी / जिला चुनें:</label>
+    <select id="mandiDistrictSelect" class="input" style="margin-bottom:0;height:42px" onchange="loadDistrictMandi()">
+      <option value="Bahraich" selected>📍 बहराइच (Bahraich Mandi)</option>
+      <option value="Aligarh">📍 अलीगढ़ (Aligarh Mandi)</option>
+      <option value="Bulandshahr">📍 बुलंदशहर (Bulandshahr Mandi)</option>
+      <option value="Lucknow">📍 लखनऊ (Lucknow Mandi)</option>
+      <option value="Kanpur">📍 कानपुर (Kanpur Mandi)</option>
+    </select>
+  </div>
+  <div class="list" id="mandiList"></div>
+</section>
+
+<!-- MASCOT -->
+<div class="mascot-wrap">
+  <div class="mascot-bubble" id="mascotBubble">लाला जी, आज का हिसाब लिख लिया?</div>
+  <div class="mascot-container" onclick="handleMascotClick()">
+    <img src="logo.png" class="chupa-avatar" id="chupaAvatar" alt="मुंशी जी">
+    <div class="mascot-mute" id="mascotMute" onclick="toggleMascotMute(event)">🔊</div>
+  </div>
+</div>
+
+<button class="fab" id="fabBtn" onclick="openCustomer()">＋ नया ग्राहक</button>
+
+<!-- BOTTOM BAR -->
+<nav class="bottom">
+  <button id="bLedger" class="active" onclick="tab('ledger')"><div>📒</div>बहीखाता</button>
+  <button id="bBilling" onclick="tab('billing')"><div>🧾</div>बिल काउंटर</button>
+  <button id="bMandi" onclick="tab('mandi')"><div>🌾</div>मंडी भाव</button>
+  <button id="bServices" onclick="tab('services')"><div>🛡️</div>सेवाएँ</button>
+  <button id="bLock" onclick="lockApp()"><div>🔒</div>बैंकिंग लॉक</button>
 </nav>
 
 <!-- MODALS -->
 <div class="modal" id="customerModal"><div class="box">
- <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
- <input id="cName" class="u-input" placeholder="ग्राहक का नाम">
- <input id="cPhone" class="u-input" type="tel" inputmode="numeric" maxlength="10" placeholder="मोबाइल नंबर (10 अंक)">
- <div class="modalrow"><button type="button" class="cancel" onclick="closeModal('customerModal')">रद्द करें</button><button type="button" class="btn-print" onclick="saveCustomer()">सेव करें</button></div>
+  <h2 id="customerModalTitle">नया ग्राहक जोड़ें</h2>
+  <input id="cName" class="input" placeholder="ग्राहक का नाम">
+  <input id="cPhone" class="input" type="tel" inputmode="numeric" maxlength="10" placeholder="मोबाइल नंबर (10 अंक)">
+  <div class="modalrow">
+    <button class="cancel" onclick="closeModal('customerModal')">रद्द करें</button>
+    <button class="save" onclick="saveCustomer()">सेव करें</button>
+  </div>
 </div></div>
 
 <div class="modal" id="txModal"><div class="box">
- <h2 id="txTitle">उधार दर्ज करें</h2>
- <input id="txAmount" class="u-input" type="number" inputmode="decimal" placeholder="राशि &#8377;">
- <input id="txNote" class="u-input" placeholder="विवरण &mdash; जैसे किराना, गल्ला">
- <div class="modalrow"><button type="button" class="cancel" onclick="closeModal('txModal')">रद्द करें</button><button type="button" class="btn-print" onclick="saveTx()">सेव करें</button></div>
+  <h2 id="txTitle">उधार दर्ज करें</h2>
+  <input id="txAmount" class="input" type="number" inputmode="decimal" placeholder="राशि ₹">
+  <input id="txNote" class="input" placeholder="विवरण — जैसे किराना, गल्ला">
+  <div class="modalrow">
+    <button class="cancel" onclick="closeModal('txModal')">रद्द करें</button>
+    <button class="save" onclick="saveTx()">सेव करें</button>
+  </div>
 </div></div>
 
 <div class="modal" id="settingsModal"><div class="box">
- <h2>दुकान व मुंशी जी सेटिंग्स</h2>
- <input id="merchantName" class="u-input" placeholder="दुकानदार का नाम">
- <input id="shopName" class="u-input" placeholder="मेरी दुकान">
- <input id="shopPhone" class="u-input" type="tel" placeholder="मोबाइल">
- <input id="shopUpi" class="u-input" placeholder="merchant@upi">
- <div class="modalrow"><button type="button" class="cancel" onclick="closeModal('settingsModal')">बंद करें</button><button type="button" class="btn-print" onclick="saveSettings()">सेव करें</button></div>
+  <h2>दुकान व मुंशी जी सेटिंग्स</h2>
+  <div class="setting"><small>दुकानदार का नाम</small><input id="merchantName" class="input" placeholder="लाला जी"></div>
+  <div class="setting"><small>दुकान का नाम</small><input id="shopName" class="input" placeholder="मेरी दुकान"></div>
+  <div class="setting"><small>मोबाइल नंबर</small><input id="shopPhone" class="input" type="tel" placeholder="9876543210"></div>
+  <div class="setting"><small>UPI ID (रॉयल QR के लिए)</small><input id="shopUpi" class="input" placeholder="merchant@upi"></div>
+  <div class="setting"><small>GSTIN (वैकल्पिक)</small><input id="shopGst" class="input" placeholder="09AAAAA0000A1Z5"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+    <button type="button" class="tool qr-btn" onclick="downloadRoyalPoster()">🖼️ QR पोस्टर</button>
+    <button type="button" class="tool pin-btn" onclick="setPin()">🔐 PIN बदलें/लगाएं</button>
+  </div>
+  <div class="admin-entry-box">
+    <div style="font-size:11px;font-weight:800;color:var(--text);margin-bottom:6px">👑 मुंशी जी गुप्त मालिक मीटर (पिन दर्ज करें):</div>
+    <div style="display:flex;gap:6px">
+      <input id="adminPinInput" class="input" type="password" maxlength="4" placeholder="4-अंकीय पिन" style="margin:0;height:38px;font-size:12px">
+      <button type="button" onclick="verifyAdminView()" class="admin-unlock-btn">खोलें</button>
+    </div>
+    <div id="adminStatsBox" style="display:none;margin-top:10px;padding-top:10px;border-top:1px solid #cbd5e1;font-size:11px;line-height:1.6">
+      <div>☕ <b>कुल चाय हाजिरी:</b> <span id="admVisits">0</span> बार</div>
+      <div>🧾 <b>कुल लिखे बिल:</b> <span id="admBills">0</span> पर्चे</div>
+      <div>☕ <b>कुल पिलाई चाय:</b> <span id="admChai">0</span> कप</div>
+      <div>🩴 <b>कुल हुई कुटाई:</b> <span id="admKutai">0</span> बार</div>
+      <div>🪙 <b>गद्दी की बरकत तिजोरी:</b> <span id="admBarakat">0.00</span> सिक्का</div>
+    </div>
+  </div>
+  <div class="modalrow" style="margin-top:14px">
+    <button class="cancel" onclick="closeModal('settingsModal')">रद्द करें</button>
+    <button class="save" onclick="saveSettings()">सेव करें</button>
+  </div>
 </div></div>
 
-<div class="modal" id="qrModal"><div class="box" style="text-align:center;">
- <h2>रॉयल UPI QR</h2>
- <div id="qrCanvasContainer" style="display:grid;place-items:center;padding:12px;"></div>
- <button type="button" class="btn-print" style="width:100%;margin-top:10px;" onclick="closeModal('qrModal')">बंद करें</button>
+<div class="modal" id="qrModal"><div class="box">
+  <div class="royal-qr-card">
+    <h3 style="font-size:17px;font-weight:800" id="qrShopTitle">मेरी दुकान</h3>
+    <div class="qr-canvas-wrap" id="qrCanvasContainer"></div>
+    <p style="font-size:12px;font-weight:700;color:#93c5fd" id="qrUpiText">UPI पेमेंट करें</p>
+  </div>
+  <div class="modalrow">
+    <button class="cancel" onclick="closeModal('qrModal')">रद्द करें</button>
+    <button class="save" onclick="downloadRoyalPoster()">📥 पोस्टर डाउनलोड</button>
+  </div>
 </div></div>
 
 <div class="modal" id="gameModal"><div class="box">
- <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-   <h2>मुंशी जी की बैठक</h2>
-   <span id="gameVaultBal">0.00</span>
- </div>
- <div class="modalrow">
-   <button type="button" onclick="feedChai()" class="btn-print" style="background:#b45309;">&#9749; चाय पिलाओ (<span id="modalChaiCount">0</span>)</button>
-   <button type="button" onclick="hitKutai()" class="btn-print" style="background:#dc2626;">&#129696; कुटाई करो (<span id="modalKutaiCount">0</span>)</button>
- </div>
- <button type="button" class="cancel" onclick="closeModal('gameModal')" style="width:100%;margin-top:12px;">वापस जाएँ</button>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+    <div style="display:flex;align-items:center;gap:10px">
+      <img src="logo.png" style="width:40px;height:40px;border-radius:12px;border:2px solid #059669" alt="मुंशी जी">
+      <div><h2 style="font-size:15px;font-weight:800;margin:0">मुंशी जी की बैठक</h2><p style="font-size:10px;color:var(--muted);margin:0">देसी गद्दी मनोरंजन</p></div>
+    </div>
+    <div class="vault-badge"><span>🪙</span><span id="gameVaultBal">0.00</span></div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px">
+    <button type="button" onclick="feedChai()" class="game-btn chai-btn"><span style="font-size:24px">☕</span><span>चाय पिलाओ (<span id="modalChaiCount">0</span>)</span></button>
+    <button type="button" onclick="hitKutai()" class="game-btn kutai-btn"><span style="font-size:24px">🩴</span><span>कुटाई करो (<span id="modalKutaiCount">0</span>)</span></button>
+  </div>
+  <div class="modalrow" style="margin-top:14px"><button class="cancel" onclick="closeModal('gameModal')" style="grid-column:1/-1">बैठक से बाहर निकलें</button></div>
 </div></div>
 
 <div class="lock" id="lockScreen">
   <div class="lockbox">
-    <h2>चुपाकाबरा खाता</h2>
-    <p style="font-size:12px;color:#64748b;margin:6px 0 16px;">सुरक्षित गद्दी &bull; 4 अंकों का पिन दर्ज करें</p>
-    <input id="unlockPin" class="u-input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="text-align:center;letter-spacing:10px;font-size:22px;height:50px;">
-    <button type="button" class="unlock" onclick="unlockApp()" style="margin-top:8px">खाता खोलें &#128275;</button>
+    <div class="lockicon">🔒</div>
+    <h2 style="font-size:18px;font-weight:800;margin-top:6px;color:#0f172a">चुपाकाबरा खाता</h2>
+    <p style="font-size:11px;color:var(--muted);margin:4px 0 16px">सुरक्षित गद्दी • 4 अंकों का पिन दर्ज करें</p>
+    <input id="unlockPin" class="input" type="password" inputmode="numeric" maxlength="4" placeholder="••••" style="text-align:center;letter-spacing:8px;font-size:20px">
+    <button class="unlock" onclick="unlockApp()" style="margin-top:8px">खाता खोलें 🔓</button>
   </div>
 </div>
 
@@ -337,48 +467,6 @@
 <div id="pharmaPrintArea"></div>
 <div class="toast" id="toast"></div>
 
-<script>
-// SCREEN CONTROLLER - CLEAN SWITCHING
-function closeAllDesks() {
-  document.getElementById('mainDashboardView').style.display = 'block';
-  document.getElementById('pharmacyDesk').style.display = 'none';
-  document.getElementById('clinicDesk').style.display = 'none';
-  document.getElementById('billingDesk').style.display = 'none';
-  document.getElementById('detail').style.display = 'none';
-  document.getElementById('mandi').style.display = 'none';
-  document.getElementById('services').style.display = 'none';
-  window.scrollTo(0, 0);
-}
-
-function openDeskView(deskId) {
-  document.getElementById('mainDashboardView').style.display = 'none';
-  document.getElementById('pharmacyDesk').style.display = 'none';
-  document.getElementById('clinicDesk').style.display = 'none';
-  document.getElementById('billingDesk').style.display = 'none';
-  document.getElementById('detail').style.display = 'none';
-  document.getElementById('mandi').style.display = 'none';
-  document.getElementById('services').style.display = 'none';
-  
-  const target = document.getElementById(deskId);
-  if (target) {
-    target.style.display = 'block';
-    window.scrollTo(0, 0);
-  }
-}
-
-function showLedgerView() {
-  closeAllDesks();
-  const searchInput = document.getElementById('search');
-  if (searchInput) searchInput.focus();
-}
-
-function showClinicDesk() { openDeskView('clinicDesk'); }
-function showPharmacyDesk() { openDeskView('pharmacyDesk'); }
-function showBilling() { openDeskView('billingDesk'); }
-function showMandi() { openDeskView('mandi'); if (typeof loadDistrictMandi === 'function') loadDistrictMandi(); }
-function toggleGovDrawer() { openDeskView('services'); }
-function hideGovDrawer() { closeAllDesks(); }
-</script>
 <script src="app.js"></script>
 <script src="services.js"></script>
 </body>
